@@ -41,6 +41,7 @@ class PlayerTracker:
     received_prog_items: Counter[str]
     slot_data: Dict[any, any]
     theme: str
+    font: str = ''
 
     region_keys: Dict[str, str] = {}
 
@@ -354,6 +355,7 @@ def get_player_tracker(tracker: UUID, tracked_team: int, tracked_player: int, wa
         return render_template(
             "trackers/" + player_tracker.template,
             all_progression_items=player_tracker.all_prog_items,
+            received_items=player_tracker.items_received,
             player=player_tracker.player,
             team=player_tracker.team,
             room=player_tracker.room,

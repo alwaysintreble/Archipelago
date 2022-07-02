@@ -24,7 +24,7 @@
             <img
                 src="{{ icons[item] }}"
                 class="icon tooltip {{ 'acquired' if item in received_items }}"
-            />
+            /> {{ received_items[item] if item in received_items and all_progression_items[item] > 1 else '' }}
         </div>
         {%- endfor %}
     </div>

@@ -55,7 +55,24 @@ window.addEventListener('load', () => {
     });
     }
 
-    update()
+    function changeStyle() {
+        const room = document.getElementById('tracker-wrapper').getAttribute('data-tracker');
+        const request = new Request('/api/tracker/' + room);
+
+        fetch(request)
+        .then(response => response.json())
+        .then(data => {
+            changeFont(document.getElementById('tracker-wrapper'), data.font);
+        });
+    }
+    function changeFont(element, font){
+        element.setAttribute("style", element.getAttribute("style") + ";font-family: " + font);
+        for (var i=0; i < element.children.length; i++) {
+            changeFont(element.children[i], font);
+        }
+    }
+
+    changeStyle()
     setInterval(update, 30000);
 
 

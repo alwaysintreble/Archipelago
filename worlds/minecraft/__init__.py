@@ -122,6 +122,8 @@ class MinecraftWebWorld(WebWorld):
                             "Time to Strike!", "Cow Tipper", "When Pigs Fly", "Overkill", "Librarian", "Overpowered"]
         }
 
+        tracker.font = "MinecraftiaRegular"
+
 
 class MinecraftWorld(World):
     """

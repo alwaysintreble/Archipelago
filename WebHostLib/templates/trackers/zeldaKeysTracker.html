@@ -23,7 +23,7 @@ also adds a table with the key and checks counts for each region in the middle #
                     <img
                         src="{{ icons[item] }}"
                         class="icon tooltip {{ 'acquired' if item in received_items }}"
-                    />
+                    /> {{ received_items[item] if item in received_items and all_progression_items[item] > 1 else '' }}
                 </div>
             {% endif %}
         {% endfor %}
@@ -41,7 +41,7 @@ also adds a table with the key and checks counts for each region in the middle #
             </tr>
         {% for region in regions %}
             <tr class="regions-column" id="{{ region }}">
-                <td id="{{ region }}-header">{{ region }} ▼</td>
+                <td class="regions-header" id="{{ region }}-header">{{ region }} ▼</td>
                 {% if region in region_keys %}
                     {%- if region_keys[region]|length > 1 %}
                     <td class="smallkeys">{{ received_items[region_keys[region][0]] if region_keys[region][0] in received_items else '-' }}</td>

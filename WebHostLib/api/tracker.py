@@ -33,7 +33,8 @@ def update_player_tracker(tracker: UUID, tracked_team: int, tracked_player: int)
         "items_received": player_tracker.items_received,
         "checked_locations": list(sorted(player_tracker.checked_locations)),
         "icons": display_icons,
-        "progressive_names": player_tracker.progressive_names
+        "progressive_names": player_tracker.progressive_names,
+        "font": player_tracker.font
     })
 
 

@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
     .then(data => {
         // update locations blocks
         for (const location of data.checked_locations) {
-            document.getElementById(location).classList.add('acquired');
+            document.getElementById(location).classList.toggle('acquired');
         }
         // update totals checks done
         let total_checks_ele = document.getElementById('total-checks');
@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
                                 let doc_item = document.getElementById(item_category)
                                 doc_item.children[0].src = data.icons[item];
                                 if (item in data.items_received) {
-                                    doc_item.children[0].classList.add('acquired');
+                                    doc_item.children[0].classList.toggle('acquired');
                                     doc_item.children[1].innerText = item_category;
                                 }
                             }
@@ -55,7 +55,24 @@ window.addEventListener('load', () => {
     });
     }
 
-    update()
+    function changeStyle() {
+        const room = document.getElementById('tracker-wrapper').getAttribute('data-tracker');
+        const request = new Request('/api/tracker/' + room);
+
+        fetch(request)
+        .then(response => response.json())
+        .then(data => {
+            changeFont(document.getElementById('tracker-wrapper'), data.font);
+        });
+    }
+    function changeFont(element, font){
+        element.setAttribute("style", element.getAttribute("style") + ";font-family: " + font);
+        for (var i=0; i < element.children.length; i++) {
+            changeFont(element.children[i], font);
+        }
+    }
+
+    changeStyle()
     setInterval(update, 30000);
 
 
