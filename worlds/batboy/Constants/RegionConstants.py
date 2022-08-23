@@ -1,5 +1,5 @@
-﻿class RegionName:
-    grassy_plains = "Grassy Plains"
-    frozen_peak = "Frozen Peak"
-    windy_forest = "Windy Forest"
-
+﻿LEVEL_TO_HINT_NAMES = {
+    "Grassy Plains": "The Plains Lands",
+    "Frozen Peak": "A Chilly Height",
+    "Windy Forest": "In Whispy Woods",
+}
