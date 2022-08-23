@@ -76,18 +76,18 @@ class BatBoyWorld(Auto.World):
 
     def create_levels_with_rules(self, overworld: Region) -> None:
         level_rules: Dict[str, Optional[Callable]] = {
-            "Frozen Peak": self.world.state.has("Bat Spin", self.player),
-            "Windy Forest": self.world.state.has("Bat Spin", self.player),
+            "Frozen Peak": lambda state: state.has("Bat Spin", self.player),
+            "Windy Forest": lambda state: state.has("Bat Spin", self.player),
         }
         
         location_rules: Dict[str, Optional[Callable]] = {
-            "Grassy Plains Golden Seed": self.world.state.has("Bat Spin", self.player) and
-                                         self.world.state.has_any({"Slash Bash", "Grappling Ribbon", self.player)}),
+            "Grassy Plains Golden Seed": lambda state: state.has("Bat Spin", self.player) and
+                                                       state.has_any({"Slash Bash", "Grappling Ribbon", self.player}),
         }
         
         self.levels: List[Region] = []
         
-        for level_name in REGION_NAMES:
+        for level_name in LEVEL_TO_HINT_NAMES:
             level: Region = self.create_region(level_name)
             connection: Entrance = Entrance(self.player, level_name, overworld)
             if level_name in level_rules:
@@ -102,12 +102,12 @@ class BatBoyWorld(Auto.World):
             self.levels.append(level)
     
     def create_shops(self, overworld: Region) -> None:
-        shop_rules: Dict[str, Optional[Callable]] = {
-            
-        }
+        shop_rules: Dict[str, Optional[Callable]] = {}
         
-        self.shops = []
+        self.shops: List[Region] = []
         shop = self.create_region("Red Seed Shop")
+        connection: Entrance = Entrance(self.player, "Red Seed Shop", overworld)
+        connection.connect(shop)
         for loc in SHOP_NAMES:
             rule = None
             if loc == "Shop Consumable Item":
@@ -130,41 +130,23 @@ class BatBoyWorld(Auto.World):
         self.create_levels_with_rules(overworld)
         self.create_shops(overworld)
         self.world.regions += [menu, overworld, self.levels, self.shops]
-    
-    def set_rules(self) -> None:
-        pass
-        location_rules: Dict[str, Optional[Callable]] = {
-            "Grassy Plains Golden Seed": self.world.state.has("Bat Spin", self.player) and 
-                                         self.world.state.has_any({"Slash Bash", "Grappling Ribbon", self.player)}),
-        }
-        
-        #for loc, rule in location_rules.items():
-        #    self.world.get_location(loc).access_rule = rule
-            
-    
+
     def generate_early(self) -> None:
         loc = self.world.random.choice(self.world.get_region("Grassy Plains", self.player).locations)
         bat_spin = self.create_item("Bat Spin")
         loc.place_locked_item(self.itempool.pop(self.itempool.index(bat_spin)))
-        
-            
+
     def generate_basic(self) -> None:
-        items_len: int = len(self.itempool)
-        locations_len: int = 0
-        for level in self.levels:
-            for _ in level.locations:
-                locations_len += 1
-        for shop in self.shops:
-            for _ in shop.locations:
-                locations_len += 1
-        if items_len < locations_len:
-            while items_len != locations_len:
+        # each level has 3 seeds and the level clear
+        # each shop has 3 item slots and a consumable item slot
+        locations_len: int = len((self.levels * 4) + (self.shops * 4))
+
+        if len(self.itempool) < locations_len:
+            while len(self.itempool) != locations_len:
                 self.itempool.append(self.create_item("Red Seed"))
-                items_len += 1
-        elif items_len > locations_len:
-            while items_len != locations_len:
+        elif len(self.itempool) > locations_len:
+            while len(self.itempool) != locations_len:
                 self.itempool.remove(self.create_item("Red Seed"))
-                items_len -= 1
         
         self.world.itempool += self.itempool
     
