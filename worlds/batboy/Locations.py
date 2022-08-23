@@ -24,5 +24,4 @@ def location_name_to_id() -> Dict[str, int]:
     # the demo only has a single shop so this is pseudo hard coded until i find a better way to handle shops
     shop_map: Dict[str, int] = {shop_slot: shop_id
                                 for shop_id, shop_slot in enumerate(SHOP_NAMES, (base_offset + shop_offset))}
-    print(loc_map | shop_map)
     return loc_map | shop_map

@@ -4,6 +4,7 @@ ITEM_NAMES = [
     "Red Seed",
     "Green Seed",
     "Golden Seed",
+    "Casette",
     "Increase HP",
     "Increase Stamina"
 ]
@@ -25,7 +26,7 @@ LOCATION_NAMES = [
     "Red Seed",
     "Green Seed",
     "Golden Seed",
-    # "Cassette", TODO maybe possible?
+    "Casette",  # TODO maybe possible?
     "Level Clear",
 ]
 

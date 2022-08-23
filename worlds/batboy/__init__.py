@@ -43,7 +43,7 @@ class BatBoyWorld(Auto.World):
 
     def create_item(self, name: str) -> BatBoyItem:
         return BatBoyItem(name, 
-                          ItemClassification.progression if name in ABILITY_NAMES
+                          ItemClassification.progression if name in ABILITY_NAMES or name == "Golden Seed"
                           else ItemClassification.useful if name == "Increase HP"
                           else ItemClassification.filler,
                           self.item_name_to_id[name], self.player)
@@ -85,6 +85,7 @@ class BatBoyWorld(Auto.World):
         location_rules: Dict[str, Optional[Callable]] = {
             "Grassy Plains Golden Seed": lambda state: state.has("Bat Spin", self.player) and
                                                        state.has_any({"Slash Bash", "Grappling Ribbon"}, self.player),
+            "Windy Forest Golden Seed": lambda state: state.has_all({"Slash Bash", "Grappling Ribbon"}, self.player),
         }
         
         self.levels: List[Region] = []
@@ -97,11 +98,13 @@ class BatBoyWorld(Auto.World):
             connection.connect(level)
             self.overworld.exits.append(connection)
             for loc_name in LOCATION_NAMES:
-                new_name = level_name + " " + loc_name
-                rule = None
-                if new_name in location_rules:
-                    rule = location_rules[new_name]
-                self.create_location(new_name, level, rule)
+                if loc_name is not "Casette":
+                    new_name = level_name + " " + loc_name
+                    if new_name is "Windy Forest Green Seed":
+                        rule = None
+                        if new_name in location_rules:
+                            rule = location_rules[new_name]
+                        self.create_location(new_name, level, rule)
             self.levels.append(level)
     
     def create_shops(self) -> None:
@@ -114,7 +117,7 @@ class BatBoyWorld(Auto.World):
         for loc in SHOP_NAMES:
             rule = None
             if loc == "Shop Consumable Item":
-                rule = self.world.state.has("Red Seed", self.player, 3)
+                rule = self.world.state.has("Golden Seed", self.player, 3)
             self.create_location(loc, shop, rule)
         self.shops.append(shop)
         
