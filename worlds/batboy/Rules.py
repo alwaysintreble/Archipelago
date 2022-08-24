@@ -1,7 +1,7 @@
 ﻿from typing import Dict, Optional, Callable, TYPE_CHECKING
 from worlds.AutoWorld import LogicMixin
 if TYPE_CHECKING:
-   from worlds.batboy import BatBoyWorld
+    from worlds.batboy import BatBoyWorld
 else:
     BatBoyWorld = object
 
