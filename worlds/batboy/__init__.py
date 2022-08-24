@@ -1,6 +1,6 @@
-﻿from typing import List, Dict, Optional, Callable
+﻿from typing import List, Optional, Callable
 import worlds.AutoWorld as Auto
-from BaseClasses import MultiWorld, Tutorial, ItemClassification, Region, RegionType, Entrance
+from BaseClasses import Tutorial, ItemClassification, Region, RegionType, Entrance
 
 from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES
 from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES
@@ -37,7 +37,7 @@ class BatBoyWorld(Auto.World):
     
     data_version = 0
     
-    itempool: List[BatBoyItem]
+    itempool: List[str]
     levels: List[str]
     shops: List[str]
     overworld: Region
@@ -51,26 +51,27 @@ class BatBoyWorld(Auto.World):
                           self.item_name_to_id[name], self.player)
     
     def create_items(self) -> None:
-        level_count: int = len(LEVEL_TO_HINT_NAMES) # each level has 1 red, green, and gold seed
+        level_count: int = len(LEVEL_TO_HINT_NAMES)  # each level has 1 red, green, and gold seed
         self.itempool = []
 
         # we always want one of every ability so do this first
         for ability in ABILITY_NAMES:
-            self.itempool.append(self.create_item(ability))
+            self.itempool.append(ability)
             
         # may do this differently in the future and allow custom seed distributions
         for _ in range(level_count):
-            self.itempool.append(self.create_item("Red Seed"))
-            self.itempool.append(self.create_item("Green Seed"))
-            self.itempool.append(self.create_item("Golden Seed"))
+            self.itempool.append("Red Seed")
+            self.itempool.append("Green Seed")
+            self.itempool.append("Golden Seed")
             
         # since we only have a red seed shop currently we create the red seeds for it
-        for slot in range(len(SHOP_NAMES)):
+        for slot in SHOP_NAMES:
             if slot != "Shop Consumable Item":
-                self.itempool.append(self.create_item("Red Seed"))
-        
-        # add a single hp upgrade
-        self.itempool.append(self.create_item("Increase HP"))
+                self.itempool.append("Red Seed")
+            else:
+                self.itempool.append("Increase HP")
+
+        self.itempool.remove("Green Seed")
     
     def create_location(self, name: str, parent: Region, rule: Optional[Callable] = None) -> None:
         loc = BatBoyLocation(self.player, name, self.location_name_to_id[name], parent)
@@ -107,11 +108,12 @@ class BatBoyWorld(Auto.World):
         shop = self.create_region("Red Seed Shop")
         connection: Entrance = Entrance(self.player, "Red Seed Shop", self.overworld)
         connection.connect(shop)
+        self.overworld.exits.append(connection)
 
         for loc in SHOP_NAMES:
             rule = None
-            if loc == "Shop Consumable Item":
-                rule = self.world.state.has("Golden Seed", self.player, 3)
+            if loc in shop_rules:
+                rule = shop_rules[loc]
             self.create_location(loc, shop, rule)
         self.shops.append(shop)
         
@@ -129,7 +131,7 @@ class BatBoyWorld(Auto.World):
         start.connect(self.overworld)
 
         # instantiate my LocationRules class before creating rules so we can easily reference its rules dicts
-        self.location_rules = LocationRules(self)
+        self.location_rules = LocationRules(self.player)
         # create a region for each level and connect it to the overworld with rules
         self.create_levels_with_rules()
         self.create_shops()
@@ -142,22 +144,23 @@ class BatBoyWorld(Auto.World):
         possible_locs.append(self.world.get_location("Shop Slot 1", self.player))
         loc = self.world.random.choice(possible_locs)
 
-        bat_spin = self.create_item("Bat Spin")
-        loc.place_locked_item(self.itempool.pop(self.itempool.index(bat_spin)))
+        loc.place_locked_item(self.create_item(self.itempool.pop(self.itempool.index("Bat Spin"))))
 
         # each level has 3 seeds and the level clear
         # each shop has 3 item slots and a consumable item slot
-        locations_len: int = len((self.levels * 4) + (self.shops * 4)) - 1  # subtract 1 due to above
+        # subtract 2 due to above item placement and green seed location not existing
+        locations_len: int = len((self.levels * 4) + (self.shops * 4)) - 2
 
         # check if the itempool and number of locations are equal and if not make them equal with red seeds
         if len(self.itempool) < locations_len:
             while len(self.itempool) != locations_len:
-                self.itempool.append(self.create_item("Red Seed"))
+                self.itempool.append("Red Seed")
         elif len(self.itempool) > locations_len:
             while len(self.itempool) != locations_len:
-                self.itempool.remove(self.create_item("Red Seed"))
-        
-        self.world.itempool += self.itempool
+                self.itempool.remove("Red Seed")
+
+        itempool = [self.create_item(item_name) for item_name in self.itempool]
+        self.world.itempool += itempool
 
     def set_rules(self) -> None:
         self.world.completion_condition[self.player] = lambda state: state.has_all(ABILITY_NAMES, self.player)
