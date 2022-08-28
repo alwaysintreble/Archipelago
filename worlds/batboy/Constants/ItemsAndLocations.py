@@ -26,9 +26,11 @@ LOCATION_NAMES = [
     "Red Seed",
     "Green Seed",
     "Golden Seed",
-    "Casette",  # TODO maybe possible?
+    "Casette",
     "Level Clear",
 ]
+
+PER_LEVEL_LOCATIONS = 5
 
 SHOP_NAMES = [
     "Shop Slot 1",
@@ -36,3 +38,5 @@ SHOP_NAMES = [
     "Shop Slot 3",
     "Shop Consumable Item",
 ]
+
+PER_SHOP_LOCATIONS = 4

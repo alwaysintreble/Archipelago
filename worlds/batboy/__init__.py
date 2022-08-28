@@ -2,7 +2,8 @@
 import worlds.AutoWorld as Auto
 from BaseClasses import Tutorial, ItemClassification, Region, RegionType, Entrance
 
-from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES
+from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES, PER_LEVEL_LOCATIONS,\
+    PER_SHOP_LOCATIONS
 from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES
 
 from .Items import BatBoyItem, item_name_to_id
@@ -92,13 +93,11 @@ class BatBoyWorld(Auto.World):
             connection.connect(level)
             self.overworld.exits.append(connection)
             for loc_name in LOCATION_NAMES:
-                if loc_name != "Casette":
-                    new_name = level_name + " " + loc_name
-                    if new_name != "Windy Forest Green Seed":
-                        rule = None
-                        if new_name in location_rules:
-                            rule = location_rules[new_name]
-                        self.create_location(new_name, level, rule)
+                new_name = level_name + " " + loc_name
+                rule = None
+                if new_name in location_rules:
+                    rule = location_rules[new_name]
+                self.create_location(new_name, level, rule)
             self.levels.append(level)
     
     def create_shops(self) -> None:
@@ -146,10 +145,10 @@ class BatBoyWorld(Auto.World):
 
         loc.place_locked_item(self.create_item(self.itempool.pop(self.itempool.index("Bat Spin"))))
 
-        # each level has 3 seeds and the level clear
+        # each level has 3 seeds, casette, and the level clear
         # each shop has 3 item slots and a consumable item slot
-        # subtract 2 due to above item placement and green seed location not existing
-        locations_len: int = len((self.levels * 4) + (self.shops * 4)) - 2
+        # subtract 1 due to above item placement
+        locations_len: int = len((self.levels * PER_LEVEL_LOCATIONS) + (self.shops * PER_SHOP_LOCATIONS)) - 1
 
         # check if the itempool and number of locations are equal and if not make them equal with red seeds
         if len(self.itempool) < locations_len:
