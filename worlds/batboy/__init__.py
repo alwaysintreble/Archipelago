@@ -1,10 +1,9 @@
-﻿from typing import List, Optional, Callable
+﻿from typing import List, Optional, Callable, Dict, Any
 import worlds.AutoWorld as Auto
 from BaseClasses import Tutorial, ItemClassification, Region, RegionType, Entrance
 
-from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES, PER_LEVEL_LOCATIONS,\
-    PER_SHOP_LOCATIONS
-from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES
+from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES
+from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASETTE_ONLY_REGIONS
 
 from .Items import BatBoyItem, item_name_to_id
 from .Locations import BatBoyLocation, location_name_to_id
@@ -39,10 +38,11 @@ class BatBoyWorld(Auto.World):
     data_version = 0
     
     itempool: List[str]
-    levels: List[str]
+    levels: List[Region]
     shops: List[str]
     overworld: Region
     location_rules: LocationRules
+    all_locations: List[BatBoyLocation]
 
     def create_item(self, name: str) -> BatBoyItem:
         return BatBoyItem(name, 
@@ -71,17 +71,17 @@ class BatBoyWorld(Auto.World):
                 self.itempool.append("Red Seed")
             else:
                 self.itempool.append("Increase HP")
-
-        self.itempool.remove("Green Seed")
     
-    def create_location(self, name: str, parent: Region, rule: Optional[Callable] = None) -> None:
+    def create_location(self, name: str, parent: Region, rule: Optional[Callable] = None) -> BatBoyLocation:
         loc = BatBoyLocation(self.player, name, self.location_name_to_id[name], parent)
         parent.locations.append(loc)
         if rule:
             loc.access_rule = rule
+        return loc
 
     def create_levels_with_rules(self) -> None:
         self.levels: List[Region] = []
+        self.all_locations = []
         level_rules = self.location_rules.level_rules
         location_rules = self.location_rules.location_rules
 
@@ -95,9 +95,20 @@ class BatBoyWorld(Auto.World):
             for loc_name in LOCATION_NAMES:
                 new_name = level_name + " " + loc_name
                 rule = None
-                if new_name in location_rules:
-                    rule = location_rules[new_name]
-                self.create_location(new_name, level, rule)
+                if level_name not in {"Red Seed Shop", "Groovy House"}:
+                    if new_name in location_rules:
+                        rule = location_rules[new_name]
+                    self.all_locations.append(self.create_location(new_name, level, rule))
+            self.levels.append(level)
+
+        for level_name in CASETTE_ONLY_REGIONS:
+            level: Region = self.create_region(level_name)
+            connection: Entrance = Entrance(self.player, level_name, self.overworld)
+            connection.connect(level)
+            self.overworld.exits.append(connection)
+            new_name = level_name + " Casette"
+            self.all_locations.append(self.create_location(new_name, level, None))
+
             self.levels.append(level)
     
     def create_shops(self) -> None:
@@ -113,7 +124,7 @@ class BatBoyWorld(Auto.World):
             rule = None
             if loc in shop_rules:
                 rule = shop_rules[loc]
-            self.create_location(loc, shop, rule)
+            self.all_locations.append(self.create_location(loc, shop, rule))
         self.shops.append(shop)
         
     def create_region(self, name: str) -> Region:
@@ -148,7 +159,7 @@ class BatBoyWorld(Auto.World):
         # each level has 3 seeds, casette, and the level clear
         # each shop has 3 item slots and a consumable item slot
         # subtract 1 due to above item placement
-        locations_len: int = len((self.levels * PER_LEVEL_LOCATIONS) + (self.shops * PER_SHOP_LOCATIONS)) - 1
+        locations_len: int = len(self.all_locations) - 1
 
         # check if the itempool and number of locations are equal and if not make them equal with red seeds
         if len(self.itempool) < locations_len:
@@ -163,4 +174,8 @@ class BatBoyWorld(Auto.World):
 
     def set_rules(self) -> None:
         self.world.completion_condition[self.player] = lambda state: state.has_all(ABILITY_NAMES, self.player)
-    
+
+    def fill_slot_data(self) -> Dict[str, Any]:
+        return {
+            "deathlink": self.world.death_link[self.player].value,
+        }

@@ -30,13 +30,9 @@ LOCATION_NAMES = [
     "Level Clear",
 ]
 
-PER_LEVEL_LOCATIONS = 5
-
 SHOP_NAMES = [
     "Shop Slot 1",
     "Shop Slot 2",
     "Shop Slot 3",
     "Shop Consumable Item",
 ]
-
-PER_SHOP_LOCATIONS = 4
