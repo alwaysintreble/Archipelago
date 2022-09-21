@@ -25,7 +25,7 @@ def location_name_to_id() -> Dict[str, int]:
     # the demo only has a single shop so this is pseudo hard coded until i find a better way to handle shops
     shop_map: Dict[str, int] = {shop_slot: shop_id
                                 for shop_id, shop_slot in enumerate(SHOP_NAMES, (base_offset + shop_offset))}
-    casette_map: Dict[str, int] = {level_name + " Casette": loc_id
-                                   for loc_id, level_name in
-                                   enumerate(CASETTE_ONLY_REGIONS, base_offset + casette_offset)}
-    return loc_map | shop_map | casette_map
+    cassette_map: Dict[str, int] = {level_name + " Cassette": loc_id
+                                    for loc_id, level_name in
+                                    enumerate(CASETTE_ONLY_REGIONS, base_offset + casette_offset)}
+    return loc_map | shop_map | cassette_map

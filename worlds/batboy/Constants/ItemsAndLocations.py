@@ -1,10 +1,10 @@
 ﻿
-# all lookup on client is done by ID so it's very important all of these keep their order
+# all lookup on client is done by ID, so it's very important all of these keep their order
 ITEM_NAMES = [
     "Red Seed",
     "Green Seed",
     "Golden Seed",
-    "Casette",
+    "Cassette",
     "Increase HP",
     "Increase Stamina"
 ]
@@ -26,7 +26,7 @@ LOCATION_NAMES = [
     "Red Seed",
     "Green Seed",
     "Golden Seed",
-    "Casette",
+    "Cassette",
     "Level Clear",
 ]
 
