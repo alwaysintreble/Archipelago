@@ -35,7 +35,7 @@ class BatBoyWorld(Auto.World):
     item_name_to_id = item_name_to_id()
     location_name_to_id = location_name_to_id()
     
-    data_version = 1
+    data_version = 2
     
     itempool: List[str]
     levels: List[Region]
