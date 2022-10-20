@@ -13,10 +13,12 @@ update_ran = getattr(sys, "frozen", False)  # don't run update if environment is
 
 if not update_ran:
     for entry in os.scandir(os.path.join(local_dir, "worlds")):
-        if entry.is_dir():
-            req_file = os.path.join(entry.path, "requirements.txt")
-            if os.path.exists(req_file):
-                requirements_files.add(req_file)
+        # skip .* (hidden / disabled) folders
+        if not entry.name.startswith("."):
+            if entry.is_dir():
+                req_file = os.path.join(entry.path, "requirements.txt")
+                if os.path.exists(req_file):
+                    requirements_files.add(req_file)
 
 
 def update_command():
@@ -41,6 +43,13 @@ def update(yes=False, force=False):
                         # extract name and version from url
                         wheel = line.split('/')[-1]
                         name, version, _ = wheel.split('-', 2)
+                        line = f'{name}=={version}'
+                    elif line.startswith('git+https://'):
+                        # extract name and version
+                        end = line.split('/')[-1]
+                        name_hash, egg = end.split("#", 1)
+                        name, _ = name_hash.split("@", 1)
+                        version = egg.split('==')[-1]
                         line = f'{name}=={version}'
                     requirements = pkg_resources.parse_requirements(line)
                     for requirement in requirements:
