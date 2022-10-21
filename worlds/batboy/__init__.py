@@ -3,12 +3,12 @@ import worlds.AutoWorld as Auto
 from BaseClasses import Tutorial, ItemClassification, Region, RegionType, Entrance
 
 from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES
-from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASETTE_ONLY_REGIONS
+from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASSETTE_ONLY_REGIONS
 
 from .Items import BatBoyItem, item_name_to_id
 from .Locations import BatBoyLocation, location_name_to_id
 from .Options import batboy_options
-from .Rules import LocationRules
+from .Rules import BatBoyRules
 
 
 class BatBoyWeb(Auto.WebWorld):
@@ -41,7 +41,7 @@ class BatBoyWorld(Auto.World):
     levels: List[Region]
     shops: List[str]
     overworld: Region
-    location_rules: LocationRules
+    batboy_rules: BatBoyRules
     all_locations: List[BatBoyLocation]
 
     def create_item(self, name: str) -> BatBoyItem:
@@ -82,12 +82,12 @@ class BatBoyWorld(Auto.World):
     def create_levels_with_rules(self) -> None:
         self.levels: List[Region] = []
         self.all_locations = []
-        level_rules = self.location_rules.level_rules
-        location_rules = self.location_rules.location_rules
+        level_rules = self.batboy_rules.level_rules
+        location_rules = self.batboy_rules.location_rules
 
         for level_name in LEVEL_TO_HINT_NAMES:
-            level: Region = self.create_region(level_name)
-            connection: Entrance = Entrance(self.player, level_name, self.overworld)
+            level = self.create_region(level_name)
+            connection = Entrance(self.player, level_name, self.overworld)
             if level_name in level_rules:
                 connection.access_rule = level_rules[level_name]
             connection.connect(level)
@@ -95,25 +95,24 @@ class BatBoyWorld(Auto.World):
             for loc_name in LOCATION_NAMES:
                 new_name = level_name + " " + loc_name
                 rule = None
-                if level_name not in {"Red Seed Shop", "Groovy House"}:
-                    if new_name in location_rules:
-                        rule = location_rules[new_name]
-                    self.all_locations.append(self.create_location(new_name, level, rule))
-            self.levels.append(level)
+                if new_name in location_rules:
+                    rule = location_rules[new_name]
+                self.create_location(new_name, level, rule)
+            self.world.regions.append(level)
 
-        for level_name in CASETTE_ONLY_REGIONS:
-            level: Region = self.create_region(level_name)
-            connection: Entrance = Entrance(self.player, level_name, self.overworld)
+        for level_name in CASSETTE_ONLY_REGIONS:
+            level = self.create_region(level_name)
+            connection = Entrance(self.player, level_name, self.overworld)
             connection.connect(level)
             self.overworld.exits.append(connection)
-            new_name = level_name + " Casette"
-            self.all_locations.append(self.create_location(new_name, level, None))
+            new_name = level_name + " Cassette"
+            self.create_location(new_name, level, None)
 
-            self.levels.append(level)
+            self.world.regions.append(level)
     
     def create_shops(self) -> None:
         self.shops: List[Region] = []
-        shop_rules = self.location_rules.shop_rules
+        shop_rules = self.batboy_rules.shop_rules
 
         shop = self.create_region("Red Seed Shop")
         connection: Entrance = Entrance(self.player, "Red Seed Shop", self.overworld)
@@ -124,8 +123,8 @@ class BatBoyWorld(Auto.World):
             rule = None
             if loc in shop_rules:
                 rule = shop_rules[loc]
-            self.all_locations.append(self.create_location(loc, shop, rule))
-        self.shops.append(shop)
+            self.create_location(loc, shop, rule)
+        self.world.regions.append(shop)
         
     def create_region(self, name: str) -> Region:
         if name in LEVEL_TO_HINT_NAMES:
@@ -141,11 +140,11 @@ class BatBoyWorld(Auto.World):
         start.connect(self.overworld)
 
         # instantiate my LocationRules class before creating rules so we can easily reference its rules dicts
-        self.location_rules = LocationRules(self.player)
+        self.batboy_rules = BatBoyRules(self.player)
         # create a region for each level and connect it to the overworld with rules
         self.create_levels_with_rules()
         self.create_shops()
-        self.world.regions += [menu, self.overworld] + self.levels + self.shops
+        self.world.regions += [menu, self.overworld]
 
     def generate_basic(self) -> None:
         # place bat spin in the first level and remove it from the item pool
@@ -156,18 +155,14 @@ class BatBoyWorld(Auto.World):
 
         loc.place_locked_item(self.create_item(self.itempool.pop(self.itempool.index("Bat Spin"))))
 
-        # each level has 3 seeds, casette, and the level clear
+        # each level has 3 seeds, cassette, and the level clear
         # each shop has 3 item slots and a consumable item slot
         # subtract 1 due to above item placement
-        locations_len: int = len(self.all_locations) - 1
+        locations_len: int = len(self.world.get_locations()) - 1
 
         # check if the itempool and number of locations are equal and if not make them equal with red seeds
-        if len(self.itempool) < locations_len:
-            while len(self.itempool) != locations_len:
-                self.itempool.append("Red Seed")
-        elif len(self.itempool) > locations_len:
-            while len(self.itempool) != locations_len:
-                self.itempool.remove("Red Seed")
+        while len(self.itempool) < locations_len:
+            self.itempool.append("Red Seed")
 
         itempool = [self.create_item(item_name) for item_name in self.itempool]
         self.world.itempool += itempool

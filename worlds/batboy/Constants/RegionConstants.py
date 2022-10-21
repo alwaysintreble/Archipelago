@@ -4,7 +4,7 @@
     "Windy Forest": "in whispy woods",
 }
 
-CASETTE_ONLY_REGIONS = {
+CASSETTE_ONLY_REGIONS = {
     "Red Seed Shop": "a pricey purchase",
     "Groovy House": "a good time",
 }

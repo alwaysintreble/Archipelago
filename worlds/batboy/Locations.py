@@ -1,7 +1,7 @@
 ﻿from typing import Dict, List
 from BaseClasses import Location
 
-from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASETTE_ONLY_REGIONS
+from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASSETTE_ONLY_REGIONS
 from .Constants.ItemsAndLocations import LOCATION_NAMES, SHOP_NAMES
 
 
@@ -27,5 +27,5 @@ def location_name_to_id() -> Dict[str, int]:
                                 for shop_id, shop_slot in enumerate(SHOP_NAMES, (base_offset + shop_offset))}
     cassette_map: Dict[str, int] = {level_name + " Cassette": loc_id
                                     for loc_id, level_name in
-                                    enumerate(CASETTE_ONLY_REGIONS, base_offset + casette_offset)}
+                                    enumerate(CASSETTE_ONLY_REGIONS, base_offset + casette_offset)}
     return loc_map | shop_map | cassette_map

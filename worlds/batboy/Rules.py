@@ -6,7 +6,7 @@ class BatBoyLogic(LogicMixin):
     pass
 
 
-class LocationRules:
+class BatBoyRules:
     player: int
 
     def __init__(self, player: int):
