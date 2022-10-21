@@ -26,7 +26,7 @@ class BatBoyWeb(Auto.WebWorld):
 
 class BatBoyWorld(Auto.World):
     """Help Ryosuke and his fellow sports-star friends battle against the evil invading forces of Lord Vicious to
-    prevent them from hosting sinister athletic events for their own amusement as Bat Boy!"""
+    prevent them from hosting sinister athletic events for their own amusement, as Bat Boy!"""
     web = BatBoyWeb()
     
     game: str = "BatBoy"
@@ -38,11 +38,8 @@ class BatBoyWorld(Auto.World):
     data_version = 2
     
     itempool: List[str]
-    levels: List[Region]
-    shops: List[str]
     overworld: Region
     batboy_rules: BatBoyRules
-    all_locations: List[BatBoyLocation]
 
     def create_item(self, name: str) -> BatBoyItem:
         return BatBoyItem(name, 
@@ -53,25 +50,26 @@ class BatBoyWorld(Auto.World):
     
     def create_items(self) -> None:
         level_count: int = len(LEVEL_TO_HINT_NAMES)  # each level has 1 red, green, and gold seed
-        self.itempool = []
+        self.itempool: List[str] = []
 
         # we always want one of every ability so do this first
         for ability in ABILITY_NAMES:
-            self.itempool.append(ability)
-            
+            if ability != "Bat Spin":
+                self.itempool.append(ability)
+
         # may do this differently in the future and allow custom seed distributions
         for _ in range(level_count):
             self.itempool.append("Red Seed")
             self.itempool.append("Green Seed")
             self.itempool.append("Golden Seed")
-            
+
         # since we only have a red seed shop currently we create the red seeds for it
         for slot in SHOP_NAMES:
             if slot != "Shop Consumable Item":
                 self.itempool.append("Red Seed")
             else:
                 self.itempool.append("Increase HP")
-    
+
     def create_location(self, name: str, parent: Region, rule: Optional[Callable] = None) -> BatBoyLocation:
         loc = BatBoyLocation(self.player, name, self.location_name_to_id[name], parent)
         parent.locations.append(loc)
@@ -79,9 +77,7 @@ class BatBoyWorld(Auto.World):
             loc.access_rule = rule
         return loc
 
-    def create_levels_with_rules(self) -> None:
-        self.levels: List[Region] = []
-        self.all_locations = []
+    def create_levels(self) -> None:
         level_rules = self.batboy_rules.level_rules
         location_rules = self.batboy_rules.location_rules
 
@@ -93,7 +89,7 @@ class BatBoyWorld(Auto.World):
             connection.connect(level)
             self.overworld.exits.append(connection)
             for loc_name in LOCATION_NAMES:
-                new_name = level_name + " " + loc_name
+                new_name = f"{level_name} {loc_name}"
                 rule = None
                 if new_name in location_rules:
                     rule = location_rules[new_name]
@@ -105,13 +101,12 @@ class BatBoyWorld(Auto.World):
             connection = Entrance(self.player, level_name, self.overworld)
             connection.connect(level)
             self.overworld.exits.append(connection)
-            new_name = level_name + " Cassette"
+            new_name = f"{level_name} Cassette"
             self.create_location(new_name, level, None)
 
             self.world.regions.append(level)
-    
+
     def create_shops(self) -> None:
-        self.shops: List[Region] = []
         shop_rules = self.batboy_rules.shop_rules
 
         shop = self.create_region("Red Seed Shop")
@@ -125,12 +120,12 @@ class BatBoyWorld(Auto.World):
                 rule = shop_rules[loc]
             self.create_location(loc, shop, rule)
         self.world.regions.append(shop)
-        
+
     def create_region(self, name: str) -> Region:
         if name in LEVEL_TO_HINT_NAMES:
             return Region(name, RegionType.Generic, LEVEL_TO_HINT_NAMES[name], self.player, self.world)
         return Region(name, RegionType.Generic, name, self.player, self.world)
-    
+
     def create_regions(self) -> None:
         # create and connect our menu and overworld regions before anything else
         menu = Region("Menu", RegionType.Generic, "Menu", self.player, self.world)
@@ -142,7 +137,7 @@ class BatBoyWorld(Auto.World):
         # instantiate my LocationRules class before creating rules so we can easily reference its rules dicts
         self.batboy_rules = BatBoyRules(self.player)
         # create a region for each level and connect it to the overworld with rules
-        self.create_levels_with_rules()
+        self.create_levels()
         self.create_shops()
         self.world.regions += [menu, self.overworld]
 
@@ -153,12 +148,12 @@ class BatBoyWorld(Auto.World):
         possible_locs.append(self.world.get_location("Shop Slot 1", self.player))
         loc = self.world.random.choice(possible_locs)
 
-        loc.place_locked_item(self.create_item(self.itempool.pop(self.itempool.index("Bat Spin"))))
+        loc.place_locked_item(self.create_item("Bat Spin"))
 
         # each level has 3 seeds, cassette, and the level clear
         # each shop has 3 item slots and a consumable item slot
         # subtract 1 due to above item placement
-        locations_len: int = len(self.world.get_locations()) - 1
+        locations_len: int = len(self.world.get_unfilled_locations(self.player))
 
         # check if the itempool and number of locations are equal and if not make them equal with red seeds
         while len(self.itempool) < locations_len:
