@@ -29,13 +29,13 @@ class BatBoyWorld(Auto.World):
     prevent them from hosting sinister athletic events for their own amusement, as Bat Boy!"""
     web = BatBoyWeb()
     
-    game: str = "BatBoy"
+    game = "BatBoy"
     option_definitions = batboy_options
     
     item_name_to_id = item_name_to_id()
     location_name_to_id = location_name_to_id()
     
-    data_version = 2
+    data_version = 0
     
     itempool: List[str]
     overworld: Region
