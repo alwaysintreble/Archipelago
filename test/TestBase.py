@@ -11,8 +11,7 @@ from worlds.AutoWorld import call_all
 file_path = pathlib.Path(__file__).parent.parent
 Utils.local_path.cached_path = file_path
 
-from BaseClasses import MultiWorld, CollectionState, ItemClassification, Item
-from worlds.alttp.Items import ItemFactory
+from BaseClasses import MultiWorld, CollectionState, ItemClassification, Item, Region
 
 
 class TestBase(unittest.TestCase):
@@ -30,7 +29,7 @@ class TestBase(unittest.TestCase):
         self._state_cache[self.multiworld, tuple(items)] = state
         return state
 
-    def get_path(self, state, region):
+    def get_path(self, state: CollectionState, region: Region):
         def flist_to_iter(node):
             while node:
                 value, node = node
@@ -81,22 +80,6 @@ class TestBase(unittest.TestCase):
                                       items=item_pool[0], missing_item=missing_item, entry=i):
                         state = self._get_items_partial(item_pool, missing_item)
                         self.assertEqual(self.multiworld.get_entrance(entrance, 1).can_reach(state), False)
-
-    def _get_items(self, item_pool, all_except):
-        if all_except and len(all_except) > 0:
-            items = self.multiworld.itempool[:]
-            items = [item for item in items if
-                     item.name not in all_except and not ("Bottle" in item.name and "AnyBottle" in all_except)]
-            items.extend(ItemFactory(item_pool[0], 1))
-        else:
-            items = ItemFactory(item_pool[0], 1)
-        return self.get_state(items)
-
-    def _get_items_partial(self, item_pool, missing_item):
-        new_items = item_pool[0].copy()
-        new_items.remove(missing_item)
-        items = ItemFactory(new_items, 1)
-        return self.get_state(items)
 
 
 class WorldTestBase(unittest.TestCase):

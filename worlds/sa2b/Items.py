@@ -2,7 +2,6 @@ import typing
 
 from BaseClasses import Item, ItemClassification
 from .Names import ItemName
-from worlds.alttp import ALTTPWorld
 
 
 class ItemData(typing.NamedTuple):
@@ -108,6 +107,3 @@ item_table = {
 lookup_id_to_name: typing.Dict[int, str] = {data.code: item_name for item_name, data in item_table.items() if data.code}
 
 item_groups: typing.Dict[str, str] = {"Chaos Emeralds": [item_name for item_name, data in emeralds_table.items()]}
-
-ALTTPWorld.pedestal_credit_texts[item_table[ItemName.sonic_light_shoes].code] = "and the Soap Shoes"
-ALTTPWorld.pedestal_credit_texts[item_table[ItemName.shadow_air_shoes].code] = "and the Soap Shoes"

@@ -6,7 +6,6 @@
 import typing
 
 from BaseClasses import Item, ItemClassification
-from worlds.alttp import ALTTPWorld
 
 
 class MeritousLttPText(typing.NamedTuple):
@@ -205,10 +204,3 @@ item_groups = {
     "Important Artifacts": ["Shield Boost", "Circuit Booster", "Metabolism", "Dodge Enhancer"],
     "Crystals": ["Crystals x500", "Crystals x1000", "Crystals x2000"]
 }
-
-ALTTPWorld.pedestal_credit_texts.update({item_table[name]: f"and the {texts.pedestal}"
-                                         for name, texts in LttPCreditsText.items()})
-ALTTPWorld.sickkid_credit_texts.update({item_table[name]: texts.sickkid for name, texts in LttPCreditsText.items()})
-ALTTPWorld.magicshop_credit_texts.update({item_table[name]: texts.magicshop for name, texts in LttPCreditsText.items()})
-ALTTPWorld.zora_credit_texts.update({item_table[name]: texts.zora for name, texts in LttPCreditsText.items()})
-ALTTPWorld.fluteboy_credit_texts.update({item_table[name]: texts.fluteboy for name, texts in LttPCreditsText.items()})

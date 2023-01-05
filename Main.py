@@ -11,9 +11,7 @@ from typing import Dict, List, Tuple, Optional, Set
 
 from BaseClasses import Item, MultiWorld, CollectionState, Region, RegionType, LocationProgressType, Location
 import worlds
-from worlds.alttp.Regions import is_main_entrance
 from Fill import distribute_items_restrictive, flood_items, balance_multiworld_progression, distribute_planned
-from worlds.alttp.Shops import SHOP_ID_START, total_shop_slots, FillDisabledShopSlots
 from Utils import output_path, get_options, __version__, version_tuple
 from worlds.generic.Rules import locality_rules, exclusion_rules
 from worlds import AutoWorld
@@ -37,40 +35,9 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
     world = MultiWorld(args.multi)
 
     logger = logging.getLogger()
-    world.set_seed(seed, args.race, str(args.outputname if args.outputname else world.seed))
-
-    world.shuffle = args.shuffle.copy()
-    world.logic = args.logic.copy()
-    world.mode = args.mode.copy()
-    world.difficulty = args.difficulty.copy()
-    world.item_functionality = args.item_functionality.copy()
-    world.timer = args.timer.copy()
-    world.goal = args.goal.copy()
-    world.boss_shuffle = args.shufflebosses.copy()
-    world.enemy_health = args.enemy_health.copy()
-    world.enemy_damage = args.enemy_damage.copy()
-    world.beemizer_total_chance = args.beemizer_total_chance.copy()
-    world.beemizer_trap_chance = args.beemizer_trap_chance.copy()
-    world.timer = args.timer.copy()
-    world.countdown_start_time = args.countdown_start_time.copy()
-    world.red_clock_time = args.red_clock_time.copy()
-    world.blue_clock_time = args.blue_clock_time.copy()
-    world.green_clock_time = args.green_clock_time.copy()
-    world.dungeon_counters = args.dungeon_counters.copy()
-    world.triforce_pieces_available = args.triforce_pieces_available.copy()
-    world.triforce_pieces_required = args.triforce_pieces_required.copy()
-    world.shop_shuffle = args.shop_shuffle.copy()
-    world.shuffle_prizes = args.shuffle_prizes.copy()
-    world.sprite_pool = args.sprite_pool.copy()
-    world.dark_room_logic = args.dark_room_logic.copy()
-    world.plando_items = args.plando_items.copy()
-    world.plando_texts = args.plando_texts.copy()
-    world.plando_connections = args.plando_connections.copy()
-    world.required_medallions = args.required_medallions.copy()
+    world.set_seed(seed, args.race, str(world.seed))
     world.game = args.game.copy()
     world.player_name = args.name.copy()
-    world.sprite = args.sprite.copy()
-    world.glitch_triforce = args.glitch_triforce  # This is enabled/disabled globally, no per player option.
 
     world.set_options(args)
     world.set_item_links()
@@ -272,47 +239,7 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
 
             for location in world.get_filled_locations():
                 if type(location.address) is int:
-                    if location.game != "A Link to the Past":
-                        checks_in_area[location.player]["Light World"].append(location.address)
-                    else:
-                        main_entrance = location.parent_region.get_connecting_entrance(is_main_entrance)
-                        if location.parent_region.dungeon:
-                            dungeonname = {'Inverted Agahnims Tower': 'Agahnims Tower',
-                                           'Inverted Ganons Tower': 'Ganons Tower'} \
-                                .get(location.parent_region.dungeon.name, location.parent_region.dungeon.name)
-                            checks_in_area[location.player][dungeonname].append(location.address)
-                        elif location.parent_region.type == RegionType.LightWorld:
-                            checks_in_area[location.player]["Light World"].append(location.address)
-                        elif location.parent_region.type == RegionType.DarkWorld:
-                            checks_in_area[location.player]["Dark World"].append(location.address)
-                        elif main_entrance.parent_region.type == RegionType.LightWorld:
-                            checks_in_area[location.player]["Light World"].append(location.address)
-                        elif main_entrance.parent_region.type == RegionType.DarkWorld:
-                            checks_in_area[location.player]["Dark World"].append(location.address)
-                    checks_in_area[location.player]["Total"] += 1
-
-            oldmancaves = []
-            takeanyregions = ["Old Man Sword Cave", "Take-Any #1", "Take-Any #2", "Take-Any #3", "Take-Any #4"]
-            for index, take_any in enumerate(takeanyregions):
-                for region in [world.get_region(take_any, player) for player in
-                               world.get_game_players("A Link to the Past") if world.retro_caves[player]]:
-                    item = world.create_item(
-                        region.shop.inventory[(0 if take_any == "Old Man Sword Cave" else 1)]['item'],
-                        region.player)
-                    player = region.player
-                    location_id = SHOP_ID_START + total_shop_slots + index
-
-                    main_entrance = region.get_connecting_entrance(is_main_entrance)
-                    if main_entrance.parent_region.type == RegionType.LightWorld:
-                        checks_in_area[player]["Light World"].append(location_id)
-                    else:
-                        checks_in_area[player]["Dark World"].append(location_id)
-                    checks_in_area[player]["Total"] += 1
-
-                    er_hint_data[player][location_id] = main_entrance.name
-                    oldmancaves.append(((location_id, player), (item.code, player)))
-
-            FillDisabledShopSlots(world)
+                    checks_in_area[location.player]["Light World"].append(location.address)
 
             def write_multidata():
                 import NetUtils

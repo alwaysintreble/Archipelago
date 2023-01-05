@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import pickle
@@ -16,7 +17,6 @@ from Generate import handle_name, PlandoSettings
 from Main import main as ERmain
 from Utils import __version__
 from WebHostLib import app
-from worlds.alttp.EntranceRandomizer import parse_arguments
 from .check import get_yaml_data, roll_options
 from .models import Generation, STATE_ERROR, STATE_QUEUED, Seed, UUID
 from .upload import upload_zip_to_db
@@ -111,7 +111,9 @@ def gen_game(gen_options: dict, meta: Optional[Dict[str, Any]] = None, owner=Non
 
         seedname = "W" + (f"{random.randint(0, pow(10, seeddigits) - 1)}".zfill(seeddigits))
 
-        erargs = parse_arguments(['--multi', str(playercount)])
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--multi', default=1, type=lambda value: max(int(value), 1))
+        erargs = parser.parse_args(['--multi', str(playercount)])
         erargs.seed = seed
         erargs.name = {x: "" for x in range(1, playercount + 1)}  # only so it can be overwritten in mystery
         erargs.spoiler = 0 if race else 3

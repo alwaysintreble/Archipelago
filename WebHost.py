@@ -18,7 +18,6 @@ from waitress import serve
 
 from WebHostLib.models import db
 from WebHostLib.autolauncher import autohost, autogen
-from WebHostLib.lttpsprites import update_sprites_lttp
 from WebHostLib.options import create as create_options_files
 
 configpath = os.path.abspath("config.yaml")
@@ -112,11 +111,6 @@ if __name__ == "__main__":
     multiprocessing.freeze_support()
     multiprocessing.set_start_method('spawn')
     logging.basicConfig(format='[%(asctime)s] %(message)s', level=logging.INFO)
-    try:
-        update_sprites_lttp()
-    except Exception as e:
-        logging.exception(e)
-        logging.warning("Could not update LttP sprites.")
     app = get_app()
     create_options_files()
     create_ordered_tutorials_file()
