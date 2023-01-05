@@ -467,19 +467,20 @@ def roll_settings(weights: dict, plando_options: PlandoSettings = PlandoSettings
             if option_key not in world_type.option_definitions and \
                     (option_key not in Options.common_options or option_key in game_weights):
                 handle_option(ret, game_weights, option_key, option, plando_options)
+        # set the default ones here so they exist for every player as if they were "proper" options
+        ret.plando_texts = []
+        ret.plando_items = []
+        ret.plando_connections = []
         if PlandoSettings.items in plando_options:
             ret.plando_items = game_weights.get("plando_items", [])
-        if ret.game == "Minecraft" or ret.game == "Ocarina of Time":
-            # bad hardcoded behavior to make this work for now
-            ret.plando_connections = []
-            if PlandoSettings.connections in plando_options:
-                options = game_weights.get("plando_connections", [])
-                for placement in options:
-                    if roll_percentage(get_choice("percentage", placement, 100)):
-                        ret.plando_connections.append(PlandoConnection(
-                            get_choice("entrance", placement),
-                            get_choice("exit", placement),
-                            get_choice("direction", placement)
+        if PlandoSettings.connections in plando_options:
+            options = game_weights.get("plando_connections", [])
+            for placement in options:
+                if roll_percentage(get_choice("percentage", placement, 100)):
+                    ret.plando_connections.append(PlandoConnection(
+                        get_choice("entrance", placement),
+                        get_choice("exit", placement),
+                        get_choice("direction", placement)
                         ))
     else:
         raise Exception(f"Unsupported game {ret.game}")
