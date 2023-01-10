@@ -685,10 +685,6 @@ async def main() -> None:
             import time
             time.sleep(3)
             sys.exit()
-        elif args.diff_file.endswith(".aplttp"):
-            from worlds.alttp.Client import get_alttp_settings
-            adjustedromfile, adjusted = get_alttp_settings(romfile)
-            async_start(run_game(adjustedromfile if adjusted else romfile))
         else:
             async_start(run_game(romfile))
 

@@ -16,12 +16,6 @@ from Utils import output_path, get_options, __version__, version_tuple
 from worlds.generic.Rules import locality_rules, exclusion_rules
 from worlds import AutoWorld
 
-ordered_areas = (
-    'Light World', 'Dark World', 'Hyrule Castle', 'Agahnims Tower', 'Eastern Palace', 'Desert Palace',
-    'Tower of Hera', 'Palace of Darkness', 'Swamp Palace', 'Skull Woods', 'Thieves Town', 'Ice Palace',
-    'Misery Mire', 'Turtle Rock', 'Ganons Tower', "Total"
-)
-
 
 def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = None):
     if not baked_server_options:
@@ -234,15 +228,7 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
             er_hint_data: Dict[int, Dict[int, str]] = {}
             AutoWorld.call_all(world, 'extend_hint_information', er_hint_data)
 
-            checks_in_area = {player: {area: list() for area in ordered_areas}
-                              for player in range(1, world.players + 1)}
-
-            for player in range(1, world.players + 1):
-                checks_in_area[player]["Total"] = 0
-
-            for location in world.get_filled_locations():
-                if type(location.address) is int:
-                    checks_in_area[location.player]["Light World"].append(location.address)
+            checks_in_area = {player: {"Total": 0} for player in range(1, world.players + 1)}
 
             def write_multidata():
                 import NetUtils
