@@ -16,7 +16,7 @@ ModuleUpdate.update()
 
 import Utils
 from worlds.generic import PlandoConnection
-from Utils import parse_yamls, version_tuple, __version__, tuplize_version, get_options, local_path, user_path
+from Utils import parse_yamls, version_tuple, __version__, tuplize_version, get_options, user_path
 from Main import main as ERmain
 from BaseClasses import seeddigits, get_seed, PlandoOptions
 import Options
