@@ -29,7 +29,7 @@ class Group(TypedDict, total=False):
     link_replacement: bool
 
 
-class MultiWorld():
+class MultiWorld:
     debug_types = False
     player_name: Dict[int, str]
     _region_cache: Dict[int, Dict[str, Region]]
@@ -60,7 +60,7 @@ class MultiWorld():
 
     game: Dict[int, str]
 
-    class AttributeProxy():
+    class AttributeProxy:
         def __init__(self, rule):
             self.rule = rule
 
@@ -72,11 +72,9 @@ class MultiWorld():
         self.players = players
         self.player_types = {player: NetUtils.SlotType.player for player in self.player_ids}
         self.glitch_triforce = False
-        self.algorithm = 'balanced'
-        self.dungeons: Dict[Tuple[str, int], Dungeon] = {}
+        self.algorithm = "balanced"
         self.groups = {}
         self.regions = []
-        self.shops = []
         self.itempool = []
         self.seed = None
         self.seed_name: str = "Unavailable"
@@ -86,77 +84,22 @@ class MultiWorld():
         self._entrance_cache = {}
         self._location_cache: Dict[Tuple[str, int], Location] = {}
         self.required_locations = []
-        self.light_world_light_cone = False
-        self.dark_world_light_cone = False
-        self.rupoor_cost = 10
-        self.aga_randomness = True
-        self.lock_aga_door_in_escape = False
-        self.save_and_quit_from_boss = True
         self.custom = False
         self.customitemarray = []
-        self.shuffle_ganon = True
         self.spoiler = Spoiler(self)
         self.early_items = {player: {} for player in self.player_ids}
         self.local_early_items = {player: {} for player in self.player_ids}
         self.indirect_connections = {}
-        self.fix_trock_doors = self.AttributeProxy(
-            lambda player: self.shuffle[player] != 'vanilla' or self.mode[player] == 'inverted')
-        self.fix_skullwoods_exit = self.AttributeProxy(
-            lambda player: self.shuffle[player] not in ['vanilla', 'simple', 'restricted', 'dungeonssimple'])
-        self.fix_palaceofdarkness_exit = self.AttributeProxy(
-            lambda player: self.shuffle[player] not in ['vanilla', 'simple', 'restricted', 'dungeonssimple'])
-        self.fix_trock_exit = self.AttributeProxy(
-            lambda player: self.shuffle[player] not in ['vanilla', 'simple', 'restricted', 'dungeonssimple'])
-
         for player in range(1, players + 1):
             def set_player_attr(attr, val):
                 self.__dict__.setdefault(attr, {})[player] = val
 
-            set_player_attr('tech_tree_layout_prerequisites', {})
-            set_player_attr('_region_cache', {})
-            set_player_attr('shuffle', "vanilla")
-            set_player_attr('logic', "noglitches")
-            set_player_attr('mode', 'open')
-            set_player_attr('difficulty', 'normal')
-            set_player_attr('item_functionality', 'normal')
-            set_player_attr('timer', False)
-            set_player_attr('goal', 'ganon')
-            set_player_attr('required_medallions', ['Ether', 'Quake'])
-            set_player_attr('swamp_patch_required', False)
-            set_player_attr('powder_patch_required', False)
-            set_player_attr('ganon_at_pyramid', True)
-            set_player_attr('ganonstower_vanilla', True)
-            set_player_attr('can_access_trock_eyebridge', None)
-            set_player_attr('can_access_trock_front', None)
-            set_player_attr('can_access_trock_big_chest', None)
-            set_player_attr('can_access_trock_middle', None)
-            set_player_attr('fix_fake_world', True)
-            set_player_attr('difficulty_requirements', None)
-            set_player_attr('boss_shuffle', 'none')
-            set_player_attr('enemy_health', 'default')
-            set_player_attr('enemy_damage', 'default')
-            set_player_attr('beemizer_total_chance', 0)
-            set_player_attr('beemizer_trap_chance', 0)
-            set_player_attr('escape_assist', [])
-            set_player_attr('treasure_hunt_icon', 'Triforce Piece')
-            set_player_attr('treasure_hunt_count', 0)
-            set_player_attr('clock_mode', False)
-            set_player_attr('countdown_start_time', 10)
-            set_player_attr('red_clock_time', -2)
-            set_player_attr('blue_clock_time', 2)
-            set_player_attr('green_clock_time', 4)
-            set_player_attr('can_take_damage', True)
-            set_player_attr('triforce_pieces_available', 30)
-            set_player_attr('triforce_pieces_required', 20)
-            set_player_attr('shop_shuffle', 'off')
-            set_player_attr('shuffle_prizes', "g")
-            set_player_attr('sprite_pool', [])
-            set_player_attr('dark_room_logic', "lamp")
+            set_player_attr("_region_cache", {})
+            set_player_attr("game", "Generic")
+            set_player_attr("completion_condition", lambda state: True)
             set_player_attr('plando_items', [])
             set_player_attr('plando_texts', {})
             set_player_attr('plando_connections', [])
-            set_player_attr('game', "A Link to the Past")
-            set_player_attr('completion_condition', lambda state: True)
         self.custom_data = {}
         self.worlds = {}
         self.slot_seeds = {}
@@ -362,12 +305,6 @@ class MultiWorld():
         except KeyError:
             self._recache()
             return self._location_cache[location, player]
-
-    def get_dungeon(self, dungeonname: str, player: int) -> Dungeon:
-        try:
-            return self.dungeons[dungeonname, player]
-        except KeyError as e:
-            raise KeyError('No such dungeon %s for player %d' % (dungeonname, player)) from e
 
     def get_all_state(self, use_cache: bool) -> CollectionState:
         cached = getattr(self, "_all_state", None)
@@ -779,13 +716,6 @@ class Region:
     entrances: List[Entrance]
     exits: List[Entrance]
     locations: List[Location]
-    dungeon: Optional[Dungeon] = None
-    shop: Optional = None
-
-    # LttP specific. TODO: move to a LttPRegion
-    # will be set after making connections.
-    is_light_world: bool = False
-    is_dark_world: bool = False
 
     def __init__(self, name: str, type_: RegionType, hint: str, player: int, world: Optional[MultiWorld] = None):
         self.name = name
@@ -831,9 +761,6 @@ class Entrance:
     name: str
     parent_region: Optional[Region]
     connected_region: Optional[Region] = None
-    # LttP specific, TODO: should make a LttPEntrance
-    addresses = None
-    target = None
 
     def __init__(self, player: int, name: str = '', parent: Region = None):
         self.name = name
@@ -860,63 +787,6 @@ class Entrance:
     def __str__(self):
         world = self.parent_region.multiworld if self.parent_region else None
         return world.get_name_string_for_object(self) if world else f'{self.name} (Player {self.player})'
-
-
-class Dungeon(object):
-    def __init__(self, name: str, regions: List[Region], big_key: Item, small_keys: List[Item],
-                 dungeon_items: List[Item], player: int):
-        self.name = name
-        self.regions = regions
-        self.big_key = big_key
-        self.small_keys = small_keys
-        self.dungeon_items = dungeon_items
-        self.bosses = dict()
-        self.player = player
-        self.multiworld = None
-
-    @property
-    def boss(self) -> Optional[Boss]:
-        return self.bosses.get(None, None)
-
-    @boss.setter
-    def boss(self, value: Optional[Boss]):
-        self.bosses[None] = value
-
-    @property
-    def keys(self) -> List[Item]:
-        return self.small_keys + ([self.big_key] if self.big_key else [])
-
-    @property
-    def all_items(self) -> List[Item]:
-        return self.dungeon_items + self.keys
-
-    def is_dungeon_item(self, item: Item) -> bool:
-        return item.player == self.player and item.name in (dungeon_item.name for dungeon_item in self.all_items)
-
-    def __eq__(self, other: Dungeon) -> bool:
-        if not other:
-            return False
-        return self.name == other.name and self.player == other.player
-
-    def __repr__(self):
-        return self.__str__()
-
-    def __str__(self):
-        return self.multiworld.get_name_string_for_object(self) if self.multiworld else f'{self.name} (Player {self.player})'
-
-
-class Boss():
-    def __init__(self, name: str, enemizer_name: str, defeat_rule: Callable, player: int):
-        self.name = name
-        self.enemizer_name = enemizer_name
-        self.defeat_rule = defeat_rule
-        self.player = player
-
-    def can_defeat(self, state) -> bool:
-        return self.defeat_rule(state, self.player)
-
-    def __repr__(self):
-        return f"Boss({self.name})"
 
 
 class LocationProgressType(IntEnum):
@@ -1079,13 +949,10 @@ class Spoiler():
         self.multiworld = world
         self.hashes = {}
         self.entrances = OrderedDict()
-        self.medallions = {}
         self.playthrough = {}
         self.unreachables = set()
         self.locations = {}
         self.paths = {}
-        self.shops = []
-        self.bosses = OrderedDict()
 
     def set_entrance(self, entrance: str, exit_: str, direction: str, player: int):
         if self.multiworld.players == 1:
@@ -1096,13 +963,6 @@ class Spoiler():
                 [('player', player), ('entrance', entrance), ('exit', exit_), ('direction', direction)])
 
     def parse_data(self):
-        self.medallions = OrderedDict()
-        for player in self.multiworld.get_game_players("A Link to the Past"):
-            self.medallions[f'Misery Mire ({self.multiworld.get_player_name(player)})'] = \
-                self.multiworld.required_medallions[player][0]
-            self.medallions[f'Turtle Rock ({self.multiworld.get_player_name(player)})'] = \
-                self.multiworld.required_medallions[player][1]
-
         self.locations = OrderedDict()
         listed_locations = set()
 
@@ -1112,36 +972,6 @@ class Spoiler():
             [(str(location), str(location.item) if location.item is not None else 'Nothing') for location in
              lw_locations])
         listed_locations.update(lw_locations)
-
-        dw_locations = [loc for loc in self.multiworld.get_locations() if
-                        loc not in listed_locations and loc.parent_region and loc.parent_region.type == RegionType.DarkWorld and loc.show_in_spoiler]
-        self.locations['Dark World'] = OrderedDict(
-            [(str(location), str(location.item) if location.item is not None else 'Nothing') for location in
-             dw_locations])
-        listed_locations.update(dw_locations)
-
-        cave_locations = [loc for loc in self.multiworld.get_locations() if
-                          loc not in listed_locations and loc.parent_region and loc.parent_region.type == RegionType.Cave and loc.show_in_spoiler]
-        self.locations['Caves'] = OrderedDict(
-            [(str(location), str(location.item) if location.item is not None else 'Nothing') for location in
-             cave_locations])
-        listed_locations.update(cave_locations)
-
-        for dungeon in self.multiworld.dungeons.values():
-            dungeon_locations = [loc for loc in self.multiworld.get_locations() if
-                                 loc not in listed_locations and loc.parent_region and loc.parent_region.dungeon == dungeon and loc.show_in_spoiler]
-            self.locations[str(dungeon)] = OrderedDict(
-                [(str(location), str(location.item) if location.item is not None else 'Nothing') for location in
-                 dungeon_locations])
-            listed_locations.update(dungeon_locations)
-
-        other_locations = [loc for loc in self.multiworld.get_locations() if
-                           loc not in listed_locations and loc.show_in_spoiler]
-        if other_locations:
-            self.locations['Other Locations'] = OrderedDict(
-                [(str(location), str(location.item) if location.item is not None else 'Nothing') for location in
-                 other_locations])
-            listed_locations.update(other_locations)
 
     def create_playthrough(self, create_paths: bool = True):
         """Destructive to the world while it is run, damage gets repaired afterwards."""
@@ -1299,14 +1129,10 @@ class Spoiler():
         out = OrderedDict()
         out['Entrances'] = list(self.entrances.values())
         out.update(self.locations)
-        out['Special'] = self.medallions
         if self.hashes:
             out['Hashes'] = self.hashes
-        if self.shops:
-            out['Shops'] = self.shops
         out['playthrough'] = self.playthrough
         out['paths'] = self.paths
-        out['Bosses'] = self.bosses
 
         return json.dumps(out)
 
@@ -1345,39 +1171,6 @@ class Spoiler():
                     for f_option, option in options.items():
                         write_option(f_option, option)
                 AutoWorld.call_single(self.multiworld, "write_spoiler_header", player, outfile)
-
-                if player in self.multiworld.get_game_players("A Link to the Past"):
-                    outfile.write('%s%s\n' % ('Hash: ', self.hashes[player]))
-
-                    outfile.write('Logic:                           %s\n' % self.multiworld.logic[player])
-                    outfile.write('Dark Room Logic:                 %s\n' % self.multiworld.dark_room_logic[player])
-                    outfile.write('Mode:                            %s\n' % self.multiworld.mode[player])
-                    outfile.write('Goal:                            %s\n' % self.multiworld.goal[player])
-                    if "triforce" in self.multiworld.goal[player]:  # triforce hunt
-                        outfile.write("Pieces available for Triforce:   %s\n" %
-                                      self.multiworld.triforce_pieces_available[player])
-                        outfile.write("Pieces required for Triforce:    %s\n" %
-                                      self.multiworld.triforce_pieces_required[player])
-                    outfile.write('Difficulty:                      %s\n' % self.multiworld.difficulty[player])
-                    outfile.write('Item Functionality:              %s\n' % self.multiworld.item_functionality[player])
-                    outfile.write('Entrance Shuffle:                %s\n' % self.multiworld.shuffle[player])
-                    if self.multiworld.shuffle[player] != "vanilla":
-                        outfile.write('Entrance Shuffle Seed            %s\n' % self.multiworld.worlds[player].er_seed)
-                    outfile.write('Shop inventory shuffle:          %s\n' %
-                                  bool_to_text("i" in self.multiworld.shop_shuffle[player]))
-                    outfile.write('Shop price shuffle:              %s\n' %
-                                  bool_to_text("p" in self.multiworld.shop_shuffle[player]))
-                    outfile.write('Shop upgrade shuffle:            %s\n' %
-                                  bool_to_text("u" in self.multiworld.shop_shuffle[player]))
-                    outfile.write('New Shop inventory:              %s\n' %
-                                  bool_to_text("g" in self.multiworld.shop_shuffle[player] or
-                                               "f" in self.multiworld.shop_shuffle[player]))
-                    outfile.write('Custom Potion Shop:              %s\n' %
-                                  bool_to_text("w" in self.multiworld.shop_shuffle[player]))
-                    outfile.write('Enemy health:                    %s\n' % self.multiworld.enemy_health[player])
-                    outfile.write('Enemy damage:                    %s\n' % self.multiworld.enemy_damage[player])
-                    outfile.write('Prize shuffle                    %s\n' %
-                                  self.multiworld.shuffle_prizes[player])
             if self.entrances:
                 outfile.write('\n\nEntrances:\n\n')
                 outfile.write('\n'.join(['%s%s %s %s' % (f'{self.multiworld.get_player_name(entry["player"])}: '
@@ -1386,30 +1179,12 @@ class Spoiler():
                                                          '<=' if entry['direction'] == 'exit' else '=>',
                                                          entry['exit']) for entry in self.entrances.values()]))
 
-            if self.medallions:
-                outfile.write('\n\nMedallions:\n')
-                for dungeon, medallion in self.medallions.items():
-                    outfile.write(f'\n{dungeon}: {medallion}')
-
             AutoWorld.call_all(self.multiworld, "write_spoiler", outfile)
 
             outfile.write('\n\nLocations:\n\n')
             outfile.write('\n'.join(
                 ['%s: %s' % (location, item) for grouping in self.locations.values() for (location, item) in
                  grouping.items()]))
-
-            if self.shops:
-                outfile.write('\n\nShops:\n\n')
-                outfile.write('\n'.join("{} [{}]\n    {}".format(shop['location'], shop['type'], "\n    ".join(
-                    item for item in [shop.get('item_0', None), shop.get('item_1', None), shop.get('item_2', None)] if
-                    item)) for shop in self.shops))
-
-            for player in self.multiworld.get_game_players("A Link to the Past"):
-                if self.multiworld.boss_shuffle[player] != 'none':
-                    bossmap = self.bosses[str(player)] if self.multiworld.players > 1 else self.bosses
-                    outfile.write(
-                        f'\n\nBosses{(f" ({self.multiworld.get_player_name(player)})" if self.multiworld.players > 1 else "")}:\n')
-                    outfile.write('    ' + '\n    '.join([f'{x}: {y}' for x, y in bossmap.items()]))
             outfile.write('\n\nPlaythrough:\n\n')
             outfile.write('\n'.join(['%s: {\n%s\n}' % (sphere_nr, '\n'.join(
                 ['  %s: %s' % (location, item) for (location, item) in sphere.items()] if sphere_nr != '0' else [
