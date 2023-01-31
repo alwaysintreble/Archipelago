@@ -85,6 +85,10 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
     logger.info('Creating Items.')
     AutoWorld.call_all(world, "create_items")
 
+    # All worlds should have finished creating all regions, locations, and entrances.
+    # Recache to ensure that they are all visible for locality rules.
+    world._recache()
+
     logger.info('Calculating Access Rules.')
 
     for player in world.player_ids:
@@ -229,6 +233,10 @@ def main(args, seed=None, baked_server_options: Optional[Dict[str, object]] = No
             AutoWorld.call_all(world, 'extend_hint_information', er_hint_data)
 
             checks_in_area = {player: {"Total": 0} for player in range(1, world.players + 1)}
+
+            for location in world.get_filled_locations():
+                if isinstance(location.address, int):
+                    checks_in_area[location.player]["Total"] += 1
 
             def write_multidata():
                 import NetUtils
