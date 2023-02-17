@@ -1,0 +1,10 @@
+name: Player{number}
+description: Random all settings {{ game }} Template
+game: {{ game }}
+requires:
+  version: {{ __version__ }}
+
+{{ game }}:
+  {%- for option_key, option in options.items() %}
+  {{ option_key }}: random
+  {%- endfor %}
