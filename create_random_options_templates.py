@@ -8,7 +8,7 @@ from Utils import __version__, local_path
 from worlds.AutoWorld import AutoWorldRegister
 
 
-def output_files(file_path: str=os.path.join(local_path("output"), "random_templates")):
+def output_files(exclude: typing.Iterable[str], file_path: str=os.path.join(local_path("output"), "random_templates")):
     os.makedirs(file_path, exist_ok=True)
 
     for file in os.listdir(file_path):
@@ -17,6 +17,8 @@ def output_files(file_path: str=os.path.join(local_path("output"), "random_templ
             os.unlink(full_path)
 
     for game_name, world_type in AutoWorldRegister.world_types.items():
+        if game_name in exclude:
+            continue
         all_options: typing.Dict[str, Options.AssembleOptions] = {
             **Options.per_game_common_options,
             **world_type.option_definitions
@@ -49,9 +51,14 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Generate basic YAML files for every game with 'random' for the options")
     parser.add_argument("--path", help="Full file path to output the YAML files to")
+    parser.add_argument("--exclude", action="append",
+                        help="Comma separated list of games to exclude, using game names. "
+                             "Default: {'Archipelago', 'Final Fantasy', 'Sudoku', 'Ori and the Blind Forest'}")
     args = parser.parse_args()
-    path = args.path
-    if path:
-        output_files(path)
+    exclude_list = {"Archipelago", "Final Fantasy", "Sudoku", "Ori and the Blind Forest"}
+    if args.exclude:
+        exclude_list = exclude_list | set(args.exclude)
+    if args.path:
+        output_files(exclude_list, args.path)
     else:
-        output_files()
+        output_files(exclude_list)
