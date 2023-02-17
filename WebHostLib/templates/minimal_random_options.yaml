@@ -1,0 +1,14 @@
+name: Player{number}
+description: Random all settings {{ game }} Template
+game: {{ game }}
+requires:
+  version: {{ __version__ }}
+
+{{ game }}:
+  {%- for option_key, option in options.items() %}
+    {%- if option_key == "accessibility" %}
+  {{ option_key }}: minimal
+    {%- else %}
+  {{ option_key }}: random
+    {%- endif %}
+  {%- endfor %}

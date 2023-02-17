@@ -21,14 +21,27 @@ def output_files(file_path: str=os.path.join(local_path("output"), "random_templ
             **Options.per_game_common_options,
             **world_type.option_definitions
         }
+
         with open(local_path("WebHostLib", "templates", "random_options.yaml")) as f:
             file_data = f.read()
         res = Template(file_data).render(
             options=all_options, __version__=__version__, game=game_name
         )
         del file_data
-
         with open(os.path.join(file_path, game_name + ".yaml"), "w", encoding="utf-8") as f:
+            f.write(res)
+        with open(os.path.join(file_path, game_name + "2.yaml"), "w", encoding="utf-8") as f:
+            f.write(res)
+
+        with open(local_path("WebHostLib", "templates", "minimal_random_options.yaml")) as f:
+            file_data = f.read()
+        res = Template(file_data).render(
+            options=all_options, __version__=__version__, game=game_name
+        )
+        del file_data
+        with open(os.path.join(file_path, game_name + "_minimal.yaml"), "w", encoding="utf-8") as f:
+            f.write(res)
+        with open(os.path.join(file_path, game_name + "_minimal2.yaml"), "w", encoding="utf-8") as f:
             f.write(res)
 
 
