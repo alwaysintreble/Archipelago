@@ -1,6 +1,6 @@
 ﻿from typing import List, Optional, Callable, Dict, Any
 import worlds.AutoWorld as Auto
-from BaseClasses import Tutorial, ItemClassification, Region, RegionType, Entrance
+from BaseClasses import Tutorial, ItemClassification, Region, Entrance
 
 from .Constants.ItemsAndLocations import ABILITY_NAMES, LOCATION_NAMES, SHOP_NAMES
 from .Constants.RegionConstants import LEVEL_TO_HINT_NAMES, CASSETTE_ONLY_REGIONS
@@ -123,13 +123,13 @@ class BatBoyWorld(Auto.World):
 
     def create_region(self, name: str) -> Region:
         if name in LEVEL_TO_HINT_NAMES:
-            return Region(name, RegionType.Generic, LEVEL_TO_HINT_NAMES[name], self.player, self.multiworld)
-        return Region(name, RegionType.Generic, name, self.player, self.multiworld)
+            return Region(name, self.player, self.multiworld, LEVEL_TO_HINT_NAMES[name])
+        return Region(name, self.player, self.multiworld)
 
     def create_regions(self) -> None:
         # create and connect our menu and overworld regions before anything else
-        menu = Region("Menu", RegionType.Generic, "Menu", self.player, self.multiworld)
-        self.overworld = Region("Overworld", RegionType.Generic, "Overworld", self.player, self.multiworld)
+        menu = Region("Menu", self.player, self.multiworld)
+        self.overworld = Region("Overworld", self.player, self.multiworld)
         start = Entrance(self.player, "Game Start", menu)
         menu.exits.append(start)
         start.connect(self.overworld)
