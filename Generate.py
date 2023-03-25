@@ -5,6 +5,8 @@ import logging
 import os
 import random
 import string
+import sys
+import typing
 import urllib.parse
 import urllib.request
 from collections import Counter, ChainMap
@@ -637,9 +639,44 @@ def roll_alttp_settings(ret: argparse.Namespace, weights, plando_options):
                         ret.sprite_pool += [key] * int(value)
 
 
+def run_gui():
+    from kvui import App, ContainerLayout, MainLayout, BoxLayout, TextInput, Button, Label
+
+    class Generate(App):
+        base_title: str = "Archipelago Generate"
+        container: ContainerLayout
+        grid: MainLayout
+
+        def __init__(self):
+            self.title = self.base_title
+            # self.icon = r"data/icon.png"
+            super().__init__()
+
+        def get_new_button(self, text: str, callback: typing.Optional[typing.Callable] = None) -> Button:
+            new_button = Button(text=text)
+            if callback:
+                new_button.component = callback
+            new_button.bind(on_release=self.component_action)
+            return new_button
+
+        def build(self):
+            self.container = ContainerLayout()
+            self.grid = MainLayout(cols=1)
+            self.container.add_widget(self.grid)
+            self.grid.add_widget(self.get_new_button("Generate", main))
+            return self.container
+
+        @staticmethod
+        def component_action(button):
+            button.component()
+
+    Generate().run()
+
+
 if __name__ == '__main__':
     import atexit
     confirmation = atexit.register(input, "Press enter to close.")
-    main()
+    run_gui()
+    # main()
     # in case of error-free exit should not need confirmation
     atexit.unregister(confirmation)
