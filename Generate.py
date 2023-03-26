@@ -640,35 +640,155 @@ def roll_alttp_settings(ret: argparse.Namespace, weights, plando_options):
 
 
 def run_gui():
-    from kvui import App, ContainerLayout, MainLayout, BoxLayout, TextInput, Button, Label
+    from kvui import App, ContainerLayout, MainLayout, BoxLayout, ProgressBar, TextInput, Button, Label, DropDown, Widget, escape_markup
+
+    class TextColors(Widget):
+        color_codes = {
+            "black": "000000",
+            "red": "EE0000",
+            "green": "00FF7F",
+            "yellow": "FAFAD2",
+            "blue": "6495ED",
+            "magenta": "EE00EE",
+            "cyan": "00EEEE",
+            "slateblue": "6D8BE8",
+            "plum": "AF99EF",
+            "salmon": "FA8072",
+            "white": "FFFFFF",
+        }
+
+    class InputLabel(Label):
+        def __init__(self, **kwargs):
+            if "size" not in kwargs:
+                kwargs["size"] = (100, 30)
+            super().__init__(**kwargs)
+
+    class NumericTextInput(TextInput):
+        def __init__(self, **kwargs):
+            if "size_hint_x" not in kwargs:
+                kwargs["size_hint_x"] = None
+            super().__init__(**kwargs)
 
     class Generate(App):
         base_title: str = "Archipelago Generate"
         container: ContainerLayout
         grid: MainLayout
+        start_layout: BoxLayout
+        seed_entry: str
+        seed_entry_bar: NumericTextInput
+        progress_bar: ProgressBar
+        config_options: MainLayout
+
+        args: Dict
+        hint_cost: str
+        hint_cost_entry: NumericTextInput
+        race_mode: Button
 
         def __init__(self):
             self.title = self.base_title
-            # self.icon = r"data/icon.png"
+            self.icon = r"data/icon.png"
+            self.seed_entry = ""
+            self.hint_cost = f"{Utils.get_options()['server_options']['hint_cost']}"
+            self.players = "0"
+            self.args = {}
+            colors = TextColors()
+            self.color_codes = {name: getattr(colors, name, code) for name, code in colors.color_codes.items()}
             super().__init__()
 
         def get_new_button(self, text: str, callback: typing.Optional[typing.Callable] = None) -> Button:
-            new_button = Button(text=text)
+            new_button = Button(text=text, size=(100, 30), size_hint_y=None, size_hint_x=None)
+            new_button.orig_text = text
             if callback:
                 new_button.component = callback
             new_button.bind(on_release=self.component_action)
             return new_button
 
+        def set_dropdown_text(self, instance, data):
+            setattr(instance, "selection", data)
+            new_text = f"{instance.attach_to.orig_text}\n{data}"
+            setattr(instance.attach_to, "text", new_text)
+
+        def get_new_dropdown(self, text: str, buttons: typing.List[str], default: typing.Optional[str] = None) -> Button:
+            new_dropdown = DropDown()
+            for button in buttons:
+                dropdown_button = self.get_new_button(button)
+                dropdown_button.bind(on_release=lambda btn: new_dropdown.select(btn.text))
+                new_dropdown.add_widget(dropdown_button)
+            main_button = self.get_new_button(text=text)
+            if default:
+                main_button.text = f"{text}\n{default}"
+                main_button.selection = default
+            main_button.size = (100, 50)
+            main_button.bind(on_release=new_dropdown.open)
+            main_button.add_widget(new_dropdown)
+            new_dropdown.bind(on_select=self.set_dropdown_text)
+            return main_button
+
         def build(self):
             self.container = ContainerLayout()
             self.grid = MainLayout(cols=1)
             self.container.add_widget(self.grid)
-            self.grid.add_widget(self.get_new_button("Generate", main))
+
+            # header
+            self.start_layout = BoxLayout(size_hint_y=None, height=30)
+            self.start_layout.add_widget(InputLabel(text="Seed:"))
+
+            self.seed_entry_bar = NumericTextInput(text=self.seed_entry, size_hint_x=1)
+            self.seed_entry_bar.bind(on_text_validate=self.generate_button_action)
+            self.start_layout.add_widget(self.seed_entry_bar)
+
+            self.start_layout.add_widget(self.get_new_button("Generate", main))
+            self.grid.add_widget(self.start_layout)
+
+            self.progress_bar = ProgressBar(size_hint_y=None, height=3)
+            self.grid.add_widget(self.progress_bar)
+
+            # middle section
+            self.config_options = MainLayout(cols=3, rows=2, size_hint_y=None)
+            self.dropdown_options_1 = BoxLayout()
+
+            self.config_options.add_widget(InputLabel(text="Hint Cost %:"))
+            self.hint_cost_entry = NumericTextInput(text=self.hint_cost)
+            self.config_options.add_widget(self.hint_cost_entry)
+            self.config_options.add_widget(self.dropdown_options_1)
+
+            self.config_options.add_widget(InputLabel(text="Players:"))
+            self.players_entry = NumericTextInput(text=self.players)
+            self.config_options.add_widget(self.players_entry)
+
+            # config options
+            self.race_mode = self.get_new_dropdown("Race Mode", ["Yes", "No"], "Yes" if Utils.get_options()["generator"]["race"] else "No")
+            self.dropdown_options_1.add_widget(self.race_mode)
+            self.release_mode = self.get_new_dropdown("Release Mode", ["disabled", "enabled", "auto", "auto-enabled", "goal"], Utils.get_options()["server_options"]["release_mode"])
+            self.dropdown_options_1.add_widget(self.release_mode)
+            self.collect_mode = self.get_new_dropdown("Collect Mode", ["disabled", "enabled", "auto", "auto-enabled", "goal"], Utils.get_options()["server_options"]["collect_mode"])
+            self.dropdown_options_1.add_widget(self.collect_mode)
+            self.remaining_mode = self.get_new_dropdown("Remaining Mode", ["disabled", "enabled", "goal"], Utils.get_options()["server_options"]["remaining_mode"])
+            self.dropdown_options_1.add_widget(self.remaining_mode)
+            spoiler_options = {
+                0: "None",
+                1: "no playthrough",
+                2: "playthrough",
+                3: "paths",
+            }
+            self.spoiler = self.get_new_dropdown("Spoiler", ["None", "no playthrough", "playthrough", "paths"], spoiler_options[Utils.get_options()["generator"]["spoiler"]])
+            self.dropdown_options_1.add_widget(self.spoiler)
+
+            self.grid.add_widget(self.config_options)
+
             return self.container
 
         @staticmethod
         def component_action(button):
             button.component()
+
+        def generate_button_action(self, button):
+            self.seed_entry = button.text
+            if self.seed_entry:
+                if self.seed_entry.isdigit():
+                    main()
+            else:
+                main()
 
     Generate().run()
 

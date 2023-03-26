@@ -15,6 +15,19 @@
     white: "FFFFFF"  # not used, if you want to change the generic text color change color in Label
 <Label>:
     color: "FFFFFF"
+    size_hint_y: None
+    size_hint_x: None
+<TextInput>:
+    size_hint_y: None
+    height: 30
+    multiline: False
+    write_tab: False
+<Button>:
+    markup: True
+    text: self.text + "\n" + self.selection if hasattr(self, "selection") else self.text
+    text_size: self.width - 10, None
+<DropDown>:
+    is_open: False
 <TabbedPanel>:
     tab_width: root.width / app.tab_count
 <SelectableLabel>:
