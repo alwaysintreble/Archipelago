@@ -24,10 +24,11 @@ from kivy.core.text.markup import MarkupLabel
 from kivy.base import ExceptionHandler, ExceptionManager
 from kivy.clock import Clock
 from kivy.factory import Factory
-from kivy.properties import BooleanProperty, ObjectProperty
+from kivy.properties import BooleanProperty, ObjectProperty, NumericProperty
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.dropdown import DropDown
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.layout import Layout
 from kivy.uix.textinput import TextInput

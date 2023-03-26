@@ -12,6 +12,10 @@ import urllib.request
 from collections import Counter, ChainMap
 from typing import Dict, Tuple, Callable, Any, Union
 
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.checkbox import CheckBox
+
 import ModuleUpdate
 
 ModuleUpdate.update()
@@ -640,7 +644,8 @@ def roll_alttp_settings(ret: argparse.Namespace, weights, plando_options):
 
 
 def run_gui():
-    from kvui import App, ContainerLayout, MainLayout, BoxLayout, ProgressBar, TextInput, Button, Label, DropDown, Widget, escape_markup
+    from kvui import App, ContainerLayout, MainLayout, BoxLayout, ProgressBar, TextInput, Button, Label, DropDown,\
+        Widget, CheckBox, NumericProperty
 
     class TextColors(Widget):
         color_codes = {
@@ -661,13 +666,27 @@ def run_gui():
         def __init__(self, **kwargs):
             if "size" not in kwargs:
                 kwargs["size"] = (100, 30)
+            if "size_hint" not in kwargs:
+                kwargs["size_hint"] = (None, None)
             super().__init__(**kwargs)
 
     class NumericTextInput(TextInput):
+        max_chars = NumericProperty(0)
+
         def __init__(self, **kwargs):
             if "size_hint_x" not in kwargs:
                 kwargs["size_hint_x"] = None
-            super().__init__(**kwargs)
+            super().__init__(**kwargs, input_filter="int", halign="center")
+
+        def insert_text(self, substring: str, from_undo: bool = False) -> None:
+            if len(self.text) >= self.max_chars > 0:
+                substring = ""
+            super().insert_text(substring, from_undo)
+
+    def set_dropdown_text(instance: DropDown, data: str) -> None:
+        setattr(instance, "selection", data)
+        new_text = f"{instance.attach_to.orig_text}\n{data}"
+        setattr(instance.attach_to, "text", new_text)
 
     class Generate(App):
         base_title: str = "Archipelago Generate"
@@ -678,11 +697,23 @@ def run_gui():
         seed_entry_bar: NumericTextInput
         progress_bar: ProgressBar
         config_options: MainLayout
+        dropdown_options: BoxLayout
+        plando_options: BoxLayout
 
         args: Dict
         hint_cost: str
         hint_cost_entry: NumericTextInput
+        players: str
+        players_entry: NumericTextInput
         race_mode: Button
+        release_mode: Button
+        collect_mode: Button
+        remaining_mode: Button
+        spoiler: Button
+        plando_bosses: CheckBox
+        plando_items: CheckBox
+        plando_texts: CheckBox
+        plando_connections: CheckBox
 
         def __init__(self):
             self.title = self.base_title
@@ -696,17 +727,12 @@ def run_gui():
             super().__init__()
 
         def get_new_button(self, text: str, callback: typing.Optional[typing.Callable] = None) -> Button:
-            new_button = Button(text=text, size=(100, 30), size_hint_y=None, size_hint_x=None)
+            new_button = Button(text=text, size=(100, 30))
             new_button.orig_text = text
             if callback:
                 new_button.component = callback
-            new_button.bind(on_release=self.component_action)
+                new_button.bind(on_release=self.component_action)
             return new_button
-
-        def set_dropdown_text(self, instance, data):
-            setattr(instance, "selection", data)
-            new_text = f"{instance.attach_to.orig_text}\n{data}"
-            setattr(instance.attach_to, "text", new_text)
 
         def get_new_dropdown(self, text: str, buttons: typing.List[str], default: typing.Optional[str] = None) -> Button:
             new_dropdown = DropDown()
@@ -714,14 +740,18 @@ def run_gui():
                 dropdown_button = self.get_new_button(button)
                 dropdown_button.bind(on_release=lambda btn: new_dropdown.select(btn.text))
                 new_dropdown.add_widget(dropdown_button)
+            new_dropdown.bind(on_select=set_dropdown_text)
+            new_dropdown.selection = default if default else ""
+
             main_button = self.get_new_button(text=text)
-            if default:
-                main_button.text = f"{text}\n{default}"
-                main_button.selection = default
-            main_button.size = (100, 50)
+            main_button.text_size = main_button.width - 20, None
+            main_button.size = (120, 60)
             main_button.bind(on_release=new_dropdown.open)
             main_button.add_widget(new_dropdown)
-            new_dropdown.bind(on_select=self.set_dropdown_text)
+            new_dropdown.dismiss()
+            if default:
+                main_button.orig_text = text
+                main_button.text = f"{text}\n{default}"
             return main_button
 
         def build(self):
@@ -740,31 +770,30 @@ def run_gui():
             self.start_layout.add_widget(self.get_new_button("Generate", main))
             self.grid.add_widget(self.start_layout)
 
-            self.progress_bar = ProgressBar(size_hint_y=None, height=3)
-            self.grid.add_widget(self.progress_bar)
-
             # middle section
-            self.config_options = MainLayout(cols=3, rows=2, size_hint_y=None)
-            self.dropdown_options_1 = BoxLayout()
+            self.config_options = MainLayout(cols=3, rows=2, height=90, padding=[0, 10, 0, 10])
+            self.dropdown_options = BoxLayout(height=60, size_hint=(1, None))
+            self.plando_options = BoxLayout(height=30, size_hint=(1, None))
 
             self.config_options.add_widget(InputLabel(text="Hint Cost %:"))
-            self.hint_cost_entry = NumericTextInput(text=self.hint_cost)
+            self.hint_cost_entry = NumericTextInput(text=self.hint_cost, max_chars=2)
             self.config_options.add_widget(self.hint_cost_entry)
-            self.config_options.add_widget(self.dropdown_options_1)
+            self.config_options.add_widget(self.dropdown_options)
 
             self.config_options.add_widget(InputLabel(text="Players:"))
             self.players_entry = NumericTextInput(text=self.players)
             self.config_options.add_widget(self.players_entry)
+            self.config_options.add_widget(self.plando_options)
 
-            # config options
+            # drop down selections
             self.race_mode = self.get_new_dropdown("Race Mode", ["Yes", "No"], "Yes" if Utils.get_options()["generator"]["race"] else "No")
-            self.dropdown_options_1.add_widget(self.race_mode)
+            self.dropdown_options.add_widget(self.race_mode)
             self.release_mode = self.get_new_dropdown("Release Mode", ["disabled", "enabled", "auto", "auto-enabled", "goal"], Utils.get_options()["server_options"]["release_mode"])
-            self.dropdown_options_1.add_widget(self.release_mode)
+            self.dropdown_options.add_widget(self.release_mode)
             self.collect_mode = self.get_new_dropdown("Collect Mode", ["disabled", "enabled", "auto", "auto-enabled", "goal"], Utils.get_options()["server_options"]["collect_mode"])
-            self.dropdown_options_1.add_widget(self.collect_mode)
+            self.dropdown_options.add_widget(self.collect_mode)
             self.remaining_mode = self.get_new_dropdown("Remaining Mode", ["disabled", "enabled", "goal"], Utils.get_options()["server_options"]["remaining_mode"])
-            self.dropdown_options_1.add_widget(self.remaining_mode)
+            self.dropdown_options.add_widget(self.remaining_mode)
             spoiler_options = {
                 0: "None",
                 1: "no playthrough",
@@ -772,9 +801,27 @@ def run_gui():
                 3: "paths",
             }
             self.spoiler = self.get_new_dropdown("Spoiler", ["None", "no playthrough", "playthrough", "paths"], spoiler_options[Utils.get_options()["generator"]["spoiler"]])
-            self.dropdown_options_1.add_widget(self.spoiler)
+            self.dropdown_options.add_widget(self.spoiler)
+
+            # plando checkboxes
+            self.plando_bosses = CheckBox(active=True, size_hint=(1, 1))
+            self.plando_items = CheckBox(size_hint=(1, 1))
+            self.plando_texts = CheckBox(size_hint=(1, 1))
+            self.plando_connections = CheckBox(size_hint=(1, 1))
+            self.plando_options.add_widget(InputLabel(text="Plando Options:", size=(120, 30)))
+            self.plando_options.add_widget(InputLabel(text="Bosses", size_hint=(1, 1), size=(90, 30)))
+            self.plando_options.add_widget(self.plando_bosses)
+            self.plando_options.add_widget(InputLabel(text="Items", size_hint=(1, 1), size=(30, 30)))
+            self.plando_options.add_widget(self.plando_items)
+            self.plando_options.add_widget(InputLabel(text="Texts", size_hint=(1, 1), size=(30, 30)))
+            self.plando_options.add_widget(self.plando_texts)
+            self.plando_options.add_widget(InputLabel(text="Connections", size_hint=(1, 1)))
+            self.plando_options.add_widget(self.plando_connections)
 
             self.grid.add_widget(self.config_options)
+
+            self.progress_bar = ProgressBar(size_hint_y=None, height=20, max=100, value=0)
+            self.grid.add_widget(self.progress_bar)
 
             return self.container
 
@@ -785,8 +832,7 @@ def run_gui():
         def generate_button_action(self, button):
             self.seed_entry = button.text
             if self.seed_entry:
-                if self.seed_entry.isdigit():
-                    main()
+                main()
             else:
                 main()
 
