@@ -720,7 +720,7 @@ def run_gui():
             self.icon = r"data/icon.png"
             self.seed_entry = ""
             self.hint_cost = f"{Utils.get_options()['server_options']['hint_cost']}"
-            self.players = "0"
+            self.players = f"{Utils.get_options()['generator']['players']}"
             self.args = {}
             colors = TextColors()
             self.color_codes = {name: getattr(colors, name, code) for name, code in colors.color_codes.items()}
