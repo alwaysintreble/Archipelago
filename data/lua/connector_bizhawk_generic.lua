@@ -159,19 +159,23 @@ function main ()
     end
 
     local server, err = socket.bind("localhost", SOCKET_PORT)
-    if (err == "address already in use") then
-        print("ERROR: Port already in use")
-        print("This is likely because you switched ROMs after starting this script, which is not supported.")
-        print("Please close down BizHawk and your client and retry.")
-        return
-    elseif (err ~= nil) then
+    if (err ~= nil) then
         print(err)
         return
     end
 
+    function onexit ()
+        server:close()
+    end
+
+    event.onexit(onexit)
+
+    local printed_no_rom_message = false
     if (emu.getsystemid() == "NULL") then
-        print("No ROM loaded. Load a ROM and then restart this script.")
-        return
+        print("Please load a ROM...")
+        while (emu.getsystemid() == "NULL") do
+            emu.frameadvance()
+        end
     end
 
     while true do
