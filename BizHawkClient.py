@@ -294,7 +294,8 @@ async def _game_watcher(ctx: BizHawkClientContext):
                 ctx.client_handler = await AutoBizHawkClientRegister.get_handler(ctx, system)
 
                 if ctx.client_handler is None:
-                    raise NotImplementedError("No handler was found for this game")
+                    logger.info("No handler was found for this game")
+                    continue
                 else:
                     logger.info(f"Running handler for {ctx.client_handler.game}")
         except RequestFailedError:

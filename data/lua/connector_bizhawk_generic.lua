@@ -172,7 +172,7 @@ function main ()
 
     local printed_no_rom_message = false
     if (emu.getsystemid() == "NULL") then
-        print("Please load a ROM...")
+        print("No ROM is loaded. Please load a ROM.")
         while (emu.getsystemid() == "NULL") do
             emu.frameadvance()
         end
