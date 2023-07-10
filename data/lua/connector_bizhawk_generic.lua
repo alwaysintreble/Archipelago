@@ -22,6 +22,8 @@ local current_time = 0
 
 local locked = false
 
+local rom_hash = nil
+
 local lua_major, lua_minor = _VERSION:match("Lua (%d+)%.(%d+)")
 lua_major = tonumber(lua_major)
 lua_minor = tonumber(lua_minor)
@@ -80,6 +82,9 @@ function process_request (req)
     elseif req["type"] == "SYSTEM" then
         res["type"] = "SYSTEM_RESPONSE"
         res["value"] = emu.getsystemid()
+    elseif req["type"] == "HASH" then
+        res["type"] = "HASH_RESPONSE"
+        res["value"] = rom_hash
     elseif req["type"] == "LOCK" then
         res["type"] = "LOCKED"
         lock()
@@ -177,6 +182,8 @@ function main ()
             emu.frameadvance()
         end
     end
+
+    rom_hash = gameinfo.getromhash()
 
     while true do
         current_time = socket.socket.gettime()
