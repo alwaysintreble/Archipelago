@@ -108,12 +108,12 @@ class PokemonEmeraldClient(BizHawkClient):
 
                 # Try to fill the received item struct with the next item
                 if num_received_items < len(ctx.items_received):
-                    is_filled = (await bizhawk_read(ctx, data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus"))[0] == 0
+                    is_filled = (await bizhawk_read(ctx, data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus"))[0] != 0
 
                     await bizhawk_unlock(ctx)
 
                     # If the item struct is still full, do nothing
-                    if is_filled:
+                    if not is_filled:
                         next_item = ctx.items_received[num_received_items]
                         await bizhawk_write_multiple(ctx, [
                             [data.ram_addresses["gArchipelagoReceivedItem"] + 0, int16_as_bytes(next_item.item - config["ap_offset"]), "System Bus"],
