@@ -71,7 +71,8 @@ class PokemonEmeraldClient(BizHawkClient):
         return True
 
     async def game_watcher(self, ctx: BizHawkClientContext) -> None:
-        from BizHawkClient import RequestFailedError, bizhawk_read, bizhawk_write_multiple, bizhawk_lock, bizhawk_unlock
+        from BizHawkClient import RequestFailedError, bizhawk_read, bizhawk_read_multiple, bizhawk_write_multiple, bizhawk_lock, bizhawk_unlock
+        from CommonClient import logger
 
         if ctx.slot_data is not None:
             if ctx.slot_data["goal"] == Goal.option_champion:
@@ -85,21 +86,34 @@ class PokemonEmeraldClient(BizHawkClient):
             # Read slot name and send Connect if connected to server
             if ctx.server is not None and ctx.auth is None:
                 slot_name_raw = await bizhawk_read(ctx, data.rom_addresses["gArchipelagoInfo"], 64, "ROM")
-                ctx.auth = bytes([byte for byte in slot_name_raw if byte != 0]).decode("utf-8")
+                try:
+                    ctx.auth = bytes([byte for byte in slot_name_raw if byte != 0]).decode("utf-8")
+                except UnicodeDecodeError:
+                    logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
+                    return
                 await ctx.send_connect()
 
+            await bizhawk_lock(ctx)  # Lock to check if in the overworld, get save data address, and read save data
+
             # Check if in overworld
-            await bizhawk_lock(ctx)
             cb2_value = int.from_bytes(await bizhawk_read(ctx, data.ram_addresses["gMain"] + 4, 4, "System Bus"), "little")
             if cb2_value == (data.ram_addresses["CB2_Overworld"] + 1):
                 save_block_address = int.from_bytes(await bizhawk_read(ctx, data.ram_addresses["gSaveBlock1Ptr"], 4, "System Bus"), "little")
-                flag_bytes = await bizhawk_read(ctx, save_block_address + 0x1450, 0x12C, "System Bus")
-                num_received_items = int.from_bytes(await bizhawk_read(ctx, save_block_address + 0x3778, 2, "System Bus"), "little")
+
+                flag_bytes, num_received_items_bytes = await bizhawk_read_multiple(ctx, [
+                    [save_block_address + 0x1450, 0x12C, "System Bus"]
+                    [save_block_address + 0x3778, 2, "System Bus"]
+                ])
+                num_received_items = int.from_bytes(num_received_items_bytes, "little")
 
                 # Try to fill the received item struct with the next item
                 if num_received_items < len(ctx.items_received):
+                    is_filled = (await bizhawk_read(ctx, data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus"))[0] == 0
+
+                    await bizhawk_unlock(ctx)
+
                     # If the item struct is still full, do nothing
-                    if (await bizhawk_read(ctx, data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus"))[0] == 0:
+                    if is_filled:
                         next_item = ctx.items_received[num_received_items]
                         await bizhawk_write_multiple(ctx, [
                             [data.ram_addresses["gArchipelagoReceivedItem"] + 0, int16_as_bytes(next_item.item - config["ap_offset"]), "System Bus"],
@@ -107,8 +121,8 @@ class PokemonEmeraldClient(BizHawkClient):
                             [data.ram_addresses["gArchipelagoReceivedItem"] + 4, [1], "System Bus"],
                             [data.ram_addresses["gArchipelagoReceivedItem"] + 5, [next_item.flags & 1], "System Bus"],
                         ])
-
-                await bizhawk_unlock(ctx)
+                else:
+                    await bizhawk_unlock(ctx)
 
                 game_clear = False
                 local_checked_locations = set()
