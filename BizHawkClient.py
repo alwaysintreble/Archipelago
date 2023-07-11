@@ -98,6 +98,10 @@ class BizHawkConnectorError(Exception):
     pass
 
 
+class BizHawkSyncError(Exception):
+    pass
+
+
 async def send_requests(ctx: BizHawkClientContext, req_list: List[Dict[str, Any]]):
     """Sends a list of requests to the BizHawk connector and returns their responses.
 
@@ -152,123 +156,149 @@ async def bizhawk_get_system(ctx: BizHawkClientContext) -> str:
     return res["value"]
 
 
-async def bizhawk_lock(ctx: BizHawkClientContext) -> bool:
+async def bizhawk_lock(ctx: BizHawkClientContext) -> None:
     """Locks BizHawk in anticipation of receiving more requests this frame.
 
-    While locked, emulation will halt and the connector will block on incoming
-    requests until an UNLOCK request is sent. This is useful if you must guarantee
-    multiple commands run during the same frame and the input of one command is
-    dependent on the output of a previous command. For example, reading the value of
-    a pointer and then reading the value at the address the pointer points to.
+    Consider using guarded reads and writes instead of locks if possible.
 
-    Sending multiple lock commands is the same as sending one.
+    While locked, emulation will halt and the connector will block on incoming requests until an `UNLOCK` request is
+    sent. Remember to unlock when you're done, or the emulator will appear to freeze.
 
-    Remember to unlock when you're done, or the emulator will appear to freeze.
-
-    Returns True if the connector confirmed the command, False otherwise."""
+    Sending multiple lock commands is the same as sending one."""
     res = (await send_requests(ctx, [{"type": "LOCK"}]))[0]
-    if res["type"] == "LOCKED":
-        return True
 
-    return False
+    if res["type"] != "LOCKED":
+        raise BizHawkSyncError()
 
 
-async def bizhawk_unlock(ctx: BizHawkClientContext) -> bool:
-    """Unlocks BizHawk to allow it to resume emulation. See bizhawk_lock for more info.
+async def bizhawk_unlock(ctx: BizHawkClientContext) -> None:
+    """Unlocks BizHawk to allow it to resume emulation. See `bizhawk_lock` for more info.
 
-    Sending multiple unlock commands is the same as sending one.
-
-    Returns True if the connector confirmed the command, False otherwise."""
+    Sending multiple unlock commands is the same as sending one."""
     res = (await send_requests(ctx, [{"type": "UNLOCK"}]))[0]
-    if res["type"] == "UNLOCKED":
-        return True
 
-    return False
+    if res["type"] != "UNLOCKED":
+        raise BizHawkSyncError()
 
 
-async def bizhawk_display_message(ctx: BizHawkClientContext, message: str) -> bool:
+async def bizhawk_display_message(ctx: BizHawkClientContext, message: str) -> None:
     """Displays the provided message in BizHawk's message queue."""
     res = (await send_requests(ctx, [{"type": "DISPLAY_MESSAGE", "message": message}]))[0]
-    if res["type"] == "DISPLAY_MESSAGE_RESPONSE":
-        return True
 
-    return False
-
-
-async def bizhawk_set_message_interval(ctx: BizHawkClientContext, value: float) -> bool:
-    """Sets the minimum amount of time in seconds to wait between queued messages.
-    The default value of 0 will allow one new message to display per frame."""
-    res = (await send_requests(ctx, [{"type": "DISPLAY_MESSAGE", "value": value}]))[0]
-    if res["type"] == "DISPLAY_MESSAGE_RESPONSE":
-        return True
-
-    return False
+    if res["type"] != "DISPLAY_MESSAGE_RESPONSE":
+        raise BizHawkSyncError()
 
 
-async def bizhawk_read_multiple(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]]) -> List[bytearray]:
-    """Reads an array of bytes at multiple addresses.
-    
+async def bizhawk_set_message_interval(ctx: BizHawkClientContext, value: float) -> None:
+    """Sets the minimum amount of time in seconds to wait between queued messages. The default value of 0 will allow one
+    new message to display per frame."""
+    res = (await send_requests(ctx, [{"type": "SET_MESSAGE_INTERVAL", "value": value}]))[0]
+
+    if res["type"] != "SET_MESSAGE_INTERVAL_RESPONSE":
+        raise BizHawkSyncError()
+
+
+async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]],
+                               guard_list: List[Tuple[int, Iterable[int], str]]) -> Optional[List[bytearray]]:
+    """Reads an array of bytes at 1 or more addresses if and only if every byte in guard_list matches its expected value.
+
     Items in read_list should be organized (address, size, domain) where
-        address: The address of the first byte of data
-        size: The number of bytes to read
-        domain: The name of the region of memory the address corresponds to
+    - `address` is the address of the first byte of data
+    - `size` is the number of bytes to read
+    - `domain` is the name of the region of memory the address corresponds to
 
-    Returns a list of bytearrays in the order they were requested"""
-    res = await send_requests(ctx, [
-        {
-            "type": "READ",
-            "address": address,
-            "size": size,
-            "domain": domain
-        }
-        for address, size, domain in read_list
-    ])
+    Items in `guard_list` should be organized `(address, expected_data, domain)` where
+    - `address` is the address of the first byte of data
+    - `expected_data` is the bytes that the data starting at this address is expected to match
+    - `domain` is the name of the region of memory the address corresponds to
 
-    return [bytearray(item["value"]) for item in res]
+    Returns None if any item in guard_list failed to validate. Otherwise returns a list of bytearrays in the order they
+    were requested."""
+    res = await send_requests(ctx, [{
+        "type": "GUARD",
+        "address": address,
+        "expected_data": list(expected_data),
+        "domain": domain
+    } for address, expected_data, domain in guard_list] + [{
+        "type": "READ",
+        "address": address,
+        "size": size,
+        "domain": domain
+    } for address, size, domain in read_list])
+
+    ret: List[bytearray] = []
+    for item in res:
+        if item["type"] == "GUARD_RESPONSE":
+            if item["value"] == False:
+                return None
+        else:
+            if not item["type"] == "READ_RESPONSE":
+                raise BizHawkSyncError()
+
+            ret.append(bytearray(item["value"]))
+
+    return ret
 
 
-async def bizhawk_read(ctx: BizHawkClientContext, address: int, size: int, domain: str) -> bytearray:
-    """Reads an array of bytes at the specified address.
+async def bizhawk_read(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]]) -> List[bytearray]:
+    """Reads an array of bytes at 1 or more addresses.
 
-    address: The address of the first byte of data
-    size: The number of bytes to read
-    domain: The name of the region of memory the address corresponds to
+    Items in `read_list` should be organized `(address, size, domain)` where
+    - `address` is the address of the first byte of data
+    - `size` is the number of bytes to read
+    - `domain` is the name of the region of memory the address corresponds to
 
-    Returns a bytearray corresponding to the read data"""
-    return (await bizhawk_read_multiple(ctx, [[address, size, domain]]))[0]
+    Returns a list of bytearrays in the order they were requested."""
+    return await bizhawk_guarded_read(ctx, read_list, [])
 
 
-async def bizhawk_write_multiple(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]]) -> bool:
-    """Writes bytes at multiple addresses.
+async def bizhawk_guarded_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]], guard_list: List[Tuple[int, Iterable[int], str]]) -> bool:
+    """Writes lists of bytes at 1 or more addresses if and only if every byte in guard_list matches its expected value.
     
-    Items in write_list should be organized (address, value, domain) where
-        address: The address of the first byte of data
-        value: A list of bytes to write
-        domain: The name of the region of memory the address corresponds to
+    Items in `write_list` should be organized `(address, value, domain)` where
+    - `address` is the address of the first byte of data
+    - `value` is a list of bytes to write, in order, starting at `address`
+    - `domain` is the name of the region of memory the address corresponds to
+
+    Items in `guard_list` should be organized `(address, expected_data, domain)` where
+    - `address` is the address of the first byte of data
+    - `expected_data` is the bytes that the data starting at this address is expected to match
+    - `domain` is the name of the region of memory the address corresponds to
+
+    Returns False if any item in guard_list failed to validate. Otherwise returns True."""
+    res = await send_requests(ctx, [{
+        "type": "GUARD",
+        "address": address,
+        "expected_data": list(expected_data),
+        "domain": domain
+    } for address, expected_data, domain in guard_list] + [{
+        "type": "WRITE",
+        "address": address,
+        "value": list(value),
+        "domain": domain
+    } for address, value, domain in write_list])
+
+    for item in res:
+        if item["type"] == "GUARD_RESPONSE":
+            if item["value"] == False:
+                return False
+        else:
+            if not item["type"] == "WRITE_RESPONSE":
+                raise BizHawkSyncError()
+
+    return True
+
+
+async def bizhawk_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]]) -> None:
+    """Writes lists of bytes at 1 or more addresses.
+    
+    Items in write_list should be organized `(address, value, domain)` where
+    - `address` is the address of the first byte of data
+    - `value` is a list of bytes to write, in order, starting at `address`
+    - `domain` is the name of the region of memory the address corresponds to
 
     Returns True if the connector confirmed the writes, False otherwise"""
-    res = await send_requests(ctx, [
-        {
-            "type": "WRITE",
-            "address": address,
-            "value": list(value),
-            "domain": domain
-        }
-        for address, value, domain in write_list
-    ])
-
-    return all(item["type"] == "WRITE_RESPONSE" for item in res)
-
-
-async def bizhawk_write(ctx: BizHawkClientContext, address: int, value: Iterable[int], domain: str) -> bool:
-    """Writes bytes at the specified address.
-    
-    address: The address of the first byte of data
-    value: A list of bytes to write
-    domain: The name of the region of memory the address corresponds to
-
-    Returns True if the connector confirmed the write, False otherwise"""
-    return await bizhawk_write_multiple(ctx, [[address, value, domain]])
+    return await bizhawk_guarded_write(ctx, write_list, [])
 
 
 async def _game_watcher(ctx: BizHawkClientContext):

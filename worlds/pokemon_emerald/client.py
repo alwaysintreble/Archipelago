@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, Set
 
-from Utils import int16_as_bytes
+from Utils import int16_as_bytes, int32_as_bytes
 from NetUtils import ClientStatus
 from worlds.AutoBizHawkClient import BizHawkClient
 
@@ -40,6 +40,7 @@ TRACKER_EVENT_FLAGS = [
     "FLAG_OMIT_DIVE_FROM_STEVEN_LETTER",                # Steven gives Dive HM (clears seafloor cavern grunt)
     "FLAG_IS_CHAMPION",
 ]
+EVENT_FLAG_MAP = {data.constants[flag_name]: flag_name for flag_name in TRACKER_EVENT_FLAGS}
 
 
 class PokemonEmeraldClient(BizHawkClient):
@@ -59,7 +60,7 @@ class PokemonEmeraldClient(BizHawkClient):
         from BizHawkClient import bizhawk_read
 
         try:
-            game_name = bytes(await bizhawk_read(ctx, 0x108, 23, "ROM")).decode('ascii')
+            game_name = bytes((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode('ascii')
             if game_name != "pokemon emerald version":
                 return False
         except UnicodeDecodeError:
@@ -71,7 +72,7 @@ class PokemonEmeraldClient(BizHawkClient):
         return True
 
     async def game_watcher(self, ctx: BizHawkClientContext) -> None:
-        from BizHawkClient import RequestFailedError, bizhawk_read, bizhawk_read_multiple, bizhawk_write_multiple, bizhawk_lock, bizhawk_unlock
+        from BizHawkClient import RequestFailedError, bizhawk_read, bizhawk_guarded_read, bizhawk_write
         from CommonClient import logger
 
         if ctx.slot_data is not None:
@@ -85,100 +86,111 @@ class PokemonEmeraldClient(BizHawkClient):
         try:
             # Read slot name and send Connect if connected to server
             if ctx.server is not None and ctx.auth is None:
-                slot_name_raw = await bizhawk_read(ctx, data.rom_addresses["gArchipelagoInfo"], 64, "ROM")
+                slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
                 try:
-                    ctx.auth = bytes([byte for byte in slot_name_raw if byte != 0]).decode("utf-8")
+                    ctx.auth = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
                 except UnicodeDecodeError:
                     logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
                     return
                 await ctx.send_connect()
 
-            await bizhawk_lock(ctx)  # Lock to check if in the overworld, get save data address, and read save data
+            # Checks that the player is in the overworld
+            overworld_guard = (data.ram_addresses["gMain"] + 4, int32_as_bytes(data.ram_addresses["CB2_Overworld"] + 1), "System Bus")
 
-            # Check if in overworld
-            cb2_value = int.from_bytes(await bizhawk_read(ctx, data.ram_addresses["gMain"] + 4, 4, "System Bus"), "little")
-            if cb2_value == (data.ram_addresses["CB2_Overworld"] + 1):
-                save_block_address = int.from_bytes(await bizhawk_read(ctx, data.ram_addresses["gSaveBlock1Ptr"], 4, "System Bus"), "little")
+            # Read save block address
+            read_result = await bizhawk_guarded_read(
+                ctx,
+                [(data.ram_addresses["gSaveBlock1Ptr"], 4, "System Bus")],
+                [overworld_guard]
+            )
+            if read_result is None:  # Not in overworld
+                return
 
-                flag_bytes, num_received_items_bytes = await bizhawk_read_multiple(ctx, [
-                    [save_block_address + 0x1450, 0x12C, "System Bus"]
-                    [save_block_address + 0x3778, 2, "System Bus"]
+            # Checks that the save block hasn't moved
+            save_block_address_guard = (data.ram_addresses["gSaveBlock1Ptr"], read_result[0], "System Bus")
+
+            save_block_address = int.from_bytes(read_result[0], "little")
+
+            # Read from save block and received item struct
+            read_result = await bizhawk_guarded_read(
+                ctx,
+                [
+                    (save_block_address + 0x1450, 0x12C, "System Bus"),                    # Flags
+                    (save_block_address + 0x3778, 2, "System Bus"),                        # Number of received items
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus")  # Received item struct full?
+                ],
+                [overworld_guard, save_block_address_guard]
+            )
+            if read_result is None:  # Not in overworld, or save block moved
+                return
+
+            flag_bytes = read_result[0]
+            num_received_items = int.from_bytes(read_result[1], "little")
+            received_item_is_empty = read_result[2][0] == 0
+
+            # If the game hasn't received all items yet and the received item struct doesn't contain an item, then
+            # fill it with the next item
+            if num_received_items < len(ctx.items_received) and received_item_is_empty:
+                next_item = ctx.items_received[num_received_items]
+                await bizhawk_write(ctx, [
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 0, int16_as_bytes(next_item.item - config["ap_offset"]), "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 2, int16_as_bytes(num_received_items + 1), "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 4, [1], "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 5, [next_item.flags & 1], "System Bus"),
                 ])
-                num_received_items = int.from_bytes(num_received_items_bytes, "little")
 
-                # Try to fill the received item struct with the next item
-                if num_received_items < len(ctx.items_received):
-                    is_filled = (await bizhawk_read(ctx, data.ram_addresses["gArchipelagoReceivedItem"] + 4, 1, "System Bus"))[0] != 0
+            game_clear = False
+            local_checked_locations = set()
+            local_set_events = {flag_name: False for flag_name in TRACKER_EVENT_FLAGS}
 
-                    await bizhawk_unlock(ctx)
+            # Check set flags
+            for byte_i, byte in enumerate(flag_bytes):
+                for i in range(8):
+                    if byte & (1 << i) != 0:
+                        flag_id = byte_i * 8 + i
 
-                    # If the item struct is still full, do nothing
-                    if not is_filled:
-                        next_item = ctx.items_received[num_received_items]
-                        await bizhawk_write_multiple(ctx, [
-                            [data.ram_addresses["gArchipelagoReceivedItem"] + 0, int16_as_bytes(next_item.item - config["ap_offset"]), "System Bus"],
-                            [data.ram_addresses["gArchipelagoReceivedItem"] + 2, int16_as_bytes(num_received_items + 1), "System Bus"],
-                            [data.ram_addresses["gArchipelagoReceivedItem"] + 4, [1], "System Bus"],
-                            [data.ram_addresses["gArchipelagoReceivedItem"] + 5, [next_item.flags & 1], "System Bus"],
-                        ])
-                else:
-                    await bizhawk_unlock(ctx)
+                        location_id = flag_id + config["ap_offset"]
+                        if location_id in ctx.server_locations:
+                            local_checked_locations.add(location_id)
 
-                game_clear = False
-                local_checked_locations = set()
-                event_flag_map = {data.constants[flag_name]: flag_name for flag_name in TRACKER_EVENT_FLAGS}
-                local_set_events = {flag_name: False for flag_name in TRACKER_EVENT_FLAGS}
+                        if flag_id == self.goal_flag:
+                            game_clear = True
 
-                # Check set flags
-                for byte_i, byte in enumerate(flag_bytes):
-                    for i in range(8):
-                        if byte & (1 << i) != 0:
-                            flag_id = byte_i * 8 + i
+                        if flag_id in EVENT_FLAG_MAP:
+                            local_set_events[EVENT_FLAG_MAP[flag_id]] = True
 
-                            location_id = flag_id + config["ap_offset"]
-                            if location_id in ctx.server_locations:
-                                local_checked_locations.add(location_id)
+            # Send locations
+            if local_checked_locations != self.local_checked_locations:
+                self.local_checked_locations = local_checked_locations
 
-                            if flag_id == self.goal_flag:
-                                game_clear = True
-
-                            if flag_id in event_flag_map:
-                                local_set_events[event_flag_map[flag_id]] = True
-
-                # Send locations
-                if local_checked_locations != self.local_checked_locations:
-                    self.local_checked_locations = local_checked_locations
-
-                    if local_checked_locations is not None:
-                        await ctx.send_msgs([{
-                            "cmd": "LocationChecks",
-                            "locations": list(local_checked_locations)
-                        }])
-
-                # Send game clear
-                if not ctx.finished_game and game_clear:
+                if local_checked_locations is not None:
                     await ctx.send_msgs([{
-                        "cmd": "StatusUpdate",
-                        "status": ClientStatus.CLIENT_GOAL
+                        "cmd": "LocationChecks",
+                        "locations": list(local_checked_locations)
                     }])
 
-                # Send tracker event flags
-                if local_set_events != self.local_set_events and ctx.slot is not None:
-                    event_bitfield = 0
-                    for i, flag_name in enumerate(TRACKER_EVENT_FLAGS):
-                        if local_set_events[flag_name]:
-                            event_bitfield |= 1 << i
+            # Send game clear
+            if not ctx.finished_game and game_clear:
+                await ctx.send_msgs([{
+                    "cmd": "StatusUpdate",
+                    "status": ClientStatus.CLIENT_GOAL
+                }])
 
-                    await ctx.send_msgs([{
-                        "cmd": "Set",
-                        "key": f"pokemon_emerald_events_{ctx.team}_{ctx.slot}",
-                        "default": 0,
-                        "want_reply": False,
-                        "operations": [{"operation": "replace", "value": event_bitfield}]
-                    }])
-                    self.local_set_events = local_set_events
-            else:
-                await bizhawk_unlock(ctx)
+            # Send tracker event flags
+            if local_set_events != self.local_set_events and ctx.slot is not None:
+                event_bitfield = 0
+                for i, flag_name in enumerate(TRACKER_EVENT_FLAGS):
+                    if local_set_events[flag_name]:
+                        event_bitfield |= 1 << i
+
+                await ctx.send_msgs([{
+                    "cmd": "Set",
+                    "key": f"pokemon_emerald_events_{ctx.team}_{ctx.slot}",
+                    "default": 0,
+                    "want_reply": False,
+                    "operations": [{"operation": "replace", "value": event_bitfield}]
+                }])
+                self.local_set_events = local_set_events
         except RequestFailedError:
             # Exit handler and return to main loop to reconnect
             pass

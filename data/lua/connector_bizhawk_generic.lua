@@ -3,7 +3,7 @@ local json = require("json")
 
 -- Set to log incoming requests
 -- Will cause lag due to large console output
-local DEBUG = false
+local DEBUG = true
 
 local SOCKET_PORT = 43055
 
@@ -77,32 +77,58 @@ end
 
 function process_request (req)
     local res = {}
+
     if req["type"] == "PING" then
         res["type"] = "PONG"
+
     elseif req["type"] == "SYSTEM" then
         res["type"] = "SYSTEM_RESPONSE"
         res["value"] = emu.getsystemid()
+
     elseif req["type"] == "HASH" then
         res["type"] = "HASH_RESPONSE"
         res["value"] = rom_hash
+
+    elseif req["type"] == "GUARD" then
+        res["type"] = "GUARD_RESPONSE"
+
+        actual_data = memory.read_bytes_as_array(req["address"], #req["expected_data"], req["domain"])
+
+        data_is_validated = true
+        for i, byte in ipairs(actual_data) do
+            if (byte ~= req["expected_data"][i]) then
+                data_is_validated = false
+                break
+            end
+        end
+
+        res["value"] = data_is_validated
+        res["address"] = req["address"]
+
     elseif req["type"] == "LOCK" then
         res["type"] = "LOCKED"
         lock()
+
     elseif req["type"] == "UNLOCK" then
         res["type"] = "UNLOCKED"
         unlock()
+
     elseif req["type"] == "READ" then
         res["type"] = "READ_RESPONSE"
         res["value"] = memory.read_bytes_as_array(req["address"], req["size"], req["domain"])
+
     elseif req["type"] == "WRITE" then
         res["type"] = "WRITE_RESPONSE"
         memory.write_bytes_as_array(req["address"], req["value"], req["domain"])
+
     elseif req["type"] == "DISPLAY_MESSAGE" then
         res["type"] = "DISPLAY_MESSAGE_RESPONSE"
         message_queue:push(req["message"])
+
     elseif req["type"] == "SET_MESSAGE_INTERVAL" then
         res["type"] = "SET_MESSAGE_INTERVAL_RESPONSE"
         message_interval = req["value"]
+
     else
         res["type"] = "ERROR"
         res["err"] = "Unknown command: "..req["type"]
@@ -142,13 +168,24 @@ function send_receive ()
 
     local data = json.decode(message)
     local res = {}
+    local failed_guard_response = nil
     for i, req in ipairs(data) do
-        -- An error is more likely to cause an NLua exception than to return an error here
-        local status, response = pcall(process_request, req)
-        if (status) then
-            res[i] = response
+        if (failed_guard_response ~= nil) then
+            res[i] = failed_guard_response
         else
-            res[i] = {type = "ERROR", err = response}
+            -- An error is more likely to cause an NLua exception than to return an error here
+            local status, response = pcall(process_request, req)
+            if (status) then
+                res[i] = response
+
+                -- If the GUARD validation failed, skip the remaining commands
+                if (response["type"] == "GUARD_RESPONSE" and not response["value"]) then
+                    failed_guard_response = response
+                    break
+                end
+            else
+                res[i] = {type = "ERROR", err = response}
+            end
         end
     end
 
