@@ -1,3 +1,207 @@
+--[[
+This script expects to receive JSON and will send JSON back. A message should
+be a list of 1 or more requests which will be executed in order. Each request
+will have a corresponding response in the same order.
+
+Every individual request and response is a JSON object with at minimum one
+field `type`. The value of `type` determines what other fields may exist.
+
+#### Ex. 1
+
+Request: `[{"type": "PING"}]`
+
+Response: `[{"type": "PONG"}]`
+
+---
+
+#### Ex. 2
+
+Request: `[{"type": "LOCK"}, {"type": "HASH"}]`
+
+Response: `[{"type": "LOCKED"}, {"type": "HASH_RESPONSE", "value": "F7D18982"}]`
+
+---
+
+#### Ex. 3
+
+Request:
+
+```json
+[
+    {"type": "GUARD", "address": 100, "expected_data": [0, 8], "domain": "System Bus"},
+    {"type": "READ", "address": 500, "size": 4, "domain": "ROM"}
+]
+```
+
+Response:
+
+```json
+[
+    {"type": "GUARD_RESPONSE", "address": 100, "value": true},
+    {"type": "READ_RESPONSE", "value": [4, 255, 1, 0]}
+]
+```
+
+---
+
+#### Ex. 4
+
+Request:
+
+```json
+[
+    {"type": "GUARD", "address": 100, "expected_data": [1, 8], "domain": "System Bus"},
+    {"type": "READ", "address": 500, "size": 4, "domain": "ROM"}
+]
+```
+
+Response:
+
+```json
+[
+    {"type": "GUARD_RESPONSE", "address": 100, "value": false},
+    {"type": "GUARD_RESPONSE", "address": 100, "value": false}
+]
+```
+
+---
+
+### Supported Request Types
+
+- `PING`  
+    Does nothing; resets timeout
+
+    Expected Response Type: `PONG`
+
+- `SYSTEM`  
+    Returns the system of the currently loaded ROM (N64, GBA, etc...)
+
+    Expected Response Type: `SYSTEM_RESPONSE`
+
+- `HASH`  
+    Returns the hash of the currently loaded ROM calculated by BizHawk
+
+    Expected Response Type: `HASH_RESPONSE`
+
+- `GUARD`  
+    Checks a section of memory against `expected_data`. If the bytes starting
+    at `address` do not match `expected_data`, the response will have `value`
+    set to `false`, and all subsequent requests will not be executed and
+    receive the same `GUARD_RESPONSE`.
+
+    Expected Response Type: `GUARD_RESPONSE`
+
+    Additional Fields:
+    - `address`: The address of the memory to check
+    - `expected_data`: A list of bytes against which to validate
+    - `domain`: The name of the memory domain the address corresponds to
+
+- `LOCK`  
+    Halts emulation and blocks on incoming requests until an `UNLOCK` request
+    is received or the client times out. All requests processed while locked
+    will happen on the same frame.
+
+    Expected Response Type: `LOCKED`
+
+- `UNLOCK`  
+    Resumes emulation after the current list of requests is done being
+    executed.
+
+    Expected Response Type: `UNLOCKED`
+
+- `READ`  
+    Reads an array of bytes at the provided address
+
+    Expected Response Type: `READ_RESPONSE`
+
+    Additional Fields:
+    - `address`: The address of the memory to read
+    - `size`: The number of bytes to read
+    - `domain`: The name of the memory domain the address corresponds to
+
+- `WRITE`  
+    Writes an array of bytes to the provided address
+
+    Expected Response Type: `WRITE_RESPONSE`
+
+    Additional Fields:
+    - `address`: The address of the memory to write to
+    - `value`: A list of bytes to write
+    - `domain`: The name of the memory domain the address corresponds to
+
+- `DISPLAY_MESSAGE`  
+    Adds a message to the message queue which will be displayed using
+    `gui.addmessage` according to the message interval.
+
+    Expected Response Type: `DISPLAY_MESSAGE_RESPONSE`
+
+    Additional Fields:
+    - `message`: The string to display
+
+- `SET_MESSAGE_INTERVAL`  
+    Sets the minimum amount of time to wait between displaying messages.
+    Potentially useful if you add many messages quickly but want players
+    to be able to read each of them.
+
+    Expected Response Type: `SET_MESSAGE_INTERVAL_RESPONSE`
+
+    Additional Fields:
+    - `value`: The number of seconds to set the interval to
+
+
+### Response Types
+
+- `PONG`  
+    Acknowledges `PING`
+
+- `SYSTEM_RESPONSE`  
+    Contains the name of the system for currently running ROM
+
+    Additional Fields:
+    - `value`: The returned system name
+
+- `HASH_RESPONSE`  
+    Contains the hash of the currently loaded ROM calculated by BizHawk
+
+    Additional Fields:
+    - `value`: The returned hash
+
+- `GUARD_RESPONSE`  
+    The result of an attempted `GUARD` request.
+
+    Additional Fields:
+    - `value`: true if the memory was validated, false if not
+    - `address`: The address of the memory that was invalid (the same address
+    provided by the `GUARD`, not the address of the individual invalid byte)
+
+- `LOCKED`  
+    Acknowledges `LOCK`
+
+- `UNLOCKED`  
+    Acknowledges `UNLOCK`
+
+- `READ_RESPONSE`  
+    Contains the result of a `READ` request
+
+    Additional Fields:
+    - `value`: The list of bytes at the given address
+
+- `WRITE_RESPONSE`  
+    Acknowledges `WRITE`
+
+- `DISPLAY_MESSAGE_RESPONSE`  
+    Acknowledges `DISPLAY_MESSAGE`
+
+- `SET_MESSAGE_INTERVAL_RESPONSE`  
+    Acknowledges `SET_MESSAGE_INTERVAL`
+
+- `ERROR`  
+    Signifies that something has gone wrong while processing a request
+
+    Additional Fields:
+    - `err`: A description of the problem
+]]
+
 local socket = require("socket")
 local json = require("json")
 
