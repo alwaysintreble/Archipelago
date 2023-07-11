@@ -295,10 +295,8 @@ async def bizhawk_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, I
     Items in write_list should be organized `(address, value, domain)` where
     - `address` is the address of the first byte of data
     - `value` is a list of bytes to write, in order, starting at `address`
-    - `domain` is the name of the region of memory the address corresponds to
-
-    Returns True if the connector confirmed the writes, False otherwise"""
-    return await bizhawk_guarded_write(ctx, write_list, [])
+    - `domain` is the name of the region of memory the address corresponds to"""
+    await bizhawk_guarded_write(ctx, write_list, [])
 
 
 async def _game_watcher(ctx: BizHawkClientContext):
