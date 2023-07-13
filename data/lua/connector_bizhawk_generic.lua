@@ -207,7 +207,7 @@ local json = require("json")
 
 -- Set to log incoming requests
 -- Will cause lag due to large console output
-local DEBUG = true
+local DEBUG = false
 
 local SOCKET_PORT = 43055
 

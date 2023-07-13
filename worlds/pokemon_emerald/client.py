@@ -1,6 +1,5 @@
 from typing import TYPE_CHECKING, Any, Dict, Set
 
-from Utils import int16_as_bytes, int32_as_bytes
 from NetUtils import ClientStatus
 from worlds.AutoBizHawkClient import BizHawkClient
 
@@ -60,7 +59,7 @@ class PokemonEmeraldClient(BizHawkClient):
         from BizHawkClient import bizhawk_read
 
         try:
-            game_name = bytes((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode('ascii')
+            game_name = ((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode('ascii')
             if game_name != "pokemon emerald version":
                 return False
         except UnicodeDecodeError:
@@ -95,7 +94,7 @@ class PokemonEmeraldClient(BizHawkClient):
                 await ctx.send_connect()
 
             # Checks that the player is in the overworld
-            overworld_guard = (data.ram_addresses["gMain"] + 4, int32_as_bytes(data.ram_addresses["CB2_Overworld"] + 1), "System Bus")
+            overworld_guard = (data.ram_addresses["gMain"] + 4, (data.ram_addresses["CB2_Overworld"] + 1).to_bytes(4, "little"), "System Bus")
 
             # Read save block address
             read_result = await bizhawk_guarded_read(
@@ -133,8 +132,8 @@ class PokemonEmeraldClient(BizHawkClient):
             if num_received_items < len(ctx.items_received) and received_item_is_empty:
                 next_item = ctx.items_received[num_received_items]
                 await bizhawk_write(ctx, [
-                    (data.ram_addresses["gArchipelagoReceivedItem"] + 0, int16_as_bytes(next_item.item - config["ap_offset"]), "System Bus"),
-                    (data.ram_addresses["gArchipelagoReceivedItem"] + 2, int16_as_bytes(num_received_items + 1), "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 0, (next_item.item - config["ap_offset"]).to_bytes(2, "little"), "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 2, (num_received_items + 1).to_bytes(2, "little"), "System Bus"),
                     (data.ram_addresses["gArchipelagoReceivedItem"] + 4, [1], "System Bus"),
                     (data.ram_addresses["gArchipelagoReceivedItem"] + 5, [next_item.flags & 1], "System Bus"),
                 ])

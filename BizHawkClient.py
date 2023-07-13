@@ -50,6 +50,7 @@ class BizHawkClientContext(CommonContext):
         self.client_handler = None
         self.bizhawk_streams = None
         self.bizhawk_connection_status = BizHawkConnectionStatus.NOT_CONNECTED
+        self.watcher_timeout = 0.5
 
     def run_gui(self):
         from kvui import GameManager
@@ -205,7 +206,7 @@ async def bizhawk_set_message_interval(ctx: BizHawkClientContext, value: float) 
 
 
 async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]],
-                               guard_list: List[Tuple[int, Iterable[int], str]]) -> Optional[List[bytearray]]:
+                               guard_list: List[Tuple[int, Iterable[int], str]]) -> Optional[List[bytes]]:
     """Reads an array of bytes at 1 or more addresses if and only if every byte in guard_list matches its expected value.
 
     Items in read_list should be organized (address, size, domain) where
@@ -218,7 +219,7 @@ async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[
     - `expected_data` is the bytes that the data starting at this address is expected to match
     - `domain` is the name of the region of memory the address corresponds to
 
-    Returns None if any item in guard_list failed to validate. Otherwise returns a list of bytearrays in the order they
+    Returns None if any item in guard_list failed to validate. Otherwise returns a list of bytes in the order they
     were requested."""
     res = await send_requests(ctx, [{
         "type": "GUARD",
@@ -232,7 +233,7 @@ async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[
         "domain": domain
     } for address, size, domain in read_list])
 
-    ret: List[bytearray] = []
+    ret: List[bytes] = []
     for item in res:
         if item["type"] == "GUARD_RESPONSE":
             if item["value"] == False:
@@ -241,26 +242,27 @@ async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[
             if not item["type"] == "READ_RESPONSE":
                 raise BizHawkSyncError()
 
-            ret.append(bytearray(item["value"]))
+            ret.append(bytes(item["value"]))
 
     return ret
 
 
-async def bizhawk_read(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]]) -> List[bytearray]:
-    """Reads an array of bytes at 1 or more addresses.
+async def bizhawk_read(ctx: BizHawkClientContext, read_list: List[Tuple[int, int, str]]) -> List[bytes]:
+    """Reads data at 1 or more addresses.
 
     Items in `read_list` should be organized `(address, size, domain)` where
     - `address` is the address of the first byte of data
     - `size` is the number of bytes to read
     - `domain` is the name of the region of memory the address corresponds to
 
-    Returns a list of bytearrays in the order they were requested."""
+    Returns a list of bytes in the order they were requested."""
     return await bizhawk_guarded_read(ctx, read_list, [])
 
 
-async def bizhawk_guarded_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]], guard_list: List[Tuple[int, Iterable[int], str]]) -> bool:
-    """Writes lists of bytes at 1 or more addresses if and only if every byte in guard_list matches its expected value.
-    
+async def bizhawk_guarded_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]],
+                                guard_list: List[Tuple[int, Iterable[int], str]]) -> bool:
+    """Writes data to 1 or more addresses if and only if every byte in guard_list matches its expected value.
+
     Items in `write_list` should be organized `(address, value, domain)` where
     - `address` is the address of the first byte of data
     - `value` is a list of bytes to write, in order, starting at `address`
@@ -296,8 +298,8 @@ async def bizhawk_guarded_write(ctx: BizHawkClientContext, write_list: List[Tupl
 
 
 async def bizhawk_write(ctx: BizHawkClientContext, write_list: List[Tuple[int, Iterable[int], str]]) -> None:
-    """Writes lists of bytes at 1 or more addresses.
-    
+    """Writes data to 1 or more addresses.
+
     Items in write_list should be organized `(address, value, domain)` where
     - `address` is the address of the first byte of data
     - `value` is a list of bytes to write, in order, starting at `address`
