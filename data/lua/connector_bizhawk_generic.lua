@@ -202,6 +202,7 @@ Response:
     - `err`: A description of the problem
 ]]
 
+local base64 = require("base64")
 local socket = require("socket")
 local json = require("json")
 
@@ -295,12 +296,13 @@ function process_request (req)
 
     elseif req["type"] == "GUARD" then
         res["type"] = "GUARD_RESPONSE"
+        expected_data = base64.decode(req["expected_data"])
 
-        actual_data = memory.read_bytes_as_array(req["address"], #req["expected_data"], req["domain"])
+        actual_data = memory.read_bytes_as_array(req["address"], #expected_data, req["domain"])
 
         data_is_validated = true
         for i, byte in ipairs(actual_data) do
-            if (byte ~= req["expected_data"][i]) then
+            if (byte ~= expected_data[i]) then
                 data_is_validated = false
                 break
             end
@@ -319,11 +321,12 @@ function process_request (req)
 
     elseif req["type"] == "READ" then
         res["type"] = "READ_RESPONSE"
-        res["value"] = memory.read_bytes_as_array(req["address"], req["size"], req["domain"])
+        res["value"] = base64.encode(memory.read_bytes_as_array(req["address"], req["size"], req["domain"]))
 
     elseif req["type"] == "WRITE" then
         res["type"] = "WRITE_RESPONSE"
-        memory.write_bytes_as_array(req["address"], req["value"], req["domain"])
+        print(base64.decode(req["value"]))
+        memory.write_bytes_as_array(req["address"], base64.decode(req["value"]), req["domain"])
 
     elseif req["type"] == "DISPLAY_MESSAGE" then
         res["type"] = "DISPLAY_MESSAGE_RESPONSE"
@@ -385,7 +388,6 @@ function send_receive ()
                 -- If the GUARD validation failed, skip the remaining commands
                 if (response["type"] == "GUARD_RESPONSE" and not response["value"]) then
                     failed_guard_response = response
-                    break
                 end
             else
                 res[i] = {type = "ERROR", err = response}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 from enum import IntEnum
 import json
 import traceback
@@ -224,7 +225,7 @@ async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[
     res = await send_requests(ctx, [{
         "type": "GUARD",
         "address": address,
-        "expected_data": list(expected_data),
+        "expected_data": base64.b64encode(bytes(expected_data)).decode("ascii"),
         "domain": domain
     } for address, expected_data, domain in guard_list] + [{
         "type": "READ",
@@ -242,7 +243,7 @@ async def bizhawk_guarded_read(ctx: BizHawkClientContext, read_list: List[Tuple[
             if not item["type"] == "READ_RESPONSE":
                 raise BizHawkSyncError()
 
-            ret.append(bytes(item["value"]))
+            ret.append(base64.b64decode(item["value"]))
 
     return ret
 
@@ -277,12 +278,12 @@ async def bizhawk_guarded_write(ctx: BizHawkClientContext, write_list: List[Tupl
     res = await send_requests(ctx, [{
         "type": "GUARD",
         "address": address,
-        "expected_data": list(expected_data),
+        "expected_data": base64.b64encode(bytes(expected_data)).decode("ascii"),
         "domain": domain
     } for address, expected_data, domain in guard_list] + [{
         "type": "WRITE",
         "address": address,
-        "value": list(value),
+        "value": base64.b64encode(bytes(value)).decode("ascii"),
         "domain": domain
     } for address, value, domain in write_list])
 
