@@ -15,6 +15,7 @@ if TYPE_CHECKING:
 
 
 BIZHAWK_SOCKET_PORT = 43055
+EXPECTED_SCRIPT_VERSION = (1, 0, 0)
 
 
 class BizHawkConnectionStatus(IntEnum):
@@ -161,6 +162,21 @@ async def send_requests(ctx: BizHawkClientContext, req_list: List[Dict[str, Any]
 async def bizhawk_get_system(ctx: BizHawkClientContext) -> str:
     """Gets the system name for the currently loaded ROM"""
     res = (await send_requests(ctx, [{"type": "SYSTEM"}]))[0]
+
+    if res["type"] != "SYSTEM_RESPONSE":
+        raise BizHawkSyncError()
+
+    return res["value"]
+
+
+async def bizhawk_get_cores(ctx: BizHawkClientContext) -> Dict[str, str]:
+    """Gets the preferred cores for systems with multiple cores. Only systems with multiple available cores have
+    entries."""
+    res = (await send_requests(ctx, [{"type": "PREFERRED_CORES"}]))[0]
+
+    if res["type"] != "PREFERRED_CORES_RESPONSE":
+        raise BizHawkSyncError()
+
     return res["value"]
 
 
@@ -326,6 +342,19 @@ async def _game_watcher(ctx: BizHawkClientContext):
                 showed_connecting_message = True
 
             if not await _try_connect(ctx):
+                continue
+
+            script_version = (await send_requests(ctx, [{"type": "SCRIPT_VERSION"}]))[0]["value"]
+
+            if script_version[0] != EXPECTED_SCRIPT_VERSION[0] or script_version[1] < EXPECTED_SCRIPT_VERSION[1]:
+                script_version_str = f"v{script_version[0]}.{script_version[1]}.{script_version[2]}"
+                expected_script_version_str = f"v{EXPECTED_SCRIPT_VERSION[0]}.{EXPECTED_SCRIPT_VERSION[1]}.{EXPECTED_SCRIPT_VERSION[2]}"
+                logger.info(f"Connector script is incompatible. Expected version {expected_script_version_str} but got {script_version_str}. Disconnecting.")
+
+                ctx.bizhawk_streams[1].close()
+                ctx.bizhawk_streams = None
+                ctx.bizhawk_connection_status = BizHawkConnectionStatus.NOT_CONNECTED
+
                 continue
 
         showed_connecting_message = False

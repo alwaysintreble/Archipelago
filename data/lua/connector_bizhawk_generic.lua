@@ -28,7 +28,7 @@ Request:
 
 ```json
 [
-    {"type": "GUARD", "address": 100, "expected_data": [0, 8], "domain": "System Bus"},
+    {"type": "GUARD", "address": 100, "expected_data": "aGVsbG8=", "domain": "System Bus"},
     {"type": "READ", "address": 500, "size": 4, "domain": "ROM"}
 ]
 ```
@@ -38,7 +38,7 @@ Response:
 ```json
 [
     {"type": "GUARD_RESPONSE", "address": 100, "value": true},
-    {"type": "READ_RESPONSE", "value": [4, 255, 1, 0]}
+    {"type": "READ_RESPONSE", "value": "dGVzdA=="}
 ]
 ```
 
@@ -50,7 +50,7 @@ Request:
 
 ```json
 [
-    {"type": "GUARD", "address": 100, "expected_data": [1, 8], "domain": "System Bus"},
+    {"type": "GUARD", "address": 100, "expected_data": "aGVsbG8=", "domain": "System Bus"},
     {"type": "READ", "address": 500, "size": 4, "domain": "ROM"}
 ]
 ```
@@ -69,17 +69,29 @@ Response:
 ### Supported Request Types
 
 - `PING`  
-    Does nothing; resets timeout
+    Does nothing; resets timeout.
 
     Expected Response Type: `PONG`
 
 - `SYSTEM`  
-    Returns the system of the currently loaded ROM (N64, GBA, etc...)
+    Returns the system of the currently loaded ROM (N64, GBA, etc...).
 
     Expected Response Type: `SYSTEM_RESPONSE`
 
+- `PREFERRED_CORES`  
+    Returns the user's default cores for systems with multiple cores. If the
+    current ROM's system has multiple cores, the one that is currently
+    running is very probably the preferred core.
+
+    Expected Response Type: `PREFERRED_CORES_RESPONSE`
+
+- `SCRIPT_VERSION`  
+    Returns the version of this script.
+
+    Expected Response Type: `SCRIPT_VERSION_RESPONSE`
+
 - `HASH`  
-    Returns the hash of the currently loaded ROM calculated by BizHawk
+    Returns the hash of the currently loaded ROM calculated by BizHawk.
 
     Expected Response Type: `HASH_RESPONSE`
 
@@ -93,7 +105,7 @@ Response:
 
     Additional Fields:
     - `address`: The address of the memory to check
-    - `expected_data`: A list of bytes against which to validate
+    - `expected_data`: A base64 string of contiguous data
     - `domain`: The name of the memory domain the address corresponds to
 
 - `LOCK`  
@@ -110,7 +122,7 @@ Response:
     Expected Response Type: `UNLOCKED`
 
 - `READ`  
-    Reads an array of bytes at the provided address
+    Reads an array of bytes at the provided address.
 
     Expected Response Type: `READ_RESPONSE`
 
@@ -120,13 +132,13 @@ Response:
     - `domain`: The name of the memory domain the address corresponds to
 
 - `WRITE`  
-    Writes an array of bytes to the provided address
+    Writes an array of bytes to the provided address.
 
     Expected Response Type: `WRITE_RESPONSE`
 
     Additional Fields:
     - `address`: The address of the memory to write to
-    - `value`: A list of bytes to write
+    - `value`: A base64 string representing the data to write
     - `domain`: The name of the memory domain the address corresponds to
 
 - `DISPLAY_MESSAGE`  
@@ -152,16 +164,31 @@ Response:
 ### Response Types
 
 - `PONG`  
-    Acknowledges `PING`
+    Acknowledges `PING`.
 
 - `SYSTEM_RESPONSE`  
-    Contains the name of the system for currently running ROM
+    Contains the name of the system for currently running ROM.
 
     Additional Fields:
     - `value`: The returned system name
 
+- `PREFERRED_CORES_RESPONSE`  
+    Contains the user's preferred cores for systems with multiple supported
+    cores. Currently includes NES, SNES, GB, GBC, DGB, SGB, PCE, PCECD, and
+    SGX.
+
+    Additional Fields:
+    - `value`: A dictionary map from system name to core name
+
+- `SCRIPT_VERSION_RESPONSE`  
+    Contains the version of this script as a tuple. For example, v1.2.0 would
+    be `[1, 2, 0]`.
+
+    Additional Fields:
+    - `value`: The version tuple as [major, minor, patch].
+
 - `HASH_RESPONSE`  
-    Contains the hash of the currently loaded ROM calculated by BizHawk
+    Contains the hash of the currently loaded ROM calculated by BizHawk.
 
     Additional Fields:
     - `value`: The returned hash
@@ -175,28 +202,28 @@ Response:
     provided by the `GUARD`, not the address of the individual invalid byte)
 
 - `LOCKED`  
-    Acknowledges `LOCK`
+    Acknowledges `LOCK`.
 
 - `UNLOCKED`  
-    Acknowledges `UNLOCK`
+    Acknowledges `UNLOCK`.
 
 - `READ_RESPONSE`  
-    Contains the result of a `READ` request
+    Contains the result of a `READ` request.
 
     Additional Fields:
-    - `value`: The list of bytes at the given address
+    - `value`: A base64 string representing the read data
 
 - `WRITE_RESPONSE`  
-    Acknowledges `WRITE`
+    Acknowledges `WRITE`.
 
 - `DISPLAY_MESSAGE_RESPONSE`  
-    Acknowledges `DISPLAY_MESSAGE`
+    Acknowledges `DISPLAY_MESSAGE`.
 
 - `SET_MESSAGE_INTERVAL_RESPONSE`  
-    Acknowledges `SET_MESSAGE_INTERVAL`
+    Acknowledges `SET_MESSAGE_INTERVAL`.
 
 - `ERROR`  
-    Signifies that something has gone wrong while processing a request
+    Signifies that something has gone wrong while processing a request.
 
     Additional Fields:
     - `err`: A description of the problem
@@ -209,6 +236,8 @@ local json = require("json")
 -- Set to log incoming requests
 -- Will cause lag due to large console output
 local DEBUG = false
+
+local SCRIPT_VERSION = {1, 0, 333}
 
 local SOCKET_PORT = 43055
 
@@ -289,6 +318,24 @@ function process_request (req)
     elseif req["type"] == "SYSTEM" then
         res["type"] = "SYSTEM_RESPONSE"
         res["value"] = emu.getsystemid()
+
+    elseif req["type"] == "PREFERRED_CORES" then
+        local preferred_cores = client.getconfig().PreferredCores
+        res["type"] = "PREFERRED_CORES_RESPONSE"
+        res["value"] = {}
+        res["value"]["NES"] = preferred_cores.NES
+        res["value"]["SNES"] = preferred_cores.SNES
+        res["value"]["GB"] = preferred_cores.GB
+        res["value"]["GBC"] = preferred_cores.GBC
+        res["value"]["DGB"] = preferred_cores.DGB
+        res["value"]["SGB"] = preferred_cores.SGB
+        res["value"]["PCE"] = preferred_cores.PCE
+        res["value"]["PCECD"] = preferred_cores.PCECD
+        res["value"]["SGX"] = preferred_cores.SGX
+
+    elseif req["type"] == "SCRIPT_VERSION" then
+        res["type"] = "SCRIPT_VERSION_RESPONSE"
+        res["value"] = SCRIPT_VERSION
 
     elseif req["type"] == "HASH" then
         res["type"] = "HASH_RESPONSE"
@@ -400,7 +447,7 @@ end
 
 function main ()
     if (bizhawk_major < 2 or (bizhawk_major == 2 and bizhawk_minor < 7)) then
-        print("Must use a version of bizhawk 2.7.0 or higher")
+        print("Must use BizHawk 2.7.0 or newer")
         return
     elseif (bizhawk_major > 2 or (bizhawk_major == 2 and bizhawk_minor > 9)) then
         print("Warning: This version of BizHawk is newer than this script. If it doesn't work, consider downgrading to 2.9.")

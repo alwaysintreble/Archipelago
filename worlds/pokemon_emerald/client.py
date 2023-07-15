@@ -56,14 +56,16 @@ class PokemonEmeraldClient(BizHawkClient):
         self.goal_flag = IS_CHAMPION_FLAG
 
     async def validate_rom(self, ctx: BizHawkClientContext) -> bool:
-        from BizHawkClient import bizhawk_read
+        from BizHawkClient import RequestFailedError, bizhawk_read
 
         try:
-            game_name = ((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode('ascii')
+            game_name = ((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode("ascii")
             if game_name != "pokemon emerald version":
                 return False
         except UnicodeDecodeError:
             return False
+        except RequestFailedError:
+            return False  # Should verify on the next pass
 
         ctx.game = self.game
         ctx.items_handling = 0b001
