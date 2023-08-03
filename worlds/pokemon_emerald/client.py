@@ -72,9 +72,18 @@ class PokemonEmeraldClient(BizHawkClient):
         ctx.want_slot_data = True
         return True
 
-    async def game_watcher(self, ctx: BizHawkClientContext) -> None:
-        from BizHawkClient import RequestFailedError, bizhawk_read, bizhawk_guarded_read, bizhawk_write
+    async def set_auth(self, ctx: BizHawkClientContext) -> None:
+        from BizHawkClient import bizhawk_read
         from CommonClient import logger
+
+        slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
+        try:
+            ctx.auth = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
+        except UnicodeDecodeError:
+            logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
+
+    async def game_watcher(self, ctx: BizHawkClientContext) -> None:
+        from BizHawkClient import RequestFailedError, bizhawk_guarded_read, bizhawk_write
 
         if ctx.slot_data is not None:
             if ctx.slot_data["goal"] == Goal.option_champion:
@@ -85,16 +94,6 @@ class PokemonEmeraldClient(BizHawkClient):
                 self.goal_flag = DEFEATED_NORMAN_FLAG
 
         try:
-            # Read slot name and send Connect if connected to server
-            if ctx.server is not None and ctx.auth is None:
-                slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
-                try:
-                    ctx.auth = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
-                except UnicodeDecodeError:
-                    logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
-                    return
-                await ctx.send_connect()
-
             # Checks that the player is in the overworld
             overworld_guard = (data.ram_addresses["gMain"] + 4, (data.ram_addresses["CB2_Overworld"] + 1).to_bytes(4, "little"), "System Bus")
 
