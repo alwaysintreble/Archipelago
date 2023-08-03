@@ -73,14 +73,16 @@ class PokemonEmeraldClient(BizHawkClient):
         return True
 
     async def set_auth(self, ctx: BizHawkClientContext) -> None:
-        from BizHawkClient import bizhawk_read
+        from BizHawkClient import RequestFailedError, bizhawk_read
         from CommonClient import logger
 
-        slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
         try:
+            slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
             ctx.auth = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
         except UnicodeDecodeError:
             logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
+        except RequestFailedError:
+            pass
 
     async def game_watcher(self, ctx: BizHawkClientContext) -> None:
         from BizHawkClient import RequestFailedError, bizhawk_guarded_read, bizhawk_write
