@@ -422,7 +422,10 @@ async def _game_watcher(ctx: BizHawkClientContext):
         except RequestFailedError:
             continue
 
+        # Get slot name and send `Connect`
         if ctx.server is not None and ctx.username is None:
+            await ctx.client_handler.set_auth(ctx)
+
             if ctx.auth is None:
                 await ctx.get_username()
 
