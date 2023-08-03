@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Any, Dict, Set
 from NetUtils import ClientStatus
 from worlds.AutoBizHawkClient import BizHawkClient
 
-from .data import data, config
+from .data import BASE_OFFSET, data
 from .options import Goal
 
 if TYPE_CHECKING:
@@ -135,7 +135,7 @@ class PokemonEmeraldClient(BizHawkClient):
             if num_received_items < len(ctx.items_received) and received_item_is_empty:
                 next_item = ctx.items_received[num_received_items]
                 await bizhawk_write(ctx, [
-                    (data.ram_addresses["gArchipelagoReceivedItem"] + 0, (next_item.item - config["ap_offset"]).to_bytes(2, "little"), "System Bus"),
+                    (data.ram_addresses["gArchipelagoReceivedItem"] + 0, (next_item.item - BASE_OFFSET).to_bytes(2, "little"), "System Bus"),
                     (data.ram_addresses["gArchipelagoReceivedItem"] + 2, (num_received_items + 1).to_bytes(2, "little"), "System Bus"),
                     (data.ram_addresses["gArchipelagoReceivedItem"] + 4, [1], "System Bus"),
                     (data.ram_addresses["gArchipelagoReceivedItem"] + 5, [next_item.flags & 1], "System Bus"),
@@ -151,7 +151,7 @@ class PokemonEmeraldClient(BizHawkClient):
                     if byte & (1 << i) != 0:
                         flag_id = byte_i * 8 + i
 
-                        location_id = flag_id + config["ap_offset"]
+                        location_id = flag_id + BASE_OFFSET
                         if location_id in ctx.server_locations:
                             local_checked_locations.add(location_id)
 
