@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Dict, Set
+from typing import TYPE_CHECKING, Optional, Dict, Set
 
 from NetUtils import ClientStatus
 from worlds.AutoBizHawkClient import BizHawkClient
@@ -9,7 +9,7 @@ from .options import Goal
 if TYPE_CHECKING:
     from BizHawkClient import BizHawkClientContext
 else:
-    BizHawkClientContext = Any
+    BizHawkClientContext = object
 
 
 IS_CHAMPION_FLAG = data.constants["FLAG_IS_CHAMPION"]
@@ -48,19 +48,32 @@ class PokemonEmeraldClient(BizHawkClient):
     local_checked_locations: Set[int]
     local_set_events: Dict[str, bool]
     goal_flag: int
+    rom_slot_name: Optional[str]
 
     def __init__(self) -> None:
         super().__init__()
         self.local_checked_locations = set()
         self.local_set_events = {}
         self.goal_flag = IS_CHAMPION_FLAG
+        self.rom_slot_name = None
 
     async def validate_rom(self, ctx: BizHawkClientContext) -> bool:
         from BizHawkClient import RequestFailedError, bizhawk_read
+        from CommonClient import logger
 
         try:
+            # Check if ROM is some version of Pokemon Emerald
             game_name = ((await bizhawk_read(ctx, [(0x108, 23, "ROM")]))[0]).decode("ascii")
             if game_name != "pokemon emerald version":
+                return False
+            
+            # Check if we can read the slot name. Doing this here instead of set_auth as a protection against
+            # validating a ROM where there's no slot name to read.
+            try:
+                slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
+                self.rom_slot_name = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
+            except UnicodeDecodeError:
+                logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
                 return False
         except UnicodeDecodeError:
             return False
@@ -73,16 +86,7 @@ class PokemonEmeraldClient(BizHawkClient):
         return True
 
     async def set_auth(self, ctx: BizHawkClientContext) -> None:
-        from BizHawkClient import RequestFailedError, bizhawk_read
-        from CommonClient import logger
-
-        try:
-            slot_name_bytes = (await bizhawk_read(ctx, [(data.rom_addresses["gArchipelagoInfo"], 64, "ROM")]))[0]
-            ctx.auth = bytes([byte for byte in slot_name_bytes if byte != 0]).decode("utf-8")
-        except UnicodeDecodeError:
-            logger.info("Could not read slot name from ROM. Are you sure this ROM matches this client version?")
-        except RequestFailedError:
-            pass
+        ctx.auth = self.rom_slot_name
 
     async def game_watcher(self, ctx: BizHawkClientContext) -> None:
         from BizHawkClient import RequestFailedError, bizhawk_guarded_read, bizhawk_write
