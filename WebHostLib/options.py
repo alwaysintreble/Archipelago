@@ -49,7 +49,7 @@ def create():
 
         game_options = {}
         for option_name, option in all_options.items():
-            if option_name in handled_in_js:
+            if option_name in handled_in_js or option.hidden:
                 pass
 
             elif issubclass(option, Options.Choice) or issubclass(option, Options.Toggle):

@@ -100,10 +100,12 @@ class Option(typing.Generic[T], metaclass=AssembleOptions):
 
     # convert option_name_long into Name Long as display_name, otherwise name_long is the result.
     # Handled in get_option_name()
-    auto_display_name = False
+    auto_display_name: typing.ClassVar[bool] = False
 
     # can be weighted between selections
-    supports_weighting = True
+    supports_weighting: typing.ClassVar[bool] = True
+    hidden: typing.ClassVar[bool] = False
+    """This option won't be displayed on the webhost, and won't appear in auto generated templates."""
 
     # filled by AssembleOptions:
     name_lookup: typing.Dict[T, str]
@@ -1127,7 +1129,9 @@ def generate_yaml_templates(target_folder: typing.Union[str, "pathlib.Path"], ge
 
     for game_name, world in AutoWorldRegister.world_types.items():
         if not world.hidden or generate_hidden:
-            all_options: typing.Dict[str, AssembleOptions] = world.options_dataclass.type_hints
+            all_options: typing.Dict[str, AssembleOptions] = {
+                name: option for name, option in world.options_dataclass.type_hints.items() if not option.hidden
+            }
 
             with open(local_path("data", "options.yaml")) as f:
                 file_data = f.read()
