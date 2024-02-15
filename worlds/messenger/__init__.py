@@ -80,8 +80,38 @@ class MessengerWorld(World):
         "Phobe": set(PHOBEKINS),
         "Phobekin": set(PHOBEKINS),
     }
+    location_name_groups = {
+        "Notes": {
+            "Autumn Hills - Key of Hope",
+            "Searing Crags - Key of Strength",
+            "Underworld - Key of Chaos",
+            "Sunken Shrine - Key of Love",
+            "Elemental Skylands - Key of Symbiosis",
+            "Corrupted Future - Key of Courage",
+        },
+        "Keys": {
+            "Autumn Hills - Key of Hope",
+            "Searing Crags - Key of Strength",
+            "Underworld - Key of Chaos",
+            "Sunken Shrine - Key of Love",
+            "Elemental Skylands - Key of Symbiosis",
+            "Corrupted Future - Key of Courage",
+        },
+        "Phobe": {
+            "Catacombs - Necro",
+            "Bamboo Creek - Claustro",
+            "Searing Crags - Pyro",
+            "Cloud Ruins - Acro",
+        },
+        "Phobekin": {
+            "Catacombs - Necro",
+            "Bamboo Creek - Claustro",
+            "Searing Crags - Pyro",
+            "Cloud Ruins - Acro",
+        },
+    }
 
-    required_client_version = (0, 4, 2)
+    required_client_version = (0, 4, 3)
 
     web = MessengerWeb()
 
@@ -320,7 +350,7 @@ class MessengerWorld(World):
             self.total_shards += count
             return ItemClassification.progression_skip_balancing if count else ItemClassification.filler
 
-        if name == "Windmill Shuriken":
+        if name == "Windmill Shuriken" and getattr(self, "multiworld", None) is not None:
             return ItemClassification.progression if self.options.logic_level else ItemClassification.filler
 
         if name == "Power Seal":
