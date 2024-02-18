@@ -4,6 +4,7 @@ from BaseClasses import Entrance
 from EntranceRando import randomize_entrances
 from .connections import RANDOMIZED_CONNECTIONS, TRANSITIONS
 from .options import ShuffleTransitions
+from .subclasses import MessengerLocation
 
 if TYPE_CHECKING:
     from . import MessengerRegion, MessengerWorld
@@ -43,7 +44,15 @@ def shuffle_entrances(world: "MessengerWorld") -> None:
         disconnect_entrance()
         regions_to_shuffle += [parent_region, child_region]
 
+    if world.options.limited_movement:
+        tot_hq = world.multiworld.get_region("Tower HQ", world.player)
+        event_loc = MessengerLocation(world.player, world.removed_item, None, tot_hq)
+        tot_hq.locations.append(event_loc)
+
     result = randomize_entrances(world, set(regions_to_shuffle), coupled, lambda group: ["Default"])
+
+    if world.options.limited_movement:
+        tot_hq.locations.remove(event_loc)
 
     world.transitions = sorted(result.placements, key=lambda entrance: TRANSITIONS.index(entrance.parent_region.name))
 

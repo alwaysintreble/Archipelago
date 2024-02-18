@@ -28,6 +28,7 @@ class MessengerEntrance(Entrance):
         self.connected_region = None
         return world.reachable_locs >= 5 and super().can_connect_to(other, state)
 
+
 class MessengerRegion(Region):
     parent: str
     entrance_type = MessengerEntrance

@@ -16,7 +16,7 @@ from .portals import PORTALS, add_closed_portal_reqs, disconnect_portals, shuffl
 from .regions import LEVELS, MEGA_SHARDS, LOCATIONS, REGION_CONNECTIONS
 from .rules import MessengerHardRules, MessengerOOBRules, MessengerRules
 from .shop import FIGURINES, PROG_SHOP_ITEMS, SHOP_ITEMS, USEFUL_SHOP_ITEMS, shuffle_shop_prices
-from .subclasses import MessengerEntrance, MessengerItem, MessengerRegion, MessengerShopLocation
+from .subclasses import MessengerItem, MessengerRegion, MessengerShopLocation
 
 components.append(
     Component("The Messenger", component_type=Type.CLIENT, func=launch_game, game_name="The Messenger", supports_uri=True)
@@ -187,7 +187,8 @@ class MessengerWorld(World):
         ]
 
         if self.options.limited_movement:
-            itempool.append(self.create_item(self.random.choice(main_movement_items)))
+            self.removed_item = main_movement_items.pop(self.random.randrange(2))
+            itempool.append(self.create_item(main_movement_items[0]))
         else:
             itempool += [self.create_item(move_item) for move_item in main_movement_items]
 
@@ -297,8 +298,8 @@ class MessengerWorld(World):
                     or loc.address is None):
                 continue
             path_to_loc = []
-            name, connection = paths[loc.parent_region]
-            while connection != ("Menu", None):
+            name, connection = paths.get(loc.parent_region, (None, None))
+            while connection != ("Menu", None) and name is not None:
                 name, connection = connection
                 if name in transition_names:
                     path_to_loc.append(name)
@@ -306,6 +307,8 @@ class MessengerWorld(World):
             text = ""
             for transition in reversed(path_to_loc):
                 text += f"{transition} => "
+            if not text:
+                continue
             text = text.rstrip("=> ")
             hint_data[self.player][loc.address] = text
 
