@@ -1,7 +1,7 @@
 import logging
 from typing import Any, ClassVar, Dict, List, Optional, TextIO
 
-from BaseClasses import CollectionState, Entrance, Item, ItemClassification, MultiWorld, Tutorial
+from BaseClasses import CollectionState, Entrance, EntranceType, Item, ItemClassification, MultiWorld, Tutorial
 from Options import Accessibility
 from Utils import output_path
 from settings import FilePath, Group
@@ -269,13 +269,13 @@ class MessengerWorld(World):
 
         if self.options.shuffle_transitions:
             for transition in self.transitions:
-                if (transition.er_type == Entrance.EntranceType.TWO_WAY and
+                if (transition.er_type == EntranceType.TWO_WAY and
                         (transition.connected_region.name, "both", self.player) in spoiler.entrances):
                     continue
                 spoiler.set_entrance(
                     transition.name if "->" not in transition.name else transition.parent_region.name,
                     transition.connected_region.name,
-                    "both" if transition.er_type == Entrance.EntranceType.TWO_WAY
+                    "both" if transition.er_type == EntranceType.TWO_WAY
                               and self.options.shuffle_transitions == ShuffleTransitions.option_coupled
                     else "",
                     self.player)

@@ -13,11 +13,9 @@ class MessengerEntrance(Entrance):
     world: Optional["MessengerWorld"] = None
 
     def can_connect_to(self, other: Entrance, state: "ERPlacementState") -> bool:
-        from . import MessengerWorld
         world = getattr(self, "world", None)
         if not world:
             return super().can_connect_to(other, state)
-        assert isinstance(world, MessengerWorld)
         # arbitrary minimum number
         if world.reachable_locs >= 5:
             return super().can_connect_to(other, state)
