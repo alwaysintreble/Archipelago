@@ -7,6 +7,7 @@ from .shop import FIGURINES, SHOP_ITEMS
 
 if TYPE_CHECKING:
     from . import MessengerWorld
+    from EntranceRando import ERPlacementState
 
 
 class MessengerEntrance(Entrance):
