@@ -1,12 +1,50 @@
-from typing import TYPE_CHECKING
+from typing import List, TYPE_CHECKING
 
-from BaseClasses import EntranceType
+from BaseClasses import EntranceType, PlandoOptions, Region
 from EntranceRando import randomize_entrances
+from worlds.generic import PlandoConnection
 from .connections import RANDOMIZED_CONNECTIONS, TRANSITIONS
 from .options import ShuffleTransitions
 
 if TYPE_CHECKING:
     from . import MessengerWorld
+
+
+def connect_plando(world: "MessengerWorld", plando_connections: List[PlandoConnection]) -> None:
+    def disconnect_exit(region: Region) -> None:
+        # find the disconnected exit and remove references to it
+        for _exit in region.exits:
+            if not _exit.connected_region:
+                break
+        else:
+            raise ValueError(f"Unable to find randomized transition for {connection}")
+        region.exits.remove(_exit)
+
+    def disconnect_entrance(region: Region) -> None:
+        # find the disconnected entrance and remove references to it
+        for _entrance in reg2.entrances:
+            if not _entrance.parent_region:
+                break
+        else:
+            raise ValueError(f"Invalid target region for {connection}")
+        _entrance.parent_region.entrances.remove(_entrance)
+
+    multiworld = world.multiworld
+    player = world.player
+    for connection in plando_connections:
+        # get the connecting regions
+        reg1 = multiworld.get_region(connection.entrance, player)
+        reg2 = multiworld.get_region(connection.exit, player)
+
+        disconnect_exit(reg1)
+        disconnect_entrance(reg2)
+        # connect the regions
+        reg1.connect(reg2)
+
+        if connection.direction == "both":
+            disconnect_exit(reg2)
+            disconnect_entrance(reg1)
+            reg2.connect(reg1)
 
 
 def shuffle_entrances(world: "MessengerWorld") -> None:
@@ -40,6 +78,10 @@ def shuffle_entrances(world: "MessengerWorld") -> None:
         child_region = entrance.connected_region
         entrance.world = world
         disconnect_entrance()
+
+    plando = world.multiworld.plando_connections[player]
+    if plando and world.multiworld.plando_options & PlandoOptions.connections:
+        connect_plando(world, plando)
 
     result = randomize_entrances(world, coupled, lambda group: ["Default"])
 
