@@ -1,0 +1,453 @@
+
+    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
+    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
+    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
+    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
+
+
+
+<header id="base-header">
+    <div id="base-header-left">
+        <a href="/" id="site-title">
+            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
+        </a>
+    </div>
+    <div id="base-header-right">
+        <div id="base-header-popover-text">
+            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
+            get started
+        </div>
+        <div id="base-header-popover-menu">
+            <a href="/games">supported games</a>
+            <a href="/tutorial">setup guides</a>
+            <a href="/generate">generate game</a>
+            <a href="/uploads">host game</a>
+            <a href="/user-content">user content</a>
+        </div>
+        <a href="/faq/en">f.a.q</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+    <div id="base-header-right-mobile">
+        <a id="base-header-mobile-menu-button" href="#">
+            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
+        </a>
+    </div>
+    <div id="base-header-mobile-menu">
+        <a href="/games">supported games</a>
+        <a href="/tutorial">setup guides</a>
+        <a href="/faq/en">f.a.q.</a>
+        <a href="/generate">generate game</a>
+        <a href="/uploads">host game</a>
+        <a href="/user-content">user content</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+</header>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Options &#8212; Archipelago 0.4.4 documentation</title>
+<script src="_static/documentation_options.js?v=90733dfc"></script>
+<script src="_static/doctools.js?v=888ff710"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Rules Helpers" href="rules.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="web_world.html" /> 
+</head><body>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               accesskey="I">index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="rules.html" title="Rules Helpers"
+               accesskey="N">next</a> |</li>
+        <li class="right" >
+            <a href="web_world.html" title="&lt;no title&gt;"
+               accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Options</a></li> 
+    </ul>
+</div> 
+<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Options.Accessibility"><code class="docutils literal notranslate"><span class="pre">Accessibility</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.AssembleOptions"><code class="docutils literal notranslate"><span class="pre">AssembleOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.BossMeta"><code class="docutils literal notranslate"><span class="pre">BossMeta</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.Choice"><code class="docutils literal notranslate"><span class="pre">Choice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.CommonOptions"><code class="docutils literal notranslate"><span class="pre">CommonOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.DeathLink"><code class="docutils literal notranslate"><span class="pre">DeathLink</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.DeathLinkMixin"><code class="docutils literal notranslate"><span class="pre">DeathLinkMixin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.DefaultOnToggle"><code class="docutils literal notranslate"><span class="pre">DefaultOnToggle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.ExcludeLocations"><code class="docutils literal notranslate"><span class="pre">ExcludeLocations</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.FreeText"><code class="docutils literal notranslate"><span class="pre">FreeText</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.FreezeValidKeys"><code class="docutils literal notranslate"><span class="pre">FreezeValidKeys</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.ItemDict"><code class="docutils literal notranslate"><span class="pre">ItemDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.ItemLinks"><code class="docutils literal notranslate"><span class="pre">ItemLinks</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.ItemSet"><code class="docutils literal notranslate"><span class="pre">ItemSet</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.LocalItems"><code class="docutils literal notranslate"><span class="pre">LocalItems</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.LocationSet"><code class="docutils literal notranslate"><span class="pre">LocationSet</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.NamedRange"><code class="docutils literal notranslate"><span class="pre">NamedRange</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.NonLocalItems"><code class="docutils literal notranslate"><span class="pre">NonLocalItems</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.NumericOption"><code class="docutils literal notranslate"><span class="pre">NumericOption</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.Option"><code class="docutils literal notranslate"><span class="pre">Option</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.OptionDict"><code class="docutils literal notranslate"><span class="pre">OptionDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.OptionList"><code class="docutils literal notranslate"><span class="pre">OptionList</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.OptionSet"><code class="docutils literal notranslate"><span class="pre">OptionSet</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.PerGameCommonOptions"><code class="docutils literal notranslate"><span class="pre">PerGameCommonOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.PlandoBosses"><code class="docutils literal notranslate"><span class="pre">PlandoBosses</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.PriorityLocations"><code class="docutils literal notranslate"><span class="pre">PriorityLocations</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.ProgressionBalancing"><code class="docutils literal notranslate"><span class="pre">ProgressionBalancing</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.Range"><code class="docutils literal notranslate"><span class="pre">Range</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.SpecialRange"><code class="docutils literal notranslate"><span class="pre">SpecialRange</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.StartHints"><code class="docutils literal notranslate"><span class="pre">StartHints</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.StartInventory"><code class="docutils literal notranslate"><span class="pre">StartInventory</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.StartInventoryPool"><code class="docutils literal notranslate"><span class="pre">StartInventoryPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.StartLocationHints"><code class="docutils literal notranslate"><span class="pre">StartLocationHints</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.TextChoice"><code class="docutils literal notranslate"><span class="pre">TextChoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Options.Toggle"><code class="docutils literal notranslate"><span class="pre">Toggle</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="web_world.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="rules.html" title="next chapter">Rules Helpers</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+    </div>
+</div> 
+
+<div class="document">
+    <div id="document-wrapper" class="markdown">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+                
+  <section id="module-Options">
+<span id="options"></span><h1>Options<a class="headerlink" href="#module-Options" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.Accessibility">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">Accessibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.Accessibility" title="Link to this definition">¶</a></dt>
+<dd><p>Set rules for reachability of your items/locations.
+Locations: ensure everything can be reached and acquired.
+Items: ensure all logically relevant items can be acquired.
+Minimal: ensure what is needed to reach your goal can be acquired.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.AssembleOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">AssembleOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.AssembleOptions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.BossMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">BossMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.BossMeta" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.Choice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">Choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.Choice" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.CommonOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">CommonOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progression_balancing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ProgressionBalancing'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accessibility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Accessibility'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.CommonOptions" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Options.CommonOptions.as_dict">
+<span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">option_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'snake'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Options.CommonOptions.as_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of [str, Option.value]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>option_names</strong> – names of the options to return</p></li>
+<li><p><strong>casing</strong> – case of the keys to return. Supports <cite>snake</cite>, <cite>camel</cite>, <cite>pascal</cite>, <cite>kebab</cite></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.DeathLink">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">DeathLink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.DeathLink" title="Link to this definition">¶</a></dt>
+<dd><p>When you die, everyone dies. Of course the reverse is true too.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.DeathLinkMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">DeathLinkMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">death_link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'DeathLink'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.DeathLinkMixin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.DefaultOnToggle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">DefaultOnToggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.DefaultOnToggle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.ExcludeLocations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">ExcludeLocations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.ExcludeLocations" title="Link to this definition">¶</a></dt>
+<dd><p>Prevent these locations from having an important item</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.FreeText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">FreeText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.FreeText" title="Link to this definition">¶</a></dt>
+<dd><p>Text option that allows users to enter strings.
+Needs to be validated by the world or option definition.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.FreezeValidKeys">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">FreezeValidKeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.FreezeValidKeys" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.ItemDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">ItemDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.ItemDict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.ItemLinks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">ItemLinks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.ItemLinks" title="Link to this definition">¶</a></dt>
+<dd><p>Share part of your item pool with other players.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.ItemSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">ItemSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.ItemSet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.LocalItems">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">LocalItems</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.LocalItems" title="Link to this definition">¶</a></dt>
+<dd><p>Forces these items to be in their native world.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.LocationSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">LocationSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.LocationSet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.NamedRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">NamedRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.NamedRange" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="Options.NamedRange.special_range_names">
+<span class="sig-name descname"><span class="pre">special_range_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#Options.NamedRange.special_range_names" title="Link to this definition">¶</a></dt>
+<dd><p>Special Range names have to be all lowercase as matching is done with text.lower()</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.NonLocalItems">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">NonLocalItems</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.NonLocalItems" title="Link to this definition">¶</a></dt>
+<dd><p>Forces these items to be outside their native world.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.NumericOption">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">NumericOption</span></span><a class="headerlink" href="#Options.NumericOption" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.Option">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">Option</span></span><a class="headerlink" href="#Options.Option" title="Link to this definition">¶</a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="Options.Option.current_option_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_option_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#Options.Option.current_option_name" title="Link to this definition">¶</a></dt>
+<dd><p>For display purposes. Worlds should be using current_key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Options.Option.get_current_option_name">
+<span class="sig-name descname"><span class="pre">get_current_option_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Options.Option.get_current_option_name" title="Link to this definition">¶</a></dt>
+<dd><p>Deprecated. use current_option_name instead. TODO remove around 0.4</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.OptionDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">OptionDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.OptionDict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.OptionList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">OptionList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.OptionList" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.OptionSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">OptionSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.OptionSet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.PerGameCommonOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">PerGameCommonOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progression_balancing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ProgressionBalancing'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accessibility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Accessibility'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'LocalItems'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_local_items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'NonLocalItems'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_inventory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'StartInventory'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_hints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'StartHints'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_location_hints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'StartLocationHints'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_locations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ExcludeLocations'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority_locations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'PriorityLocations'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_links</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ItemLinks'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.PerGameCommonOptions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.PlandoBosses">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">PlandoBosses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.PlandoBosses" title="Link to this definition">¶</a></dt>
+<dd><p>Generic boss shuffle option that supports plando. Format expected is
+‘location1-boss1;location2-boss2;shuffle_mode’.
+If shuffle_mode is not provided in the string, this will be the default shuffle mode. Must override can_place_boss,
+which passes a plando boss and location. Check if the placement is valid for your game here.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.PriorityLocations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">PriorityLocations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.PriorityLocations" title="Link to this definition">¶</a></dt>
+<dd><p>Prevent these locations from having an unimportant item</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.ProgressionBalancing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">ProgressionBalancing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.ProgressionBalancing" title="Link to this definition">¶</a></dt>
+<dd><p>A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.
+A lower setting means more getting stuck. A higher setting means less getting stuck.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Options.ProgressionBalancing.special_range_names">
+<span class="sig-name descname"><span class="pre">special_range_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'disabled':</span> <span class="pre">0,</span> <span class="pre">'extreme':</span> <span class="pre">99,</span> <span class="pre">'normal':</span> <span class="pre">50}</span></em><a class="headerlink" href="#Options.ProgressionBalancing.special_range_names" title="Link to this definition">¶</a></dt>
+<dd><p>Special Range names have to be all lowercase as matching is done with text.lower()</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.Range">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">Range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.Range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.SpecialRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">SpecialRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.SpecialRange" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.StartHints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">StartHints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.StartHints" title="Link to this definition">¶</a></dt>
+<dd><p>Start with these item’s locations prefilled into the !hint command.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.StartInventory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">StartInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.StartInventory" title="Link to this definition">¶</a></dt>
+<dd><p>Start with these items.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.StartInventoryPool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">StartInventoryPool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.StartInventoryPool" title="Link to this definition">¶</a></dt>
+<dd><p>Start with these items and don’t place them in the world.
+The game decides what the replacement items will be.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.StartLocationHints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">StartLocationHints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.StartLocationHints" title="Link to this definition">¶</a></dt>
+<dd><p>Start with these locations and their item prefilled into the !hint command</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.TextChoice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">TextChoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.TextChoice" title="Link to this definition">¶</a></dt>
+<dd><p>Allows custom string input and offers choices. Choices will resolve to int and text will resolve to string</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Options.Toggle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Options.</span></span><span class="sig-name descname"><span class="pre">Toggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Options.Toggle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               >index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="rules.html" title="Rules Helpers"
+               >next</a> |</li>
+        <li class="right" >
+            <a href="web_world.html" title="&lt;no title&gt;"
+               >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Options</a></li> 
+    </ul>
+</div>
+<div class="footer" role="contentinfo">
+&#169; Copyright 2024, Archipelago.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+</div>
+</body>

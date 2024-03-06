@@ -1,0 +1,471 @@
+
+    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
+    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
+    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
+    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
+
+
+
+<header id="base-header">
+    <div id="base-header-left">
+        <a href="/" id="site-title">
+            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
+        </a>
+    </div>
+    <div id="base-header-right">
+        <div id="base-header-popover-text">
+            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
+            get started
+        </div>
+        <div id="base-header-popover-menu">
+            <a href="/games">supported games</a>
+            <a href="/tutorial">setup guides</a>
+            <a href="/generate">generate game</a>
+            <a href="/uploads">host game</a>
+            <a href="/user-content">user content</a>
+        </div>
+        <a href="/faq/en">f.a.q</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+    <div id="base-header-right-mobile">
+        <a id="base-header-mobile-menu-button" href="#">
+            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
+        </a>
+    </div>
+    <div id="base-header-mobile-menu">
+        <a href="/games">supported games</a>
+        <a href="/tutorial">setup guides</a>
+        <a href="/faq/en">f.a.q.</a>
+        <a href="/generate">generate game</a>
+        <a href="/uploads">host game</a>
+        <a href="/user-content">user content</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+</header>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Archipelago Options API &#8212; Archipelago 0.4.4 documentation</title>
+<script src="_static/documentation_options.js?v=90733dfc"></script>
+<script src="_static/doctools.js?v=888ff710"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Archipelago Network Protocol" href="network%20protocol.html" />
+    <link rel="prev" title="Archipelago World API" href="world%20api.html" /> 
+</head><body>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               accesskey="I">index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="network%20protocol.html" title="Archipelago Network Protocol"
+               accesskey="N">next</a> |</li>
+        <li class="right" >
+            <a href="world%20api.html" title="Archipelago World API"
+               accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Archipelago Options API</a></li> 
+    </ul>
+</div> 
+<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago Options API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#option-definitions">Option Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generic-option-classes">Generic Option Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-option-classes">Basic Option Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-advanced-options">More Advanced Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="world%20api.html" title="previous chapter">Archipelago World API</a></li>
+      <li>Next: <a href="network%20protocol.html" title="next chapter">Archipelago Network Protocol</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+    </div>
+</div> 
+
+<div class="document">
+    <div id="document-wrapper" class="markdown">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+                
+  <section id="archipelago-options-api">
+<h1>Archipelago Options API<a class="headerlink" href="#archipelago-options-api" title="Link to this heading">¶</a></h1>
+<p>This document covers some of the generic options available using Archipelago’s options handling system.</p>
+<p>For more information on where these options go in your world please refer to:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/world%20api.md"><span class="xref myst">world api.md</span></a></p></li>
+</ul>
+<p>Archipelago will be abbreviated as “AP” from now on.</p>
+<section id="option-definitions">
+<h2>Option Definitions<a class="headerlink" href="#option-definitions" title="Link to this heading">¶</a></h2>
+<p>Option parsing in AP is done using different Option classes. For each option you would like to have in your game, you
+need to create:</p>
+<ul class="simple">
+<li><p>A new option class with a docstring detailing what the option will do to your user.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">display_name</span></code> to be displayed on the webhost.</p></li>
+<li><p>A new entry in the <code class="docutils literal notranslate"><span class="pre">option_definitions</span></code> dict for your World.
+By style and convention, the internal names should be snake_case.</p></li>
+</ul>
+<section id="option-creation">
+<h3>Option Creation<a class="headerlink" href="#option-creation" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>If the option supports having multiple sub_options, such as Choice options, these can be defined with
+<code class="docutils literal notranslate"><span class="pre">option_value1</span></code>. Any attributes of the class with a preceding <code class="docutils literal notranslate"><span class="pre">option_</span></code> is added to the class’s <code class="docutils literal notranslate"><span class="pre">options</span></code> lookup. The
+<code class="docutils literal notranslate"><span class="pre">option_</span></code> is then stripped for users, so will show as <code class="docutils literal notranslate"><span class="pre">value1</span></code> in yaml files. If <code class="docutils literal notranslate"><span class="pre">auto_display_name</span></code> is True, it will
+display as <code class="docutils literal notranslate"><span class="pre">Value1</span></code> on the webhost.</p></li>
+<li><p>An alternative name can be set for any specific option by setting an alias attribute
+(i.e. <code class="docutils literal notranslate"><span class="pre">alias_value_1</span> <span class="pre">=</span> <span class="pre">option_value1</span></code>) which will allow users to use either <code class="docutils literal notranslate"><span class="pre">value_1</span></code> or <code class="docutils literal notranslate"><span class="pre">value1</span></code> in their yaml
+files, and both will resolve as <code class="docutils literal notranslate"><span class="pre">value1</span></code>. This should be used when changing options around, i.e. changing a Toggle to a
+Choice, and defining <code class="docutils literal notranslate"><span class="pre">alias_true</span> <span class="pre">=</span> <span class="pre">option_full</span></code>.</p></li>
+<li><p>All options with a fixed set of possible values (i.e. those which inherit from <code class="docutils literal notranslate"><span class="pre">Toggle</span></code>, <code class="docutils literal notranslate"><span class="pre">(Text)Choice</span></code> or
+<code class="docutils literal notranslate"><span class="pre">(Named/Special)Range</span></code>) support <code class="docutils literal notranslate"><span class="pre">random</span></code> as a generic option. <code class="docutils literal notranslate"><span class="pre">random</span></code> chooses from any of the available values for that
+option, and is reserved by AP. You can set this as your default value, but you cannot define your own <code class="docutils literal notranslate"><span class="pre">option_random</span></code>.
+However, you can override <code class="docutils literal notranslate"><span class="pre">from_text</span></code> and handle <code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">==</span> <span class="pre">&quot;random&quot;</span></code> to customize its behavior or
+implement it for additional option types.</p></li>
+</ul>
+<p>As an example, suppose we want an option that lets the user start their game with a sword in their inventory, an option
+to let the player choose the difficulty, and an option to choose how much health the final boss has. Let’s create our
+option classes (with a docstring), give them a <code class="docutils literal notranslate"><span class="pre">display_name</span></code>, and add them to our game’s options dataclass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># options.py</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="kn">from</span> <span class="nn">Options</span> <span class="kn">import</span> <span class="n">Toggle</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Choice</span><span class="p">,</span> <span class="n">PerGameCommonOptions</span>
+
+
+<span class="k">class</span> <span class="nc">StartingSword</span><span class="p">(</span><span class="n">Toggle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds a sword to your starting inventory.&quot;&quot;&quot;</span>
+    <span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;Start With Sword&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Difficulty</span><span class="p">(</span><span class="n">Choice</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets overall game difficulty.&quot;&quot;&quot;</span>
+    <span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;Difficulty&quot;</span>
+    <span class="n">option_easy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">option_normal</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">option_hard</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">alias_beginner</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># same as easy but allows the player to use beginner as an alternative for easy in the result in their options</span>
+    <span class="n">alias_expert</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># same as hard</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># default to normal</span>
+
+
+<span class="k">class</span> <span class="nc">FinalBossHP</span><span class="p">(</span><span class="n">Range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the HP of the final boss&quot;&quot;&quot;</span>
+    <span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;Final Boss HP&quot;</span>
+    <span class="n">range_start</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">range_end</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="mi">2000</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ExampleGameOptions</span><span class="p">(</span><span class="n">PerGameCommonOptions</span><span class="p">):</span>
+    <span class="n">starting_sword</span><span class="p">:</span> <span class="n">StartingSword</span>
+    <span class="n">difficulty</span><span class="p">:</span> <span class="n">Difficulty</span>
+    <span class="n">final_boss_health</span><span class="p">:</span> <span class="n">FinalBossHP</span>
+</pre></div>
+</div>
+<p>To then submit this to the multiworld, we add it to our world’s <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">worlds.AutoWorld</span> <span class="kn">import</span> <span class="n">World</span>
+<span class="kn">from</span> <span class="nn">.Options</span> <span class="kn">import</span> <span class="n">ExampleGameOptions</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleWorld</span><span class="p">(</span><span class="n">World</span><span class="p">):</span>
+    <span class="c1"># this gives the generator all the definitions for our options</span>
+    <span class="n">options_dataclass</span> <span class="o">=</span> <span class="n">ExampleGameOptions</span>
+    <span class="c1"># this gives us typing hints for all the options we defined</span>
+    <span class="n">options</span><span class="p">:</span> <span class="n">ExampleGameOptions</span>
+</pre></div>
+</div>
+</section>
+<section id="option-checking">
+<h3>Option Checking<a class="headerlink" href="#option-checking" title="Link to this heading">¶</a></h3>
+<p>Options are parsed by <code class="docutils literal notranslate"><span class="pre">Generate.py</span></code> before the worlds are created, and then the option classes are created shortly after
+world instantiation. These are created as attributes on the MultiWorld and can be accessed with
+<code class="docutils literal notranslate"><span class="pre">self.options.my_option_name</span></code>. This is an instance of the option class, which supports direct comparison methods to
+relevant objects (like comparing a Toggle class to a <code class="docutils literal notranslate"><span class="pre">bool</span></code>). If you need to access the option result directly, this is
+the option class’s <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute. For our example above we can do a simple check:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">starting_sword</span><span class="p">:</span>
+    <span class="n">do_some_things</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>or if I need a boolean object, such as in my slot_data I can access it as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start_with_sword</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">starting_sword</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All numeric options (i.e. Toggle, Choice, Range) can be compared to integers, strings that match their attributes,
+strings that match the option attributes after “option_” is stripped, and the attributes themselves.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># options.py</span>
+<span class="k">class</span> <span class="nc">Logic</span><span class="p">(</span><span class="n">Choice</span><span class="p">):</span>
+    <span class="n">option_normal</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">option_hard</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">option_challenging</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">option_extreme</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">option_insane</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">alias_extra_hard</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">crazy</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># won&#39;t be listed as an option and only exists as an attribute on the class</span>
+
+<span class="c1"># __init__.py</span>
+<span class="kn">from</span> <span class="nn">.options</span> <span class="kn">import</span> <span class="n">Logic</span>
+
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logic</span><span class="p">:</span>
+    <span class="n">do_things_for_all_non_normal_logic</span><span class="p">()</span>
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logic</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">do_hard_things</span><span class="p">()</span>
+<span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logic</span> <span class="o">==</span> <span class="s2">&quot;challenging&quot;</span><span class="p">:</span>
+    <span class="n">do_challenging_things</span><span class="p">()</span>
+<span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logic</span> <span class="o">==</span> <span class="n">Logic</span><span class="o">.</span><span class="n">option_extreme</span><span class="p">:</span>
+    <span class="n">do_extreme_things</span><span class="p">()</span>
+<span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logic</span> <span class="o">==</span> <span class="s2">&quot;crazy&quot;</span><span class="p">:</span>
+    <span class="n">do_insane_things</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generic-option-classes">
+<h2>Generic Option Classes<a class="headerlink" href="#generic-option-classes" title="Link to this heading">¶</a></h2>
+<p>These options are generically available to every game automatically, but can be overridden for slightly different
+behavior, if desired. See <code class="docutils literal notranslate"><span class="pre">worlds/soe/Options.py</span></code> for an example.</p>
+<section id="accessibility">
+<h3>Accessibility<a class="headerlink" href="#accessibility" title="Link to this heading">¶</a></h3>
+<p>Sets rules for availability of locations for the player. <code class="docutils literal notranslate"><span class="pre">Items</span></code> is for all items available but not necessarily all
+locations, such as self-locking keys, but needs to be set by the world for this to be different from locations access.</p>
+</section>
+<section id="progressionbalancing">
+<h3>ProgressionBalancing<a class="headerlink" href="#progressionbalancing" title="Link to this heading">¶</a></h3>
+<p>Algorithm for moving progression items into earlier spheres to make the gameplay experience a bit smoother. Can be
+overridden if you want a different default value.</p>
+</section>
+<section id="localitems">
+<h3>LocalItems<a class="headerlink" href="#localitems" title="Link to this heading">¶</a></h3>
+<p>Forces the players’ items local to their world.</p>
+</section>
+<section id="nonlocalitems">
+<h3>NonLocalItems<a class="headerlink" href="#nonlocalitems" title="Link to this heading">¶</a></h3>
+<p>Forces the players’ items outside their world.</p>
+</section>
+<section id="startinventory">
+<h3>StartInventory<a class="headerlink" href="#startinventory" title="Link to this heading">¶</a></h3>
+<p>Allows the player to define a dictionary of starting items with item name and quantity.</p>
+</section>
+<section id="starthints">
+<h3>StartHints<a class="headerlink" href="#starthints" title="Link to this heading">¶</a></h3>
+<p>Gives the player starting hints for where the items defined here are.</p>
+</section>
+<section id="startlocationhints">
+<h3>StartLocationHints<a class="headerlink" href="#startlocationhints" title="Link to this heading">¶</a></h3>
+<p>Gives the player starting hints for the items on locations defined here.</p>
+</section>
+<section id="excludelocations">
+<h3>ExcludeLocations<a class="headerlink" href="#excludelocations" title="Link to this heading">¶</a></h3>
+<p>Marks locations given here as <code class="docutils literal notranslate"><span class="pre">LocationProgressType.Excluded</span></code> so that progression items can’t be placed on them.</p>
+</section>
+<section id="prioritylocations">
+<h3>PriorityLocations<a class="headerlink" href="#prioritylocations" title="Link to this heading">¶</a></h3>
+<p>Marks locations given here as <code class="docutils literal notranslate"><span class="pre">LocationProgressType.Priority</span></code> forcing progression items on them.</p>
+</section>
+<section id="itemlinks">
+<h3>ItemLinks<a class="headerlink" href="#itemlinks" title="Link to this heading">¶</a></h3>
+<p>Allows users to share their item pool with other players. Currently item links are per game. A link of one game between
+two players will combine their items in the link into a single item, which then gets replaced with <code class="docutils literal notranslate"><span class="pre">World.create_filler()</span></code>.</p>
+</section>
+</section>
+<section id="basic-option-classes">
+<h2>Basic Option Classes<a class="headerlink" href="#basic-option-classes" title="Link to this heading">¶</a></h2>
+<section id="toggle">
+<h3>Toggle<a class="headerlink" href="#toggle" title="Link to this heading">¶</a></h3>
+<p>The example above. This simply has 0 and 1 as its available results with 0 (false) being the default value. Cannot be
+compared to strings but can be directly compared to True and False.</p>
+</section>
+<section id="defaultontoggle">
+<h3>DefaultOnToggle<a class="headerlink" href="#defaultontoggle" title="Link to this heading">¶</a></h3>
+<p>Like Toggle, but 1 (true) is the default value.</p>
+</section>
+<section id="choice">
+<h3>Choice<a class="headerlink" href="#choice" title="Link to this heading">¶</a></h3>
+<p>A numeric option allowing you to define different sub options. Values are stored as integers, but you can also do
+comparison methods with the class and strings, so if you have an <code class="docutils literal notranslate"><span class="pre">option_early_sword</span></code>, this can be compared with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sword_availability</span> <span class="o">==</span> <span class="s2">&quot;early_sword&quot;</span><span class="p">:</span>
+    <span class="n">do_early_sword_things</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.Options</span> <span class="kn">import</span> <span class="n">SwordAvailability</span>
+
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sword_availability</span> <span class="o">==</span> <span class="n">SwordAvailability</span><span class="o">.</span><span class="n">option_early_sword</span><span class="p">:</span>
+    <span class="n">do_early_sword_things</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="range">
+<h3>Range<a class="headerlink" href="#range" title="Link to this heading">¶</a></h3>
+<p>A numeric option allowing a variety of integers including the endpoints. Has a default <code class="docutils literal notranslate"><span class="pre">range_start</span></code> of 0 and default
+<code class="docutils literal notranslate"><span class="pre">range_end</span></code> of 1. Allows for negative values as well. This will always be an integer and has no methods for string
+comparisons.</p>
+</section>
+<section id="namedrange">
+<h3>NamedRange<a class="headerlink" href="#namedrange" title="Link to this heading">¶</a></h3>
+<p>Like range but also allows you to define a dictionary of special names the user can use to equate to a specific value.
+<code class="docutils literal notranslate"><span class="pre">special_range_names</span></code> can be used to</p>
+<ul class="simple">
+<li><p>give descriptive names to certain values from within the range</p></li>
+<li><p>add option values above or below the regular range, to be associated with a special meaning</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">range_start</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">range_end</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">special_range_names</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;extreme&quot;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="s2">&quot;unlimited&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>will let users use the names “normal” or “extreme” in their options selections, but will still return those as integers
+to you. Useful if you want special handling regarding those specified values.</p>
+</section>
+</section>
+<section id="more-advanced-options">
+<h2>More Advanced Options<a class="headerlink" href="#more-advanced-options" title="Link to this heading">¶</a></h2>
+<section id="freetext">
+<h3>FreeText<a class="headerlink" href="#freetext" title="Link to this heading">¶</a></h3>
+<p>This is an option that allows the user to enter any possible string value. Can only be compared with strings, and has
+no validation step, so if this needs to be validated, you can either add a validation step to the option class or
+within the world.</p>
+</section>
+<section id="textchoice">
+<h3>TextChoice<a class="headerlink" href="#textchoice" title="Link to this heading">¶</a></h3>
+<p>Like choice allows you to predetermine options and has all of the same comparison methods and handling. Also accepts any
+user defined string as a valid option, so will either need to be validated by adding a validation step to the option
+class or within world, if necessary. Value for this class is <code class="docutils literal notranslate"><span class="pre">Union[str,</span> <span class="pre">int]</span></code> so if you need the value at a specified
+point, <code class="docutils literal notranslate"><span class="pre">self.options.my_option.current_key</span></code> will always return a string.</p>
+</section>
+<section id="plandobosses">
+<h3>PlandoBosses<a class="headerlink" href="#plandobosses" title="Link to this heading">¶</a></h3>
+<p>An option specifically built for handling boss rando, if your game can use it. Is a subclass of TextChoice so supports
+everything it does, as well as having multiple validation steps to automatically support boss plando from users. If
+using this class, you must define <code class="docutils literal notranslate"><span class="pre">bosses</span></code>, a set of valid boss names, and <code class="docutils literal notranslate"><span class="pre">locations</span></code>, a set of valid boss location
+names, and <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">can_place_boss</span></code>, which passes a boss and location, allowing you to check if that placement is valid for
+your game. When this function is called, <code class="docutils literal notranslate"><span class="pre">bosses</span></code>, <code class="docutils literal notranslate"><span class="pre">locations</span></code>, and the passed strings will all be lowercase. There is
+also a <code class="docutils literal notranslate"><span class="pre">duplicate_bosses</span></code> attribute allowing you to define if a boss can be placed multiple times in your world. False
+by default, and will reject duplicate boss names from the user. For an example of using this class, refer to
+<code class="docutils literal notranslate"><span class="pre">worlds.alttp.options.py</span></code></p>
+</section>
+<section id="optiondict">
+<h3>OptionDict<a class="headerlink" href="#optiondict" title="Link to this heading">¶</a></h3>
+<p>This option returns a dictionary. Setting a default here is recommended as it will output the dictionary to the
+template. If you set a <a class="reference external" href="https://pypi.org/project/schema/">Schema</a> on the class with <code class="docutils literal notranslate"><span class="pre">schema</span> <span class="pre">=</span> <span class="pre">Schema()</span></code>, then the
+options system will automatically validate the user supplied data against the schema to ensure it’s in the correct
+format.</p>
+</section>
+<section id="itemdict">
+<h3>ItemDict<a class="headerlink" href="#itemdict" title="Link to this heading">¶</a></h3>
+<p>Like OptionDict, except this will verify that every key in the dictionary is a valid name for an item for your world.</p>
+</section>
+<section id="optionlist">
+<h3>OptionList<a class="headerlink" href="#optionlist" title="Link to this heading">¶</a></h3>
+<p>This option defines a List, where the user can add any number of strings to said list, allowing duplicate values. You
+can define a set of keys in <code class="docutils literal notranslate"><span class="pre">valid_keys</span></code>, and a default list if you want certain options to be available without editing
+for this. If <code class="docutils literal notranslate"><span class="pre">valid_keys_casefold</span></code> is true, the verification will be case-insensitive; <code class="docutils literal notranslate"><span class="pre">verify_item_name</span></code> will check
+that each value is a valid item name; and<code class="docutils literal notranslate"><span class="pre">verify_location_name</span></code> will check that each value is a valid location name.</p>
+</section>
+<section id="optionset">
+<h3>OptionSet<a class="headerlink" href="#optionset" title="Link to this heading">¶</a></h3>
+<p>Like OptionList, but returns a set, preventing duplicates.</p>
+</section>
+<section id="itemset">
+<h3>ItemSet<a class="headerlink" href="#itemset" title="Link to this heading">¶</a></h3>
+<p>Like OptionSet, but will verify that all the items in the set are a valid name for an item for your world.</p>
+</section>
+</section>
+</section>
+
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               >index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="network%20protocol.html" title="Archipelago Network Protocol"
+               >next</a> |</li>
+        <li class="right" >
+            <a href="world%20api.html" title="Archipelago World API"
+               >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Archipelago Options API</a></li> 
+    </ul>
+</div>
+<div class="footer" role="contentinfo">
+&#169; Copyright 2024, Archipelago.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+</div>
+</body>

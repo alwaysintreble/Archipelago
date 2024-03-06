@@ -1,0 +1,506 @@
+
+    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
+    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
+    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
+    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
+
+
+
+<header id="base-header">
+    <div id="base-header-left">
+        <a href="/" id="site-title">
+            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
+        </a>
+    </div>
+    <div id="base-header-right">
+        <div id="base-header-popover-text">
+            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
+            get started
+        </div>
+        <div id="base-header-popover-menu">
+            <a href="/games">supported games</a>
+            <a href="/tutorial">setup guides</a>
+            <a href="/generate">generate game</a>
+            <a href="/uploads">host game</a>
+            <a href="/user-content">user content</a>
+        </div>
+        <a href="/faq/en">f.a.q</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+    <div id="base-header-right-mobile">
+        <a id="base-header-mobile-menu-button" href="#">
+            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
+        </a>
+    </div>
+    <div id="base-header-mobile-menu">
+        <a href="/games">supported games</a>
+        <a href="/tutorial">setup guides</a>
+        <a href="/faq/en">f.a.q.</a>
+        <a href="/generate">generate game</a>
+        <a href="/uploads">host game</a>
+        <a href="/user-content">user content</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+</header>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Archipelago 0.4.4 documentation</title>
+<script src="_static/documentation_options.js?v=90733dfc"></script>
+<script src="_static/doctools.js?v=888ff710"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="web_world.html" />
+    <link rel="prev" title="worlds.AutoWorld" href="autoworld.html" /> 
+</head><body>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               accesskey="I">index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="web_world.html" title="&lt;no title&gt;"
+               accesskey="N">next</a> |</li>
+        <li class="right" >
+            <a href="autoworld.html" title="worlds.AutoWorld"
+               accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-1"><a href="autoworld.html" accesskey="U">worlds.AutoWorld</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
+    </ul>
+</div> 
+<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">World</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_world.html"><code class="docutils literal notranslate"><span class="pre">WebWorld</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="autoworld.html">worlds.AutoWorld</a><ul>
+      <li>Previous: <a href="autoworld.html" title="previous chapter">worlds.AutoWorld</a></li>
+      <li>Next: <a href="web_world.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+    </div>
+</div> 
+
+<div class="document">
+    <div id="document-wrapper" class="markdown">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+                
+  <dl class="py class">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">worlds.AutoWorld.</span></span><span class="sig-name descname"><span class="pre">World</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiworld</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld" title="BaseClasses.MultiWorld"><span class="pre">MultiWorld</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#worlds.AutoWorld.World" title="Link to this definition">¶</a></dt>
+<dd><p>A World object encompasses a game’s Items, Locations, Rules and additional data or functionality required.
+A Game should have its own subclass of World in which it defines the required data structures.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.all_item_and_group_names">
+<span class="sig-name descname"><span class="pre">all_item_and_group_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">FrozenSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'Everything'})</span></em><a class="headerlink" href="#worlds.AutoWorld.World.all_item_and_group_names" title="Link to this definition">¶</a></dt>
+<dd><p>gets automatically populated with all item and item group names</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.collect_item">
+<span class="sig-name descname"><span class="pre">collect_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="collectionstate.html#BaseClasses.CollectionState" title="BaseClasses.CollectionState"><span class="pre">CollectionState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="item.html#BaseClasses.Item" title="BaseClasses.Item"><span class="pre">Item</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.collect_item" title="Link to this definition">¶</a></dt>
+<dd><p>Collect an item name into state. For speed reasons items that aren’t logically useful get skipped.
+Collect None to skip item.
+:param state: CollectionState to collect into
+:param item: Item to decide on if it should be collected into state
+:param remove: indicate if this is meant to remove from state instead of adding.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.create_group">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiworld</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld" title="BaseClasses.MultiWorld"><span class="pre">MultiWorld</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_player_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#worlds.AutoWorld.World" title="worlds.AutoWorld.World"><span class="pre">World</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_group" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a group, which is an instance of World that is responsible for multiple others.
+An example case is ItemLinks creating these.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.create_item">
+<span class="sig-name descname"><span class="pre">create_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="item.html#BaseClasses.Item" title="BaseClasses.Item"><span class="pre">Item</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_item" title="Link to this definition">¶</a></dt>
+<dd><p>Create an item for this world type and player.
+Warning: this may be called with self.world = None, for example by MultiServer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.create_items">
+<span class="sig-name descname"><span class="pre">create_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_items" title="Link to this definition">¶</a></dt>
+<dd><p>Method for creating and submitting items to the itempool. Items and Regions must <em>not</em> be created and submitted
+to the MultiWorld after this step. If items need to be placed during pre_fill use <cite>get_prefill_items</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.create_regions">
+<span class="sig-name descname"><span class="pre">create_regions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_regions" title="Link to this definition">¶</a></dt>
+<dd><p>Method for creating and connecting regions for the World.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.data_version">
+<span class="sig-name descname"><span class="pre">data_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#worlds.AutoWorld.World.data_version" title="Link to this definition">¶</a></dt>
+<dd><p>Increment this every time something in your world’s names/id mappings changes.</p>
+<p>When this is set to 0, that world’s DataPackage is considered in “testing mode”, which signals to servers/clients
+that it should not be cached, and clients should request that world’s DataPackage every connection. Not
+recommended for production-ready worlds.</p>
+<p>Deprecated. Clients should utilize <cite>checksum</cite> to determine if DataPackage has changed since last connection and
+request a new DataPackage, if necessary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.extend_hint_information">
+<span class="sig-name descname"><span class="pre">extend_hint_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hint_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#worlds.AutoWorld.World.extend_hint_information" title="Link to this definition">¶</a></dt>
+<dd><p>Fill in additional entrance information text into locations, which is displayed when hinted.
+structure is {player_id: {location_id: text}} You will need to insert your own player_id.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.fill_hook">
+<span class="sig-name descname"><span class="pre">fill_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progitempool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Item'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usefulitempool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Item'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filleritempool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Item'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_locations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Location'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.fill_hook" title="Link to this definition">¶</a></dt>
+<dd><p>Special method that gets called as part of distribute_items_restrictive (main fill).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.fill_slot_data">
+<span class="sig-name descname"><span class="pre">fill_slot_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.fill_slot_data" title="Link to this definition">¶</a></dt>
+<dd><p>What is returned from this function will be in the <cite>slot_data</cite> field
+in the <cite>Connected</cite> network package.
+It should be a <cite>dict</cite> with <cite>str</cite> keys, and should be serializable with json.</p>
+<p>This is a way the generator can give custom data to the client.
+The client will receive this as JSON in the <cite>Connected</cite> response.</p>
+<p>The generation does not wait for <cite>generate_output</cite> to complete before calling this.
+<cite>threading.Event</cite> can be used if you need to wait for something from <cite>generate_output</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.game">
+<span class="sig-name descname"><span class="pre">game</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#worlds.AutoWorld.World.game" title="Link to this definition">¶</a></dt>
+<dd><p>name the game</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.generate_basic">
+<span class="sig-name descname"><span class="pre">generate_basic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.generate_basic" title="Link to this definition">¶</a></dt>
+<dd><p>Useful for randomizing things that don’t affect logic but are better to be determined before the output stage.
+i.e. checking what the player has marked as priority or randomizing enemies</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.generate_early">
+<span class="sig-name descname"><span class="pre">generate_early</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.generate_early" title="Link to this definition">¶</a></dt>
+<dd><p>Run before any general steps of the MultiWorld other than options. Useful for getting and adjusting option
+results and determining layouts for entrance rando etc. start inventory gets pushed after this step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.generate_output">
+<span class="sig-name descname"><span class="pre">generate_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.generate_output" title="Link to this definition">¶</a></dt>
+<dd><p>This method gets called from a threadpool, do not use multiworld.random here.
+If you need any last-second randomization, use self.random instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_filler_item_name">
+<span class="sig-name descname"><span class="pre">get_filler_item_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_filler_item_name" title="Link to this definition">¶</a></dt>
+<dd><p>Called when the item pool needs to be filled with additional items to match location count.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.hidden">
+<span class="sig-name descname"><span class="pre">hidden</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#worlds.AutoWorld.World.hidden" title="Link to this definition">¶</a></dt>
+<dd><p>Hide World Type from various views. Does not remove functionality.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.hint_blacklist">
+<span class="sig-name descname"><span class="pre">hint_blacklist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">FrozenSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#worlds.AutoWorld.World.hint_blacklist" title="Link to this definition">¶</a></dt>
+<dd><p>any names that should not be hintable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.item_descriptions">
+<span class="sig-name descname"><span class="pre">item_descriptions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Everything':</span> <span class="pre">'All</span> <span class="pre">items</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">entire</span> <span class="pre">game.'}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.item_descriptions" title="Link to this definition">¶</a></dt>
+<dd><p>An optional map from item names (or item group names) to brief descriptions for users.</p>
+<p>Individual newlines and indentation will be collapsed into spaces before these descriptions are
+displayed. This may cover only a subset of items.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.item_id_to_name">
+<span class="sig-name descname"><span class="pre">item_id_to_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.item_id_to_name" title="Link to this definition">¶</a></dt>
+<dd><p>automatically generated reverse lookup of item id to name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.item_name_groups">
+<span class="sig-name descname"><span class="pre">item_name_groups</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Everything':</span> <span class="pre">frozenset({})}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.item_name_groups" title="Link to this definition">¶</a></dt>
+<dd><p>maps item group names to sets of items. Example: {“Weapons”: {“Sword”, “Bow”}}</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.item_name_to_id">
+<span class="sig-name descname"><span class="pre">item_name_to_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.item_name_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>map item names to their IDs</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.item_names">
+<span class="sig-name descname"><span class="pre">item_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#worlds.AutoWorld.World.item_names" title="Link to this definition">¶</a></dt>
+<dd><p>set of all potential item names</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.location_descriptions">
+<span class="sig-name descname"><span class="pre">location_descriptions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Everywhere':</span> <span class="pre">'All</span> <span class="pre">locations</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">entire</span> <span class="pre">game.'}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.location_descriptions" title="Link to this definition">¶</a></dt>
+<dd><p>An optional map from location names (or location group names) to brief descriptions for users.</p>
+<p>Individual newlines and indentation will be collapsed into spaces before these descriptions are
+displayed. This may cover only a subset of locations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.location_id_to_name">
+<span class="sig-name descname"><span class="pre">location_id_to_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.location_id_to_name" title="Link to this definition">¶</a></dt>
+<dd><p>automatically generated reverse lookup of location id to name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.location_name_groups">
+<span class="sig-name descname"><span class="pre">location_name_groups</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Everywhere':</span> <span class="pre">frozenset({})}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.location_name_groups" title="Link to this definition">¶</a></dt>
+<dd><p>maps location group names to sets of locations. Example: {“Sewer”: {“Sewer Key Drop 1”, “Sewer Key Drop 2”}}</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.location_name_to_id">
+<span class="sig-name descname"><span class="pre">location_name_to_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.World.location_name_to_id" title="Link to this definition">¶</a></dt>
+<dd><p>map location names to their IDs</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.location_names">
+<span class="sig-name descname"><span class="pre">location_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#worlds.AutoWorld.World.location_names" title="Link to this definition">¶</a></dt>
+<dd><p>set of all potential location names</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.modify_multidata">
+<span class="sig-name descname"><span class="pre">modify_multidata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multidata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.modify_multidata" title="Link to this definition">¶</a></dt>
+<dd><p>For deeper modification of server multidata.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.multiworld">
+<span class="sig-name descname"><span class="pre">multiworld</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld" title="BaseClasses.MultiWorld"><span class="pre">MultiWorld</span></a></em><a class="headerlink" href="#worlds.AutoWorld.World.multiworld" title="Link to this definition">¶</a></dt>
+<dd><p>autoset on creation. The MultiWorld object for the currently generating multiworld.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.options">
+<span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="options.html#Options.PerGameCommonOptions" title="Options.PerGameCommonOptions"><span class="pre">PerGameCommonOptions</span></a></em><a class="headerlink" href="#worlds.AutoWorld.World.options" title="Link to this definition">¶</a></dt>
+<dd><p>resulting options for the player of this world</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.options_dataclass">
+<span class="sig-name descname"><span class="pre">options_dataclass</span></span><a class="headerlink" href="#worlds.AutoWorld.World.options_dataclass" title="Link to this definition">¶</a></dt>
+<dd><p>link your Options mapping</p>
+<p>alias of <a class="reference internal" href="options.html#Options.PerGameCommonOptions" title="Options.PerGameCommonOptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerGameCommonOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.player">
+<span class="sig-name descname"><span class="pre">player</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#worlds.AutoWorld.World.player" title="Link to this definition">¶</a></dt>
+<dd><p>autoset on creation. The player number for this World</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.post_fill">
+<span class="sig-name descname"><span class="pre">post_fill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.post_fill" title="Link to this definition">¶</a></dt>
+<dd><p>Optional Method that is called after regular fill. Can be used to do adjustments before output generation.
+This happens before progression balancing, so the items may not be in their final locations yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.pre_fill">
+<span class="sig-name descname"><span class="pre">pre_fill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.pre_fill" title="Link to this definition">¶</a></dt>
+<dd><p>Optional method that is supposed to be used for special fill stages. This is run <em>after</em> plando.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.random">
+<span class="sig-name descname"><span class="pre">random</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">random.Random</span></em><a class="headerlink" href="#worlds.AutoWorld.World.random" title="Link to this definition">¶</a></dt>
+<dd><p>This world’s random object. Should be used for any randomization needed in world for this player slot.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.required_client_version">
+<span class="sig-name descname"><span class="pre">required_client_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">1,</span> <span class="pre">6)</span></em><a class="headerlink" href="#worlds.AutoWorld.World.required_client_version" title="Link to this definition">¶</a></dt>
+<dd><p>override this if changes to a world break forward-compatibility of the client
+The base version of (0, 1, 6) is provided for backwards compatibility and does <em>not</em> need to be updated in the
+future. Protocol level compatibility check moved to MultiServer.min_client_version.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.required_server_version">
+<span class="sig-name descname"><span class="pre">required_server_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">4)</span></em><a class="headerlink" href="#worlds.AutoWorld.World.required_server_version" title="Link to this definition">¶</a></dt>
+<dd><p>update this if the resulting multidata breaks forward-compatibility of the server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.set_rules">
+<span class="sig-name descname"><span class="pre">set_rules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.set_rules" title="Link to this definition">¶</a></dt>
+<dd><p>Method for setting the rules on the World’s regions and locations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.settings">
+<span class="sig-name descname"><span class="pre">settings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Group'</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#worlds.AutoWorld.World.settings" title="Link to this definition">¶</a></dt>
+<dd><p>loaded settings from host.yaml</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.settings_key">
+<span class="sig-name descname"><span class="pre">settings_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'autoworld_options'</span></em><a class="headerlink" href="#worlds.AutoWorld.World.settings_key" title="Link to this definition">¶</a></dt>
+<dd><p>name of the section in host.yaml for world-specific settings, will default to {folder}_options</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.stage_assert_generate">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stage_assert_generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiworld</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld" title="BaseClasses.MultiWorld"><span class="pre">MultiWorld</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.stage_assert_generate" title="Link to this definition">¶</a></dt>
+<dd><p>Checks that a game is capable of generating, usually checks for some base file like a ROM.
+This gets called once per present world type. Not run for unittests since they don’t produce output</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.topology_present">
+<span class="sig-name descname"><span class="pre">topology_present</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#worlds.AutoWorld.World.topology_present" title="Link to this definition">¶</a></dt>
+<dd><p>indicate if world type has any meaningful layout/pathing</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.web">
+<span class="sig-name descname"><span class="pre">web</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="web_world.html#worlds.AutoWorld.WebWorld" title="worlds.AutoWorld.WebWorld"><span class="pre">WebWorld</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;worlds.AutoWorld.WebWorld</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#worlds.AutoWorld.World.web" title="Link to this definition">¶</a></dt>
+<dd><p>see WebWorld for options</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.write_spoiler">
+<span class="sig-name descname"><span class="pre">write_spoiler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spoiler_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.write_spoiler" title="Link to this definition">¶</a></dt>
+<dd><p>Write to the spoiler “middle”, this is after the per-player options and before locations,
+meant for useful or interesting info.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.write_spoiler_end">
+<span class="sig-name descname"><span class="pre">write_spoiler_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spoiler_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.write_spoiler_end" title="Link to this definition">¶</a></dt>
+<dd><p>Write to the end of the spoiler</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.write_spoiler_header">
+<span class="sig-name descname"><span class="pre">write_spoiler_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spoiler_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.write_spoiler_header" title="Link to this definition">¶</a></dt>
+<dd><p>Write to the spoiler header. If individual it’s right at the end of that player’s options,
+if as stage it’s right under the common header before per-player options.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.zip_path">
+<span class="sig-name descname"><span class="pre">zip_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#worlds.AutoWorld.World.zip_path" title="Link to this definition">¶</a></dt>
+<dd><p>If loaded from a .apworld, this is the Path to it.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               >index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="web_world.html" title="&lt;no title&gt;"
+               >next</a> |</li>
+        <li class="right" >
+            <a href="autoworld.html" title="worlds.AutoWorld"
+               >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-1"><a href="autoworld.html" >worlds.AutoWorld</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
+    </ul>
+</div>
+<div class="footer" role="contentinfo">
+&#169; Copyright 2024, Archipelago.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+</div>
+</body>

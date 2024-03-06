@@ -1,0 +1,234 @@
+
+    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
+    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
+    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
+    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
+
+
+
+<header id="base-header">
+    <div id="base-header-left">
+        <a href="/" id="site-title">
+            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
+        </a>
+    </div>
+    <div id="base-header-right">
+        <div id="base-header-popover-text">
+            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
+            get started
+        </div>
+        <div id="base-header-popover-menu">
+            <a href="/games">supported games</a>
+            <a href="/tutorial">setup guides</a>
+            <a href="/generate">generate game</a>
+            <a href="/uploads">host game</a>
+            <a href="/user-content">user content</a>
+        </div>
+        <a href="/faq/en">f.a.q</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+    <div id="base-header-right-mobile">
+        <a id="base-header-mobile-menu-button" href="#">
+            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
+        </a>
+    </div>
+    <div id="base-header-mobile-menu">
+        <a href="/games">supported games</a>
+        <a href="/tutorial">setup guides</a>
+        <a href="/faq/en">f.a.q.</a>
+        <a href="/generate">generate game</a>
+        <a href="/uploads">host game</a>
+        <a href="/user-content">user content</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+</header>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Archipelago 0.4.4 documentation</title>
+<script src="_static/documentation_options.js?v=90733dfc"></script>
+<script src="_static/doctools.js?v=888ff710"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="collectionstate.html" />
+    <link rel="prev" title="BaseClasses" href="baseclasses.html" /> 
+</head><body>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               accesskey="I">index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="collectionstate.html" title="&lt;no title&gt;"
+               accesskey="N">next</a> |</li>
+        <li class="right" >
+            <a href="baseclasses.html" title="BaseClasses"
+               accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-1"><a href="baseclasses.html" accesskey="U">BaseClasses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
+    </ul>
+</div> 
+<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="baseclasses.html">BaseClasses</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">MultiWorld</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectionstate.html"><code class="docutils literal notranslate"><span class="pre">CollectionState</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="entrance.html"><code class="docutils literal notranslate"><span class="pre">Entrance</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="item.html"><code class="docutils literal notranslate"><span class="pre">Item</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="location.html"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="region.html"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="baseclasses.html">BaseClasses</a><ul>
+      <li>Previous: <a href="baseclasses.html" title="previous chapter">BaseClasses</a></li>
+      <li>Next: <a href="collectionstate.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+    </div>
+</div> 
+
+<div class="document">
+    <div id="document-wrapper" class="markdown">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+                
+  <dl class="py class">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">BaseClasses.</span></span><span class="sig-name descname"><span class="pre">MultiWorld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BaseClasses.MultiWorld" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.add_group">
+<span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">frozenset({})</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Group</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#BaseClasses.MultiWorld.add_group" title="Link to this definition">¶</a></dt>
+<dd><p>Create a group with name and return the assigned player ID and group.
+If a group of this name already exists, the set of players is extended instead of creating a new one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.fulfills_accessibility">
+<span class="sig-name descname"><span class="pre">fulfills_accessibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="collectionstate.html#BaseClasses.CollectionState" title="BaseClasses.CollectionState"><span class="pre">CollectionState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BaseClasses.MultiWorld.fulfills_accessibility" title="Link to this definition">¶</a></dt>
+<dd><p>Check if accessibility rules are fulfilled with current or supplied state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.get_out_file_name_base">
+<span class="sig-name descname"><span class="pre">get_out_file_name_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#BaseClasses.MultiWorld.get_out_file_name_base" title="Link to this definition">¶</a></dt>
+<dd><p>the base name (without file extension) for each player’s output file for a seed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.get_spheres">
+<span class="sig-name descname"><span class="pre">get_spheres</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="location.html#BaseClasses.Location" title="BaseClasses.Location"><span class="pre">Location</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#BaseClasses.MultiWorld.get_spheres" title="Link to this definition">¶</a></dt>
+<dd><p>yields a set of locations for each logical sphere</p>
+<p>If there are unreachable locations, the last sphere of reachable
+locations is followed by an empty set, and then a set of all of the
+unreachable locations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.per_slot_randoms">
+<span class="sig-name descname"><span class="pre">per_slot_randoms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">random.Random</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BaseClasses.MultiWorld.per_slot_randoms" title="Link to this definition">¶</a></dt>
+<dd><p>Deprecated. Please use <cite>self.random</cite> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BaseClasses.MultiWorld.register_indirect_condition">
+<span class="sig-name descname"><span class="pre">register_indirect_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">entrance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BaseClasses.MultiWorld.register_indirect_condition" title="Link to this definition">¶</a></dt>
+<dd><p>Report that access to this Region can result in unlocking this Entrance,
+state.can_reach(Region) in the Entrance’s traversal condition, as opposed to pure transition logic.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               >index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="collectionstate.html" title="&lt;no title&gt;"
+               >next</a> |</li>
+        <li class="right" >
+            <a href="baseclasses.html" title="BaseClasses"
+               >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-1"><a href="baseclasses.html" >BaseClasses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
+    </ul>
+</div>
+<div class="footer" role="contentinfo">
+&#169; Copyright 2024, Archipelago.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+</div>
+</body>

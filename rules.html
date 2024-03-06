@@ -1,0 +1,197 @@
+
+    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
+    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
+    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
+    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
+    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
+
+
+
+<header id="base-header">
+    <div id="base-header-left">
+        <a href="/" id="site-title">
+            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
+        </a>
+    </div>
+    <div id="base-header-right">
+        <div id="base-header-popover-text">
+            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
+            get started
+        </div>
+        <div id="base-header-popover-menu">
+            <a href="/games">supported games</a>
+            <a href="/tutorial">setup guides</a>
+            <a href="/generate">generate game</a>
+            <a href="/uploads">host game</a>
+            <a href="/user-content">user content</a>
+        </div>
+        <a href="/faq/en">f.a.q</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+    <div id="base-header-right-mobile">
+        <a id="base-header-mobile-menu-button" href="#">
+            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
+        </a>
+    </div>
+    <div id="base-header-mobile-menu">
+        <a href="/games">supported games</a>
+        <a href="/tutorial">setup guides</a>
+        <a href="/faq/en">f.a.q.</a>
+        <a href="/generate">generate game</a>
+        <a href="/uploads">host game</a>
+        <a href="/user-content">user content</a>
+        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
+    </div>
+</header>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rules Helpers &#8212; Archipelago 0.4.4 documentation</title>
+<script src="_static/documentation_options.js?v=90733dfc"></script>
+<script src="_static/doctools.js?v=888ff710"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Fill" href="fill.html" />
+    <link rel="prev" title="Options" href="options.html" /> 
+</head><body>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               accesskey="I">index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="fill.html" title="Fill"
+               accesskey="N">next</a> |</li>
+        <li class="right" >
+            <a href="options.html" title="Options"
+               accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Rules Helpers</a></li> 
+    </ul>
+</div> 
+<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rules Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#worlds.generic.Rules.allow_self_locking_items"><code class="docutils literal notranslate"><span class="pre">allow_self_locking_items()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#worlds.generic.Rules.forbid_items"><code class="docutils literal notranslate"><span class="pre">forbid_items()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="options.html" title="previous chapter">Options</a></li>
+      <li>Next: <a href="fill.html" title="next chapter">Fill</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+    </div>
+</div> 
+
+<div class="document">
+    <div id="document-wrapper" class="markdown">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+                
+  <section id="module-worlds.generic.Rules">
+<span id="rules-helpers"></span><h1>Rules Helpers<a class="headerlink" href="#module-worlds.generic.Rules" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="worlds.generic.Rules.allow_self_locking_items">
+<span class="sig-prename descclassname"><span class="pre">worlds.generic.Rules.</span></span><span class="sig-name descname"><span class="pre">allow_self_locking_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="location.html#BaseClasses.Location" title="BaseClasses.Location"><span class="pre">Location</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">item_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.generic.Rules.allow_self_locking_items" title="Link to this definition">¶</a></dt>
+<dd><p>This function sets rules on the supplied spot, such that the supplied item_name(s) can possibly be placed there.</p>
+<p>spot: Location or Region that the item(s) are allowed to be placed in
+item_names: item name or names that are allowed to be placed in the Location or Region</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="worlds.generic.Rules.forbid_items">
+<span class="sig-prename descclassname"><span class="pre">worlds.generic.Rules.</span></span><span class="sig-name descname"><span class="pre">forbid_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="location.html#BaseClasses.Location" title="BaseClasses.Location"><span class="pre">BaseClasses.Location</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#worlds.generic.Rules.forbid_items" title="Link to this definition">¶</a></dt>
+<dd><p>unused, but kept as a debugging tool.</p>
+</dd></dl>
+
+</section>
+
+
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="related" role="navigation" aria-label="related navigation">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px">
+            <a href="genindex.html" title="General Index"
+               >index</a></li>
+        <li class="right" >
+            <a href="py-modindex.html" title="Python Module Index"
+               >modules</a> |</li>
+        <li class="right" >
+            <a href="fill.html" title="Fill"
+               >next</a> |</li>
+        <li class="right" >
+            <a href="options.html" title="Options"
+               >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Rules Helpers</a></li> 
+    </ul>
+</div>
+<div class="footer" role="contentinfo">
+&#169; Copyright 2024, Archipelago.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+</div>
+</body>
