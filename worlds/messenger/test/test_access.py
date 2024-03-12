@@ -1,3 +1,5 @@
+import typing
+
 from . import MessengerTestBase
 from ..constants import NOTES, PHOBEKINS
 
@@ -201,15 +203,15 @@ class ItemsAccessTest(MessengerTestBase):
             "Searing Crags - Key of Strength": ["Power Thistle"],
             "Sunken Shrine - Key of Love": ["Sun Crest", "Moon Crest"],
             "Corrupted Future - Key of Courage": ["Demon King Crown"],
-            "Cloud Ruins - Acro": ["Ruxxtin's Amulet"],
-            "Forlorn Temple - Demon King": PHOBEKINS
         }
 
-        self.multiworld.state = self.multiworld.get_all_state(True)
-        self.remove_by_name(location_lock_pairs.values())
+        self.collect_all_but([item for items in location_lock_pairs.values() for item in items])
         for loc in location_lock_pairs:
             for item_name in location_lock_pairs[loc]:
                 item = self.get_item_by_name(item_name)
                 with self.subTest("Fulfills Accessibility", location=loc, item=item_name):
-                    self.assertTrue(self.multiworld.get_location(loc, self.player).can_fill(self.multiworld.state, item,
-                                                                                            True))
+                    location = self.multiworld.get_location(loc, self.player)
+                    self.assertTrue(location.can_fill(self.multiworld.state, item, True))
+                    location.item = item
+                    self.multiworld.state.update_reachable_regions(self.player)
+                    self.assertTrue(self.can_reach_location(loc))

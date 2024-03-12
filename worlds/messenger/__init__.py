@@ -16,7 +16,7 @@ from .portals import PORTALS, add_closed_portal_reqs, disconnect_portals, shuffl
 from .regions import LEVELS, MEGA_SHARDS, LOCATIONS, REGION_CONNECTIONS
 from .rules import MessengerHardRules, MessengerOOBRules, MessengerRules
 from .shop import FIGURINES, PROG_SHOP_ITEMS, SHOP_ITEMS, USEFUL_SHOP_ITEMS, shuffle_shop_prices
-from .subclasses import MessengerItem, MessengerRegion, MessengerShopLocation
+from .subclasses import MessengerEntrance, MessengerItem, MessengerRegion, MessengerShopLocation
 
 components.append(
     Component("The Messenger", component_type=Type.CLIENT, func=launch_game, game_name="The Messenger", supports_uri=True)
@@ -138,7 +138,8 @@ class MessengerWorld(World):
             if self.options.logic_level < Logic.option_hard:
                 self.options.logic_level.value = Logic.option_hard
 
-        self.multiworld.early_items[self.player]["Meditation"] = self.options.early_meditation.value
+        if self.options.early_meditation:
+            self.multiworld.early_items[self.player]["Meditation"] = 1
 
         self.shop_prices, self.figurine_prices = shuffle_shop_prices(self)
 
@@ -146,33 +147,40 @@ class MessengerWorld(World):
         self.starting_portals = [f"{portal} Portal"
                                  for portal in starting_portals[:3] +
                                  self.random.sample(starting_portals[3:], k=self.options.available_portals - 3)]
+        # super complicated method for adding searing crags to starting portals if it wasn't chosen
+        # need to add a check for transition shuffle when that gets added back in
+        if (not self.options.shuffle_transitions
+            and not self.options.shuffle_portals
+            and "Searing Crags Portal" not in self.starting_portals
+        ):
+            self.starting_portals.append("Searing Crags Portal")
+            if len(self.starting_portals) > 4:
+                portals_to_strip = [portal for portal in ["Riviere Turquoise Portal", "Sunken Shrine Portal"]
+                                    if portal in self.starting_portals]
+                self.starting_portals.remove(self.random.choice(portals_to_strip))
+
         self.plando_portals = []
         self.portal_mapping = []
         self.spoiler_portal_mapping = {}
         self.transitions = []
 
-    @classmethod
-    def stage_generate_early(cls, multiworld: MultiWorld):
-        if multiworld.players > 1:
-            return
-        cls.generate_output = generate_output
-
     def create_regions(self) -> None:
         # MessengerRegion adds itself to the multiworld
         # create simple regions
-        for level in LEVELS:
-            MessengerRegion(level, self)
-        # create and connect complex regions that have sub-regions
-        for region in [MessengerRegion(f"{parent} - {reg_name}", self, parent)
-                       for parent, sub_region in CONNECTIONS.items()
-                       for reg_name in sub_region]:
+        simple_regions = [MessengerRegion(level, self) for level in LEVELS]
+        # create complex regions that have sub-regions
+        complex_regions = [MessengerRegion(f"{parent} - {reg_name}", self, parent)
+                           for parent, sub_region in CONNECTIONS.items()
+                           for reg_name in sub_region]
+
+        for region in complex_regions:
             region_name = region.name.replace(f"{region.parent} - ", "")
             connection_data = CONNECTIONS[region.parent][region_name]
             for exit_region in connection_data:
                 region.connect(self.multiworld.get_region(exit_region, self.player))
+
         # all regions need to be created before i can do these connections so we create and connect the complex first
-        for region_name in [level for level in LEVELS if level in REGION_CONNECTIONS]:
-            region = self.multiworld.get_region(region_name, self.player)
+        for region in [level for level in simple_regions if level.name in REGION_CONNECTIONS]:
             region.add_exits(REGION_CONNECTIONS[region.name])
 
     def create_items(self) -> None:
@@ -181,11 +189,16 @@ class MessengerWorld(World):
         itempool: List[MessengerItem] = [
             self.create_item(item)
             for item in self.item_name_to_id
-            if item not in {
-                   "Power Seal", *NOTES, *FIGURINES, *main_movement_items,
-                   *{collected_item.name for collected_item in self.multiworld.precollected_items[self.player]},
-               } and "Time Shard" not in item
+            if "Time Shard" not in item and item not in {
+                "Power Seal", *NOTES, *FIGURINES, *main_movement_items,
+                *{collected_item.name for collected_item in self.multiworld.precollected_items[self.player]},
+            }
         ]
+
+        if self.options.limited_movement:
+            itempool.append(self.create_item(self.random.choice(main_movement_items)))
+        else:
+            itempool += [self.create_item(move_item) for move_item in main_movement_items]
 
         if self.options.limited_movement:
             itempool.append(self.create_item(self.random.choice(main_movement_items)))
@@ -236,9 +249,11 @@ class MessengerWorld(World):
         logic = self.options.logic_level
         if logic == Logic.option_normal:
             MessengerRules(self).set_messenger_rules()
-        else:
+        elif logic == Logic.option_hard:
             MessengerHardRules(self).set_messenger_rules()
-        # else:
+        else:
+            raise ValueError(f"Somehow you have a logic option that's currently invalid."
+                             f" {logic} for {self.multiworld.get_player_name(self.player)}")
         #     MessengerOOBRules(self).set_messenger_rules()
 
         add_closed_portal_reqs(self)
@@ -392,19 +407,24 @@ class MessengerWorld(World):
             state.prog_items[self.player]["Shards"] -= int(item.name.strip("Time Shard ()"))
         return change
 
-
-def generate_output(world: MessengerWorld, output_directory: str) -> None:
-    out_path = output_path(world.multiworld.get_out_file_name_base(1) + ".aptm")
-    if "The Messenger\\Archipelago\\output" not in out_path:
-        return
-    import orjson
-    data = {
-        "name": world.multiworld.get_player_name(world.player),
-        "slot_data": world.fill_slot_data(),
-        "loc_data": {loc.address: {loc.item.name: [loc.item.code, loc.item.flags]}
-                     for loc in world.multiworld.get_filled_locations() if loc.address},
-    }
-
-    output = orjson.dumps(data, option=orjson.OPT_NON_STR_KEYS)
-    with open(out_path, "wb") as f:
-        f.write(output)
+    @classmethod
+    def stage_generate_output(cls, multiworld: MultiWorld, output_directory: str) -> None:
+        # using stage_generate_output because it doesn't increase the logged player count for players without output
+        # only generate output if there's a single player
+        if multiworld.players > 1:
+            return
+        # the messenger client calls into AP with specific args, so check the out path matches what the client sends
+        out_path = output_path(multiworld.get_out_file_name_base(1) + ".aptm")
+        if "The Messenger\\Archipelago\\output" not in out_path:
+            return
+        import orjson
+        data = {
+            "name": multiworld.get_player_name(1),
+            "slot_data": multiworld.worlds[1].fill_slot_data(),
+            "loc_data": {loc.address: {loc.item.name: [loc.item.code, loc.item.flags]}
+                         for loc in multiworld.get_filled_locations() if loc.address},
+        }
+    
+        output = orjson.dumps(data, option=orjson.OPT_NON_STR_KEYS)
+        with open(out_path, "wb") as f:
+            f.write(output)

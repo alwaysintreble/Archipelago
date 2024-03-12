@@ -303,7 +303,7 @@ class MessengerRules:
             "Elemental Skylands Seal - Water":
                 lambda state: self.has_dart(state) and state.has("Currents Master", self.player),
             "Elemental Skylands Seal - Fire":
-                lambda state: self.has_dart(state) and self.can_destroy_projectiles(state),
+                lambda state: self.has_dart(state) and self.can_destroy_projectiles(state) and self.is_aerobatic(state),
             "Earth Mega Shard":
                 self.has_dart,
             "Water Mega Shard":
@@ -362,8 +362,8 @@ class MessengerRules:
         if self.world.options.music_box and not self.world.options.limited_movement:
             add_rule(multiworld.get_entrance("Shrink Down", self.player), self.has_dart)
         multiworld.completion_condition[self.player] = lambda state: state.has("Do the Thing!", self.player)
-        # if multiworld.accessibility[self.player]:  # not locations accessibility
-        #     set_self_locking_items(self.world, self.player)
+        if self.world.options.accessibility:  # not locations accessibility
+            set_self_locking_items(self.world, self.player)
 
 
 class MessengerHardRules(MessengerRules):
@@ -522,10 +522,8 @@ class MessengerOOBRules(MessengerRules):
 
 
 def set_self_locking_items(world: "MessengerWorld", player: int) -> None:
-    multiworld = world.multiworld
-
     # locations where these placements are always valid
-    allow_self_locking_items(multiworld.get_location("Searing Crags - Key of Strength", player), "Power Thistle")
-    allow_self_locking_items(multiworld.get_location("Sunken Shrine - Key of Love", player), "Sun Crest", "Moon Crest")
-    allow_self_locking_items(multiworld.get_location("Corrupted Future - Key of Courage", player), "Demon King Crown")
-    allow_self_locking_items(multiworld.get_location("Elemental Skylands Seal - Water", player), "Currents Master")
+    allow_self_locking_items(world.get_location("Searing Crags - Key of Strength").parent_region, "Power Thistle")
+    allow_self_locking_items(world.get_location("Sunken Shrine - Key of Love"), "Sun Crest", "Moon Crest")
+    allow_self_locking_items(world.get_location("Corrupted Future - Key of Courage").parent_region, "Demon King Crown")
+    allow_self_locking_items(world.get_location("Elemental Skylands Seal - Water"), "Currents Master")
