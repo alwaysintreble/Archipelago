@@ -55,6 +55,9 @@ class MessengerLocation(Location):
                 name = "Do the Thing!"
             self.place_locked_item(MessengerItem(name, ItemClassification.progression, None, parent.player))
 
+    def can_fill(self, state: CollectionState, item: Item, check_access=True) -> bool:
+        return False
+
 
 class MessengerShopLocation(MessengerLocation):
     @cached_property
