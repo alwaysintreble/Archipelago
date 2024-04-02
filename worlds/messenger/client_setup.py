@@ -56,21 +56,21 @@ def launch_game(url: Optional[str] = None) -> None:
         if not is_windows:
             mono_exe = which("mono")
             if not mono_exe:
-                # steam deck support but doesn't currently work
-                messagebox("Failure", "Failed to install Courier", True)
-                raise RuntimeError("Failed to install Courier")
-                # # download and use mono kickstart
-                # # this allows steam deck support
-                # mono_kick_url = "https://github.com/flibitijibibo/MonoKickstart/archive/refs/heads/master.zip"
-                # target = os.path.join(folder, "monoKickstart")
-                # os.makedirs(target, exist_ok=True)
-                # with urllib.request.urlopen(mono_kick_url) as download:
-                #     with ZipFile(io.BytesIO(download.read()), "r") as zf:
-                #         for member in zf.infolist():
-                #             zf.extract(member, path=target)
-                # installer = subprocess.Popen([os.path.join(target, "precompiled"),
-                #                               os.path.join(folder, "MiniInstaller.exe")], shell=False)
-                # os.remove(target)
+                # download and use mono kickstart
+                # this allows steam deck support
+                mono_kick_url = "https://github.com/flibitijibibo/MonoKickstart/archive/refs/heads/master.zip"
+                files = []
+                with urllib.request.urlopen(mono_kick_url) as download:
+                    with ZipFile(io.BytesIO(download.read()), "r") as zf:
+                        for member in zf.infolist():
+                            logging.info(member.filename)
+                            if member.filename == "kick.bin.x86_64":
+                                member.filename = "MiniInstaller.bin.x86_64"
+                            zf.extract(member, path=game_folder)
+                            files.append(member.filename)
+                installer = subprocess.Popen("MiniInstaller.bin.x86_64", shell=True)
+                for file in files:
+                    os.remove(file)
             else:
                 installer = subprocess.Popen([mono_exe, os.path.join(game_folder, "MiniInstaller.exe")], shell=False)
         else:
@@ -151,6 +151,8 @@ def launch_game(url: Optional[str] = None) -> None:
             elif should_update is None:
                 return
     if not is_windows:
+        if not which("mono"):
+            return
         if url:
             open_file(f"steam://rungameid/764790//{url}/")
         else:
