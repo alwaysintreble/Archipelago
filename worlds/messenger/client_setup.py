@@ -63,8 +63,10 @@ def launch_game(url: Optional[str] = None) -> None:
                 with urllib.request.urlopen(mono_kick_url) as download:
                     with ZipFile(io.BytesIO(download.read()), "r") as zf:
                         for member in zf.infolist():
-                            logging.info(member.filename)
-                            if member.filename == "kick.bin.x86_64":
+                            if "precompiled/" not in member.filename or member.filename.endswith("/"):
+                                continue
+                            member.filename = member.filename.split("/")[-1]
+                            if member.filename.endswith("bin.x86_64"):
                                 member.filename = "MiniInstaller.bin.x86_64"
                             zf.extract(member, path=game_folder)
                             files.append(member.filename)
