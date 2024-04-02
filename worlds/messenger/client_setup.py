@@ -69,16 +69,12 @@ def launch_game(url: Optional[str] = None) -> None:
                             if member.filename.endswith("bin.x86_64"):
                                 member.filename = "MiniInstaller.bin.x86_64"
                             zf.extract(member, path=game_folder)
-                            logging.info(f"extracted {member.filename}")
                             files.append(member.filename)
                 mono_installer = os.path.join(game_folder, "MiniInstaller.bin.x86_64")
                 os.chmod(mono_installer, 0o755)
                 installer = subprocess.Popen(mono_installer, shell=False)
-                logging.info("running installer")
                 failure = installer.wait()
-                logging.info(failure)
                 for file in files:
-                    logging.info(f"deleting file: {file}")
                     os.remove(file)
             else:
                 installer = subprocess.Popen([mono_exe, os.path.join(game_folder, "MiniInstaller.exe")], shell=False)
