@@ -71,7 +71,7 @@ def launch_game(url: Optional[str] = None) -> None:
                             zf.extract(member, path=game_folder)
                             logging.info(f"extracted {member.filename}")
                             files.append(member.filename)
-                installer = subprocess.Popen("MiniInstaller.bin.x86_64", shell=False)
+                installer = subprocess.Popen(os.path.join(game_folder, "MiniInstaller.bin.x86_64"), shell=False)
                 logging.info("running installer")
                 failure = installer.wait()
                 logging.info(failure)
