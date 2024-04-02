@@ -71,14 +71,16 @@ def launch_game(url: Optional[str] = None) -> None:
                             zf.extract(member, path=game_folder)
                             files.append(member.filename)
                 installer = subprocess.Popen("MiniInstaller.bin.x86_64", shell=True)
+                failure = installer.wait()
                 for file in files:
                     os.remove(file)
             else:
                 installer = subprocess.Popen([mono_exe, os.path.join(game_folder, "MiniInstaller.exe")], shell=False)
+                failure = installer.wait()
         else:
             installer = subprocess.Popen(os.path.join(game_folder, "MiniInstaller.exe"), shell=False)
+            failure = installer.wait()
 
-        failure = installer.wait()
         if failure:
             messagebox("Failure", "Failed to install Courier", True)
             os.chdir(working_directory)
