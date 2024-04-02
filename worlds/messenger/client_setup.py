@@ -126,6 +126,17 @@ def launch_game(url: Optional[str] = None) -> None:
     from . import MessengerWorld
     game_folder = os.path.dirname(MessengerWorld.settings.game_path)
     working_directory = os.getcwd()
+    # setup ssl context
+    try:
+        import certifi
+        import ssl
+        context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH, cafile=certifi.where())
+        context.set_alpn_protocols(["http/1.1"])
+        https_handler = urllib.request.HTTPSHandler(context=context)
+        opener = urllib.request.build_opener(https_handler)
+        urllib.request.install_opener(opener)
+    except ImportError:
+        pass
     if not courier_installed():
         should_install = askyesnocancel("Install Courier",
                                         "No Courier installation detected. Would you like to install now?")
