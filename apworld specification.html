@@ -1,0 +1,137 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>apworld Specification &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">apworld Specification</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="apworld-specification">
+<h1>apworld Specification<a class="headerlink" href="#apworld-specification" title="Link to this heading">¶</a></h1>
+<p>Archipelago depends on worlds to provide game-specific details like items, locations and output generation.
+Those are located in the <code class="docutils literal notranslate"><span class="pre">worlds/</span></code> folder (source) or <code class="docutils literal notranslate"><span class="pre">&lt;install</span> <span class="pre">dir&gt;/lib/worlds/</span></code> (when installed).
+See <a class="reference internal" href="world%20api.html"><span class="std std-doc">world api.md</span></a> for details.</p>
+<p>apworld provides a way to package and ship a world that is not part of the main distribution by placing a <code class="docutils literal notranslate"><span class="pre">*.apworld</span></code>
+file into the worlds folder.</p>
+<p><strong>Warning:</strong> apworlds have to be all lower case, otherwise they raise a bogus Exception when trying to import in frozen python 3.10+!</p>
+<section id="file-format">
+<h2>File Format<a class="headerlink" href="#file-format" title="Link to this heading">¶</a></h2>
+<p>apworld files are zip archives, all lower case, with the file ending <code class="docutils literal notranslate"><span class="pre">.apworld</span></code>.
+The zip has to contain a folder with the same name as the zip, case-sensitive, that contains what would normally be in
+the world’s folder in <code class="docutils literal notranslate"><span class="pre">worlds/</span></code>. I.e. <code class="docutils literal notranslate"><span class="pre">worlds/ror2.apworld</span></code> containing <code class="docutils literal notranslate"><span class="pre">ror2/__init__.py</span></code>.</p>
+</section>
+<section id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">¶</a></h2>
+<p>No metadata is specified yet.</p>
+</section>
+<section id="extra-data">
+<h2>Extra Data<a class="headerlink" href="#extra-data" title="Link to this heading">¶</a></h2>
+<p>The zip can contain arbitrary files in addition what was specified above.</p>
+</section>
+<section id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h2>
+<p>Imports from other files inside the apworld have to use relative imports. e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.options</span> <span class="pre">import</span> <span class="pre">MyGameOptions</span></code></p>
+<p>Imports from AP base have to use absolute imports, e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">Options</span> <span class="pre">import</span> <span class="pre">Toggle</span></code> or
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">worlds.AutoWorld</span> <span class="pre">import</span> <span class="pre">World</span></code></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">apworld Specification</a><ul>
+<li><a class="reference internal" href="#file-format">File Format</a></li>
+<li><a class="reference internal" href="#metadata">Metadata</a></li>
+<li><a class="reference internal" href="#extra-data">Extra Data</a></li>
+<li><a class="reference internal" href="#caveats">Caveats</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/apworld specification.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">apworld Specification</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

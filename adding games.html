@@ -1,0 +1,198 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Adding Games &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Games</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="adding-games">
+<h1>Adding Games<a class="headerlink" href="#adding-games" title="Link to this heading">¶</a></h1>
+<p>Adding a new game to Archipelago has two major parts:</p>
+<ul class="simple">
+<li><p>Game Modification to communicate with Archipelago server (hereafter referred to as “client”)</p></li>
+<li><p>Archipelago Generation and Server integration plugin (hereafter referred to as “world”)</p></li>
+</ul>
+<p>This document will attempt to illustrate the bare minimum requirements and expectations of both parts of a new world
+integration. As game modification wildly varies by system and engine, and has no bearing on the Archipelago protocol,
+it will not be detailed here.</p>
+<section id="client">
+<h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
+<p>The client is an intermediary program between the game and the Archipelago server. This can either be a direct
+modification to the game, an external program, or both. This can be implemented in nearly any modern language, but it
+must fulfill a few requirements in order to function as expected. The specific requirements the game client must follow
+to behave as expected are:</p>
+<ul class="simple">
+<li><p>Handle both secure and unsecure websocket connections</p></li>
+<li><p>Detect and react when a location has been “checked” by the player by sending a network packet to the server</p></li>
+<li><p>Receive and parse network packets when the player receives an item from the server, and reward it to the player on
+demand</p>
+<ul>
+<li><p><strong>Any</strong> of your items can be received any number of times, up to and far surpassing those that the game might
+normally expect from features such as starting inventory, item link replacement, or item cheating</p></li>
+<li><p>Players and the admin can cheat items to the player at any time with a server command, and these items may not have
+a player or location attributed to them</p></li>
+</ul>
+</li>
+<li><p>Be able to change the port for saved connection info</p>
+<ul>
+<li><p>Rooms hosted on the website attempt to reserve their port, but since there are a limited number of ports, this
+privilege can be lost, requiring the room to be moved to a new port</p></li>
+</ul>
+</li>
+<li><p>Reconnect if the connection is unstable and lost while playing</p></li>
+<li><p>Keep an index for items received in order to resync. The ItemsReceived Packets are a single list with guaranteed
+order.</p></li>
+<li><p>Receive items that were sent to the player while they were not connected to the server</p>
+<ul>
+<li><p>The player being able to complete checks while offline and sending them when reconnecting is a good bonus, but not
+strictly required</p></li>
+</ul>
+</li>
+<li><p>Send a status update packet alerting the server that the player has completed their goal</p></li>
+</ul>
+<p>Libraries for most modern languages and the spec for various packets can be found in the
+<a class="reference internal" href="#/docs/network%20protocol.md"><span class="xref myst">network protocol</span></a> API reference document.</p>
+</section>
+<section id="world">
+<h2>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h2>
+<p>The world is your game integration for the Archipelago generator, webhost, and multiworld server. It contains all the
+information necessary for creating the items and locations to be randomized, the logic for item placement, the
+datapackage information so other game clients can recognize your game data, and documentation. Your world must be
+written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago
+repository and creating a new world package in <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code>. A bare minimum world implementation must satisfy the
+following requirements:</p>
+<ul class="simple">
+<li><p>A folder within <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code> that contains an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">World</span></code> subclass where you create your world and define all of its rules</p></li>
+<li><p>A unique game name</p></li>
+<li><p>For webhost documentation and behaviors, a <code class="docutils literal notranslate"><span class="pre">WebWorld</span></code> subclass that must be instantiated in the <code class="docutils literal notranslate"><span class="pre">World</span></code> class
+definition</p>
+<ul>
+<li><p>The game_info doc must follow the format <code class="docutils literal notranslate"><span class="pre">{language_code}_{game_name}.md</span></code></p></li>
+</ul>
+</li>
+<li><p>A mapping for items and locations defining their names and ids for clients to be able to identify them. These are
+<code class="docutils literal notranslate"><span class="pre">item_name_to_id</span></code> and <code class="docutils literal notranslate"><span class="pre">location_name_to_id</span></code>, respectively.</p></li>
+<li><p>Create an item when <code class="docutils literal notranslate"><span class="pre">create_item</span></code> is called both by your code and externally</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">options_dataclass</span></code> defining the options players have available to them</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">Region</span></code> for your player with the name “Menu” to start from</p></li>
+<li><p>Create a non-zero number of locations and add them to your regions</p></li>
+<li><p>Create a non-zero number of items <strong>equal</strong> to the number of locations and add them to the multiworld itempool</p></li>
+<li><p>All items submitted to the multiworld itempool must not be manually placed by the World. If you need to place specific
+items, there are multiple ways to do so, but they should not be added to the multiworld itempool.</p></li>
+</ul>
+<p>Notable caveats:</p>
+<ul class="simple">
+<li><p>The “Menu” region will always be considered the “start” for the player</p></li>
+<li><p>The “Menu” region is <em>always</em> considered accessible; i.e. the player is expected to always be able to return to the
+start of the game from anywhere</p></li>
+<li><p>When submitting regions or items to the multiworld (multiworld.regions and multiworld.itempool respectively), use
+<code class="docutils literal notranslate"><span class="pre">append</span></code>, <code class="docutils literal notranslate"><span class="pre">extend</span></code>, or <code class="docutils literal notranslate"><span class="pre">+=</span></code>. <strong>Do not use <code class="docutils literal notranslate"><span class="pre">=</span></code></strong></p></li>
+<li><p>Regions are simply containers for locations that share similar access rules. They do not have to map to
+concrete, physical areas within your game and can be more abstract like tech trees or a questline.</p></li>
+</ul>
+<p>The base World class can be found in <a class="reference internal" href="#/worlds/AutoWorld.py"><span class="xref myst">AutoWorld</span></a>. Methods available for your world to call during
+generation can be found in <a class="reference internal" href="#/BaseClasses.py"><span class="xref myst">BaseClasses</span></a> and <a class="reference internal" href="#/Fill.py"><span class="xref myst">Fill</span></a>. Some examples and documentation
+regarding the API can be found in the <a class="reference internal" href="#/docs/world%20api.md"><span class="xref myst">world api doc</span></a>.
+Before publishing, make sure to also check out <a class="reference internal" href="#/docs/world%20maintainer.md"><span class="xref myst">world maintainer.md</span></a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Adding Games</a><ul>
+<li><a class="reference internal" href="#client">Client</a></li>
+<li><a class="reference internal" href="#world">World</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/adding games.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Adding Games</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>World Maintainer &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">World Maintainer</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="world-maintainer">
+<h1>World Maintainer<a class="headerlink" href="#world-maintainer" title="Link to this heading">¶</a></h1>
+<p>A world maintainer is a person responsible for a world or part of a world in Archipelago.</p>
+<p>If a world author does not want to take on the responsibilities of a world maintainer, they can release their world as
+an unofficial <a class="reference internal" href="#/docs/apworld%20specification.md"><span class="xref myst">APWorld</span></a> or maintain their own fork instead.</p>
+<p>All current world maintainers are listed in the <a class="reference internal" href="#/docs/CODEOWNERS"><span class="xref myst">CODEOWNERS</span></a> document.</p>
+<section id="responsibilities">
+<h2>Responsibilities<a class="headerlink" href="#responsibilities" title="Link to this heading">¶</a></h2>
+<p>Unless these are shared between multiple people, we expect the following from each world maintainer</p>
+<ul class="simple">
+<li><p>Be on our Discord to get updates on problems with and suggestions for the world.</p></li>
+<li><p>Decide if a feature (pull request) should be merged.</p></li>
+<li><p>Review contents of such pull requests or organize peer reviews or post that you did not review the content.</p></li>
+<li><p>Fix or point out issues when core changes break your code.</p></li>
+<li><p>Use the watch function on GitHub, the #github-updates channel on Discord or check manually from time to time for new
+pull requests. Core maintainers may also ping you if a pull request concerns your world.</p></li>
+<li><p>Test (or have tested) the world on the main branch from time to time, especially during RC (release candidate) phases
+of development.</p></li>
+<li><p>Let us know of long periods of unavailability.</p></li>
+</ul>
+</section>
+<section id="becoming-a-world-maintainer">
+<h2>Becoming a World Maintainer<a class="headerlink" href="#becoming-a-world-maintainer" title="Link to this heading">¶</a></h2>
+<section id="adding-a-world">
+<h3>Adding a World<a class="headerlink" href="#adding-a-world" title="Link to this heading">¶</a></h3>
+<p>When we merge your world into the core Archipelago repository, you automatically become world maintainer unless you
+nominate someone else (i.e. there are multiple devs). You can define who is allowed to approve changes to your world
+in the <a class="reference internal" href="#/docs/CODEOWNERS"><span class="xref myst">CODEOWNERS</span></a> document.</p>
+</section>
+<section id="getting-voted">
+<h3>Getting Voted<a class="headerlink" href="#getting-voted" title="Link to this heading">¶</a></h3>
+<p>When a world is unmaintained, the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a>
+can vote for a new maintainer if there is a candidate.
+For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
+The time limit is 1 week, but can end early if the majority is reached earlier.
+Voting shall be conducted on Discord in #archipelago-dev.</p>
+</section>
+</section>
+<section id="dropping-out">
+<h2>Dropping out<a class="headerlink" href="#dropping-out" title="Link to this heading">¶</a></h2>
+<section id="resigning">
+<h3>Resigning<a class="headerlink" href="#resigning" title="Link to this heading">¶</a></h3>
+<p>A world maintainer can resign and have their username removed from the <a class="reference internal" href="#/docs/CODEOWNERS"><span class="xref myst">CODEOWNERS</span></a> document. If no
+new maintainer takes over management of the world, the world becomes unmaintained.</p>
+</section>
+<section id="getting-voted-out">
+<h3>Getting Voted out<a class="headerlink" href="#getting-voted-out" title="Link to this heading">¶</a></h3>
+<p>A world maintainer can be voted out by the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a>,
+for example when they become unreachable.
+For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
+The time limit is 2 weeks, but can end early if the majority is reached earlier AND the world maintainer was pinged and
+made their case or was pinged and has been unreachable for more than 2 weeks already.
+Voting shall be conducted on Discord in #archipelago-dev. Commits that are a direct result of the voting shall include
+date, voting members and final result in the commit message.</p>
+</section>
+</section>
+<section id="handling-of-unmaintained-worlds">
+<h2>Handling of Unmaintained Worlds<a class="headerlink" href="#handling-of-unmaintained-worlds" title="Link to this heading">¶</a></h2>
+<p>As long as worlds are known to work for the most part, they can stay included. Once a world becomes broken it shall be
+moved from <code class="docutils literal notranslate"><span class="pre">worlds/</span></code> to <code class="docutils literal notranslate"><span class="pre">worlds_disabled/</span></code>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">World Maintainer</a><ul>
+<li><a class="reference internal" href="#responsibilities">Responsibilities</a></li>
+<li><a class="reference internal" href="#becoming-a-world-maintainer">Becoming a World Maintainer</a><ul>
+<li><a class="reference internal" href="#adding-a-world">Adding a World</a></li>
+<li><a class="reference internal" href="#getting-voted">Getting Voted</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dropping-out">Dropping out</a><ul>
+<li><a class="reference internal" href="#resigning">Resigning</a></li>
+<li><a class="reference internal" href="#getting-voted-out">Getting Voted out</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/world maintainer.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">World Maintainer</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

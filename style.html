@@ -1,0 +1,173 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Style Guide &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Style Guide</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="style-guide">
+<h1>Style Guide<a class="headerlink" href="#style-guide" title="Link to this heading">¶</a></h1>
+<section id="generic">
+<h2>Generic<a class="headerlink" href="#generic" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>This guide can be ignored for data files that are not to be viewed in an editor.</p></li>
+<li><p>120 character per line for all source files.</p></li>
+<li><p>Avoid white space errors like trailing spaces.</p></li>
+</ul>
+</section>
+<section id="python-code">
+<h2>Python Code<a class="headerlink" href="#python-code" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>We mostly follow <a class="reference external" href="https://peps.python.org/pep-0008/">PEP8</a>. Read below to see the differences.</p></li>
+<li><p>120 characters per line. PyCharm does this automatically, other editors can be configured for it.</p></li>
+<li><p>Strings in core code will be <code class="docutils literal notranslate"><span class="pre">&quot;strings&quot;</span></code>. In other words: double quote your strings.</p></li>
+<li><p>Strings in worlds should use double quotes as well, but imported code may differ.</p></li>
+<li><p>Prefer <a class="reference external" href="https://peps.python.org/pep-0498/">format string literals</a> over string concatenation,
+use single quotes inside them: <code class="docutils literal notranslate"><span class="pre">f&quot;Like</span> <span class="pre">{dct['key']}&quot;</span></code></p></li>
+<li><p>Use type annotations where possible for function signatures and class members.</p></li>
+<li><p>Use type annotations where appropriate for local variables (e.g. <code class="docutils literal notranslate"><span class="pre">var:</span> <span class="pre">List[int]</span> <span class="pre">=</span> <span class="pre">[]</span></code>, or when the
+type is hard or impossible to deduce.) Clear annotations help developers look up and validate API calls.</p></li>
+<li><p>New classes, attributes, and methods in core code should have docstrings that follow
+<a class="reference external" href="https://peps.python.org/pep-0287/">reST style</a>.</p></li>
+<li><p>Worlds that do not follow PEP8 should still have a consistent style across its files to make reading easier.</p></li>
+</ul>
+</section>
+<section id="markdown">
+<h2>Markdown<a class="headerlink" href="#markdown" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>We almost follow <a class="reference external" href="https://google.github.io/styleguide/docguide/style.html">Google’s styleguide</a>.
+Read below for differences.</p></li>
+<li><p>For existing documents, try to follow its style or ask to completely reformat it.</p></li>
+<li><p>120 characters per line.</p></li>
+<li><p>One space between bullet/number and text.</p></li>
+<li><p>No lazy numbering.</p></li>
+</ul>
+</section>
+<section id="html">
+<h2>HTML<a class="headerlink" href="#html" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Indent with 2 spaces for new code.</p></li>
+<li><p>kebab-case for ids and classes.</p></li>
+</ul>
+</section>
+<section id="css">
+<h2>CSS<a class="headerlink" href="#css" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Indent with 2 spaces for new code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span></code> on the same line as the selector.</p></li>
+<li><p>No space between selector and <code class="docutils literal notranslate"><span class="pre">{</span></code>.</p></li>
+</ul>
+</section>
+<section id="js">
+<h2>JS<a class="headerlink" href="#js" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Indent with 2 spaces.</p></li>
+<li><p>Indent <code class="docutils literal notranslate"><span class="pre">case</span></code> inside <code class="docutils literal notranslate"><span class="pre">switch</span> </code> with 2 spaces.</p></li>
+<li><p>Use single quotes.</p></li>
+<li><p>Semicolons are required after every statement.</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Style Guide</a><ul>
+<li><a class="reference internal" href="#generic">Generic</a></li>
+<li><a class="reference internal" href="#python-code">Python Code</a></li>
+<li><a class="reference internal" href="#markdown">Markdown</a></li>
+<li><a class="reference internal" href="#html">HTML</a></li>
+<li><a class="reference internal" href="#css">CSS</a></li>
+<li><a class="reference internal" href="#js">JS</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/style.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Style Guide</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

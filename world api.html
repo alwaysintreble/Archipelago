@@ -1,154 +1,55 @@
 
-    <link rel="stylesheet" type="text/css" href="_static/styles/tooltip.css"/>
-    <link rel="stylesheet" type="text/css" href="_static/styles/cookieNotice.css"/>
-    <link rel="stylesheet" type="text/css" href="_static/styles/globalStyles.css"/>
-    <script type="application/ecmascript" src="_static/assets/styleController.js"></script>
-    <script type="application/ecmascript" src="_static/assets/cookieNotice.js"></script>
-    <link rel="stylesheet" type="text/css" href="_static/styles/markdown.css"/>
-    <link rel="stylesheet" type="text/css" href="_static/styles/themes/stone.css"/>
-    <link rel="stylesheet" type="text/css" href="_static/styles/themes/base.css"/>
-    <script type="application/ecmascript" src="_static/assets/baseHeader.js"></script>
 
+<!doctype html>
 
-
-<header id="base-header">
-    <div id="base-header-left">
-        <a href="/" id="site-title">
-            <img id="header-logo" src="_static/static/branding/header-logo.svg" alt="Archipelago" />
-        </a>
-    </div>
-    <div id="base-header-right">
-        <div id="base-header-popover-text">
-            <img id="base-header-popover-icon" src="_static/static/button-images/popover.png" alt="Popover Menu" />
-            get started
-        </div>
-        <div id="base-header-popover-menu">
-            <a href="/games">supported games</a>
-            <a href="/tutorial">setup guides</a>
-            <a href="/generate">generate game</a>
-            <a href="/uploads">host game</a>
-            <a href="/user-content">user content</a>
-        </div>
-        <a href="/faq/en">f.a.q</a>
-        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
-    </div>
-    <div id="base-header-right-mobile">
-        <a id="base-header-mobile-menu-button" href="#">
-            <img src="_static/static/button-images/hamburger-menu-icon.png" alt="Menu" />
-        </a>
-    </div>
-    <div id="base-header-mobile-menu">
-        <a href="/games">supported games</a>
-        <a href="/tutorial">setup guides</a>
-        <a href="/faq/en">f.a.q.</a>
-        <a href="/generate">generate game</a>
-        <a href="/uploads">host game</a>
-        <a href="/user-content">user content</a>
-        <a href="https://discord.gg/8Z65BR2" target="_blank">discord</a>
-    </div>
-</header>
-
-
-<head>
+<html lang="en" data-content_root="./">
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Archipelago World API &#8212; Archipelago 0.4.4 documentation</title>
-<script src="_static/documentation_options.js?v=90733dfc"></script>
-<script src="_static/doctools.js?v=888ff710"></script>
-<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <title>Archipelago World API &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Archipelago Options API" href="options%20api.html" />
-    <link rel="prev" title="NetUtils" href="netutils.html" /> 
-</head><body>
-<div class="related" role="navigation" aria-label="related navigation">
-    <h3>Navigation</h3>
-    <ul>
+    <link rel="prev" title="NetUtils" href="netutils.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
         <li class="right" style="margin-right: 10px">
-            <a href="genindex.html" title="General Index"
-               accesskey="I">index</a></li>
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-            <a href="py-modindex.html" title="Python Module Index"
-               >modules</a> |</li>
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
-            <a href="options%20api.html" title="Archipelago Options API"
-               accesskey="N">next</a> |</li>
+          <a href="options%20api.html" title="Archipelago Options API"
+             accesskey="N">next</a> |</li>
         <li class="right" >
-            <a href="netutils.html" title="NetUtils"
-               accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
+          <a href="netutils.html" title="NetUtils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago World API</a></li> 
-    </ul>
-</div> 
-<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-    <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Archipelago</a></h1>
+      </ul>
+    </div>  
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
-<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago World API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#language">Language</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#coding-style">Coding style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#docstrings">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="netutils.html" title="previous chapter">NetUtils</a></li>
-      <li>Next: <a href="options%20api.html" title="next chapter">Archipelago Options API</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-    </div>
-</div> 
-
-<div class="document">
-    <div id="document-wrapper" class="markdown">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
-            <div class="body" role="main">
-                
+          <div class="body" role="main">
+            
   <section id="archipelago-world-api">
 <h1>Archipelago World API<a class="headerlink" href="#archipelago-world-api" title="Link to this heading">¶</a></h1>
 <p>This document tries to explain some aspects of the Archipelago World API used when implementing the generation logic of
@@ -488,7 +389,7 @@ its <code class="docutils literal notranslate"><span class="pre">MyGameOptions</
 <p>When imported names pile up, it may be easier to use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.</span> <span class="pre">import</span> <span class="pre">options</span></code> and access the variable as
 <code class="docutils literal notranslate"><span class="pre">options.MyGameOptions</span></code>.</p>
 <p>Imports from directories outside your world should use absolute imports. Correct use of relative / absolute imports is
-required for zipped worlds to function, see <a class="reference internal" href="#apworld%20specification.md"><span class="xref myst">apworld specification.md</span></a>.</p>
+required for zipped worlds to function, see <a class="reference internal" href="apworld%20specification.html"><span class="std std-doc">apworld specification.md</span></a>.</p>
 </section>
 <section id="your-item-type">
 <h3>Your Item Type<a class="headerlink" href="#your-item-type" title="Link to this heading">¶</a></h3>
@@ -947,33 +848,132 @@ TestBase, and can then define options to test in the class body, and run tests i
 </section>
 
 
-                <div class="clearer"></div>
-            </div>
+            <div class="clearer"></div>
+          </div>
         </div>
-    </div>
-    <div class="clearer"></div>
-</div>
-<div class="related" role="navigation" aria-label="related navigation">
-    <h3>Navigation</h3>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-        <li class="right" style="margin-right: 10px">
-            <a href="genindex.html" title="General Index"
-               >index</a></li>
-        <li class="right" >
-            <a href="py-modindex.html" title="Python Module Index"
-               >modules</a> |</li>
-        <li class="right" >
-            <a href="options%20api.html" title="Archipelago Options API"
-               >next</a> |</li>
-        <li class="right" >
-            <a href="netutils.html" title="NetUtils"
-               >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Archipelago World API</a></li> 
+<li><a class="reference internal" href="#">Archipelago World API</a><ul>
+<li><a class="reference internal" href="#language">Language</a></li>
+<li><a class="reference internal" href="#coding-style">Coding style</a></li>
+<li><a class="reference internal" href="#docstrings">Docstrings</a></li>
+<li><a class="reference internal" href="#definitions">Definitions</a><ul>
+<li><a class="reference internal" href="#world-class">World Class</a></li>
+<li><a class="reference internal" href="#webworld-class">WebWorld Class</a></li>
+<li><a class="reference internal" href="#multiworld-object">MultiWorld Object</a></li>
+<li><a class="reference internal" href="#player">Player</a></li>
+<li><a class="reference internal" href="#player-options">Player Options</a></li>
+<li><a class="reference internal" href="#world-settings">World Settings</a></li>
+<li><a class="reference internal" href="#locations">Locations</a><ul>
+<li><a class="reference internal" href="#documenting-locations">Documenting Locations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#items">Items</a><ul>
+<li><a class="reference internal" href="#documenting-items">Documenting Items</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#events">Events</a></li>
+<li><a class="reference internal" href="#regions">Regions</a></li>
+<li><a class="reference internal" href="#entrances">Entrances</a></li>
+<li><a class="reference internal" href="#access-rules">Access Rules</a></li>
+<li><a class="reference internal" href="#item-rules">Item Rules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation">Implementation</a><ul>
+<li><a class="reference internal" href="#your-world">Your World</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#relative-imports">Relative Imports</a></li>
+<li><a class="reference internal" href="#your-item-type">Your Item Type</a></li>
+<li><a class="reference internal" href="#your-location-type">Your Location Type</a></li>
+<li><a class="reference internal" href="#a-world-class-skeleton">A World Class Skeleton</a></li>
+<li><a class="reference internal" href="#generation">Generation</a><ul>
+<li><a class="reference internal" href="#generate-early">generate_early</a></li>
+<li><a class="reference internal" href="#create-regions">create_regions</a></li>
+<li><a class="reference internal" href="#create-item">create_item</a></li>
+<li><a class="reference internal" href="#create-items">create_items</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-rules">Setting Rules</a></li>
+<li><a class="reference internal" href="#custom-logic-rules">Custom Logic Rules</a></li>
+<li><a class="reference internal" href="#logic-mixin">Logic Mixin</a><ul>
+<li><a class="reference internal" href="#pre-fill">pre_fill</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generate-output">Generate Output</a></li>
+<li><a class="reference internal" href="#slot-data">Slot Data</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li><a class="reference internal" href="#game-info">Game Info</a></li>
+<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="netutils.html"
+                          title="previous chapter">NetUtils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="options%20api.html"
+                          title="next chapter">Archipelago Options API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/world api.md.txt"
+            rel="nofollow">Show Source</a></li>
     </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
 </div>
-<div class="footer" role="contentinfo">
-&#169; Copyright 2024, Archipelago.
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-</div>
-</body>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="options%20api.html" title="Archipelago Options API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="netutils.html" title="NetUtils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Archipelago World API</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

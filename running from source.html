@@ -1,0 +1,212 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running From Source &#8212; Archipelago 0.4.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    
+    <script src="_static/documentation_options.js?v=340bb9e5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running From Source</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="running-from-source">
+<h1>Running From Source<a class="headerlink" href="#running-from-source" title="Link to this heading">¶</a></h1>
+<p>If you just want to play and there is a compiled version available on the
+<a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago releases page</a>,
+use that version. These steps are for developers or platforms without compiled releases available.</p>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Link to this heading">¶</a></h2>
+<p>What you’ll need:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/downloads/">Python 3.8.7 or newer</a>, not the Windows Store version</p>
+<ul>
+<li><p><strong>Python 3.12 is currently unsupported</strong></p></li>
+</ul>
+</li>
+<li><p>pip: included in downloads from python.org, separate in many Linux distributions</p></li>
+<li><p>Matching C compiler</p>
+<ul>
+<li><p>possibly optional, read operating system specific sections</p></li>
+</ul>
+</li>
+</ul>
+<p>Then run any of the starting point scripts, like Generate.py, and the included ModuleUpdater should prompt to install or update the
+required modules and after pressing enter proceed to install everything automatically.
+After this, you should be able to run the programs.</p>
+<ul class="simple">
+<li><p>With yaml(s) in the <code class="docutils literal notranslate"><span class="pre">Players</span></code> folder, <code class="docutils literal notranslate"><span class="pre">Generate.py</span></code> will generate the multiworld archive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiServer.py</span></code>, with the filename of the generated archive as a command line parameter, will host the multiworld locally.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--log_network</span></code> is a command line parameter useful for debugging.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WebHost.py</span></code> will host the website on your computer.</p>
+<ul>
+<li><p>You can copy <code class="docutils literal notranslate"><span class="pre">docs/webhost</span> <span class="pre">configuration</span> <span class="pre">sample.yaml</span></code> to <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>
+to change WebHost options (like the web hosting port number).</p></li>
+<li><p>As a side effect, <code class="docutils literal notranslate"><span class="pre">WebHost.py</span></code> creates the template yamls for all the games in <code class="docutils literal notranslate"><span class="pre">WebHostLib/static/generated</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h2>
+<p>Recommended steps</p>
+<ul class="simple">
+<li><p>Download and install a “Windows installer (64-bit)” from the <a class="reference external" href="https://www.python.org/downloads">Python download page</a></p>
+<ul>
+<li><p><strong>Python 3.12 is currently unsupported</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Optional</strong>: Download and install Visual Studio Build Tools from
+<a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Visual Studio Build Tools</a>.</p>
+<ul>
+<li><p>Refer to <a class="reference external" href="https://wiki.python.org/moin/WindowsCompilers">Windows Compilers on the python wiki</a> for details.
+Generally, selecting the box for “Desktop Development with C++” will provide what you need.</p></li>
+<li><p>Build tools are not required if all modules are installed pre-compiled. Pre-compiled modules are pinned on
+<a class="reference external" href="https://discord.com/channels/731205301247803413/731214280439103580/905154456377757808">Discord in #archipelago-dev</a></p></li>
+</ul>
+</li>
+<li><p>It is recommended to use <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm IDE</a></p></li>
+<li><p>Run Generate.py which will prompt installation of missing modules, press enter to confirm</p>
+<ul>
+<li><p>In PyCharm: right-click Generate.py and select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">'Generate'</span></code></p></li>
+<li><p>Without PyCharm: open a command prompt in the source folder and type <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">Generate.py</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="macos">
+<h2>macOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h2>
+<p>Refer to <a class="reference internal" href="#../worlds/generic/docs/mac_en.md"><span class="xref myst">Guide to Run Archipelago from Source Code on macOS</span></a>.</p>
+</section>
+<section id="optional-a-link-to-the-past-enemizer">
+<h2>Optional: A Link to the Past Enemizer<a class="headerlink" href="#optional-a-link-to-the-past-enemizer" title="Link to this heading">¶</a></h2>
+<p>Only required to generate seeds that include A Link to the Past with certain options enabled. You will receive an
+error if it is required.</p>
+<p>You can get the latest Enemizer release at <a class="reference external" href="https://github.com/Ijwu/Enemizer/releases">Enemizer Github releases</a>.
+It should be dropped as “EnemizerCLI” into the root folder of the project. Alternatively, you can point the Enemizer
+setting in host.yaml at your Enemizer executable.</p>
+</section>
+<section id="optional-sni">
+<h2>Optional: SNI<a class="headerlink" href="#optional-sni" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/alttpo/sni/blob/main/README.md">SNI</a> is required to use SNIClient. If not integrated into the project, it has to be started manually.</p>
+<p>You can get the latest SNI release at <a class="reference external" href="https://github.com/alttpo/sni/releases">SNI Github releases</a>.
+It should be dropped as “SNI” into the root folder of the project. Alternatively, you can point the sni setting in
+host.yaml at your SNI folder.</p>
+</section>
+<section id="optional-git">
+<h2>Optional: Git<a class="headerlink" href="#optional-git" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://git-scm.com">Git</a> is required to install some of the packages that Archipelago depends on.
+It may be possible to run Archipelago from source without it, at your own risk.</p>
+<p>It is also generally recommended to have Git installed and understand how to use it, especially if you’re thinking about contributing.</p>
+<p>You can download the latest release of Git at <a class="reference external" href="https://git-scm.com/downloads">The downloads page on the Git website</a>.</p>
+<p>Beyond that, there are also graphical interfaces for Git that make it more accessible.
+For repositories on Github (such as this one), <a class="reference external" href="https://desktop.github.com">Github Desktop</a> is one such option.
+PyCharm has a built-in version control integration that supports Git.</p>
+</section>
+<section id="running-tests">
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
+<p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">pytest-subtests</span></code>, then use your IDE to run tests or run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> from the source folder.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Running From Source</a><ul>
+<li><a class="reference internal" href="#general">General</a></li>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+<li><a class="reference internal" href="#macos">macOS</a></li>
+<li><a class="reference internal" href="#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
+<li><a class="reference internal" href="#optional-sni">Optional: SNI</a></li>
+<li><a class="reference internal" href="#optional-git">Optional: Git</a></li>
+<li><a class="reference internal" href="#running-tests">Running tests</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/running from source.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running From Source</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>
