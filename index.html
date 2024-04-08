@@ -18,7 +18,7 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="BaseClasses" href="baseclasses.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -34,7 +34,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="baseclasses.html" title="BaseClasses"
+          <a href="contributing.html" title="Contributing"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Archipelago 0.4.5 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API Reference</a></li> 
@@ -48,21 +48,106 @@
             
   <section id="archipelago-api-reference">
 <h1>Archipelago API Reference<a class="headerlink" href="#archipelago-api-reference" title="Link to this heading">¶</a></h1>
+<p>Archipelago is still under development, so the API is subject to change. As such, there exists both
+<a class="reference external" href="https://archipelago.gg/docs">stable</a> and <a class="reference external" href="https://ArchipelagoMW.github.io/Archipelago">bleeding edge</a> versions of
+this reference document.</p>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Link to this heading">¶</a></h2>
+<p>The first thing you should do to get started with Archipelago is to read the <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a> which cover
+the requirements of not only contributing to the main project, but the requirements and expectations of a world as well.</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="world%20maintainer.html#responsibilities">Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20maintainer.html#becoming-a-world-maintainer">Becoming a World Maintainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20maintainer.html#dropping-out">Dropping out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20maintainer.html#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="style.html#generic">Generic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#python-code">Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#markdown">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#html">HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#css">CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#js">JS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#general">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#macos">macOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#optional-sni">Optional: SNI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#optional-git">Optional: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running%20from%20source.html#running-tests">Running tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adding%20games.html#client">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adding%20games.html#world">World</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apworld%20specification.html#file-format">File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apworld%20specification.html#metadata">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apworld%20specification.html#extra-data">Extra Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apworld%20specification.html#caveats">Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="world%20api.html#language">Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20api.html#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world%20api.html#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="options%20api.html#option-definitions">Option Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="options%20api.html#generic-option-classes">Generic Option Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="options%20api.html#basic-option-classes">Basic Option Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="options%20api.html#more-advanced-options">More Advanced Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="settings%20api.html#config-file">Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings%20api.html#global-settings">Global Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings%20api.html#world-settings">World Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings%20api.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings%20api.html#caveats">Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-general-client">Archipelago General Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#generic-tests">Generic Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#defining-world-tests">Defining World Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="multiworld.html"><code class="docutils literal notranslate"><span class="pre">MultiWorld</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="collectionstate.html"><code class="docutils literal notranslate"><span class="pre">CollectionState</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="entrance.html"><code class="docutils literal notranslate"><span class="pre">Entrance</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="item.html"><code class="docutils literal notranslate"><span class="pre">Item</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="location.html"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="region.html"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiworld.html">MultiWorld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectionstate.html">CollectionState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entrance.html">Entrance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="item.html">Item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="location.html">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="region.html">Region</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="world.html"><code class="docutils literal notranslate"><span class="pre">World</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="web_world.html"><code class="docutils literal notranslate"><span class="pre">WebWorld</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="world.html">World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_world.html">WebWorld</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="options.html">Options</a><ul>
@@ -127,34 +212,9 @@
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.SlotType"><code class="docutils literal notranslate"><span class="pre">SlotType</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="world%20api.html#language">Language</a></li>
-<li class="toctree-l2"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="world%20api.html#definitions">Definitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="world%20api.html#implementation">Implementation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="options%20api.html#option-definitions">Option Definitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="options%20api.html#generic-option-classes">Generic Option Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="options%20api.html#basic-option-classes">Basic Option Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="options%20api.html#more-advanced-options">More Advanced Options</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-general-client">Archipelago General Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tests.html#generic-tests">Generic Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests.html#defining-world-tests">Defining World Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests.html#running-tests">Running Tests</a></li>
-</ul>
-</li>
 </ul>
 </div>
+</section>
 </section>
 
 
@@ -168,9 +228,21 @@
               <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
             </a></p>
   <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Archipelago API Reference</a><ul>
+<li><a class="reference internal" href="#get-started">Get Started</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="baseclasses.html"
-                          title="next chapter">BaseClasses</a></p>
+    <p class="topless"><a href="contributing.html"
+                          title="next chapter">Contributing</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -203,7 +275,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="baseclasses.html" title="BaseClasses"
+          <a href="contributing.html" title="Contributing"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Archipelago 0.4.5 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API Reference</a></li> 
