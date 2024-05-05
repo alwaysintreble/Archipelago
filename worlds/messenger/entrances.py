@@ -1,7 +1,7 @@
 from typing import List, TYPE_CHECKING
 
 from BaseClasses import EntranceType, PlandoOptions, Region
-from EntranceRando import randomize_entrances
+from .EntranceRando import randomize_entrances
 from worlds.generic import PlandoConnection
 from .connections import RANDOMIZED_CONNECTIONS, TRANSITIONS
 from .options import ShuffleTransitions

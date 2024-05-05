@@ -1,7 +1,7 @@
 import logging
 from typing import Any, ClassVar, Dict, List, Optional, Set, TextIO
 
-from BaseClasses import CollectionState, Entrance, EntranceType, Item, ItemClassification, MultiWorld, Tutorial
+from BaseClasses import CollectionState, Entrance, Item, ItemClassification, MultiWorld, Tutorial
 from Options import Accessibility
 from Utils import output_path
 from settings import FilePath, Group
@@ -12,6 +12,7 @@ from .connections import CONNECTIONS, RANDOMIZED_CONNECTIONS, TRANSITIONS
 from .constants import ALL_ITEMS, ALWAYS_LOCATIONS, BOSS_LOCATIONS, FILLER, NOTES, PHOBEKINS, PROG_ITEMS, TRAPS, \
     USEFUL_ITEMS
 from .entrances import shuffle_entrances
+from .EntranceRando import EntranceType
 from .options import AvailablePortals, Goal, Logic, MessengerOptions, NotesNeeded, ShuffleTransitions
 from .portals import PORTALS, add_closed_portal_reqs, disconnect_portals, shuffle_portals, validate_portals
 from .regions import LEVELS, MEGA_SHARDS, LOCATIONS, REGION_CONNECTIONS
@@ -20,7 +21,7 @@ from .shop import FIGURINES, PROG_SHOP_ITEMS, SHOP_ITEMS, USEFUL_SHOP_ITEMS, shu
 from .subclasses import MessengerEntrance, MessengerItem, MessengerRegion, MessengerShopLocation
 
 components.append(
-    Component("The Messenger", component_type=Type.CLIENT, func=launch_game, game_name="The Messenger", supports_uri=True)
+    Component("The Messenger", component_type=Type.CLIENT, func=launch_game)#, game_name="The Messenger", supports_uri=True)
 )
 
 
@@ -199,11 +200,6 @@ class MessengerWorld(World):
                 *precollected_names, *FILLER, *TRAPS,
             }
         ]
-
-        if self.options.limited_movement:
-            itempool.append(self.create_item(self.random.choice(main_movement_items)))
-        else:
-            itempool += [self.create_item(move_item) for move_item in main_movement_items]
 
         if self.options.limited_movement:
             itempool.append(self.create_item(self.random.choice(main_movement_items)))
