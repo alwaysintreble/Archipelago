@@ -104,7 +104,7 @@ class TestBase(unittest.TestCase):
 
 
 class WorldTestBase(unittest.TestCase):
-    options: typing.Dict[str, typing.Any] = {}
+    options: typing.ClassVar[typing.Dict[str, typing.Any]]
     """Define options that should be used when setting up this TestBase."""
     multiworld: MultiWorld
     """The constructed MultiWorld instance after setup."""
@@ -279,7 +279,7 @@ class WorldTestBase(unittest.TestCase):
     @property
     def run_default_tests(self) -> bool:
         """Not possible or identical to the base test that's always being run already"""
-        return (self.options
+        return (hasattr(self, "options")
                 or self.setUp.__code__ is not WorldTestBase.setUp.__code__
                 or self.world_setup.__code__ is not WorldTestBase.world_setup.__code__)
 
