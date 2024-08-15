@@ -173,6 +173,15 @@ class OOTWorld(World):
         "Adult Trade Item": {"Pocket Egg", "Pocket Cucco", "Cojiro", "Odd Mushroom",
             "Odd Potion", "Poachers Saw", "Broken Sword", "Prescription",
             "Eyeball Frog", "Eyedrops", "Claim Check"},
+        "Keys": {"Small Key (Bottom of the Well)", "Small Key (Fire Temple)", "Small Key (Forest Temple)",
+                 "Small Key (Ganons Castle)", "Small Key (Gerudo Training Ground)", "Small Key (Shadow Temple)",
+                 "Small Key (Spirit Temple)", "Small Key (Thieves Hideout)", "Small Key (Water Temple)",
+                 "Small Key Ring (Bottom of the Well)", "Small Key Ring (Fire Temple)",
+                 "Small Key Ring (Forest Temple)", "Small Key Ring (Ganons Castle)",
+                 "Small Key Ring (Gerudo Training Ground)", "Small Key Ring (Shadow Temple)",
+                 "Small Key Ring (Spirit Temple)", "Small Key Ring (Thieves Hideout)", "Small Key Ring (Water Temple)",
+                 "Boss Key (Fire Temple)", "Boss Key (Forest Temple)", "Boss Key (Ganons Castle)",
+                 "Boss Key (Shadow Temple)", "Boss Key (Spirit Temple)", "Boss Key (Water Temple)"},
     }
 
     location_name_groups = build_location_name_groups()
@@ -1379,7 +1388,7 @@ class OOTWorld(World):
             self.multiworld.worlds[item.player].collect(all_state, item)
         # If free_scarecrow give Scarecrow Song
         if self.free_scarecrow:
-            all_state.collect(self.create_item("Scarecrow Song"), event=True)
+            all_state.collect(self.create_item("Scarecrow Song"), prevent_sweep=True)
         all_state.stale[self.player] = True
 
         return all_state
