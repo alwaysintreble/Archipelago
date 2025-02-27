@@ -57,8 +57,8 @@ a game.</p>
 <p>Client implementation is out of scope of this document. Please refer to an existing game that provides a similar API to
 yours, and the following documents:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">network protocol.md</span></a></p></li>
-<li><p><a class="reference internal" href="adding%20games.html"><span class="doc std std-doc">adding games.md</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/network%20protocol.md">network protocol.md</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/adding%20games.md">adding games.md</a></p></li>
 </ul>
 <p>Archipelago will be abbreviated as “AP” from now on.</p>
 <section id="language">
@@ -68,7 +68,7 @@ Clients that connect to the server to sync items can be in any language that all
 </section>
 <section id="coding-style">
 <h2>Coding style<a class="headerlink" href="#coding-style" title="Link to this heading">¶</a></h2>
-<p>AP follows a <a class="reference internal" href="style.html"><span class="doc std std-doc">style guide</span></a>.
+<p>AP follows a <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/style.md">style guide</a>.
 When in doubt, use an IDE with a code-style linter, for example PyCharm Community Edition.</p>
 </section>
 <section id="docstrings">
@@ -90,7 +90,7 @@ follow <a class="reference external" href="https://peps.python.org/pep-0287/">re
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h2>
 <p>This section covers various classes and objects you can use for your world. While some of the attributes and methods
 are mentioned here, not all of them are, but you can find them in
-<a class="reference internal" href="baseclasses.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BaseClasses.py</span></code></span></a>.</p>
+<a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/BaseClasses.py"><code class="docutils literal notranslate"><span class="pre">BaseClasses.py</span></code></a>.</p>
 <section id="world-class">
 <h3>World Class<a class="headerlink" href="#world-class" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">World</span></code> is the class with all the specifics of a certain game that is to be included. A new instance will be created
@@ -269,7 +269,7 @@ For more information, see the <a class="reference internal" href="options%20api.
 generation or client behavior, but should remain static between generations, such as the path to a ROM file.
 These settings are accessible through <code class="docutils literal notranslate"><span class="pre">self.settings.&lt;setting_name&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">cls.settings.&lt;setting_name&gt;</span></code>.</p>
 <p>Users can set these in their <code class="docutils literal notranslate"><span class="pre">host.yaml</span></code> file. Some settings may automatically open a file browser if a file is missing.</p>
-<p>Refer to <a class="reference internal" href="settings%20api.html"><span class="doc std std-doc">settings api.md</span></a> for details.</p>
+<p>Refer to <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/settings%20api.md">settings api.md</a> for details.</p>
 </section>
 <section id="locations">
 <h3>Locations<a class="headerlink" href="#locations" title="Link to this heading">¶</a></h3>
@@ -338,7 +338,7 @@ They must not exist in the <code class="docutils literal notranslate"><span clas
 written from scratch, using regions greatly simplifies the requirements and can help with implementing things
 like entrance randomization in logic.</p>
 <p>Regions have a list called <code class="docutils literal notranslate"><span class="pre">exits</span></code>, containing <code class="docutils literal notranslate"><span class="pre">Entrance</span></code> objects representing transitions to other regions.</p>
-<p>There must be one special region (Called “Menu” by default, but configurable using <a class="reference internal" href="autoworld.html"><span class="doc std std-doc">origin_region_name</span></a>),
+<p>There must be one special region (Called “Menu” by default, but configurable using <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L295-L296">origin_region_name</a>),
 from which the logic unfolds. AP assumes that a player will always be able to return to this starting region by resetting the game (“Save and quit”).</p>
 </section>
 <section id="entrances">
@@ -352,7 +352,7 @@ generation (entrance randomization).</p>
 <h3>Access Rules<a class="headerlink" href="#access-rules" title="Link to this heading">¶</a></h3>
 <p>An access rule is a function that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> for a <code class="docutils literal notranslate"><span class="pre">Location</span></code> or <code class="docutils literal notranslate"><span class="pre">Entrance</span></code> based on the current <code class="docutils literal notranslate"><span class="pre">state</span></code>
 (items that have been collected).</p>
-<p>The two possible ways to make a <a class="reference internal" href="rules.html"><span class="doc std std-doc">CollectionRule</span></a> are:</p>
+<p>The two possible ways to make a <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/generic/Rules.py#L10">CollectionRule</a> are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">rule(state:</span> <span class="pre">CollectionState)</span> <span class="pre">-&gt;</span> <span class="pre">bool:</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">state:</span> <span class="pre">...</span> <span class="pre">boolean</span> <span class="pre">expression</span> <span class="pre">...</span></code></p></li>
@@ -375,7 +375,7 @@ Even doing <code class="docutils literal notranslate"><span class="pre">state.ca
 <p><strong>Therefore, it is considered unsafe to perform <code class="docutils literal notranslate"><span class="pre">state.can_reach</span></code> from within an access condition for an entrance</strong>, unless you are checking for something that sits in the source region of the entrance.
 You can use <code class="docutils literal notranslate"><span class="pre">multiworld.register_indirect_condition(region,</span> <span class="pre">entrance)</span></code> to explicitly tell the generator that, when a given region becomes accessible, it is necessary to re-check a specific entrance.
 You <strong>must</strong> use <code class="docutils literal notranslate"><span class="pre">multiworld.register_indirect_condition</span></code> if you perform this kind of <code class="docutils literal notranslate"><span class="pre">can_reach</span></code> from an entrance access rule, unless you have a <strong>very</strong> good technical understanding of the relevant code and can reason why it will never lead to problems in your case.</p>
-<p>Alternatively, you can set <a class="reference internal" href="autoworld.html"><span class="doc std std-doc">world.explicit_indirect_conditions = False</span></a>,
+<p>Alternatively, you can set <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L301">world.explicit_indirect_conditions = False</a>,
 avoiding the need for indirect conditions at the expense of performance.</p>
 </section>
 </section>
@@ -427,7 +427,7 @@ like to the constructor.</p>
 </div>
 <p>By convention, this class definition will either be placed in your <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> or your <code class="docutils literal notranslate"><span class="pre">items.py</span></code>. For a more
 elaborate example see
-<a class="reference internal" href="#items"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">worlds/oot/Items.py</span></code></span></a>.</p>
+<a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/oot/Items.py"><code class="docutils literal notranslate"><span class="pre">worlds/oot/Items.py</span></code></a>.</p>
 </section>
 <section id="your-location-type">
 <h3>Your Location Type<a class="headerlink" href="#your-location-type" title="Link to this heading">¶</a></h3>
@@ -695,7 +695,7 @@ args <code class="docutils literal notranslate"><span class="pre">(cls,</span> <
 <h3>Custom Logic Rules<a class="headerlink" href="#custom-logic-rules" title="Link to this heading">¶</a></h3>
 <p>Custom methods can be defined for your logic rules. The access rule that ultimately gets assigned to the Location or
 Entrance should be
-a <a class="reference internal" href="rules.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">CollectionRule</span></code></span></a>.
+a <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/generic/Rules.py#L10"><code class="docutils literal notranslate"><span class="pre">CollectionRule</span></code></a>.
 Typically, this is done by defining a lambda expression on demand at the relevant bit, typically calling other
 functions, but this can also be achieved by defining a method with the appropriate format and assigning it directly.
 For an example, see <a class="reference internal" href="rules.html"><span class="doc std std-doc">The Messenger</span></a>.</p>

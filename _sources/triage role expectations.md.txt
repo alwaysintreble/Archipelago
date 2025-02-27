@@ -4,7 +4,7 @@ Users with Triage-level access are selected contributors who can and wish to pro
 requests without being granted write access to the Archipelago repository.
 
 Triage users are not necessarily official members of the Archipelago organization, for the list of core maintainers,
-please reference [ArchipelagoMW Members](people) page.
+please reference [ArchipelagoMW Members](https://github.com/orgs/ArchipelagoMW/people) page.
 
 ## Access Permissions
 

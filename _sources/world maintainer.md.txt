@@ -40,7 +40,7 @@ included in the PR description.
 
 ### Getting Voted
 
-When a world is unmaintained, the [core maintainers](people)
+When a world is unmaintained, the [core maintainers](https://github.com/orgs/ArchipelagoMW/people)
 can vote for a new maintainer if there is a candidate.
 For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
 The time limit is 1 week, but can end early if the majority is reached earlier.
@@ -55,7 +55,7 @@ new maintainer takes over management of the world, the world becomes unmaintaine
 
 ### Getting Voted out
 
-A world maintainer can be voted out by the [core maintainers](people),
+A world maintainer can be voted out by the [core maintainers](https://github.com/orgs/ArchipelagoMW/people),
 for example when they become unreachable.
 For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
 The time limit is 2 weeks, but can end early if the majority is reached earlier AND the world maintainer was pinged and

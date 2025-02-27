@@ -17,9 +17,9 @@ There are also a number of community-supported libraries available that implemen
 
 | Language/Runtime              | Project                                                                                            | Remarks                                                                         |
 |-------------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Python                        | [Archipelago CommonClient](commonclient) |                                                                                 |
-|                               | [Archipelago SNIClient](sniclient)       | For Super Nintendo Game Support; Utilizes [SNI](https://github.com/alttpo/sni). |
-| JVM (Java / Kotlin)           | [Archipelago.MultiClient.Java](archipelago)      |                                                                                 |
+| Python                        | [Archipelago CommonClient](https://github.com/ArchipelagoMW/Archipelago/blob/main/CommonClient.py) |                                                                                 |
+|                               | [Archipelago SNIClient](https://github.com/ArchipelagoMW/Archipelago/blob/main/SNIClient.py)       | For Super Nintendo Game Support; Utilizes [SNI](https://github.com/alttpo/sni). |
+| JVM (Java / Kotlin)           | [Archipelago.MultiClient.Java](https://github.com/ArchipelagoMW/Archipelago.MultiClient.Java)      |                                                                                 |
 | .NET (C# / F# / VB.NET)       | [Archipelago.MultiClient.Net](https://www.nuget.org/packages/Archipelago.MultiClient.Net)          |                                                                                 |
 | C++                           | [apclientpp](https://github.com/black-sliver/apclientpp)                                           | header-only                                                                     |
 |                               | [APCpp](https://github.com/N00byKing/APCpp)                                                        | CMake                                                                           |
