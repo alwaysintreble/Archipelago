@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APWorld Dev FAQ &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">APWorld Dev FAQ</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="apworld-dev-faq">
+<h1>APWorld Dev FAQ<a class="headerlink" href="#apworld-dev-faq" title="Link to this heading">¶</a></h1>
+<p>This document is meant as a reference tool to show solutions to common problems when developing an apworld.
+It is not intended to answer every question about Archipelago and it assumes you have read the other docs,
+including <a class="reference internal" href="contributing.html"><span class="doc std std-doc">Contributing</span></a>, <a class="reference internal" href="adding%20games.html"><span class="std std-doc">Adding Games</span></a>, and <a class="reference internal" href="world%20api.html"><span class="std std-doc">World API</span></a>.</p>
+<hr class="docutils" />
+<section id="my-game-has-a-restrictive-start-that-leads-to-fill-errors">
+<h2>My game has a restrictive start that leads to fill errors<a class="headerlink" href="#my-game-has-a-restrictive-start-that-leads-to-fill-errors" title="Link to this heading">¶</a></h2>
+<p>Hint to the Generator that an item needs to be in sphere one with local_early_items. Here, <code class="docutils literal notranslate"><span class="pre">1</span></code> represents the number of “Sword” items to attempt to place in sphere one.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">early_item_name</span> <span class="o">=</span> <span class="s2">&quot;Sword&quot;</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">multiworld</span><span class="o">.</span><span class="n">local_early_items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">][</span><span class="n">early_item_name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Some alternative ways to try to fix this problem are:</p>
+<ul class="simple">
+<li><p>Add more locations to sphere one of your world, potentially only when there would be a restrictive start</p></li>
+<li><p>Pre-place items yourself, such as during <code class="docutils literal notranslate"><span class="pre">create_items</span></code></p></li>
+<li><p>Put items into the player’s starting inventory using <code class="docutils literal notranslate"><span class="pre">push_precollected</span></code></p></li>
+<li><p>Raise an exception, such as an <code class="docutils literal notranslate"><span class="pre">OptionError</span></code> during <code class="docutils literal notranslate"><span class="pre">generate_early</span></code>, to disallow options that would lead to a restrictive start</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out">
+<h2>I have multiple settings that change the item/location pool counts and need to balance them out<a class="headerlink" href="#i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out" title="Link to this heading">¶</a></h2>
+<p>In an ideal situation your system for producing locations and items wouldn’t leave any opportunity for them to be unbalanced. But in real, complex situations, that might be unfeasible.</p>
+<p>If that’s the case, you can create extra filler based on the difference between your unfilled locations and your itempool by comparing [get_unfilled_locations]baseclasses) to your list of items to submit</p>
+<p>Note: to use self.create_filler(), self.get_filler_item_name() should be defined to only return valid filler item names</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">total_locations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">multiworld</span><span class="o">.</span><span class="n">get_unfilled_locations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">))</span>
+<span class="n">item_pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_non_filler_items</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_locations</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_pool</span><span class="p">)):</span>
+    <span class="n">item_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_filler</span><span class="p">())</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">multiworld</span><span class="o">.</span><span class="n">itempool</span> <span class="o">+=</span> <span class="n">item_pool</span>
+</pre></div>
+</div>
+<p>A faster alternative to the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop would be to use a <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehension</a>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">item_pool</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">create_filler</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_locations</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_pool</span><span class="p">))]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary">
+<h2>I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?<a class="headerlink" href="#i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary" title="Link to this heading">¶</a></h2>
+<p>The world API document mentions how to use <code class="docutils literal notranslate"><span class="pre">multiworld.register_indirect_condition</span></code> to register indirect conditions and <strong>when</strong> you should use them, but not <em>how</em> they work and <em>why</em> they are necessary. This is because the explanation is quite complicated.</p>
+<p>Region sweep (the algorithm that determines which regions are reachable) is a Breadth-First Search of the region graph. It starts from the origin region, checks entrances one by one, and adds newly reached regions and their entrances to the queue until there is nothing more to check.</p>
+<p>For performance reasons, AP only checks every entrance once. However, if an entrance’s access_rule depends on region access, then the following may happen:</p>
+<ol class="arabic simple">
+<li><p>The entrance is checked and determined to be nontraversable because the region in its access_rule hasn’t been reached yet during the graph search.</p></li>
+<li><p>Then, the region in its access_rule is determined to be reachable.</p></li>
+</ol>
+<p>This entrance <em>would</em> be in logic if it were rechecked, but it won’t be rechecked this cycle.
+To account for this case, AP would have to recheck all entrances every time a new region is reached until no new regions are reached.</p>
+<p>An indirect condition is how you can manually define that a specific entrance needs to be rechecked during region sweep if a specific region is reached during it.
+This keeps most of the performance upsides. Even in a game making heavy use of indirect conditions (ex: The Witness), using them is significantly faster than just “rechecking each entrance until nothing new is found”.
+The reason entrance access rules using <code class="docutils literal notranslate"><span class="pre">location.can_reach</span></code> and <code class="docutils literal notranslate"><span class="pre">entrance.can_reach</span></code> are also affected is because they call <code class="docutils literal notranslate"><span class="pre">region.can_reach</span></code> on their respective parent/source region.</p>
+<p>We recognize it can feel like a trap since it will not alert you when you are missing an indirect condition, and that some games have very complex access rules.
+As of [PR #3682 (Core: Region handling customization)]3682) being merged, it is possible for a world to opt out of indirect conditions entirely, instead using the system of checking each entrance whenever a region has been reached, although this does come with a performance cost.
+Opting out of using indirect conditions should only be used by games that <em>really</em> need it. For most games, it should be reasonable to know all entrance → region dependencies, making indirect conditions preferred because they are much faster.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
+            </a></p>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/apworld_dev_faq.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">APWorld Dev FAQ</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

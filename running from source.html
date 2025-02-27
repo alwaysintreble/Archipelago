@@ -1,18 +1,18 @@
 
-
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running From Source &#8212; Archipelago 0.4.5 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    <title>Running From Source &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=340bb9e5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="icon" href="_static/favicon.ico"/>
@@ -25,7 +25,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="style.html" title="Style Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Running From Source</a></li> 
       </ul>
     </div>  
@@ -53,15 +53,17 @@
   <section id="running-from-source">
 <h1>Running From Source<a class="headerlink" href="#running-from-source" title="Link to this heading">¶</a></h1>
 <p>If you just want to play and there is a compiled version available on the
-<a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago releases page</a>,
+[Archipelago releases page]releases),
 use that version. These steps are for developers or platforms without compiled releases available.</p>
 <section id="general">
 <h2>General<a class="headerlink" href="#general" title="Link to this heading">¶</a></h2>
 <p>What you’ll need:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.python.org/downloads/">Python 3.8.7 or newer</a>, not the Windows Store version</p>
+<li><p><a class="reference external" href="https://www.python.org/downloads/">Python 3.10.11 or newer</a>, not the Windows Store version</p>
 <ul>
-<li><p><strong>Python 3.12 is currently unsupported</strong></p></li>
+<li><p>On Windows, please consider only using the latest supported version in production environments since security
+updates for older versions are not easily available.</p></li>
+<li><p>Python 3.12.x is currently the newest supported version</p></li>
 </ul>
 </li>
 <li><p>pip: included in downloads from python.org, separate in many Linux distributions</p></li>
@@ -75,6 +77,11 @@ use that version. These steps are for developers or platforms without compiled r
 required modules and after pressing enter proceed to install everything automatically.
 After this, you should be able to run the programs.</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Launcher.py</span></code> gives access to many components, including clients registered in <code class="docutils literal notranslate"><span class="pre">worlds/LauncherComponents.py</span></code>.</p>
+<ul>
+<li><p>The Launcher button “Generate Template Options” will generate default yamls for all worlds.</p></li>
+</ul>
+</li>
 <li><p>With yaml(s) in the <code class="docutils literal notranslate"><span class="pre">Players</span></code> folder, <code class="docutils literal notranslate"><span class="pre">Generate.py</span></code> will generate the multiworld archive.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MultiServer.py</span></code>, with the filename of the generated archive as a command line parameter, will host the multiworld locally.</p>
 <ul>
@@ -85,7 +92,6 @@ After this, you should be able to run the programs.</p>
 <ul>
 <li><p>You can copy <code class="docutils literal notranslate"><span class="pre">docs/webhost</span> <span class="pre">configuration</span> <span class="pre">sample.yaml</span></code> to <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>
 to change WebHost options (like the web hosting port number).</p></li>
-<li><p>As a side effect, <code class="docutils literal notranslate"><span class="pre">WebHost.py</span></code> creates the template yamls for all the games in <code class="docutils literal notranslate"><span class="pre">WebHostLib/static/generated</span></code>.</p></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +102,7 @@ to change WebHost options (like the web hosting port number).</p></li>
 <ul class="simple">
 <li><p>Download and install a “Windows installer (64-bit)” from the <a class="reference external" href="https://www.python.org/downloads">Python download page</a></p>
 <ul>
-<li><p><strong>Python 3.12 is currently unsupported</strong></p></li>
+<li><p><a class="reference internal" href="#general"><span class="xref myst">read above</span></a> which versions are supported</p></li>
 </ul>
 </li>
 <li><p><strong>Optional</strong>: Download and install Visual Studio Build Tools from
@@ -105,21 +111,21 @@ to change WebHost options (like the web hosting port number).</p></li>
 <li><p>Refer to <a class="reference external" href="https://wiki.python.org/moin/WindowsCompilers">Windows Compilers on the python wiki</a> for details.
 Generally, selecting the box for “Desktop Development with C++” will provide what you need.</p></li>
 <li><p>Build tools are not required if all modules are installed pre-compiled. Pre-compiled modules are pinned on
-<a class="reference external" href="https://discord.com/channels/731205301247803413/731214280439103580/905154456377757808">Discord in #archipelago-dev</a></p></li>
+<a class="reference external" href="https://discord.com/channels/731205301247803413/731214280439103580/905154456377757808">Discord in #ap-core-dev</a></p></li>
 </ul>
 </li>
 <li><p>It is recommended to use <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm IDE</a></p></li>
-<li><p>Run Generate.py which will prompt installation of missing modules, press enter to confirm</p>
+<li><p>Run ModuleUpdate.py which will prompt installation of missing modules, press enter to confirm</p>
 <ul>
-<li><p>In PyCharm: right-click Generate.py and select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">'Generate'</span></code></p></li>
-<li><p>Without PyCharm: open a command prompt in the source folder and type <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">Generate.py</span></code></p></li>
+<li><p>In PyCharm: right-click ModuleUpdate.py and select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">'ModuleUpdate'</span></code></p></li>
+<li><p>Without PyCharm: open a command prompt in the source folder and type <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">ModuleUpdate.py</span></code></p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="macos">
 <h2>macOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h2>
-<p>Refer to <a class="reference internal" href="#../worlds/generic/docs/mac_en.md"><span class="xref myst">Guide to Run Archipelago from Source Code on macOS</span></a>.</p>
+<p>Refer to [Guide to Run Archipelago from Source Code on macOS]mac_en).</p>
 </section>
 <section id="optional-a-link-to-the-past-enemizer">
 <h2>Optional: A Link to the Past Enemizer<a class="headerlink" href="#optional-a-link-to-the-past-enemizer" title="Link to this heading">¶</a></h2>
@@ -148,7 +154,7 @@ PyCharm has a built-in version control integration that supports Git.</p>
 </section>
 <section id="running-tests">
 <h2>Running tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
-<p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">pytest-subtests</span></code>, then use your IDE to run tests or run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> from the source folder.</p>
+<p>Information about running tests can be found in [tests.md]tests)</p>
 </section>
 </section>
 
@@ -157,27 +163,47 @@ PyCharm has a built-in version control integration that supports Git.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
             </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Running From Source</a><ul>
-<li><a class="reference internal" href="#general">General</a></li>
-<li><a class="reference internal" href="#windows">Windows</a></li>
-<li><a class="reference internal" href="#macos">macOS</a></li>
-<li><a class="reference internal" href="#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
-<li><a class="reference internal" href="#optional-sni">Optional: SNI</a></li>
-<li><a class="reference internal" href="#optional-git">Optional: Git</a></li>
-<li><a class="reference internal" href="#running-tests">Running tests</a></li>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#macos">macOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-sni">Optional: SNI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-git">Optional: Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running tests</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
 </ul>
 
-  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="style.html"
@@ -195,7 +221,7 @@ PyCharm has a built-in version control integration that supports Git.</p>
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -203,13 +229,13 @@ PyCharm has a built-in version control integration that supports Git.</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -224,13 +250,13 @@ PyCharm has a built-in version control integration that supports Git.</p>
         <li class="right" >
           <a href="style.html" title="Style Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Running From Source</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Archipelago.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
     </div>
   </body>
 </html>

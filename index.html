@@ -1,18 +1,18 @@
 
-
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Archipelago API Reference &#8212; Archipelago 0.4.5 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    <title>Archipelago API Reference &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=340bb9e5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="icon" href="_static/favicon.ico"/>
@@ -24,7 +24,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="contributing.html" title="Contributing"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API Reference</a></li> 
       </ul>
     </div>  
@@ -97,7 +97,7 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="apworld%20specification.html#caveats">Caveats</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago World API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="world%20api.html#language">Language</a></li>
 <li class="toctree-l2"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
 <li class="toctree-l2"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
@@ -120,9 +120,15 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="settings%20api.html#caveats">Caveats</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago Network Protocol</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-general-client">Archipelago General Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#archipelago-connection-handshake">Archipelago Connection Handshake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#synchronizing-items">Synchronizing Items</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#server-client">(Server -&gt; Client)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#client-server">(Client -&gt; Server)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network%20protocol.html#appendix">Appendix</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a><ul>
@@ -137,6 +143,15 @@ the requirements of not only contributing to the main project, but the requireme
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.EntranceInfo"><code class="docutils literal notranslate"><span class="pre">EntranceInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.EntranceType"><code class="docutils literal notranslate"><span class="pre">EntranceType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.HasNameAndPlayer"><code class="docutils literal notranslate"><span class="pre">HasNameAndPlayer</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.ItemClassification"><code class="docutils literal notranslate"><span class="pre">ItemClassification</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.LocationProgressType"><code class="docutils literal notranslate"><span class="pre">LocationProgressType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.PlandoOptions"><code class="docutils literal notranslate"><span class="pre">PlandoOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.ThreadBarrierProxy"><code class="docutils literal notranslate"><span class="pre">ThreadBarrierProxy</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="baseclasses.html#BaseClasses.Tutorial"><code class="docutils literal notranslate"><span class="pre">Tutorial</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="multiworld.html">MultiWorld</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collectionstate.html">CollectionState</a></li>
 <li class="toctree-l2"><a class="reference internal" href="entrance.html">Entrance</a></li>
@@ -146,6 +161,9 @@ the requirements of not only contributing to the main project, but the requireme
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.WebWorld"><code class="docutils literal notranslate"><span class="pre">WebWorld</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.data_package_checksum"><code class="docutils literal notranslate"><span class="pre">data_package_checksum()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="world.html">World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="web_world.html">WebWorld</a></li>
 </ul>
@@ -156,6 +174,7 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.BossMeta"><code class="docutils literal notranslate"><span class="pre">BossMeta</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.Choice"><code class="docutils literal notranslate"><span class="pre">Choice</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.CommonOptions"><code class="docutils literal notranslate"><span class="pre">CommonOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.ConnectionsMeta"><code class="docutils literal notranslate"><span class="pre">ConnectionsMeta</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.DeathLink"><code class="docutils literal notranslate"><span class="pre">DeathLink</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.DeathLinkMixin"><code class="docutils literal notranslate"><span class="pre">DeathLinkMixin</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.DefaultOnToggle"><code class="docutils literal notranslate"><span class="pre">DefaultOnToggle</span></code></a></li>
@@ -165,6 +184,7 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.ItemDict"><code class="docutils literal notranslate"><span class="pre">ItemDict</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.ItemLinks"><code class="docutils literal notranslate"><span class="pre">ItemLinks</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.ItemSet"><code class="docutils literal notranslate"><span class="pre">ItemSet</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.ItemsAccessibility"><code class="docutils literal notranslate"><span class="pre">ItemsAccessibility</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.LocalItems"><code class="docutils literal notranslate"><span class="pre">LocalItems</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.LocationSet"><code class="docutils literal notranslate"><span class="pre">LocationSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.NamedRange"><code class="docutils literal notranslate"><span class="pre">NamedRange</span></code></a></li>
@@ -172,20 +192,29 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.NumericOption"><code class="docutils literal notranslate"><span class="pre">NumericOption</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.Option"><code class="docutils literal notranslate"><span class="pre">Option</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.OptionDict"><code class="docutils literal notranslate"><span class="pre">OptionDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.OptionError"><code class="docutils literal notranslate"><span class="pre">OptionError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.OptionGroup"><code class="docutils literal notranslate"><span class="pre">OptionGroup</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.OptionList"><code class="docutils literal notranslate"><span class="pre">OptionList</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.OptionSet"><code class="docutils literal notranslate"><span class="pre">OptionSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.PerGameCommonOptions"><code class="docutils literal notranslate"><span class="pre">PerGameCommonOptions</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.PlandoBosses"><code class="docutils literal notranslate"><span class="pre">PlandoBosses</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.PlandoConnection"><code class="docutils literal notranslate"><span class="pre">PlandoConnection</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.PlandoConnections"><code class="docutils literal notranslate"><span class="pre">PlandoConnections</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.PlandoText"><code class="docutils literal notranslate"><span class="pre">PlandoText</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.PlandoTexts"><code class="docutils literal notranslate"><span class="pre">PlandoTexts</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.PriorityLocations"><code class="docutils literal notranslate"><span class="pre">PriorityLocations</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.ProgressionBalancing"><code class="docutils literal notranslate"><span class="pre">ProgressionBalancing</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.Range"><code class="docutils literal notranslate"><span class="pre">Range</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="options.html#Options.SpecialRange"><code class="docutils literal notranslate"><span class="pre">SpecialRange</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.Removed"><code class="docutils literal notranslate"><span class="pre">Removed</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.StartHints"><code class="docutils literal notranslate"><span class="pre">StartHints</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.StartInventory"><code class="docutils literal notranslate"><span class="pre">StartInventory</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.StartInventoryPool"><code class="docutils literal notranslate"><span class="pre">StartInventoryPool</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.StartLocationHints"><code class="docutils literal notranslate"><span class="pre">StartLocationHints</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.TextChoice"><code class="docutils literal notranslate"><span class="pre">TextChoice</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="options.html#Options.Toggle"><code class="docutils literal notranslate"><span class="pre">Toggle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.Visibility"><code class="docutils literal notranslate"><span class="pre">Visibility</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.get_option_groups"><code class="docutils literal notranslate"><span class="pre">get_option_groups()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="options.html#Options.item_and_loc_options"><code class="docutils literal notranslate"><span class="pre">item_and_loc_options</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a><ul>
@@ -203,6 +232,7 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.ClientStatus"><code class="docutils literal notranslate"><span class="pre">ClientStatus</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.Hint"><code class="docutils literal notranslate"><span class="pre">Hint</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.HintStatus"><code class="docutils literal notranslate"><span class="pre">HintStatus</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart"><code class="docutils literal notranslate"><span class="pre">JSONMessagePart</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.JSONTypes"><code class="docutils literal notranslate"><span class="pre">JSONTypes</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.NetworkItem"><code class="docutils literal notranslate"><span class="pre">NetworkItem</span></code></a></li>
@@ -210,6 +240,11 @@ the requirements of not only contributing to the main project, but the requireme
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.NetworkSlot"><code class="docutils literal notranslate"><span class="pre">NetworkSlot</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.Permission"><code class="docutils literal notranslate"><span class="pre">Permission</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="netutils.html#NetUtils.SlotType"><code class="docutils literal notranslate"><span class="pre">SlotType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test.html#test.bases.TestBase"><code class="docutils literal notranslate"><span class="pre">TestBase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html#test.bases.WorldTestBase"><code class="docutils literal notranslate"><span class="pre">WorldTestBase</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -222,23 +257,38 @@ the requirements of not only contributing to the main project, but the requireme
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="#">
-              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
             </a></p>
-  <div>
-    <h3><a href="#">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Archipelago API Reference</a><ul>
-<li><a class="reference internal" href="#get-started">Get Started</a><ul>
+<h3><a href="#">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
 </ul>
-</li>
-</ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
 </ul>
 
-  </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="contributing.html"
@@ -251,7 +301,7 @@ the requirements of not only contributing to the main project, but the requireme
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -259,13 +309,13 @@ the requirements of not only contributing to the main project, but the requireme
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -277,13 +327,13 @@ the requirements of not only contributing to the main project, but the requireme
         <li class="right" >
           <a href="contributing.html" title="Contributing"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API Reference</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Archipelago.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
     </div>
   </body>
 </html>

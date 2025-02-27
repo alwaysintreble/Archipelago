@@ -1,18 +1,18 @@
 
-
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing &#8212; Archipelago 0.4.5 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    <title>Contributing &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=340bb9e5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="icon" href="_static/favicon.ico"/>
@@ -25,7 +25,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="index.html" title="Archipelago API Reference"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
       </ul>
     </div>  
@@ -52,21 +52,25 @@
             
   <section id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h1>
-<p>Contributions are welcome. We have a few requests for new contributors:</p>
+<p>All contributions are welcome, though we have a few requests of contributors, whether they be for core, webhost, or new
+game contributions:</p>
 <ul class="simple">
 <li><p><strong>Follow styling guidelines.</strong>
-Please take a look at the <a class="reference internal" href="#/docs/style.md"><span class="xref myst">code style documentation</span></a>
+Please take a look at the [code style documentation]style)
 to ensure ease of communication and uniformity.</p></li>
 <li><p><strong>Ensure that critical changes are covered by tests.</strong>
 It is strongly recommended that unit tests are used to avoid regression and to ensure everything is still working.
-If you wish to contribute by adding a new game, please take a look at the <a class="reference internal" href="#/docs/tests.md"><span class="xref myst">logic unit test documentation</span></a>.
-If you wish to contribute to the website, please take a look at <a class="reference internal" href="#/test/webhost"><span class="xref myst">these tests</span></a>.</p></li>
+If you wish to contribute by adding a new game, please take a look at
+the [logic unit test documentation]tests).
+If you wish to contribute to the website, please take a look at [these tests]webhost).</p></li>
 <li><p><strong>Do not introduce unit test failures/regressions.</strong>
 Archipelago supports multiple versions of Python. You may need to download older Python versions to fully test
-your changes. Currently, the oldest supported version is <a class="reference external" href="https://www.python.org/downloads/release/python-380/">Python 3.8</a>.
-It is recommended that automated github actions are turned on in your fork to have github run all of the unit tests after pushing.
+your changes. Currently, the oldest supported version
+is <a class="reference external" href="https://www.python.org/downloads/release/python-31015/">Python 3.10</a>.
+It is recommended that automated github actions are turned on in your fork to have github run unit tests after
+pushing.
 You can turn them on here:<br />
-<img alt="Github actions example" src="img/github-actions-example.png" /></p></li>
+<img alt="Github actions example" src="_images/github-actions-example.png" /></p></li>
 <li><p><strong>When reviewing PRs, please leave a message about what was done.</strong>
 We don’t have full test coverage, so manual testing can help.
 For code changes that could affect multiple worlds or that could have changes in unexpected code paths, manual testing
@@ -78,15 +82,16 @@ If testing the PR depends on other PRs, please state what you merged into what f
 We cannot determine what “LGTM” means without additional context, so that should not be the norm.</p></li>
 </ul>
 <p>Other than these requests, we tend to judge code on a case-by-case basis.</p>
-<p>For contribution to the website, please refer to the <a class="reference internal" href="#/WebHostLib/README.md"><span class="xref myst">WebHost README</span></a>.</p>
+<p>For contribution to the website, please refer to the [WebHost README]readme).</p>
 <p>If you want to contribute to the core, you will be subject to stricter review on your pull requests. It is recommended
 that you get in touch with other core maintainers via the <a class="reference external" href="https://archipelago.gg/discord">Discord</a>.</p>
-<p>If you want to add Archipelago support for a new game, please take a look at the <a class="reference internal" href="#/docs/adding%20games.md"><span class="xref myst">adding games documentation</span></a>, which details what is required
-to implement support for a game, as well as tips for how to get started.
+<p>If you want to add Archipelago support for a new game, please take a look at
+the [adding games documentation]adding%20games)
+which details what is required to implement support for a game, and has tips on to get started.
 If you want to merge a new game into the main Archipelago repo, please make sure to read the responsibilities as a
-<a class="reference internal" href="#/docs/world%20maintainer.md"><span class="xref myst">world maintainer</span></a>.</p>
-<p>For other questions, feel free to explore the <a class="reference internal" href="#/docs/"><span class="xref myst">main documentation folder</span></a> and ask us questions in the #archipelago-dev channel
-of the <a class="reference external" href="https://archipelago.gg/discord">Discord</a>.</p>
+[world maintainer]world%20maintainer).</p>
+<p>For other questions, feel free to explore the [main documentation folder]docs), and ask us questions in the
+#ap-world-dev channel of the <a class="reference external" href="https://archipelago.gg/discord">Discord</a>.</p>
 </section>
 
 
@@ -94,11 +99,38 @@ of the <a class="reference external" href="https://archipelago.gg/discord">Disco
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
             </a></p>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
+</ul>
+
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="index.html"
@@ -116,7 +148,7 @@ of the <a class="reference external" href="https://archipelago.gg/discord">Disco
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -124,13 +156,13 @@ of the <a class="reference external" href="https://archipelago.gg/discord">Disco
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -145,13 +177,13 @@ of the <a class="reference external" href="https://archipelago.gg/discord">Disco
         <li class="right" >
           <a href="index.html" title="Archipelago API Reference"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Archipelago.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
     </div>
   </body>
 </html>

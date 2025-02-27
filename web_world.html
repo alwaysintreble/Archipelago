@@ -1,18 +1,18 @@
 
-
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>WebWorld &#8212; Archipelago 0.4.5 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=94aef301" />
+    <title>WebWorld &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=340bb9e5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="icon" href="_static/favicon.ico"/>
@@ -25,7 +25,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="world.html" title="World"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="autoworld.html" accesskey="U">worlds.AutoWorld</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">WebWorld</a></li> 
       </ul>
@@ -55,7 +55,7 @@
 <h1>WebWorld<a class="headerlink" href="#webworld" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">worlds.AutoWorld.</span></span><span class="sig-name descname"><span class="pre">WebWorld</span></span><a class="headerlink" href="#worlds.AutoWorld.WebWorld" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">worlds.AutoWorld.</span></span><span class="sig-name descname"><span class="pre">WebWorld</span></span><a class="headerlink" href="#worlds.AutoWorld.WebWorld" title="Link to this definition">¶</a></dt>
 <dd><p>Webhost integration</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.bug_report_page">
@@ -70,6 +70,24 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.item_descriptions">
+<span class="sig-name descname"><span class="pre">item_descriptions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.item_descriptions" title="Link to this definition">¶</a></dt>
+<dd><p>An optional map from item names (or item group names) to brief descriptions for users.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.location_descriptions">
+<span class="sig-name descname"><span class="pre">location_descriptions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.location_descriptions" title="Link to this definition">¶</a></dt>
+<dd><p>An optional map from location names (or location group names) to brief descriptions for users.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.option_groups">
+<span class="sig-name descname"><span class="pre">option_groups</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="options.html#Options.OptionGroup" title="Options.OptionGroup"><span class="pre">OptionGroup</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('Item</span> <span class="pre">&amp;</span> <span class="pre">Location</span> <span class="pre">Options',</span> <span class="pre">[&lt;class</span> <span class="pre">'Options.LocalItems'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.NonLocalItems'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.StartInventory'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.StartInventoryPool'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.StartHints'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.StartLocationHints'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.ExcludeLocations'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.PriorityLocations'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'Options.ItemLinks'&gt;],</span> <span class="pre">True)]</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.option_groups" title="Link to this definition">¶</a></dt>
+<dd><p>Ordered list of option groupings. Any options not set in a group will be placed in a pre-built “Game Options”.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.options_page">
 <span class="sig-name descname"><span class="pre">options_page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.options_page" title="Link to this definition">¶</a></dt>
 <dd><p>display a settings page. Can be a link to a specific page or external tool.</p>
@@ -79,6 +97,19 @@
 <dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.options_presets">
 <span class="sig-name descname"><span class="pre">options_presets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.options_presets" title="Link to this definition">¶</a></dt>
 <dd><p>A dictionary containing a collection of developer-defined game option presets.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="worlds.AutoWorld.WebWorld.rich_text_options_doc">
+<span class="sig-name descname"><span class="pre">rich_text_options_doc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#worlds.AutoWorld.WebWorld.rich_text_options_doc" title="Link to this definition">¶</a></dt>
+<dd><p>Whether the WebHost should render Options’ docstrings as rich text.</p>
+<p>If this is True, Options’ docstrings are interpreted as <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>,
+the standard Python markup format. In the WebHost, they’re rendered to HTML
+so that lists, emphasis, and other rich text features are displayed
+properly.</p>
+<p>If this is False, the docstrings are instead interpreted as plain text, and
+displayed as-is on the WebHost with whitespace preserved. For backwards
+compatibility, this is the default.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -103,29 +134,45 @@ Available: dirt, grass, grassFlowers, ice, jungle, ocean, partyTime, stone</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/header-logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
             </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">WebWorld</a><ul>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld"><code class="docutils literal notranslate"><span class="pre">WebWorld</span></code></a><ul>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.bug_report_page"><code class="docutils literal notranslate"><span class="pre">WebWorld.bug_report_page</span></code></a></li>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.game_info_languages"><code class="docutils literal notranslate"><span class="pre">WebWorld.game_info_languages</span></code></a></li>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.options_page"><code class="docutils literal notranslate"><span class="pre">WebWorld.options_page</span></code></a></li>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.options_presets"><code class="docutils literal notranslate"><span class="pre">WebWorld.options_presets</span></code></a></li>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.theme"><code class="docutils literal notranslate"><span class="pre">WebWorld.theme</span></code></a></li>
-<li><a class="reference internal" href="#worlds.AutoWorld.WebWorld.tutorials"><code class="docutils literal notranslate"><span class="pre">WebWorld.tutorials</span></code></a></li>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.WebWorld"><code class="docutils literal notranslate"><span class="pre">WebWorld</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoworld.html#worlds.AutoWorld.data_package_checksum"><code class="docutils literal notranslate"><span class="pre">data_package_checksum()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="world.html">World</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WebWorld</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
 </ul>
 
-  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="world.html"
@@ -143,7 +190,7 @@ Available: dirt, grass, grassFlowers, ice, jungle, ocean, partyTime, stone</p>
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -151,13 +198,13 @@ Available: dirt, grass, grassFlowers, ice, jungle, ocean, partyTime, stone</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -172,14 +219,14 @@ Available: dirt, grass, grassFlowers, ice, jungle, ocean, partyTime, stone</p>
         <li class="right" >
           <a href="world.html" title="World"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.4.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="autoworld.html" >worlds.AutoWorld</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">WebWorld</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Archipelago.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
     </div>
   </body>
 </html>
