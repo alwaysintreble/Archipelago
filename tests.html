@@ -57,7 +57,7 @@ steps on how to write your own.</p>
 <section id="generic-tests">
 <h2>Generic Tests<a class="headerlink" href="#generic-tests" title="Link to this heading">¶</a></h2>
 <p>Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be
-found in the [general test directory]general).</p>
+found in the <a class="reference internal" href="#general"><span class="xref myst">general test directory</span></a>.</p>
 </section>
 <section id="defining-world-tests">
 <h2>Defining World Tests<a class="headerlink" href="#defining-world-tests" title="Link to this heading">¶</a></h2>
@@ -67,7 +67,7 @@ for your world tests can be created in this file that you can then import into o
 <section id="worldtestbase">
 <h3>WorldTestBase<a class="headerlink" href="#worldtestbase" title="Link to this heading">¶</a></h3>
 <p>In order to test basic functionality of varying options, as well as to test specific edge cases or that certain
-interactions in the world interact as expected, you will want to use the [WorldTestBase]bases). This class
+interactions in the world interact as expected, you will want to use the <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase</span></a>. This class
 comes with the basics for test setup as well as a few preloaded tests that most worlds might want to check on varying
 options combinations.</p>
 <p>Example <code class="docutils literal notranslate"><span class="pre">/worlds/&lt;my_game&gt;/test/__init__.py</span></code>:</p>
@@ -117,11 +117,11 @@ with <code class="docutils literal notranslate"><span class="pre">test_</span></
 generic tests, as well as the new custom test. Each test method definition will create its own separate solo multiworld
 that will be cleaned up after. If you don’t want to run the generic tests on a base, <code class="docutils literal notranslate"><span class="pre">run_default_tests</span></code> can be
 overridden. For more information on what methods are available to your class, check the
-[WorldTestBase definition]bases).</p>
+<a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase definition</span></a>.</p>
 </section>
 <section id="alternatives-to-worldtestbase">
 <h4>Alternatives to WorldTestBase<a class="headerlink" href="#alternatives-to-worldtestbase" title="Link to this heading">¶</a></h4>
-<p>Unit tests can also be created using [TestBase]bases) or
+<p>Unit tests can also be created using <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">TestBase</span></a> or
 <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.TestCase">unittest.TestCase</a> depending on your use case. These
 may be useful for generating a multiworld under very specific constraints without using the generic world setup, or for
 testing portions of your code that can be tested without relying on a multiworld to be created first.</p>

@@ -1,7 +1,7 @@
 # Running From Source
 
 If you just want to play and there is a compiled version available on the
-[Archipelago releases page]releases),
+[Archipelago releases page](releases),
 use that version. These steps are for developers or platforms without compiled releases available.
 
 ## General
@@ -50,7 +50,7 @@ Recommended steps
 
 ## macOS
 
-Refer to [Guide to Run Archipelago from Source Code on macOS]mac_en).
+Refer to [Guide to Run Archipelago from Source Code on macOS](mac_en).
 
 
 ## Optional: A Link to the Past Enemizer
@@ -87,4 +87,4 @@ PyCharm has a built-in version control integration that supports Git.
 
 ## Running tests
 
-Information about running tests can be found in [tests.md]tests)
+Information about running tests can be found in [tests.md](tests)
