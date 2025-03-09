@@ -18,6 +18,8 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Archipelago General Client" href="network%20protocol.html" />
+    <link rel="prev" title="Archipelago Settings API" href="settings%20api.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -32,6 +34,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="network%20protocol.html" title="Archipelago General Client"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="settings%20api.html" title="Archipelago Settings API"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Entrance Randomization</a></li> 
       </ul>
@@ -45,7 +53,7 @@
   <section id="entrance-randomization">
 <h1>Entrance Randomization<a class="headerlink" href="#entrance-randomization" title="Link to this heading">¶</a></h1>
 <p>This document discusses the API and underlying implementation of the generic entrance randomization algorithm
-exposed in <a class="reference internal" href="#entrance_rando"><span class="xref myst">entrance_rando.py</span></a>. Throughout the doc, entrance randomization is frequently abbreviated
+exposed in <a class="reference internal" href="entrance_rando.html"><span class="doc std std-doc">entrance_rando.py</span></a>. Throughout the doc, entrance randomization is frequently abbreviated
 as “ER.”</p>
 <p>This doc assumes familiarity with Archipelago’s graph logic model. If you don’t have a solid understanding of how
 regions work, you should start there.</p>
@@ -478,7 +486,7 @@ found for any source transition. Unlike fill, there is no attempt made to save a
             </a></p>
 <h3><a href="index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
@@ -488,21 +496,40 @@ found for any source transition. Unlike fill, there is no attempt made to save a
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Entrance Randomization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entrance-randomization-concepts">Entrance randomization concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation details</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance_rando.html">Entrance Rando</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
 </ul>
 
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="settings%20api.html"
+                          title="previous chapter">Archipelago Settings API</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="network%20protocol.html"
+                          title="next chapter">Archipelago General Client</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -533,6 +560,12 @@ found for any source transition. Unlike fill, there is no attempt made to save a
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="network%20protocol.html" title="Archipelago General Client"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="settings%20api.html" title="Archipelago Settings API"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Entrance Randomization</a></li> 
       </ul>

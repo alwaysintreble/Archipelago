@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MultiWorld" href="multiworld.html" />
-    <link rel="prev" title="Archipelago Unit Testing API" href="tests.html" />
+    <link rel="prev" title="WebWorld" href="web_world.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -38,7 +38,7 @@
           <a href="multiworld.html" title="MultiWorld"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tests.html" title="Archipelago Unit Testing API"
+          <a href="web_world.html" title="WebWorld"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">BaseClasses</a></li> 
@@ -181,30 +181,12 @@ filled automatically so ‘setup/en’ etc. Author or authors.</p>
 
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="multiworld.html">MultiWorld</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld"><code class="docutils literal notranslate"><span class="pre">MultiWorld</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collectionstate.html">CollectionState</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collectionstate.html#BaseClasses.CollectionState"><code class="docutils literal notranslate"><span class="pre">CollectionState</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="entrance.html">Entrance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="entrance.html#BaseClasses.Entrance"><code class="docutils literal notranslate"><span class="pre">Entrance</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="item.html">Item</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="item.html#BaseClasses.Item"><code class="docutils literal notranslate"><span class="pre">Item</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="location.html">Location</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="location.html#BaseClasses.Location"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="region.html">Region</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="region.html#BaseClasses.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="multiworld.html">MultiWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collectionstate.html">CollectionState</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance.html">Entrance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="item.html">Item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="location.html">Location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="region.html">Region</a></li>
 </ul>
 </div>
 </section>
@@ -231,12 +213,15 @@ filled automatically so ‘setup/en’ etc. Author or authors.</p>
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">BaseClasses</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#BaseClasses.EntranceInfo"><code class="docutils literal notranslate"><span class="pre">EntranceInfo</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#BaseClasses.EntranceType"><code class="docutils literal notranslate"><span class="pre">EntranceType</span></code></a></li>
@@ -255,18 +240,19 @@ filled automatically so ‘setup/en’ etc. Author or authors.</p>
 <li class="toctree-l2"><a class="reference internal" href="region.html">Region</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance_rando.html">Entrance Rando</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
 </ul>
 
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="tests.html"
-                          title="previous chapter">Archipelago Unit Testing API</a></p>
+    <p class="topless"><a href="web_world.html"
+                          title="previous chapter">WebWorld</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -307,7 +293,7 @@ filled automatically so ‘setup/en’ etc. Author or authors.</p>
           <a href="multiworld.html" title="MultiWorld"
              >next</a> |</li>
         <li class="right" >
-          <a href="tests.html" title="Archipelago Unit Testing API"
+          <a href="web_world.html" title="WebWorld"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">BaseClasses</a></li> 

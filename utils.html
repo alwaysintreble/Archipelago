@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Utils &#8212; Archipelago 0.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NetUtils" href="netutils.html" />
+    <link rel="prev" title="Entrance Rando" href="entrance_rando.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="netutils.html" title="NetUtils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="entrance_rando.html" title="Entrance Rando"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Utils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-Utils">
+<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-Utils" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.ByValue">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">ByValue</span></span><a class="headerlink" href="#Utils.ByValue" title="Link to this definition">¶</a></dt>
+<dd><p>Mixin for enums to pickle value instead of name (restores pre-3.11 behavior). Use as left-most parent.
+See <a class="reference external" href="https://github.com/python/cpython/pull/26658">https://github.com/python/cpython/pull/26658</a> for why this exists.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.DeprecateDict">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">DeprecateDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.DeprecateDict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.KeyedDefaultDict">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">KeyedDefaultDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_factory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.KeyedDefaultDict" title="Link to this definition">¶</a></dt>
+<dd><p>defaultdict variant that uses the missing key as argument to default_factory</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.RestrictedUnpickler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">RestrictedUnpickler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.RestrictedUnpickler" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Utils.RestrictedUnpickler.find_class">
+<span class="sig-name descname"><span class="pre">find_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">type</span></span></span><a class="headerlink" href="#Utils.RestrictedUnpickler.find_class" title="Link to this definition">¶</a></dt>
+<dd><p>Return an object from a specified module.</p>
+<p>If necessary, the module will be imported. Subclasses may override
+this method (e.g. to restrict unpickling of arbitrary classes and
+functions).</p>
+<p>This method is called whenever a class or a function object is
+needed.  Both arguments passed are str objects.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.Version">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">Version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.Version" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.Version.build">
+<span class="sig-name descname"><span class="pre">build</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Utils.Version.build" title="Link to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.Version.major">
+<span class="sig-name descname"><span class="pre">major</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Utils.Version.major" title="Link to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.Version.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Utils.Version.minor" title="Link to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="Utils.VersionException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">VersionException</span></span><a class="headerlink" href="#Utils.VersionException" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.async_start">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">async_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">co</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coroutine</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.async_start" title="Link to this definition">¶</a></dt>
+<dd><p>Use this to start a task when you don’t keep a reference to it or immediately await it,
+to prevent early garbage collection. “fire-and-forget”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.build_sphinx_docs">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">build_sphinx_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.build_sphinx_docs" title="Link to this definition">¶</a></dt>
+<dd><p>Build Sphinx autodocs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.cache_path">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">cache_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.cache_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns path to a file in the user’s Archipelago cache directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.cache_self1">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">cache_self1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">S</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">S</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.cache_self1" title="Link to this definition">¶</a></dt>
+<dd><p>Specialized cache for self + 1 arg. Does not keep global ref to self and skips building a dict key tuple.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.format_SI_prefix">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">format_SI_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('',</span> <span class="pre">'k',</span> <span class="pre">'M',</span> <span class="pre">'G',</span> <span class="pre">'T',</span> <span class="pre">'P',</span> <span class="pre">'E',</span> <span class="pre">'Z',</span> <span class="pre">'Y')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.format_SI_prefix" title="Link to this definition">¶</a></dt>
+<dd><p>Formats a value into a value + metric/si prefix. More info at <a class="reference external" href="https://en.wikipedia.org/wiki/Metric_prefix">https://en.wikipedia.org/wiki/Metric_prefix</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.freeze_support">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">freeze_support</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.freeze_support" title="Link to this definition">¶</a></dt>
+<dd><p>This behaves like multiprocessing.freeze_support but also works on Non-Windows.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.home_path">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">home_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.home_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns path to a file in the user home’s Archipelago directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.is_iterable_except_str">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">is_iterable_except_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TypeGuard</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.is_iterable_except_str" title="Link to this definition">¶</a></dt>
+<dd><p><cite>str</cite> is <cite>Iterable</cite>, but that’s not what we want</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.local_path">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">local_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.local_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns path to a file in the local Archipelago installation or source.
+This might be read-only and user_path should be used instead for ROMs, configuration, etc.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.read_snes_rom">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">read_snes_rom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BinaryIO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_header</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytearray</span></span></span><a class="headerlink" href="#Utils.read_snes_rom" title="Link to this definition">¶</a></dt>
+<dd><p>Reads rom into bytearray and optionally strips off any smc header</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.restricted_loads">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">restricted_loads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#Utils.restricted_loads" title="Link to this definition">¶</a></dt>
+<dd><p>Helper function analogous to pickle.loads().</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.title_sorted">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">title_sorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">frozenset({'a',</span> <span class="pre">'the'})</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.title_sorted" title="Link to this definition">¶</a></dt>
+<dd><p>Sorts a sequence of text ignoring typical articles like “a” or “the” in the beginning.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.user_path">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">user_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.user_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns either local_path or home_path based on write permissions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.visualize_regions">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">visualize_regions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_entrance_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_locations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_other_regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linetype_ortho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions_to_highlight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.visualize_regions" title="Link to this definition">¶</a></dt>
+<dd><p>Visualize the layout of a world as a PlantUML diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_region</strong> – The region from which to start the diagram from. (Usually the “Menu” region of your world.)</p></li>
+<li><p><strong>file_name</strong> – The name of the destination .puml file.</p></li>
+<li><p><strong>show_entrance_names</strong> – (default False) If enabled, the name of the entrance will be shown near each connection.</p></li>
+<li><p><strong>show_locations</strong> – (default True) If enabled, the locations will be listed inside each region.
+Priority locations will be shown in bold.
+Excluded locations will be stricken out.
+Locations without ID will be shown in italics.
+Locked locations will be shown with a padlock icon.
+For filled locations, the item name will be shown after the location name.
+Progression items will be shown in bold.
+Items without ID will be shown in italics.</p></li>
+<li><p><strong>show_other_regions</strong> – (default True) If enabled, regions that can’t be reached by traversing exits are shown.</p></li>
+<li><p><strong>linetype_ortho</strong> – (default True) If enabled, orthogonal straight line parts will be used; otherwise polylines.</p></li>
+<li><p><strong>regions_to_highlight</strong> – Regions that will be highlighted in green if they are reachable.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example usage in World code:
+from Utils import visualize_regions
+state = self.multiworld.get_all_state(False)
+state.update_reachable_regions(self.player)
+visualize_regions(self.get_region(“Menu”), “my_world.puml”, show_entrance_names=True,</p>
+<blockquote>
+<div><p>regions_to_highlight=state.reachable_regions[self.player])</p>
+</div></blockquote>
+<p>Example usage in Main code:
+from Utils import visualize_regions
+for player in multiworld.player_ids:</p>
+<blockquote>
+<div><p>visualize_regions(multiworld.get_region(“Menu”, player), f”{multiworld.get_out_file_name_base(player)}.puml”)</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/header-logo.svg" alt="Logo of Archipelago"/>
+            </a></p>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autoworld.html">worlds.AutoWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baseclasses.html">BaseClasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance_rando.html">Entrance Rando</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.ByValue"><code class="docutils literal notranslate"><span class="pre">ByValue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.DeprecateDict"><code class="docutils literal notranslate"><span class="pre">DeprecateDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.KeyedDefaultDict"><code class="docutils literal notranslate"><span class="pre">KeyedDefaultDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.RestrictedUnpickler"><code class="docutils literal notranslate"><span class="pre">RestrictedUnpickler</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.Version"><code class="docutils literal notranslate"><span class="pre">Version</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.VersionException"><code class="docutils literal notranslate"><span class="pre">VersionException</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.async_start"><code class="docutils literal notranslate"><span class="pre">async_start()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.build_sphinx_docs"><code class="docutils literal notranslate"><span class="pre">build_sphinx_docs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.cache_path"><code class="docutils literal notranslate"><span class="pre">cache_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.cache_self1"><code class="docutils literal notranslate"><span class="pre">cache_self1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.format_SI_prefix"><code class="docutils literal notranslate"><span class="pre">format_SI_prefix()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.freeze_support"><code class="docutils literal notranslate"><span class="pre">freeze_support()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.home_path"><code class="docutils literal notranslate"><span class="pre">home_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.is_iterable_except_str"><code class="docutils literal notranslate"><span class="pre">is_iterable_except_str()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.local_path"><code class="docutils literal notranslate"><span class="pre">local_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.read_snes_rom"><code class="docutils literal notranslate"><span class="pre">read_snes_rom()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.restricted_loads"><code class="docutils literal notranslate"><span class="pre">restricted_loads()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.title_sorted"><code class="docutils literal notranslate"><span class="pre">title_sorted()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.user_path"><code class="docutils literal notranslate"><span class="pre">user_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.visualize_regions"><code class="docutils literal notranslate"><span class="pre">visualize_regions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="netutils.html">NetUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Test Bases</a></li>
+</ul>
+
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="entrance_rando.html"
+                          title="previous chapter">Entrance Rando</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="netutils.html"
+                          title="next chapter">NetUtils</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/utils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="netutils.html" title="NetUtils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="entrance_rando.html" title="Entrance Rando"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Utils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Archipelago.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
