@@ -6,7 +6,7 @@ addition to a core maintainer. All other files and folders are owned and maintai
 
 All usernames must be GitHub usernames (and are case sensitive).
 
-# Active Maintained Worlds
+## Active Maintained Worlds
 
 The following worlds in this repo are currently actively maintained.
 
@@ -326,7 +326,7 @@ Zork Grand Inquisitor
   - nbrochu
 
 
-# Active Unmaintained Worlds
+## Active Unmaintained Worlds
 
 The following worlds in this repo are currently unmaintained, but currently still work in core. If any update breaks
 compatibility, these worlds may be moved to `worlds_disabled`. If you are interested in stepping up as maintainer for
@@ -340,7 +340,7 @@ Ocarina of Time
 
 - /worlds/oot/
 
-# Disabled Unmaintained Worlds
+## Disabled Unmaintained Worlds
 
 The following worlds in this repo are currently unmaintained and disabled as they do not work in core. If you are
 interested in stepping up as maintainer for any of these worlds, please review `/docs/world maintainer.md`
@@ -350,7 +350,7 @@ Ori and the Blind Forest
 
 - /worlds_disabled/oribf/
 
-# Documentation
+## Documentation
 
 Apworld Dev Faq
 - /docs/apworld_dev_faq.md 
