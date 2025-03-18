@@ -64,6 +64,16 @@ See <a class="reference external" href="https://github.com/python/cpython/pull/2
 <dt class="sig sig-object py" id="Utils.DeprecateDict">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">DeprecateDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.DeprecateDict" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.DeprecateDict.log_message">
+<span class="sig-name descname"><span class="pre">log_message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#Utils.DeprecateDict.log_message" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.DeprecateDict.should_error">
+<span class="sig-name descname"><span class="pre">should_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#Utils.DeprecateDict.should_error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -71,6 +81,12 @@ See <a class="reference external" href="https://github.com/python/cpython/pull/2
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">KeyedDefaultDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_factory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.KeyedDefaultDict" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code></p>
 <p>defaultdict variant that uses the missing key as argument to default_factory</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.RepeatableChain">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">RepeatableChain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.RepeatableChain" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="py class">
@@ -88,12 +104,33 @@ functions).</p>
 needed.  Both arguments passed are str objects.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Utils.RestrictedUnpickler.generic_properties_module">
+<span class="sig-name descname"><span class="pre">generic_properties_module</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#Utils.RestrictedUnpickler.generic_properties_module" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Utils.UniqueKeyLoader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">UniqueKeyLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.UniqueKeyLoader" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CSafeLoader</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Utils.UniqueKeyLoader.construct_mapping">
+<span class="sig-name descname"><span class="pre">construct_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.UniqueKeyLoader.construct_mapping" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.Version">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">Version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.Version" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Utils.Version.as_simple_string">
+<span class="sig-name descname"><span class="pre">as_simple_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.Version.as_simple_string" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="Utils.Version.build">
 <span class="sig-name descname"><span class="pre">build</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Utils.Version.build" title="Link to this definition">¶</a></dt>
@@ -134,6 +171,11 @@ to prevent early garbage collection. “fire-and-forget”</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="Utils.cache_argsless">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">cache_argsless</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.cache_argsless" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="Utils.cache_path">
 <span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">cache_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.cache_path" title="Link to this definition">¶</a></dt>
 <dd><p>Returns path to a file in the user’s Archipelago cache directory.</p>
@@ -144,6 +186,16 @@ to prevent early garbage collection. “fire-and-forget”</p>
 <span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">cache_self1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">S</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">S</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RetType</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.cache_self1" title="Link to this definition">¶</a></dt>
 <dd><p>Specialized cache for self + 1 arg. Does not keep global ref to self and skips building a dict key tuple.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.chaining_prefix">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">chaining_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.chaining_prefix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.deprecate">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">deprecate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_stacklevels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.deprecate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.format_SI_prefix">
@@ -158,10 +210,100 @@ to prevent early garbage collection. “fire-and-forget”</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_adjuster_settings">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_adjuster_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#Utils.get_adjuster_settings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_adjuster_settings_no_defaults">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_adjuster_settings_no_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#Utils.get_adjuster_settings_no_defaults" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_cert_none_ssl_context">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_cert_none_ssl_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Utils.get_cert_none_ssl_context" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_default_adjuster_settings">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_default_adjuster_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#Utils.get_default_adjuster_settings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_file_safe_name">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_file_safe_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.get_file_safe_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_fuzzy_results">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_fuzzy_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.get_fuzzy_results" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_input_text_from_response">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_input_text_from_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.get_input_text_from_response" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_intended_text">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_intended_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">possible_answers</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.get_intended_text" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_options">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Settings</span></span></span><a class="headerlink" href="#Utils.get_options" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_public_ipv4">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_public_ipv4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RetType</span></span></span><a class="headerlink" href="#Utils.get_public_ipv4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_public_ipv6">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_public_ipv6</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RetType</span></span></span><a class="headerlink" href="#Utils.get_public_ipv6" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_text_after">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_text_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.get_text_after" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_text_between">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_text_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.get_text_between" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.get_unique_identifier">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_identifier</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RetType</span></span></span><a class="headerlink" href="#Utils.get_unique_identifier" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="Utils.home_path">
 <span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">home_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.home_path" title="Link to this definition">¶</a></dt>
 <dd><p>Returns path to a file in the user home’s Archipelago directory.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.init_logging">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">init_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'[%(name)s</span> <span class="pre">at</span> <span class="pre">%(asctime)s]:</span> <span class="pre">%(message)s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.init_logging" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.int16_as_bytes">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">int16_as_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.int16_as_bytes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.int32_as_bytes">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">int32_as_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.int32_as_bytes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.is_frozen">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">is_frozen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Utils.is_frozen" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.is_iterable_except_str">
@@ -170,11 +312,61 @@ to prevent early garbage collection. “fire-and-forget”</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="Utils.is_kivy_running">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">is_kivy_running</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Utils.is_kivy_running" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.load_data_package_for_checksum">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">load_data_package_for_checksum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checksum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.load_data_package_for_checksum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="Utils.local_path">
 <span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">local_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.local_path" title="Link to this definition">¶</a></dt>
 <dd><p>Returns path to a file in the local Archipelago installation or source.
 This might be read-only and user_path should be used instead for ROMs, configuration, etc.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.messagebox">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">messagebox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.messagebox" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.open_directory">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">open_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suggest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.open_directory" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.open_file">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">open_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pathlib.Path'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.open_file" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.open_filename">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">open_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suggest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.open_filename" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.output_path">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">output_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Utils.output_path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.pc_to_snes">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">pc_to_snes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Utils.pc_to_snes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.persistent_load">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">persistent_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Utils.persistent_load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.persistent_store">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">persistent_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.persistent_store" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.read_snes_rom">
@@ -189,10 +381,35 @@ This might be read-only and user_path should be used instead for ROMs, configura
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="Utils.snes_to_pc">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">snes_to_pc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Utils.snes_to_pc" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.store_data_package_for_checksum">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">store_data_package_for_checksum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.store_data_package_for_checksum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.stream_input">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">stream_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queue</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.stream_input" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="Utils.title_sorted">
 <span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">title_sorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">frozenset({'a',</span> <span class="pre">'the'})</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.title_sorted" title="Link to this definition">¶</a></dt>
 <dd><p>Sorts a sequence of text ignoring typical articles like “a” or “the” in the beginning.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.tkinter_center_window">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">tkinter_center_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tkinter.Tk</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.tkinter_center_window" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Utils.tuplize_version">
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">tuplize_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#Utils.Version" title="Utils.Version"><span class="pre">Version</span></a></span></span><a class="headerlink" href="#Utils.tuplize_version" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.user_path">
@@ -282,21 +499,59 @@ for player in multiworld.player_ids:</p>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.ByValue"><code class="docutils literal notranslate"><span class="pre">ByValue</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.DeprecateDict"><code class="docutils literal notranslate"><span class="pre">DeprecateDict</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.KeyedDefaultDict"><code class="docutils literal notranslate"><span class="pre">KeyedDefaultDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.RepeatableChain"><code class="docutils literal notranslate"><span class="pre">RepeatableChain</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.RestrictedUnpickler"><code class="docutils literal notranslate"><span class="pre">RestrictedUnpickler</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.UniqueKeyLoader"><code class="docutils literal notranslate"><span class="pre">UniqueKeyLoader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.Version"><code class="docutils literal notranslate"><span class="pre">Version</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.VersionException"><code class="docutils literal notranslate"><span class="pre">VersionException</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.async_start"><code class="docutils literal notranslate"><span class="pre">async_start()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.build_sphinx_docs"><code class="docutils literal notranslate"><span class="pre">build_sphinx_docs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.cache_argsless"><code class="docutils literal notranslate"><span class="pre">cache_argsless()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.cache_path"><code class="docutils literal notranslate"><span class="pre">cache_path()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.cache_self1"><code class="docutils literal notranslate"><span class="pre">cache_self1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.chaining_prefix"><code class="docutils literal notranslate"><span class="pre">chaining_prefix()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.deprecate"><code class="docutils literal notranslate"><span class="pre">deprecate()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.format_SI_prefix"><code class="docutils literal notranslate"><span class="pre">format_SI_prefix()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.freeze_support"><code class="docutils literal notranslate"><span class="pre">freeze_support()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_adjuster_settings"><code class="docutils literal notranslate"><span class="pre">get_adjuster_settings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_adjuster_settings_no_defaults"><code class="docutils literal notranslate"><span class="pre">get_adjuster_settings_no_defaults()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_cert_none_ssl_context"><code class="docutils literal notranslate"><span class="pre">get_cert_none_ssl_context()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_default_adjuster_settings"><code class="docutils literal notranslate"><span class="pre">get_default_adjuster_settings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_file_safe_name"><code class="docutils literal notranslate"><span class="pre">get_file_safe_name()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_fuzzy_results"><code class="docutils literal notranslate"><span class="pre">get_fuzzy_results()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_input_text_from_response"><code class="docutils literal notranslate"><span class="pre">get_input_text_from_response()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_intended_text"><code class="docutils literal notranslate"><span class="pre">get_intended_text()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_options"><code class="docutils literal notranslate"><span class="pre">get_options()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_public_ipv4"><code class="docutils literal notranslate"><span class="pre">get_public_ipv4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_public_ipv6"><code class="docutils literal notranslate"><span class="pre">get_public_ipv6()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_text_after"><code class="docutils literal notranslate"><span class="pre">get_text_after()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_text_between"><code class="docutils literal notranslate"><span class="pre">get_text_between()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.get_unique_identifier"><code class="docutils literal notranslate"><span class="pre">get_unique_identifier()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.home_path"><code class="docutils literal notranslate"><span class="pre">home_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.init_logging"><code class="docutils literal notranslate"><span class="pre">init_logging()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.int16_as_bytes"><code class="docutils literal notranslate"><span class="pre">int16_as_bytes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.int32_as_bytes"><code class="docutils literal notranslate"><span class="pre">int32_as_bytes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.is_frozen"><code class="docutils literal notranslate"><span class="pre">is_frozen()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.is_iterable_except_str"><code class="docutils literal notranslate"><span class="pre">is_iterable_except_str()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.is_kivy_running"><code class="docutils literal notranslate"><span class="pre">is_kivy_running()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.load_data_package_for_checksum"><code class="docutils literal notranslate"><span class="pre">load_data_package_for_checksum()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.local_path"><code class="docutils literal notranslate"><span class="pre">local_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.messagebox"><code class="docutils literal notranslate"><span class="pre">messagebox()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.open_directory"><code class="docutils literal notranslate"><span class="pre">open_directory()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.open_file"><code class="docutils literal notranslate"><span class="pre">open_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.open_filename"><code class="docutils literal notranslate"><span class="pre">open_filename()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.output_path"><code class="docutils literal notranslate"><span class="pre">output_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.pc_to_snes"><code class="docutils literal notranslate"><span class="pre">pc_to_snes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.persistent_load"><code class="docutils literal notranslate"><span class="pre">persistent_load()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.persistent_store"><code class="docutils literal notranslate"><span class="pre">persistent_store()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.read_snes_rom"><code class="docutils literal notranslate"><span class="pre">read_snes_rom()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.restricted_loads"><code class="docutils literal notranslate"><span class="pre">restricted_loads()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.snes_to_pc"><code class="docutils literal notranslate"><span class="pre">snes_to_pc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.store_data_package_for_checksum"><code class="docutils literal notranslate"><span class="pre">store_data_package_for_checksum()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.stream_input"><code class="docutils literal notranslate"><span class="pre">stream_input()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.title_sorted"><code class="docutils literal notranslate"><span class="pre">title_sorted()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.tkinter_center_window"><code class="docutils literal notranslate"><span class="pre">tkinter_center_window()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Utils.tuplize_version"><code class="docutils literal notranslate"><span class="pre">tuplize_version()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.user_path"><code class="docutils literal notranslate"><span class="pre">user_path()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Utils.visualize_regions"><code class="docutils literal notranslate"><span class="pre">visualize_regions()</span></code></a></li>
 </ul>

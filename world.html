@@ -88,6 +88,11 @@ Collect None to skip item.
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.create_filler">
+<span class="sig-name descname"><span class="pre">create_filler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="item.html#BaseClasses.Item" title="BaseClasses.Item"><span class="pre">Item</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_filler" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.create_group">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiworld</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="multiworld.html#BaseClasses.MultiWorld" title="BaseClasses.MultiWorld"><span class="pre">MultiWorld</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_player_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#worlds.AutoWorld.World" title="worlds.AutoWorld.World"><span class="pre">World</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.create_group" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a group, which is an instance of World that is responsible for multiple others.
@@ -175,10 +180,35 @@ If you need any last-second randomization, use self.random instead.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_data_package_data">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_data_package_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GamesPackage</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_data_package_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_entrance">
+<span class="sig-name descname"><span class="pre">get_entrance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entrance_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_entrance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_entrances">
+<span class="sig-name descname"><span class="pre">get_entrances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_entrances" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.get_filler_item_name">
 <span class="sig-name descname"><span class="pre">get_filler_item_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_filler_item_name" title="Link to this definition">¶</a></dt>
 <dd><p>Called when the item pool needs to be filled with additional items to match location count.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_location">
+<span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="location.html#BaseClasses.Location" title="BaseClasses.Location"><span class="pre">Location</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_location" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_locations">
+<span class="sig-name descname"><span class="pre">get_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="location.html#BaseClasses.Location" title="BaseClasses.Location"><span class="pre">Location</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_locations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.get_pre_fill_items">
@@ -186,6 +216,16 @@ If you need any last-second randomization, use self.random instead.</p>
 <dd><p>Used to return items that need to be collected when creating a fresh all_state, but don’t exist in the
 multiworld itempool.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_region">
+<span class="sig-name descname"><span class="pre">get_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_region" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.get_regions">
+<span class="sig-name descname"><span class="pre">get_regions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="region.html#BaseClasses.Region" title="BaseClasses.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.get_regions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.hidden">
@@ -284,6 +324,11 @@ multiworld itempool.</p>
 <dd><p>autoset on creation. The player number for this World</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.player_name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">player_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#worlds.AutoWorld.World.player_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.post_fill">
 <span class="sig-name descname"><span class="pre">post_fill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.post_fill" title="Link to this definition">¶</a></dt>
@@ -296,6 +341,11 @@ This happens before progression balancing, so the items may not be in their fina
 <span class="sig-name descname"><span class="pre">pre_fill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.pre_fill" title="Link to this definition">¶</a></dt>
 <dd><p>Optional method that is supposed to be used for special fill stages. This is run <em>after</em> plando.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="worlds.AutoWorld.World.push_precollected">
+<span class="sig-name descname"><span class="pre">push_precollected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="item.html#BaseClasses.Item" title="BaseClasses.Item"><span class="pre">Item</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#worlds.AutoWorld.World.push_precollected" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="worlds.AutoWorld.World.random">
