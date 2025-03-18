@@ -55,25 +55,29 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.ByValue">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">ByValue</span></span><a class="headerlink" href="#Utils.ByValue" title="Link to this definition">¶</a></dt>
-<dd><p>Mixin for enums to pickle value instead of name (restores pre-3.11 behavior). Use as left-most parent.
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Mixin for enums to pickle value instead of name (restores pre-3.11 behavior). Use as left-most parent.
 See <a class="reference external" href="https://github.com/python/cpython/pull/26658">https://github.com/python/cpython/pull/26658</a> for why this exists.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.DeprecateDict">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">DeprecateDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.DeprecateDict" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.KeyedDefaultDict">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">KeyedDefaultDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_factory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.KeyedDefaultDict" title="Link to this definition">¶</a></dt>
-<dd><p>defaultdict variant that uses the missing key as argument to default_factory</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code></p>
+<p>defaultdict variant that uses the missing key as argument to default_factory</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.RestrictedUnpickler">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">RestrictedUnpickler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.RestrictedUnpickler" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Unpickler</span></code></p>
+<dl class="py method">
 <dt class="sig sig-object py" id="Utils.RestrictedUnpickler.find_class">
 <span class="sig-name descname"><span class="pre">find_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">type</span></span></span><a class="headerlink" href="#Utils.RestrictedUnpickler.find_class" title="Link to this definition">¶</a></dt>
 <dd><p>Return an object from a specified module.</p>
@@ -89,7 +93,8 @@ needed.  Both arguments passed are str objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="Utils.Version">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">Version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.Version" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="Utils.Version.build">
 <span class="sig-name descname"><span class="pre">build</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#Utils.Version.build" title="Link to this definition">¶</a></dt>
 <dd><p>Alias for field number 2</p>
@@ -112,7 +117,8 @@ needed.  Both arguments passed are str objects.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="Utils.VersionException">
 <em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">VersionException</span></span><a class="headerlink" href="#Utils.VersionException" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.async_start">
@@ -123,7 +129,7 @@ to prevent early garbage collection. “fire-and-forget”</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Utils.build_sphinx_docs">
-<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">build_sphinx_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.build_sphinx_docs" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Utils.</span></span><span class="sig-name descname"><span class="pre">build_sphinx_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Utils.build_sphinx_docs" title="Link to this definition">¶</a></dt>
 <dd><p>Build Sphinx autodocs.</p>
 </dd></dl>
 
@@ -259,8 +265,7 @@ for player in multiworld.player_ids:</p>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
@@ -351,7 +356,7 @@ for player in multiworld.player_ids:</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Archipelago.
+    &#169; Copyright 2025, Archipelago.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

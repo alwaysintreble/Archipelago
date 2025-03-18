@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="APWorld Dev FAQ" href="apworld_dev_faq.html" />
-    <link rel="prev" title="Archipelago General Client" href="network%20protocol.html" />
+    <link rel="prev" title="Network Protocol" href="network%20protocol.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -38,7 +38,7 @@
           <a href="apworld_dev_faq.html" title="APWorld Dev FAQ"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="network%20protocol.html" title="Archipelago General Client"
+          <a href="network%20protocol.html" title="Network Protocol"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago Unit Testing API</a></li> 
@@ -126,6 +126,34 @@ overridden. For more information on what methods are available to your class, ch
 may be useful for generating a multiworld under very specific constraints without using the generic world setup, or for
 testing portions of your code that can be tested without relying on a multiworld to be created first.</p>
 </section>
+<section id="parametrization">
+<h4>Parametrization<a class="headerlink" href="#parametrization" title="Link to this heading">¶</a></h4>
+<p>When defining a test that needs to cover a range of inputs it is useful to parameterize (to run the same test
+for multiple inputs) the base test. Some important things to consider when attempting to parametrize your test are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/unittest.html#distinguishing-test-iterations-using-subtests">Subtests</a>
+can be used to have parametrized assertions that show up similar to individual tests but without the overhead
+of needing to instantiate multiple tests; however, subtests can not be multithreaded and do not have individual
+timing data, so they are not suitable for slow tests.</p></li>
+<li><p>Archipelago’s tests are test-runner-agnostic. That means tests are not allowed to use e.g. <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code>.
+Instead, we define our own parametrization helpers in <a class="reference internal" href="#param"><span class="xref myst">test.param</span></a>.</p></li>
+<li><p>Classes inheriting from <code class="docutils literal notranslate"><span class="pre">WorldTestBase</span></code>, including those created by the helpers in <code class="docutils literal notranslate"><span class="pre">test.param</span></code>, will run all
+base tests by default, make sure the produced tests actually do what you aim for and do not waste a lot of
+extra CPU time. Consider using <code class="docutils literal notranslate"><span class="pre">TestBase</span></code> or <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code> directly
+or setting <code class="docutils literal notranslate"><span class="pre">WorldTestBase.run_default_tests</span></code> to False.</p></li>
+</ul>
+</section>
+<section id="performance-considerations">
+<h4>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">¶</a></h4>
+<p>Archipelago is big enough that the runtime of unittests can have an impact on productivity.</p>
+<p>Individual tests should take less than a second, so they can be properly multithreaded.</p>
+<p>Ideally, thorough tests are directed at actual code/functionality. Do not just create and/or fill a ton of individual
+Multiworlds that spend most of the test time outside what you actually want to test.</p>
+<p>Consider generating/validating “random” games as part of your APWorld release workflow rather than having that be part
+of continuous integration, and add minimal reproducers to the “normal” tests for problems that were found.
+You can use <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.skipIf">&#64;unittest.skipIf</a> with an environment
+variable to keep all the benefits of the test framework while not running the marked tests by default.</p>
+</section>
 </section>
 </section>
 <section id="running-tests">
@@ -144,6 +172,12 @@ next to the run and debug buttons.</p>
 <section id="running-tests-without-pycharm">
 <h3>Running Tests without Pycharm<a class="headerlink" href="#running-tests-without-pycharm" title="Link to this heading">¶</a></h3>
 <p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">pytest-subtests</span></code>, then use your IDE to run tests or run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> from the source folder.</p>
+</section>
+<section id="running-tests-multithreaded">
+<h3>Running Tests Multithreaded<a class="headerlink" href="#running-tests-multithreaded" title="Link to this heading">¶</a></h3>
+<p>pytest can run multiple test runners in parallel with the pytest-xdist extension.</p>
+<p>Install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest-xdist</span></code>.</p>
+<p>Run with <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-n12</span></code> to spawn 12 process that each run 1/12th of the tests.</p>
 </section>
 </section>
 </section>
@@ -171,8 +205,7 @@ next to the run and debug buttons.</p>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago Unit Testing API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#generic-tests">Generic Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#defining-world-tests">Defining World Tests</a></li>
@@ -198,7 +231,7 @@ next to the run and debug buttons.</p>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="network%20protocol.html"
-                          title="previous chapter">Archipelago General Client</a></p>
+                          title="previous chapter">Network Protocol</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -239,14 +272,14 @@ next to the run and debug buttons.</p>
           <a href="apworld_dev_faq.html" title="APWorld Dev FAQ"
              >next</a> |</li>
         <li class="right" >
-          <a href="network%20protocol.html" title="Archipelago General Client"
+          <a href="network%20protocol.html" title="Network Protocol"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago Unit Testing API</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Archipelago.
+    &#169; Copyright 2025, Archipelago.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

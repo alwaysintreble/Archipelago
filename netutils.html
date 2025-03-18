@@ -55,12 +55,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.ClientStatus">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">ClientStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.ClientStatus" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <a class="reference internal" href="utils.html#Utils.ByValue" title="Utils.ByValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ByValue</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.Hint">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">Hint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">receiving_player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finding_player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">found</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entrance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_flags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.Hint" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="NetUtils.Hint.entrance">
 <span class="sig-name descname"><span class="pre">entrance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#NetUtils.Hint.entrance" title="Link to this definition">¶</a></dt>
 <dd><p>Alias for field number 5</p>
@@ -113,22 +115,26 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.HintStatus">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">HintStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.HintStatus" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <a class="reference internal" href="utils.html#Utils.ByValue" title="Utils.ByValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ByValue</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.JSONMessagePart">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">JSONMessagePart</span></span><a class="headerlink" href="#NetUtils.JSONMessagePart" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.JSONTypes">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">JSONTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.JSONTypes" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.NetworkItem">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">NetworkItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.NetworkItem" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="NetUtils.NetworkItem.flags">
 <span class="sig-name descname"><span class="pre">flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#NetUtils.NetworkItem.flags" title="Link to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
@@ -157,7 +163,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.NetworkPlayer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">NetworkPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">team</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.NetworkPlayer" title="Link to this definition">¶</a></dt>
-<dd><p>Represents a particular player on a particular team.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Represents a particular player on a particular team.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="NetUtils.NetworkPlayer.alias">
 <span class="sig-name descname"><span class="pre">alias</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#NetUtils.NetworkPlayer.alias" title="Link to this definition">¶</a></dt>
@@ -187,7 +194,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.NetworkSlot">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">NetworkSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#NetUtils.SlotType" title="NetUtils.SlotType"><span class="pre">SlotType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_members</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.NetworkSlot" title="Link to this definition">¶</a></dt>
-<dd><p>Represents a particular slot across teams.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Represents a particular slot across teams.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="NetUtils.NetworkSlot.game">
 <span class="sig-name descname"><span class="pre">game</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#NetUtils.NetworkSlot.game" title="Link to this definition">¶</a></dt>
@@ -217,12 +225,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.Permission">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">Permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.Permission" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <a class="reference internal" href="utils.html#Utils.ByValue" title="Utils.ByValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ByValue</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="NetUtils.SlotType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">NetUtils.</span></span><span class="sig-name descname"><span class="pre">SlotType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NetUtils.SlotType" title="Link to this definition">¶</a></dt>
-<dd><dl class="py property">
+<dd><p>Bases: <a class="reference internal" href="utils.html#Utils.ByValue" title="Utils.ByValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ByValue</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+<dl class="py property">
 <dt class="sig sig-object py" id="NetUtils.SlotType.always_goal">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">always_goal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#NetUtils.SlotType.always_goal" title="Link to this definition">¶</a></dt>
 <dd><p>Mark this slot as having reached its goal instantly.</p>
@@ -255,8 +265,7 @@
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
@@ -337,7 +346,7 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Archipelago.
+    &#169; Copyright 2025, Archipelago.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

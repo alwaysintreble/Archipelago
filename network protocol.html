@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Archipelago General Client &#8212; Archipelago 0.6.0 documentation</title>
+    <title>Network Protocol &#8212; Archipelago 0.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -41,7 +41,7 @@
           <a href="entrance%20randomization.html" title="Entrance Randomization"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Archipelago General Client</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Network Protocol</a></li> 
       </ul>
     </div>  
 
@@ -50,10 +50,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="archipelago-general-client">
-<h1>Archipelago General Client<a class="headerlink" href="#archipelago-general-client" title="Link to this heading">¶</a></h1>
+  <section id="network-protocol">
+<h1>Network Protocol<a class="headerlink" href="#network-protocol" title="Link to this heading">¶</a></h1>
+<section id="archipelago-general-client">
+<h2>Archipelago General Client<a class="headerlink" href="#archipelago-general-client" title="Link to this heading">¶</a></h2>
 <section id="archipelago-connection-handshake">
-<h2>Archipelago Connection Handshake<a class="headerlink" href="#archipelago-connection-handshake" title="Link to this heading">¶</a></h2>
+<h3>Archipelago Connection Handshake<a class="headerlink" href="#archipelago-connection-handshake" title="Link to this heading">¶</a></h3>
 <p>These steps should be followed in order to establish a gameplay connection with an Archipelago session.</p>
 <ol class="arabic simple">
 <li><p>Client establishes WebSocket connection to Archipelago server.</p></li>
@@ -127,7 +129,7 @@
 </table>
 </section>
 <section id="synchronizing-items">
-<h2>Synchronizing Items<a class="headerlink" href="#synchronizing-items" title="Link to this heading">¶</a></h2>
+<h3>Synchronizing Items<a class="headerlink" href="#synchronizing-items" title="Link to this heading">¶</a></h3>
 <p>After a client connects, it will receive all previously collected items for its associated slot in a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet. This will include items the client may have already processed in a previous play session.<br />
 To ensure the client is able to reject those items if it needs to, each item in the packet has an associated <code class="docutils literal notranslate"><span class="pre">index</span></code> argument. You will need to find a way to save the “last processed item index” to the player’s local savegame, a local file, or something to that effect. Before connecting, you should load that “last processed item index” value and compare against it in your received items handling.</p>
 <p>When the client receives a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet, if the <code class="docutils literal notranslate"><span class="pre">index</span></code> argument does not match the next index that the client expects then it is expected that the client will re-sync items with the server. This can be accomplished by sending the server a <a class="reference internal" href="#Sync"><span class="xref myst">Sync</span></a> packet and then a <a class="reference internal" href="#LocationChecks"><span class="xref myst">LocationChecks</span></a> packet.</p>
@@ -136,7 +138,7 @@ To ensure the client is able to reject those items if it needs to, each item in 
 </section>
 </section>
 <section id="archipelago-protocol-packets">
-<h1>Archipelago Protocol Packets<a class="headerlink" href="#archipelago-protocol-packets" title="Link to this heading">¶</a></h1>
+<h2>Archipelago Protocol Packets<a class="headerlink" href="#archipelago-protocol-packets" title="Link to this heading">¶</a></h2>
 <p>Packets are sent between the multiworld server and client in order to sync information between them. Below is a directory of each packet.</p>
 <p>Packets are simple JSON lists in which any number of ordered network commands can be sent, which are objects. Each command has a “cmd” key, indicating its purpose. All packet argument types documented here refer to JSON types, unless otherwise specified.</p>
 <p>An object can contain the “class” key, which will tell the content data type, such as “Version” in the following example.</p>
@@ -147,7 +149,7 @@ working in the future.</p>
 </pre></div>
 </div>
 <section id="server-client">
-<h2>(Server -&gt; Client)<a class="headerlink" href="#server-client" title="Link to this heading">¶</a></h2>
+<h3>(Server -&gt; Client)<a class="headerlink" href="#server-client" title="Link to this heading">¶</a></h3>
 <p>These packets are sent from the multiworld server to the client. They are not messages which the server accepts.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a></p></li>
@@ -164,10 +166,10 @@ working in the future.</p>
 <li><p><a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a></p></li>
 </ul>
 <section id="roominfo">
-<h3>RoomInfo<a class="headerlink" href="#roominfo" title="Link to this heading">¶</a></h3>
+<h4>RoomInfo<a class="headerlink" href="#roominfo" title="Link to this heading">¶</a></h4>
 <p>Sent to clients when they connect to an Archipelago server.</p>
 <section id="arguments">
-<h4>Arguments<a class="headerlink" href="#arguments" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#arguments" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -224,7 +226,7 @@ working in the future.</p>
 </table>
 </section>
 <section id="release">
-<h4>release<a class="headerlink" href="#release" title="Link to this heading">¶</a></h4>
+<h5>release<a class="headerlink" href="#release" title="Link to this heading">¶</a></h5>
 <p>Dictates what is allowed when it comes to a player releasing their run. A release is an action which distributes the rest of the items in a player’s run to those other players awaiting them.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>: Distributes a player’s items to other players when they complete their goal.</p></li>
@@ -235,7 +237,7 @@ working in the future.</p>
 </ul>
 </section>
 <section id="collect">
-<h4>collect<a class="headerlink" href="#collect" title="Link to this heading">¶</a></h4>
+<h5>collect<a class="headerlink" href="#collect" title="Link to this heading">¶</a></h5>
 <p>Dictates what is allowed when it comes to a player collecting their run. A collect is an action which sends the rest of the items in a player’s run.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>: Automatically when they complete their goal.</p></li>
@@ -246,7 +248,7 @@ working in the future.</p>
 </ul>
 </section>
 <section id="remaining">
-<h4>remaining<a class="headerlink" href="#remaining" title="Link to this heading">¶</a></h4>
+<h5>remaining<a class="headerlink" href="#remaining" title="Link to this heading">¶</a></h5>
 <p>Dictates what is allowed when it comes to a player querying the items remaining in their run.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">goal</span></code>: Allows a player to query for items remaining in their run but only after they completed their own goal.</p></li>
@@ -256,10 +258,10 @@ working in the future.</p>
 </section>
 </section>
 <section id="connectionrefused">
-<h3>ConnectionRefused<a class="headerlink" href="#connectionrefused" title="Link to this heading">¶</a></h3>
+<h4>ConnectionRefused<a class="headerlink" href="#connectionrefused" title="Link to this heading">¶</a></h4>
 <p>Sent to clients when the server refuses connection. This is sent during the initial connection handshake.</p>
 <section id="id1">
-<h4>Arguments<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -282,10 +284,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="connected">
-<h3>Connected<a class="headerlink" href="#connected" title="Link to this heading">¶</a></h3>
+<h4>Connected<a class="headerlink" href="#connected" title="Link to this heading">¶</a></h4>
 <p>Sent to clients when the connection handshake is successfully completed.</p>
 <section id="id2">
-<h4>Arguments<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -331,10 +333,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="receiveditems">
-<h3>ReceivedItems<a class="headerlink" href="#receiveditems" title="Link to this heading">¶</a></h3>
+<h4>ReceivedItems<a class="headerlink" href="#receiveditems" title="Link to this heading">¶</a></h4>
 <p>Sent to clients when they receive an item.</p>
 <section id="id3">
-<h4>Arguments<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -356,10 +358,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="locationinfo">
-<h3>LocationInfo<a class="headerlink" href="#locationinfo" title="Link to this heading">¶</a></h3>
+<h4>LocationInfo<a class="headerlink" href="#locationinfo" title="Link to this heading">¶</a></h4>
 <p>Sent to clients to acknowledge a received <a class="reference internal" href="#locationscouts"><span class="xref myst">LocationScouts</span></a> packet and responds with the item in the location(s) being scouted.</p>
 <section id="id4">
-<h4>Arguments<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -377,10 +379,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="roomupdate">
-<h3>RoomUpdate<a class="headerlink" href="#roomupdate" title="Link to this heading">¶</a></h3>
+<h4>RoomUpdate<a class="headerlink" href="#roomupdate" title="Link to this heading">¶</a></h4>
 <p>Sent when there is a need to update information about the present game session.</p>
 <section id="id5">
-<h4>Arguments<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h5>
 <p>RoomUpdate may contain the same arguments from <a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a> and, once authenticated, arguments from
 <a class="reference internal" href="#connected"><span class="xref myst">Connected</span></a> with the following exceptions:</p>
 <table class="docutils align-default">
@@ -409,10 +411,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="printjson">
-<h3>PrintJSON<a class="headerlink" href="#printjson" title="Link to this heading">¶</a></h3>
+<h4>PrintJSON<a class="headerlink" href="#printjson" title="Link to this heading">¶</a></h4>
 <p>Sent to clients purely to display a message to the player. While various message types provide additional arguments, clients only need to evaluate the <code class="docutils literal notranslate"><span class="pre">data</span></code> argument to construct the human-readable message text. All other arguments may be ignored safely.</p>
 <section id="id6">
-<h4>Arguments<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -476,7 +478,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </table>
 </section>
 <section id="printjsontype">
-<h4>PrintJsonType<a class="headerlink" href="#printjsontype" title="Link to this heading">¶</a></h4>
+<h5>PrintJsonType<a class="headerlink" href="#printjsontype" title="Link to this heading">¶</a></h5>
 <p>PrintJsonType indicates the type of a <a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a> packet. Different types can be handled differently by the client and can also contain additional arguments. When receiving an unknown or missing type, the <code class="docutils literal notranslate"><span class="pre">data</span></code>’s list[<a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart" title="NetUtils.JSONMessagePart"><span class="xref myst py py-class">JSONMessagePart</span></a>] should still be displayed to the player as normal text.</p>
 <p>Currently defined types are:</p>
 <table class="docutils align-default">
@@ -536,10 +538,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="datapackage">
-<h3>DataPackage<a class="headerlink" href="#datapackage" title="Link to this heading">¶</a></h3>
+<h4>DataPackage<a class="headerlink" href="#datapackage" title="Link to this heading">¶</a></h4>
 <p>Sent to clients to provide what is known as a ‘data package’ which contains information to enable a client to most easily communicate with the Archipelago server. Contents include things like location id to name mappings, among others; see <a class="reference internal" href="#data-package-contents"><span class="xref myst">Data Package Contents</span></a> for more info.</p>
 <section id="id7">
-<h4>Arguments<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -557,10 +559,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="bounced">
-<h3>Bounced<a class="headerlink" href="#bounced" title="Link to this heading">¶</a></h3>
+<h4>Bounced<a class="headerlink" href="#bounced" title="Link to this heading">¶</a></h4>
 <p>Sent to clients after a client requested this message be sent to them, more info in the <a class="reference internal" href="#bounce"><span class="xref myst">Bounce</span></a> package.</p>
 <section id="id8">
-<h4>Arguments<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -590,10 +592,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="invalidpacket">
-<h3>InvalidPacket<a class="headerlink" href="#invalidpacket" title="Link to this heading">¶</a></h3>
+<h4>InvalidPacket<a class="headerlink" href="#invalidpacket" title="Link to this heading">¶</a></h4>
 <p>Sent to clients if the server caught a problem with a packet. This only occurs for errors that are explicitly checked for.</p>
 <section id="id9">
-<h4>Arguments<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -617,7 +619,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tbody>
 </table>
 <section id="packetproblemtype">
-<h5>PacketProblemType<a class="headerlink" href="#packetproblemtype" title="Link to this heading">¶</a></h5>
+<h6>PacketProblemType<a class="headerlink" href="#packetproblemtype" title="Link to this heading">¶</a></h6>
 <p><code class="docutils literal notranslate"><span class="pre">PacketProblemType</span></code> indicates the type of problem that was detected in the faulty packet, the known problem types are below but others may be added in the future.</p>
 <table class="docutils align-default">
 <thead>
@@ -638,10 +640,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="retrieved">
-<h3>Retrieved<a class="headerlink" href="#retrieved" title="Link to this heading">¶</a></h3>
+<h4>Retrieved<a class="headerlink" href="#retrieved" title="Link to this heading">¶</a></h4>
 <p>Sent to clients as a response the a <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package.</p>
 <section id="id10">
-<h4>Arguments<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -661,10 +663,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="setreply">
-<h3>SetReply<a class="headerlink" href="#setreply" title="Link to this heading">¶</a></h3>
+<h4>SetReply<a class="headerlink" href="#setreply" title="Link to this heading">¶</a></h4>
 <p>Sent to clients in response to a <a class="reference internal" href="#set"><span class="xref myst">Set</span></a> package if want_reply was set to true, or if the client has registered to receive updates for a certain key using the <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package. SetReply packages are sent even if a <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package did not alter the value for the key.</p>
 <section id="id11">
-<h4>Arguments<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -696,7 +698,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="client-server">
-<h2>(Client -&gt; Server)<a class="headerlink" href="#client-server" title="Link to this heading">¶</a></h2>
+<h3>(Client -&gt; Server)<a class="headerlink" href="#client-server" title="Link to this heading">¶</a></h3>
 <p>These packets are sent purely from client to server. They are not accepted by clients.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="entrance_rando.html#entrance_rando.ERPlacementState.connect" title="entrance_rando.ERPlacementState.connect"><span class="xref myst py py-meth">Connect</span></a></p></li>
@@ -714,10 +716,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <li><p><a class="reference internal" href="#setnotify"><span class="xref myst">SetNotify</span></a></p></li>
 </ul>
 <section id="connect">
-<h3>Connect<a class="headerlink" href="#connect" title="Link to this heading">¶</a></h3>
+<h4>Connect<a class="headerlink" href="#connect" title="Link to this heading">¶</a></h4>
 <p>Sent by the client to initiate a connection to an Archipelago game session.</p>
 <section id="id12">
-<h4>Arguments<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -762,7 +764,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </table>
 </section>
 <section id="items-handling-flags">
-<h4>items_handling flags<a class="headerlink" href="#items-handling-flags" title="Link to this heading">¶</a></h4>
+<h5>items_handling flags<a class="headerlink" href="#items-handling-flags" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
@@ -789,15 +791,15 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </table>
 </section>
 <section id="authentication">
-<h4>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h4>
+<h5>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h5>
 <p>Many, if not all, other packets require a successfully authenticated client. This is described in more detail in <a class="reference internal" href="#archipelago-connection-handshake"><span class="xref myst">Archipelago Connection Handshake</span></a>.</p>
 </section>
 </section>
 <section id="connectupdate">
-<h3>ConnectUpdate<a class="headerlink" href="#connectupdate" title="Link to this heading">¶</a></h3>
+<h4>ConnectUpdate<a class="headerlink" href="#connectupdate" title="Link to this heading">¶</a></h4>
 <p>Update arguments from the Connect package, currently only updating tags and items_handling is supported.</p>
 <section id="id13">
-<h4>Arguments<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -819,18 +821,18 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="sync">
-<h3>Sync<a class="headerlink" href="#sync" title="Link to this heading">¶</a></h3>
+<h4>Sync<a class="headerlink" href="#sync" title="Link to this heading">¶</a></h4>
 <p>Sent to server to request a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet to synchronize items.</p>
 <section id="id14">
-<h4>Arguments<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h5>
 <p>No arguments necessary.</p>
 </section>
 </section>
 <section id="locationchecks">
-<h3>LocationChecks<a class="headerlink" href="#locationchecks" title="Link to this heading">¶</a></h3>
+<h4>LocationChecks<a class="headerlink" href="#locationchecks" title="Link to this heading">¶</a></h4>
 <p>Sent to server to inform it of locations that the client has checked. Used to inform the server of new checks that are made, as well as to sync state.</p>
 <section id="id15">
-<h4>Arguments<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -848,13 +850,13 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 </section>
 <section id="locationscouts">
-<h3>LocationScouts<a class="headerlink" href="#locationscouts" title="Link to this heading">¶</a></h3>
+<h4>LocationScouts<a class="headerlink" href="#locationscouts" title="Link to this heading">¶</a></h4>
 <p>Sent to the server to retrieve the items that are on a specified list of locations. The server will respond with a <a class="reference internal" href="#locationinfo"><span class="xref myst">LocationInfo</span></a> packet containing the items located in the scouted locations.
 Fully remote clients without a patch file may use this to “place” items onto their in-game locations, most commonly to display their names or item classifications before/upon pickup.</p>
 <p>LocationScouts can also be used to inform the server of locations the client has seen, but not checked. This creates a hint as if the player had run <code class="docutils literal notranslate"><span class="pre">!hint_location</span></code> on a location, but without deducting hint points.
 This is useful in cases where an item appears in the game world, such as ‘ledge items’ in <em>A Link to the Past</em>. To do this, set the <code class="docutils literal notranslate"><span class="pre">create_as_hint</span></code> parameter to a non-zero value.</p>
 <section id="id16">
-<h4>Arguments<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -876,11 +878,11 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </section>
 </section>
 <section id="updatehint">
-<h3>UpdateHint<a class="headerlink" href="#updatehint" title="Link to this heading">¶</a></h3>
+<h4>UpdateHint<a class="headerlink" href="#updatehint" title="Link to this heading">¶</a></h4>
 <p>Sent to the server to update the status of a Hint. The client must be the ‘receiving_player’ of the Hint, or the update fails.</p>
 </section>
 <section id="id17">
-<h3>Arguments<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<h4>Arguments<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -904,7 +906,7 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </tbody>
 </table>
 <section id="hintstatus">
-<h4>HintStatus<a class="headerlink" href="#hintstatus" title="Link to this heading">¶</a></h4>
+<h5>HintStatus<a class="headerlink" href="#hintstatus" title="Link to this heading">¶</a></h5>
 <p>An enumeration containing the possible hint states.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">HintStatus</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
@@ -924,10 +926,10 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </section>
 </section>
 <section id="statusupdate">
-<h3>StatusUpdate<a class="headerlink" href="#statusupdate" title="Link to this heading">¶</a></h3>
+<h4>StatusUpdate<a class="headerlink" href="#statusupdate" title="Link to this heading">¶</a></h4>
 <p>Sent to the server to update on the sender’s status. Examples include readiness or goal completion. (Example: defeated Ganon in A Link to the Past)</p>
 <section id="id18">
-<h4>Arguments<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -945,10 +947,10 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </section>
 </section>
 <section id="say">
-<h3>Say<a class="headerlink" href="#say" title="Link to this heading">¶</a></h3>
+<h4>Say<a class="headerlink" href="#say" title="Link to this heading">¶</a></h4>
 <p>Basic chat command which sends text to the server to be distributed to other clients.</p>
 <section id="id19">
-<h4>Arguments<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -966,10 +968,10 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </section>
 </section>
 <section id="getdatapackage">
-<h3>GetDataPackage<a class="headerlink" href="#getdatapackage" title="Link to this heading">¶</a></h3>
+<h4>GetDataPackage<a class="headerlink" href="#getdatapackage" title="Link to this heading">¶</a></h4>
 <p>Requests the data package from the server. Does not require client authentication.</p>
 <section id="id20">
-<h4>Arguments<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -987,11 +989,11 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 </section>
 </section>
 <section id="bounce">
-<h3>Bounce<a class="headerlink" href="#bounce" title="Link to this heading">¶</a></h3>
+<h4>Bounce<a class="headerlink" href="#bounce" title="Link to this heading">¶</a></h4>
 <p>Send this message to the server, tell it which clients should receive the message and
 the server will forward the message to all those targets to which any one requirement applies.</p>
 <section id="id21">
-<h4>Arguments<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1021,10 +1023,10 @@ the server will forward the message to all those targets to which any one requir
 </section>
 </section>
 <section id="get">
-<h3>Get<a class="headerlink" href="#get" title="Link to this heading">¶</a></h3>
+<h4>Get<a class="headerlink" href="#get" title="Link to this heading">¶</a></h4>
 <p>Used to request a single or multiple values from the server’s data storage, see the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a> package for how to write values to the data storage. A Get package will be answered with a <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> package.</p>
 <section id="id22">
-<h4>Arguments<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1078,11 +1080,11 @@ the server will forward the message to all those targets to which any one requir
 </section>
 </section>
 <section id="set">
-<h3>Set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h3>
+<h4>Set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h4>
 <p>Used to write data to the server’s data storage, that data can then be shared across worlds or just saved for later. Values for keys in the data storage can be retrieved with a <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package, or monitored with a <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package.
 Keys that start with <code class="docutils literal notranslate"><span class="pre">_read_</span></code> cannot be set.</p>
 <section id="id23">
-<h4>Arguments<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1112,7 +1114,7 @@ Keys that start with <code class="docutils literal notranslate"><span class="pre
 <p>Additional arguments sent in this package will also be added to the <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> package it triggers.</p>
 </section>
 <section id="datastorageoperation">
-<h4>DataStorageOperation<a class="headerlink" href="#datastorageoperation" title="Link to this heading">¶</a></h4>
+<h5>DataStorageOperation<a class="headerlink" href="#datastorageoperation" title="Link to this heading">¶</a></h5>
 <p>A DataStorageOperation manipulates or alters the value of a key in the data storage. If the operation transforms the value from one state to another then the current value of the key is used as the starting point otherwise the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a>’s package <code class="docutils literal notranslate"><span class="pre">default</span></code> is used if the key does not exist on the server already.
 DataStorageOperations consist of an object containing both the operation to be applied, provided in the form of a string, as well as the value to be used for that operation, Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;add&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">}</span>
@@ -1185,10 +1187,10 @@ DataStorageOperations consist of an object containing both the operation to be a
 </section>
 </section>
 <section id="setnotify">
-<h3>SetNotify<a class="headerlink" href="#setnotify" title="Link to this heading">¶</a></h3>
+<h4>SetNotify<a class="headerlink" href="#setnotify" title="Link to this heading">¶</a></h4>
 <p>Used to register your current session for receiving all <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> packages of certain keys to allow your client to keep track of changes.</p>
 <section id="id24">
-<h4>Arguments<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
+<h5>Arguments<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1207,16 +1209,16 @@ DataStorageOperations consist of an object containing both the operation to be a
 </section>
 </section>
 <section id="appendix">
-<h2>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">¶</a></h2>
+<h3>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">¶</a></h3>
 <section id="coop">
-<h3>Coop<a class="headerlink" href="#coop" title="Link to this heading">¶</a></h3>
+<h4>Coop<a class="headerlink" href="#coop" title="Link to this heading">¶</a></h4>
 <p>Coop in Archipelago is automatically facilitated by the server, however some of the default behaviour may not be what you desire.</p>
 <p>If the game in question is a remote-items game (attribute on AutoWorld), then all items will always be sent and received.
 If the game in question is not a remote-items game, then any items that are placed within the same world will not be send by the server.</p>
 <p>To manually react to others in the same player slot doing checks, listen to <a class="reference internal" href="#roomupdate"><span class="xref myst">RoomUpdate</span></a> -&gt; checked_locations.</p>
 </section>
 <section id="networkplayer">
-<h3>NetworkPlayer<a class="headerlink" href="#networkplayer" title="Link to this heading">¶</a></h3>
+<h4>NetworkPlayer<a class="headerlink" href="#networkplayer" title="Link to this heading">¶</a></h4>
 <p>A list of objects. Each object denotes one player. Each object has four fields about the player, in this order: <code class="docutils literal notranslate"><span class="pre">team</span></code>, <code class="docutils literal notranslate"><span class="pre">slot</span></code>, <code class="docutils literal notranslate"><span class="pre">alias</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code>. <code class="docutils literal notranslate"><span class="pre">team</span></code> and <code class="docutils literal notranslate"><span class="pre">slot</span></code> are ints, <code class="docutils literal notranslate"><span class="pre">alias</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> are strs.</p>
 <p>Each player belongs to a <code class="docutils literal notranslate"><span class="pre">team</span></code> and has a <code class="docutils literal notranslate"><span class="pre">slot</span></code>. Team numbers start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. Slot numbers are unique per team and start at <code class="docutils literal notranslate"><span class="pre">1</span></code>. Slot number <code class="docutils literal notranslate"><span class="pre">0</span></code> refers to the Archipelago server; this may appear in instances where the server grants the player an item.</p>
 <p><code class="docutils literal notranslate"><span class="pre">alias</span></code> represents the player’s name in current time. <code class="docutils literal notranslate"><span class="pre">name</span></code> is the original name used when the session was generated. This is typically distinct in games which require baking names into ROMs or for async games.</p>
@@ -1239,7 +1241,7 @@ If the game in question is not a remote-items game, then any items that are plac
 </div>
 </section>
 <section id="networkitem">
-<h3>NetworkItem<a class="headerlink" href="#networkitem" title="Link to this heading">¶</a></h3>
+<h4>NetworkItem<a class="headerlink" href="#networkitem" title="Link to this heading">¶</a></h4>
 <p>Items that are sent over the net (in packets) use the following data structure and are sent as objects:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">NetworkItem</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
@@ -1284,7 +1286,7 @@ If the game in question is not a remote-items game, then any items that are plac
 </table>
 </section>
 <section id="jsonmessagepart">
-<h3>JSONMessagePart<a class="headerlink" href="#jsonmessagepart" title="Link to this heading">¶</a></h3>
+<h4>JSONMessagePart<a class="headerlink" href="#jsonmessagepart" title="Link to this heading">¶</a></h4>
 <p>Message nodes sent along with <a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a> packet to be reconstructed into a legible message. The nodes are intended to be read in the order they are listed in the packet.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">JSONMessagePart</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
@@ -1364,7 +1366,7 @@ Possible values for <code class="docutils literal notranslate"><span class="pre"
 <code class="docutils literal notranslate"><span class="pre">flags</span></code> contains the <a class="reference internal" href="#networkitem"><span class="xref myst">NetworkItem</span></a> flags that belong to the item</p>
 </section>
 <section id="clientstatus">
-<h3>ClientStatus<a class="headerlink" href="#clientstatus" title="Link to this heading">¶</a></h3>
+<h4>ClientStatus<a class="headerlink" href="#clientstatus" title="Link to this heading">¶</a></h4>
 <p>An enumeration containing the possible client states that may be used to inform
 the server in <a class="reference internal" href="#statusupdate"><span class="xref myst">StatusUpdate</span></a>. The MultiServer automatically sets
 the client state to <code class="docutils literal notranslate"><span class="pre">ClientStatus.CLIENT_CONNECTED</span></code> on the first active connection
@@ -1380,7 +1382,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="networkversion">
-<h3>NetworkVersion<a class="headerlink" href="#networkversion" title="Link to this heading">¶</a></h3>
+<h4>NetworkVersion<a class="headerlink" href="#networkversion" title="Link to this heading">¶</a></h4>
 <p>An object representing software versioning. Used in the <a class="reference internal" href="entrance_rando.html#entrance_rando.ERPlacementState.connect" title="entrance_rando.ERPlacementState.connect"><span class="xref myst py py-meth">Connect</span></a> packet to allow the client to inform the server of the Archipelago version it supports.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Version</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
@@ -1391,7 +1393,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="slottype">
-<h3>SlotType<a class="headerlink" href="#slottype" title="Link to this heading">¶</a></h3>
+<h4>SlotType<a class="headerlink" href="#slottype" title="Link to this heading">¶</a></h4>
 <p>An enum representing the nature of a slot.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SlotType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntFlag</span><span class="p">):</span>
@@ -1402,7 +1404,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="networkslot">
-<h3>NetworkSlot<a class="headerlink" href="#networkslot" title="Link to this heading">¶</a></h3>
+<h4>NetworkSlot<a class="headerlink" href="#networkslot" title="Link to this heading">¶</a></h4>
 <p>An object representing static information about a slot.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">NetUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">SlotType</span>
@@ -1415,7 +1417,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="permission">
-<h3>Permission<a class="headerlink" href="#permission" title="Link to this heading">¶</a></h3>
+<h4>Permission<a class="headerlink" href="#permission" title="Link to this heading">¶</a></h4>
 <p>An enumeration containing the possible command permission, for commands that may be restricted.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Permission</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
@@ -1428,7 +1430,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="hint">
-<h3>Hint<a class="headerlink" href="#hint" title="Link to this heading">¶</a></h3>
+<h4>Hint<a class="headerlink" href="#hint" title="Link to this heading">¶</a></h4>
 <p>An object representing a Hint.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Hint</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">):</span>
@@ -1444,7 +1446,7 @@ to a slot.</p>
 </div>
 </section>
 <section id="data-package-contents">
-<h3>Data Package Contents<a class="headerlink" href="#data-package-contents" title="Link to this heading">¶</a></h3>
+<h4>Data Package Contents<a class="headerlink" href="#data-package-contents" title="Link to this heading">¶</a></h4>
 <p>A data package is a JSON object which may contain arbitrary metadata to enable a client to interact with the Archipelago
 server most easily and not maintain their own mappings. Some contents include:</p>
 <ul class="simple">
@@ -1494,7 +1496,7 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 </li>
 </ul>
 <section id="contents">
-<h4>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h4>
+<h5>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1511,7 +1513,7 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 </table>
 </section>
 <section id="gamedata">
-<h4>GameData<a class="headerlink" href="#gamedata" title="Link to this heading">¶</a></h4>
+<h5>GameData<a class="headerlink" href="#gamedata" title="Link to this heading">¶</a></h5>
 <p>GameData is a <strong>dict</strong> but contains these keys and values. It’s broken out into another “type” for ease of documentation.</p>
 <table class="docutils align-default">
 <thead>
@@ -1538,7 +1540,7 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 </section>
 </section>
 <section id="tags">
-<h3>Tags<a class="headerlink" href="#tags" title="Link to this heading">¶</a></h3>
+<h4>Tags<a class="headerlink" href="#tags" title="Link to this heading">¶</a></h4>
 <p>Tags are represented as a list of strings, the common client tags follow:</p>
 <table class="docutils align-default">
 <thead>
@@ -1571,7 +1573,7 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 ²: Allows <code class="docutils literal notranslate"><span class="pre">game</span></code> to be empty or null in <a class="reference internal" href="entrance_rando.html#entrance_rando.ERPlacementState.connect" title="entrance_rando.ERPlacementState.connect"><span class="xref myst py py-meth">Connect</span></a>. Game and version validation will then be skipped.</p>
 </section>
 <section id="deathlink">
-<h3>DeathLink<a class="headerlink" href="#deathlink" title="Link to this heading">¶</a></h3>
+<h4>DeathLink<a class="headerlink" href="#deathlink" title="Link to this heading">¶</a></h4>
 <p>A special kind of Bounce packet that can be supported by any AP game. It targets the tag “DeathLink” and carries the following data:</p>
 <table class="docutils align-default">
 <thead>
@@ -1595,6 +1597,7 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 </section>
 </section>
@@ -1622,15 +1625,9 @@ data package. This can be easily achieved by reviewing the <code class="docutils
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago General Client</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#archipelago-connection-handshake">Archipelago Connection Handshake</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#synchronizing-items">Synchronizing Items</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#archipelago-protocol-packets">Archipelago Protocol Packets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#server-client">(Server -&gt; Client)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-server">(Client -&gt; Server)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#appendix">Appendix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Network Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#archipelago-general-client">Archipelago General Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
@@ -1697,11 +1694,11 @@ data package. This can be easily achieved by reviewing the <code class="docutils
           <a href="entrance%20randomization.html" title="Entrance Randomization"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Archipelago General Client</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Network Protocol</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Archipelago.
+    &#169; Copyright 2025, Archipelago.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

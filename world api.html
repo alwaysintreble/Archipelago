@@ -338,7 +338,7 @@ They must not exist in the <code class="docutils literal notranslate"><span clas
 written from scratch, using regions greatly simplifies the requirements and can help with implementing things
 like entrance randomization in logic.</p>
 <p>Regions have a list called <code class="docutils literal notranslate"><span class="pre">exits</span></code>, containing <code class="docutils literal notranslate"><span class="pre">Entrance</span></code> objects representing transitions to other regions.</p>
-<p>There must be one special region (Called “Menu” by default, but configurable using <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L295-L296">origin_region_name</a>),
+<p>There must be one special region (Called “Menu” by default, but configurable using <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L299">origin_region_name</a>),
 from which the logic unfolds. AP assumes that a player will always be able to return to this starting region by resetting the game (“Save and quit”).</p>
 </section>
 <section id="entrances">
@@ -375,7 +375,7 @@ Even doing <code class="docutils literal notranslate"><span class="pre">state.ca
 <p><strong>Therefore, it is considered unsafe to perform <code class="docutils literal notranslate"><span class="pre">state.can_reach</span></code> from within an access condition for an entrance</strong>, unless you are checking for something that sits in the source region of the entrance.
 You can use <code class="docutils literal notranslate"><span class="pre">multiworld.register_indirect_condition(region,</span> <span class="pre">entrance)</span></code> to explicitly tell the generator that, when a given region becomes accessible, it is necessary to re-check a specific entrance.
 You <strong>must</strong> use <code class="docutils literal notranslate"><span class="pre">multiworld.register_indirect_condition</span></code> if you perform this kind of <code class="docutils literal notranslate"><span class="pre">can_reach</span></code> from an entrance access rule, unless you have a <strong>very</strong> good technical understanding of the relevant code and can reason why it will never lead to problems in your case.</p>
-<p>Alternatively, you can set <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L301">world.explicit_indirect_conditions = False</a>,
+<p>Alternatively, you can set <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L301-L304">world.explicit_indirect_conditions = False</a>,
 avoiding the need for indirect conditions at the expense of performance.</p>
 </section>
 </section>
@@ -967,8 +967,7 @@ TestBase, and can then define options to test in the class body, and run tests i
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
@@ -1037,7 +1036,7 @@ TestBase, and can then define options to test in the class body, and run tests i
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Archipelago.
+    &#169; Copyright 2025, Archipelago.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
