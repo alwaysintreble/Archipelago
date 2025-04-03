@@ -453,7 +453,7 @@ class MultiWorld():
                 subworld = self.worlds[player]
                 for item in subworld.get_pre_fill_items():
                     subworld.collect(ret, item)
-        ret.sweep_for_advancements(locations=self.get_filled_locations(player))  # TODO player=player
+        ret.sweep_for_advancements(locations=self.get_filled_locations(player))
 
         if use_cache:
             if player:
@@ -739,7 +739,7 @@ class CollectionState():
     additional_init_functions: List[Callable[[CollectionState, MultiWorld], None]] = []
     additional_copy_functions: List[Callable[[CollectionState, CollectionState], CollectionState]] = []
 
-    def __init__(self, parent: MultiWorld, allow_partial_entrances: bool = False):
+    def __init__(self, parent: MultiWorld, allow_partial_entrances: bool = False) -> None:
         self.prog_items = {player: Counter() for player in parent.get_all_ids()}
         self.multiworld = parent
         self.reachable_regions = {player: set() for player in parent.get_all_ids()}
@@ -823,7 +823,7 @@ class CollectionState():
             queue.extend(blocked_connections)
 
     def copy(self) -> CollectionState:
-        ret = CollectionState(self.multiworld)
+        ret = CollectionState(self.multiworld, self.allow_partial_entrances)
         ret.prog_items = {player: counter.copy() for player, counter in self.prog_items.items()}
         ret.reachable_regions = {player: region_set.copy() for player, region_set in
                                  self.reachable_regions.items()}
@@ -832,7 +832,6 @@ class CollectionState():
         ret.advancements = self.advancements.copy()
         ret.path = self.path.copy()
         ret.locations_checked = self.locations_checked.copy()
-        ret.allow_partial_entrances = self.allow_partial_entrances
         for function in self.additional_copy_functions:
             ret = function(self, ret)
         return ret
