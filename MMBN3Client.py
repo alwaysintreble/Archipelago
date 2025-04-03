@@ -58,7 +58,7 @@ class MMBN3CommandProcessor(ClientCommandProcessor):
 class MMBN3Context(CommonContext):
     command_processor = MMBN3CommandProcessor
     game = "MegaMan Battle Network 3"
-    items_handling = 0b001  # full local
+    items_handling = 0b101  # full local except starting items
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
@@ -370,7 +370,7 @@ if __name__ == "__main__":
 
     import colorama
 
-    colorama.init()
+    colorama.just_fix_windows_console()
 
     asyncio.run(main())
     colorama.deinit()
