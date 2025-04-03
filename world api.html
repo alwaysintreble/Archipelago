@@ -119,14 +119,14 @@ good on both the WebHost and the YAML template.</p></li>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><img src="img/theme_dirt.JPG" width="100"></p></td>
-<td><p><img src="img/theme_grass.JPG" width="100"></p></td>
-<td><p><img src="img/theme_grassFlowers.JPG" width="100"></p></td>
-<td><p><img src="img/theme_ice.JPG" width="100"></p></td>
-<td><p><img src="img/theme_jungle.JPG" width="100"></p></td>
-<td><p><img src="img/theme_ocean.JPG" width="100"></p></td>
-<td><p><img src="img/theme_partyTime.JPG" width="100"></p></td>
-<td><p><img src="img/theme_stone.JPG" width="100"></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_images/theme_dirt.JPG"><img alt="_images/theme_dirt.JPG" src="_images/theme_dirt.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_grass.JPG"><img alt="_images/theme_grass.JPG" src="_images/theme_grass.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_grassFlowers.JPG"><img alt="_images/theme_grassFlowers.JPG" src="_images/theme_grassFlowers.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_ice.JPG"><img alt="_images/theme_ice.JPG" src="_images/theme_ice.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_jungle.JPG"><img alt="_images/theme_jungle.JPG" src="_images/theme_jungle.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_ocean.JPG"><img alt="_images/theme_ocean.JPG" src="_images/theme_ocean.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_partyTime.JPG"><img alt="_images/theme_partyTime.JPG" src="_images/theme_partyTime.JPG" style="width: 100px;" /></a></p></td>
+<td><p><a class="reference internal" href="_images/theme_stone.JPG"><img alt="_images/theme_stone.JPG" src="_images/theme_stone.JPG" style="width: 100px;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -861,9 +861,9 @@ access rules like this:</p>
 is through the slot data. This is filled with the <code class="docutils literal notranslate"><span class="pre">fill_slot_data</span></code> method of your world by returning a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with
 <code class="docutils literal notranslate"><span class="pre">str</span></code> keys that can be serialized with json. However, to not waste resources, it should be limited to data that is
 absolutely necessary. Slot data is sent to your client once it has successfully
-<a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">connected</span></a>.</p>
+<a class="reference internal" href="#network%20protocol#connected"><span class="xref myst">connected</span></a>.</p>
 <p>If you need to know information about locations in your world, instead of propagating the slot data, it is preferable
-to use <a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">LocationScouts</span></a>, since that data already exists on the server. Adding
+to use <a class="reference internal" href="#network%20protocol#locationscouts"><span class="xref myst">LocationScouts</span></a>, since that data already exists on the server. Adding
 item/location pairs is unnecessary since the AP server already retains and freely gives that information to clients
 that request it. The most common usage of slot data is sending option results that the client needs to be aware of.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fill_slot_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>

@@ -57,7 +57,7 @@ steps on how to write your own.</p>
 <section id="generic-tests">
 <h2>Generic Tests<a class="headerlink" href="#generic-tests" title="Link to this heading">¶</a></h2>
 <p>Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be
-found in the <a class="reference internal" href="#general"><span class="xref myst">general test directory</span></a>.</p>
+found in the <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/tree/main/test/general">general test directory</a>.</p>
 </section>
 <section id="defining-world-tests">
 <h2>Defining World Tests<a class="headerlink" href="#defining-world-tests" title="Link to this heading">¶</a></h2>
@@ -136,7 +136,7 @@ can be used to have parametrized assertions that show up similar to individual t
 of needing to instantiate multiple tests; however, subtests can not be multithreaded and do not have individual
 timing data, so they are not suitable for slow tests.</p></li>
 <li><p>Archipelago’s tests are test-runner-agnostic. That means tests are not allowed to use e.g. <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code>.
-Instead, we define our own parametrization helpers in <a class="reference internal" href="#param"><span class="xref myst">test.param</span></a>.</p></li>
+Instead, we define our own parametrization helpers in <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/test/param.py">test.param</a>.</p></li>
 <li><p>Classes inheriting from <code class="docutils literal notranslate"><span class="pre">WorldTestBase</span></code>, including those created by the helpers in <code class="docutils literal notranslate"><span class="pre">test.param</span></code>, will run all
 base tests by default, make sure the produced tests actually do what you aim for and do not waste a lot of
 extra CPU time. Consider using <code class="docutils literal notranslate"><span class="pre">TestBase</span></code> or <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code> directly
