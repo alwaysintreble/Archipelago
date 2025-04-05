@@ -581,7 +581,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-even"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Optional. Client <a class="reference internal" href="#tags"><span class="xref myst">Tags</span></a> this message is targeting</p></td>
+<td><p>Optional. Client <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a> this message is targeting</p></td>
 </tr>
 <tr class="row-odd"><td><p>data</p></td>
 <td><p>dict</p></td>
@@ -641,7 +641,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="retrieved">
 <h4>Retrieved<a class="headerlink" href="#retrieved" title="Link to this heading">¶</a></h4>
-<p>Sent to clients as a response the a <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package.</p>
+<p>Sent to clients as a response the a <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package.</p>
 <section id="id10">
 <h5>Arguments<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -654,12 +654,12 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <tbody>
 <tr class="row-even"><td><p>keys</p></td>
 <td><p>dict[str, any]</p></td>
-<td><p>A key-value collection containing all the values for the keys requested in the <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package.</p></td>
+<td><p>A key-value collection containing all the values for the keys requested in the <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package.</p></td>
 </tr>
 </tbody>
 </table>
 <p>If a requested key was not present in the server’s data, the associated value will be <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
-<p>Additional arguments added to the <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package that triggered this <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> will also be passed along.</p>
+<p>Additional arguments added to the <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package that triggered this <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> will also be passed along.</p>
 </section>
 </section>
 <section id="setreply">
@@ -711,7 +711,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <li><p><a class="reference internal" href="#say"><span class="xref myst">Say</span></a></p></li>
 <li><p><a class="reference internal" href="#getdatapackage"><span class="xref myst">GetDataPackage</span></a></p></li>
 <li><p><a class="reference internal" href="#bounce"><span class="xref myst">Bounce</span></a></p></li>
-<li><p><a class="reference internal" href="#get"><span class="xref myst">Get</span></a></p></li>
+<li><p><a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a></p></li>
 <li><p><a class="reference internal" href="#set"><span class="xref myst">Set</span></a></p></li>
 <li><p><a class="reference internal" href="#setnotify"><span class="xref myst">SetNotify</span></a></p></li>
 </ul>
@@ -754,7 +754,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-even"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="#tags"><span class="xref myst">Tags</span></a></p></td>
+<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>slot_data</p></td>
 <td><p>bool</p></td>
@@ -814,7 +814,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-odd"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="#tags"><span class="xref myst">Tags</span></a></p></td>
+<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1081,7 +1081,7 @@ the server will forward the message to all those targets to which any one requir
 </section>
 <section id="set">
 <h4>Set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h4>
-<p>Used to write data to the server’s data storage, that data can then be shared across worlds or just saved for later. Values for keys in the data storage can be retrieved with a <a class="reference internal" href="#get"><span class="xref myst">Get</span></a> package, or monitored with a <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package.
+<p>Used to write data to the server’s data storage, that data can then be shared across worlds or just saved for later. Values for keys in the data storage can be retrieved with a <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package, or monitored with a <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package.
 Keys that start with <code class="docutils literal notranslate"><span class="pre">_read_</span></code> cannot be set.</p>
 <section id="id23">
 <h5>Arguments<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h5>
