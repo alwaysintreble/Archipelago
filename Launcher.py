@@ -460,7 +460,7 @@ def check_for_update(skip_version: str) -> None:
         if answer == "No":
             prompt.dismiss()
             return
-        elif answer == "Skip Version":
+        if answer == "Skip Version":
             Utils.persistent_store("launcher", "skip_update", version.as_simple_string())
             prompt.dismiss()
             return
