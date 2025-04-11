@@ -451,14 +451,18 @@ def check_for_update(skip_version: str) -> None:
     from kvui import ButtonsPrompt
 
     def handle_user_update(answer: str) -> None:
+        nonlocal prompt
+
         if answer == "Patch Notes":
             import webbrowser
             webbrowser.open(remote_data["html_url"])
             return
         if answer == "No":
+            prompt.dismiss()
             return
         elif answer == "Skip Version":
             Utils.persistent_store("launcher", "skip_update", version.as_simple_string())
+            prompt.dismiss()
             return
         # download and install the latest Archipelago release
         latest_release = remote_data["assets"]
@@ -473,7 +477,9 @@ def check_for_update(skip_version: str) -> None:
         def download_selection(asset: str) -> None:
             import os
             import tempfile
-            nonlocal latest_files
+            nonlocal prompt
+
+            prompt.dismiss()
 
             temp_dir = os.path.join(tempfile.gettempdir(), "Archipelago", "Downloads")
             asset_path = os.path.join(temp_dir, asset)
@@ -504,21 +510,24 @@ def check_for_update(skip_version: str) -> None:
         if len(download_names) == 1:
             download_selection(download_names[0])
         else:
-            ButtonsPrompt(
+            nonlocal prompt
+            prompt = ButtonsPrompt(
                 "Available Update",
                 "Select update to download",
                 download_selection,
                 *download_names
-            ).open()
+            )
+            prompt.open()
 
-    ButtonsPrompt(
+    prompt = ButtonsPrompt(
         "Update Available",
         f"Update available: {version.as_simple_string()}.\n"
         f"Currently installed: {Utils.version_tuple.as_simple_string()}.\n"
         f"Would you like to update?",
         handle_user_update,
         "Patch Notes", "Yes", "No", "Skip Version"
-    ).open()
+    )
+    prompt.open()
 
 
 if __name__ == '__main__':
