@@ -510,7 +510,6 @@ def check_for_update(skip_version: str) -> None:
         if len(download_names) == 1:
             download_selection(download_names[0])
         else:
-            nonlocal prompt
             prompt = ButtonsPrompt(
                 "Available Update",
                 "Select update to download",
