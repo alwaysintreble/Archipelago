@@ -1,16 +1,16 @@
-# Contributing Guidelines
+(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=(contributing-guidelines)=# Contributing Guidelines
 
 All contributions are welcome, though we have a few requests of contributors, whether they be for core, webhost, or new 
 game contributions:
 
 * **Follow styling guidelines.**
-  Please take a look at the [code style documentation](style)
+  Please take a look at the [code style documentation](/docs/style.md)
   to ensure ease of communication and uniformity.
 
 * **Ensure that critical changes are covered by tests.**
   It is strongly recommended that unit tests are used to avoid regression and to ensure everything is still working.
   If you wish to contribute by adding a new game, please take a look at
-  the [logic unit test documentation](tests).
+  the [logic unit test documentation](/docs/tests.md).
   If you wish to contribute to the website, please take a look at [these tests](https://github.com/ArchipelagoMW/Archipelago/tree/main/test/webhost).
 
 * **Do not introduce unit test failures/regressions.**
@@ -40,10 +40,10 @@ If you want to contribute to the core, you will be subject to stricter review on
 that you get in touch with other core maintainers via the [Discord](https://archipelago.gg/discord).
 
 If you want to add Archipelago support for a new game, please take a look at
-the [adding games documentation](adding%20games)
+the [adding games documentation](/docs/adding%20games.md)
 which details what is required to implement support for a game, and has tips on to get started.
 If you want to merge a new game into the main Archipelago repo, please make sure to read the responsibilities as a
-[world maintainer](world%20maintainer).
+[world maintainer](/docs/world%20maintainer.md).
 
 For other questions, feel free to explore the [main documentation folder](https://github.com/ArchipelagoMW/Archipelago/tree/main/docs), and ask us questions in the
 #ap-world-dev channel of the [Discord](https://archipelago.gg/discord).

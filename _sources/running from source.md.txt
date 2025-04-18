@@ -1,4 +1,4 @@
-# Running From Source
+(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=# Running From Source
 
 If you just want to play and there is a compiled version available on the
 [Archipelago releases page](https://github.com/ArchipelagoMW/Archipelago/releases),
@@ -33,7 +33,7 @@ After this, you should be able to run the programs.
 
 Recommended steps
  * Download and install a "Windows installer (64-bit)" from the [Python download page](https://www.python.org/downloads)
-   * [read above](#general) which versions are supported
+   * [read above](#General) which versions are supported
 
  * **Optional**: Download and install Visual Studio Build Tools from
    [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
@@ -87,4 +87,4 @@ PyCharm has a built-in version control integration that supports Git.
 
 ## Running tests
 
-Information about running tests can be found in [tests.md](tests)
+Information about running tests can be found in [tests.md](/docs/tests.md#running-tests)

@@ -1,6 +1,6 @@
-# Adding Games
+(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=# Adding Games
 
-Like all contributions to Archipelago, New Game implementations should follow the [Contributing](contributing)
+Like all contributions to Archipelago, New Game implementations should follow the [Contributing](/docs/contributing.md)
 guide.
 
 Adding a new game to Archipelago has two major parts:
@@ -17,7 +17,7 @@ it will not be detailed here.
 The client is an intermediary program between the game and the Archipelago server. This can either be a direct
 modification to the game, an external program, or both. This can be implemented in nearly any modern language, but it
 must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for 
-various packets can be found in the [network protocol](network%20protocol) API reference document.
+various packets can be found in the [network protocol](/docs/network%20protocol.md) API reference document.
 
 ### Hard Requirements
 
@@ -70,10 +70,10 @@ datapackage information so other game clients can recognize your game data, and 
 written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago
 repository and creating a new world package in `/worlds/`. 
 
-The base World class can be found in [AutoWorld](autoworld). Methods available for your world to call 
-during generation can be found in [BaseClasses](baseclasses) and [Fill](/Fill.py). Some examples and documentation 
-regarding the API can be found in the [world api doc](world%20api). Before publishing, make sure to also 
-check out [world maintainer.md](world%20maintainer).
+The base World class can be found in [AutoWorld](/worlds/AutoWorld.py). Methods available for your world to call 
+during generation can be found in [BaseClasses](/BaseClasses.py) and [Fill](/Fill.py). Some examples and documentation 
+regarding the API can be found in the [world api doc](/docs/world%20api.md). Before publishing, make sure to also 
+check out [world maintainer.md](/docs/world%20maintainer.md).
 
 ### Hard Requirements
 

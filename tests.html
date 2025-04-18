@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Archipelago Unit Testing API &#8212; Archipelago 0.6.2 documentation</title>
+    <title>Generic Tests &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="APWorld Dev FAQ" href="apworld_dev_faq.html" />
-    <link rel="prev" title="Network Protocol" href="network%20protocol.html" />
+    <link rel="next" title="My game has a restrictive start that leads to fill errors" href="apworld_dev_faq.html" />
+    <link rel="prev" title="Archipelago General Client" href="network%20protocol.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -35,13 +35,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="apworld_dev_faq.html" title="APWorld Dev FAQ"
+          <a href="apworld_dev_faq.html" title="My game has a restrictive start that leads to fill errors"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="network%20protocol.html" title="Network Protocol"
+          <a href="network%20protocol.html" title="Archipelago General Client"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Archipelago Unit Testing API</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Generic Tests</a></li> 
       </ul>
     </div>  
 
@@ -50,24 +50,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="archipelago-unit-testing-api">
-<h1>Archipelago Unit Testing API<a class="headerlink" href="#archipelago-unit-testing-api" title="Link to this heading">¶</a></h1>
+  <p>(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=# Archipelago Unit Testing API</p>
 <p>This document covers some of the generic tests available using Archipelago’s unit testing system, as well as some basic
 steps on how to write your own.</p>
 <section id="generic-tests">
-<h2>Generic Tests<a class="headerlink" href="#generic-tests" title="Link to this heading">¶</a></h2>
+<h1>Generic Tests<a class="headerlink" href="#generic-tests" title="Link to this heading">¶</a></h1>
 <p>Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be
 found in the <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/tree/main/test/general">general test directory</a>.</p>
 </section>
 <section id="defining-world-tests">
-<h2>Defining World Tests<a class="headerlink" href="#defining-world-tests" title="Link to this heading">¶</a></h2>
+<h1>Defining World Tests<a class="headerlink" href="#defining-world-tests" title="Link to this heading">¶</a></h1>
 <p>In order to run tests from your world, you will need to create a <code class="docutils literal notranslate"><span class="pre">test</span></code> package within your world package. This can be
 done by creating a <code class="docutils literal notranslate"><span class="pre">test</span></code> directory with a file named <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> inside it inside your world. By convention, a base
 for your world tests can be created in this file that you can then import into other modules.</p>
 <section id="worldtestbase">
-<h3>WorldTestBase<a class="headerlink" href="#worldtestbase" title="Link to this heading">¶</a></h3>
+<h2>WorldTestBase<a class="headerlink" href="#worldtestbase" title="Link to this heading">¶</a></h2>
 <p>In order to test basic functionality of varying options, as well as to test specific edge cases or that certain
-interactions in the world interact as expected, you will want to use the <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase</span></a>. This class
+interactions in the world interact as expected, you will want to use the <a class="reference internal" href="#/test/bases.py"><span class="xref myst">WorldTestBase</span></a>. This class
 comes with the basics for test setup as well as a few preloaded tests that most worlds might want to check on varying
 options combinations.</p>
 <p>Example <code class="docutils literal notranslate"><span class="pre">/worlds/&lt;my_game&gt;/test/__init__.py</span></code>:</p>
@@ -84,9 +83,9 @@ reachable, with no collected items at least something is reachable, and that a v
 all steps being called, respectively.</p>
 </section>
 <section id="writing-tests">
-<h3>Writing Tests<a class="headerlink" href="#writing-tests" title="Link to this heading">¶</a></h3>
+<h2>Writing Tests<a class="headerlink" href="#writing-tests" title="Link to this heading">¶</a></h2>
 <section id="using-worldtestbase">
-<h4>Using WorldTestBase<a class="headerlink" href="#using-worldtestbase" title="Link to this heading">¶</a></h4>
+<h3>Using WorldTestBase<a class="headerlink" href="#using-worldtestbase" title="Link to this heading">¶</a></h3>
 <p>Adding runs for the basic tests for a different option combination is as easy as making a new module in the test
 package, creating a class that inherits from your game’s TestBase, and defining the options in a dict as a field on the
 class. The new module should be named <code class="docutils literal notranslate"><span class="pre">test_&lt;something&gt;.py</span></code> and have at least one class inheriting from the base, or
@@ -117,17 +116,17 @@ with <code class="docutils literal notranslate"><span class="pre">test_</span></
 generic tests, as well as the new custom test. Each test method definition will create its own separate solo multiworld
 that will be cleaned up after. If you don’t want to run the generic tests on a base, <code class="docutils literal notranslate"><span class="pre">run_default_tests</span></code> can be
 overridden. For more information on what methods are available to your class, check the
-<a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase definition</span></a>.</p>
+<a class="reference internal" href="#/test/bases.py#L106"><span class="xref myst">WorldTestBase definition</span></a>.</p>
 </section>
 <section id="alternatives-to-worldtestbase">
-<h4>Alternatives to WorldTestBase<a class="headerlink" href="#alternatives-to-worldtestbase" title="Link to this heading">¶</a></h4>
-<p>Unit tests can also be created using <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">TestBase</span></a> or
+<h3>Alternatives to WorldTestBase<a class="headerlink" href="#alternatives-to-worldtestbase" title="Link to this heading">¶</a></h3>
+<p>Unit tests can also be created using <a class="reference internal" href="#/test/bases.py#L16"><span class="xref myst">TestBase</span></a> or
 <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.TestCase">unittest.TestCase</a> depending on your use case. These
 may be useful for generating a multiworld under very specific constraints without using the generic world setup, or for
 testing portions of your code that can be tested without relying on a multiworld to be created first.</p>
 </section>
 <section id="parametrization">
-<h4>Parametrization<a class="headerlink" href="#parametrization" title="Link to this heading">¶</a></h4>
+<h3>Parametrization<a class="headerlink" href="#parametrization" title="Link to this heading">¶</a></h3>
 <p>When defining a test that needs to cover a range of inputs it is useful to parameterize (to run the same test
 for multiple inputs) the base test. Some important things to consider when attempting to parametrize your test are:</p>
 <ul class="simple">
@@ -144,7 +143,7 @@ or setting <code class="docutils literal notranslate"><span class="pre">WorldTes
 </ul>
 </section>
 <section id="performance-considerations">
-<h4>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">¶</a></h4>
+<h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">¶</a></h3>
 <p>Archipelago is big enough that the runtime of unittests can have an impact on productivity.</p>
 <p>Individual tests should take less than a second, so they can be properly multithreaded.</p>
 <p>Ideally, thorough tests are directed at actual code/functionality. Do not just create and/or fill a ton of individual
@@ -157,9 +156,9 @@ variable to keep all the benefits of the test framework while not running the ma
 </section>
 </section>
 <section id="running-tests">
-<h2>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
+<h1>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h1>
 <section id="using-pycharm">
-<h3>Using Pycharm<a class="headerlink" href="#using-pycharm" title="Link to this heading">¶</a></h3>
+<h2>Using Pycharm<a class="headerlink" href="#using-pycharm" title="Link to this heading">¶</a></h2>
 <p>In PyCharm, running all tests can be done by right-clicking the root test directory and selecting Run ‘Archipelago Unittests’.
 Unless you configured PyCharm to use pytest as a test runner, you may get import failures. To solve this, edit the run configuration,
 and set the working directory to the Archipelago directory which contains all the project files.</p>
@@ -170,15 +169,14 @@ tests folder within your world.</p>
 next to the run and debug buttons.</p>
 </section>
 <section id="running-tests-without-pycharm">
-<h3>Running Tests without Pycharm<a class="headerlink" href="#running-tests-without-pycharm" title="Link to this heading">¶</a></h3>
+<h2>Running Tests without Pycharm<a class="headerlink" href="#running-tests-without-pycharm" title="Link to this heading">¶</a></h2>
 <p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">pytest-subtests</span></code>, then use your IDE to run tests or run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> from the source folder.</p>
 </section>
 <section id="running-tests-multithreaded">
-<h3>Running Tests Multithreaded<a class="headerlink" href="#running-tests-multithreaded" title="Link to this heading">¶</a></h3>
+<h2>Running Tests Multithreaded<a class="headerlink" href="#running-tests-multithreaded" title="Link to this heading">¶</a></h2>
 <p>pytest can run multiple test runners in parallel with the pytest-xdist extension.</p>
 <p>Install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest-xdist</span></code>.</p>
 <p>Run with <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-n12</span></code> to spawn 12 process that each run 1/12th of the tests.</p>
-</section>
 </section>
 </section>
 
@@ -195,24 +193,64 @@ next to the run and debug buttons.</p>
 <h3><a href="index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago Unit Testing API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#generic-tests">Generic Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#defining-world-tests">Defining World Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">Responsibilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#becoming-a-world-maintainer">Becoming a World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#dropping-out">Dropping out</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Generic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html#python-code">Python Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html#markdown">Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html#html">HTML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html#css">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html#js">JS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#windows">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#macos">macOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-sni">Optional: SNI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-git">Optional: Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#running-tests">Running tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html#world">World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">File Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#metadata">Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#extra-data">Extra Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#caveats">Caveats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#definitions">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#implementation">Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Option Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html#generic-option-classes">Generic Option Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html#basic-option-classes">Basic Option Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html#more-advanced-options">More Advanced Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Config File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#global-settings">Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#world-settings">World Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#types">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#caveats">Caveats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance randomization concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#implementation-details">Implementation details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generic Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#defining-world-tests">Defining World Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#worldtestbase">WorldTestBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#running-tests">Running Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-pycharm">Using Pycharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests-without-pycharm">Running Tests without Pycharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests-multithreaded">Running Tests Multithreaded</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">My game has a restrictive start that leads to fill errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out">I have multiple settings that change the item/location pool counts and need to balance them out</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary">I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata">I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
@@ -234,12 +272,12 @@ next to the run and debug buttons.</p>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="network%20protocol.html"
-                          title="previous chapter">Network Protocol</a></p>
+                          title="previous chapter">Archipelago General Client</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="apworld_dev_faq.html"
-                          title="next chapter">APWorld Dev FAQ</a></p>
+                          title="next chapter">My game has a restrictive start that leads to fill errors</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -272,13 +310,13 @@ next to the run and debug buttons.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="apworld_dev_faq.html" title="APWorld Dev FAQ"
+          <a href="apworld_dev_faq.html" title="My game has a restrictive start that leads to fill errors"
              >next</a> |</li>
         <li class="right" >
-          <a href="network%20protocol.html" title="Network Protocol"
+          <a href="network%20protocol.html" title="Archipelago General Client"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Archipelago Unit Testing API</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Generic Tests</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
