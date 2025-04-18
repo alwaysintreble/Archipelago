@@ -92,7 +92,7 @@ Each value needs to have a default. If the default should be <code class="docuti
 It defaults to <code class="docutils literal notranslate"><span class="pre">{folder_name}_options</span></code> if undefined, i.e. <code class="docutils literal notranslate"><span class="pre">worlds/factorio/...</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">factorio_options</span></code>.</p>
 <p>Worlds define the layout of their config section using type annotation of the variable <code class="docutils literal notranslate"><span class="pre">settings</span></code> in the class.
 The type has to inherit from <code class="docutils literal notranslate"><span class="pre">settings.Group</span></code>. Each value in the config can have a comment by subclassing a built-in
-type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#settings%20api#types"><span class="xref myst">Types</span></a> for a list.```</p>
+type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types">Types</a> for a list.```</p>
 <p>Inside the class code, you can then simply use <code class="docutils literal notranslate"><span class="pre">self.settings.rom_file</span></code> to get the value.
 In case of paths they will automatically be read as absolute file paths. No need to use user_path or local_path.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">settings</span>
@@ -160,7 +160,7 @@ See also <a class="reference external" href="https://github.com/ArchipelagoMW/Ar
 <section id="class-method-validate-cls-path-str">
 <h4>class method validate(cls, path: str)<a class="headerlink" href="#class-method-validate-cls-path-str" title="Link to this heading">¶</a></h4>
 <p>Override this and raise ValueError if validation fails.
-Checks the file against <a class="reference internal" href="#settings%20api#md5s"><span class="xref myst">md5s</span></a> by default.</p>
+Checks the file against <a class="reference internal" href="#md5s"><span class="xref myst">md5s</span></a> by default.</p>
 </section>
 <section id="is-exe-bool">
 <h4>is_exe: bool<a class="headerlink" href="#is-exe-bool" title="Link to this heading">¶</a></h4>
@@ -181,16 +181,16 @@ Checks the file against <a class="reference internal" href="#settings%20api#md5s
 </section>
 <section id="userfolderpath">
 <h3>UserFolderPath<a class="headerlink" href="#userfolderpath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#settings%20api#userfilepath"><span class="xref myst">UserFilePath</span></a>, but for a folder instead of a file.</p>
+<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but for a folder instead of a file.</p>
 </section>
 <section id="localfilepath">
 <h3>LocalFilePath<a class="headerlink" href="#localfilepath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#settings%20api#userfilepath"><span class="xref myst">UserFilePath</span></a>, but resolves as local_path:
+<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but resolves as local_path:
 path inside the AP dir or Appimage even if read-only.</p>
 </section>
 <section id="localfolderpath">
 <h3>LocalFolderPath<a class="headerlink" href="#localfolderpath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#settings%20api#localfilepath"><span class="xref myst">LocalFilePath</span></a>, but for a folder instead of a file.</p>
+<p>Same as <a class="reference internal" href="#localfilepath"><span class="xref myst">LocalFilePath</span></a>, but for a folder instead of a file.</p>
 </section>
 <section id="optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath">
 <h3>OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath<a class="headerlink" href="#optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath" title="Link to this heading">¶</a></h3>
@@ -198,7 +198,7 @@ path inside the AP dir or Appimage even if read-only.</p>
 </section>
 <section id="snesrompath">
 <h3>SNESRomPath<a class="headerlink" href="#snesrompath" title="Link to this heading">¶</a></h3>
-<p>Specialized <a class="reference internal" href="#settings%20api#userfilepath"><span class="xref myst">UserFilePath</span></a> that ignores an optional 512 byte header when validating.</p>
+<p>Specialized <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a> that ignores an optional 512 byte header when validating.</p>
 </section>
 </section>
 <section id="caveats">

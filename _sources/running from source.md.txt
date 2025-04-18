@@ -33,7 +33,7 @@ After this, you should be able to run the programs.
 
 Recommended steps
  * Download and install a "Windows installer (64-bit)" from the [Python download page](https://www.python.org/downloads)
-   * [read above](running%20from%20source#general) which versions are supported
+   * [read above](#general) which versions are supported
 
  * **Optional**: Download and install Visual Studio Build Tools from
    [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
@@ -87,4 +87,4 @@ PyCharm has a built-in version control integration that supports Git.
 
 ## Running tests
 
-Information about running tests can be found in [tests.md](testsmd#running-tests)
+Information about running tests can be found in [tests.md](tests)
