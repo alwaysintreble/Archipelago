@@ -92,7 +92,7 @@ Each value needs to have a default. If the default should be <code class="docuti
 It defaults to <code class="docutils literal notranslate"><span class="pre">{folder_name}_options</span></code> if undefined, i.e. <code class="docutils literal notranslate"><span class="pre">worlds/factorio/...</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">factorio_options</span></code>.</p>
 <p>Worlds define the layout of their config section using type annotation of the variable <code class="docutils literal notranslate"><span class="pre">settings</span></code> in the class.
 The type has to inherit from <code class="docutils literal notranslate"><span class="pre">settings.Group</span></code>. Each value in the config can have a comment by subclassing a built-in
-type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types">Types</a> for a list.```</p>
+type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types"><span class="xref myst">Types</span></a> for a list.```</p>
 <p>Inside the class code, you can then simply use <code class="docutils literal notranslate"><span class="pre">self.settings.rom_file</span></code> to get the value.
 In case of paths they will automatically be read as absolute file paths. No need to use user_path or local_path.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">settings</span>
