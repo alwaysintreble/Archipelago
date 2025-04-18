@@ -1096,6 +1096,10 @@ def build_sphinx_docs() -> None:
                 lines = f.readlines()
             for line_index in range(len(lines)):
                 line = lines[line_index]
+                # header
+                if line.startswith("#"):
+                    target_text = line.removeprefix("#").strip().lower().replace(" ", "-")
+                    lines.insert(line_index, f"({target_text})=")
                 # hyperlink
                 if "](" not in line:
                     continue

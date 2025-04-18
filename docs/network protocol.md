@@ -8,7 +8,7 @@ These steps should be followed in order to establish a gameplay connection with 
 2. Server accepts connection and responds with a [RoomInfo](#RoomInfo) packet.
 3. Client may send a [GetDataPackage](#GetDataPackage) packet.
 4. Server sends a [DataPackage](#DataPackage) packet in return. (If the client sent GetDataPackage.)
-5. Client sends [Connect](<#Connect>) packet in order to authenticate with the server.
+5. Client sends [Connect](#Connect) packet in order to authenticate with the server.
 6. Server validates the client's packet and responds with [Connected](#Connected) or [ConnectionRefused](#ConnectionRefused).
 7. Server may send [ReceivedItems](#ReceivedItems) to the client, in the case that the client is missing items that are queued up for it.
 8. Server sends [PrintJSON](#PrintJSON) to all players to notify them of the new client connection.
