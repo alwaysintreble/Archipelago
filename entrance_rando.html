@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Entrance Rando &#8212; Archipelago 0.6.0 documentation</title>
+    <title>Entrance Rando &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/documentation_options.js?v=1c28bd9a"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="fill.html" title="Fill"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Entrance Rando</a></li> 
       </ul>
     </div>  
@@ -117,7 +117,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="entrance_rando.EntranceLookup">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">entrance_rando.</span></span><span class="sig-name descname"><span class="pre">EntranceLookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Random</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entrance_rando.EntranceLookup" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">entrance_rando.</span></span><span class="sig-name descname"><span class="pre">EntranceLookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Random</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usable_exits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entrance_rando.EntranceLookup" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="entrance_rando.EntranceLookup.GroupLookup">
@@ -185,15 +185,19 @@ connect to</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="entrance_rando.disconnect_entrance_for_randomization">
-<span class="sig-prename descclassname"><span class="pre">entrance_rando.</span></span><span class="sig-name descname"><span class="pre">disconnect_entrance_for_randomization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entrance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#entrance_rando.disconnect_entrance_for_randomization" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">entrance_rando.</span></span><span class="sig-name descname"><span class="pre">disconnect_entrance_for_randomization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entrance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="entrance.html#BaseClasses.Entrance" title="BaseClasses.Entrance"><span class="pre">Entrance</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">one_way_target_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#entrance_rando.disconnect_entrance_for_randomization" title="Link to this definition">¶</a></dt>
 <dd><p>Given an entrance in a “vanilla” region graph, splits that entrance to prepare it for randomization
-in randomize_entrances. This should be done after setting the type and group of the entrance.</p>
+in randomize_entrances. This should be done after setting the type and group of the entrance. Because it attempts
+to meet strict entrance naming requirements for coupled mode, this function may produce unintuitive results when
+called only on a single entrance; it produces eventually-correct outputs only after calling it on all entrances.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entrance</strong> – The entrance which will be disconnected in preparation for randomization.</p></li>
 <li><p><strong>target_group</strong> – The group to assign to the created ER target. If not specified, the group from
 the original entrance will be copied.</p></li>
+<li><p><strong>one_way_target_name</strong> – The name of the created ER target if <cite>entrance</cite> is one-way. This argument
+is required for one-way entrances and is ignored otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -324,7 +328,7 @@ successfully and the underlying collection state has been updated.</p></li>
         <li class="right" >
           <a href="fill.html" title="Fill"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Entrance Rando</a></li> 
       </ul>
     </div>

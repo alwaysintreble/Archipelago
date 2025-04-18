@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>APWorld Dev FAQ &#8212; Archipelago 0.6.0 documentation</title>
+    <title>APWorld Dev FAQ &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/documentation_options.js?v=1c28bd9a"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="tests.html" title="Archipelago Unit Testing API"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">APWorld Dev FAQ</a></li> 
       </ul>
     </div>  
@@ -109,6 +109,24 @@ The reason entrance access rules using <code class="docutils literal notranslate
 <p>We recognize it can feel like a trap since it will not alert you when you are missing an indirect condition, and that some games have very complex access rules.
 As of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/pull/3682">PR #3682 (Core: Region handling customization)</a> being merged, it is possible for a world to opt out of indirect conditions entirely, instead using the system of checking each entrance whenever a region has been reached, although this does come with a performance cost.
 Opting out of using indirect conditions should only be used by games that <em>really</em> need it. For most games, it should be reasonable to know all entrance → region dependencies, making indirect conditions preferred because they are much faster.</p>
+<hr class="docutils" />
+</section>
+<section id="i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata">
+<h2>I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata<a class="headerlink" href="#i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata" title="Link to this heading">¶</a></h2>
+<p>The error <code class="docutils literal notranslate"><span class="pre">Could</span> <span class="pre">not</span> <span class="pre">load</span> <span class="pre">multidata.</span> <span class="pre">File</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">corrupted</span> <span class="pre">or</span> <span class="pre">incompatible.</span></code> occurs when uploading a locally generated
+file where there is an issue with the multidata contained within it. It may come with a description like
+<code class="docutils literal notranslate"><span class="pre">(No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'worlds.myworld')</span></code> or <code class="docutils literal notranslate"><span class="pre">(global</span> <span class="pre">'worlds.myworld.names.ItemNames'</span> <span class="pre">is</span> <span class="pre">forbidden)</span></code></p>
+<p>Pickling is a way to compress python objects such that they can be decompressed and be used to rebuild the
+python objects. This means that if one of your custom class instances ends up in the multidata, the server would not
+be able to load that custom class to decompress the data, which can fail either because the custom class is unknown
+(because it cannot load your world module) or the class it’s attempting to import to decompress is deemed unsafe.</p>
+<p>Common situations where this can happen include:</p>
+<ul class="simple">
+<li><p>Using Option instances directly in slot_data. Ex: using <code class="docutils literal notranslate"><span class="pre">options.option_name</span></code> instead of <code class="docutils literal notranslate"><span class="pre">options.option_name.value</span></code>.
+Also, consider using the <code class="docutils literal notranslate"><span class="pre">options.as_dict(&quot;option_name&quot;,</span> <span class="pre">&quot;option_two&quot;)</span></code> helper.</p></li>
+<li><p>Using enums as Location/Item names in the datapackage. When building out <code class="docutils literal notranslate"><span class="pre">location_name_to_id</span></code> and <code class="docutils literal notranslate"><span class="pre">item_name_to_id</span></code>,
+make sure that you are not using your enum class for either the names or ids in these mappings.</p></li>
+</ul>
 </section>
 </section>
 
@@ -141,6 +159,7 @@ Opting out of using indirect conditions should only be used by games that <em>re
 <li class="toctree-l2"><a class="reference internal" href="#my-game-has-a-restrictive-start-that-leads-to-fill-errors">My game has a restrictive start that leads to fill errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out">I have multiple settings that change the item/location pool counts and need to balance them out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary">I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata">I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
@@ -207,7 +226,7 @@ Opting out of using indirect conditions should only be used by games that <em>re
         <li class="right" >
           <a href="tests.html" title="Archipelago Unit Testing API"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">APWorld Dev FAQ</a></li> 
       </ul>
     </div>

@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Archipelago API &#8212; Archipelago 0.6.0 documentation</title>
+    <title>Archipelago API &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-    <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+    <script src="_static/documentation_options.js?v=1c28bd9a"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/bizstyle.js"></script>
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="apworld%20specification.html" title="apworld Specification"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API</a></li> 
       </ul>
     </div>  
@@ -640,8 +640,8 @@ args <code class="docutils literal notranslate"><span class="pre">(cls,</span> <
 
 <span class="k">def</span><span class="w"> </span><span class="nf">set_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># For some worlds this step can be omitted if either a Logic mixin </span>
-    <span class="c1"># (see below) is used, it&#39;s easier to apply the rules from data during</span>
-    <span class="c1"># location generation or everything is in generate_basic</span>
+    <span class="c1"># (see below) is used or it&#39;s easier to apply the rules from data during</span>
+    <span class="c1"># location generation</span>
 
     <span class="c1"># set a simple rule for an region</span>
     <span class="n">set_rule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">multiworld</span><span class="o">.</span><span class="n">get_entrance</span><span class="p">(</span><span class="s2">&quot;Boss Door&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">),</span>
@@ -861,9 +861,9 @@ access rules like this:</p>
 is through the slot data. This is filled with the <code class="docutils literal notranslate"><span class="pre">fill_slot_data</span></code> method of your world by returning a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with
 <code class="docutils literal notranslate"><span class="pre">str</span></code> keys that can be serialized with json. However, to not waste resources, it should be limited to data that is
 absolutely necessary. Slot data is sent to your client once it has successfully
-<a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">connected</span></a>.</p>
+<a class="reference internal" href="#network%20protocolmd#connected"><span class="xref myst">connected</span></a>.</p>
 <p>If you need to know information about locations in your world, instead of propagating the slot data, it is preferable
-to use <a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">LocationScouts</span></a>, since that data already exists on the server. Adding
+to use <a class="reference internal" href="#network%20protocolmd#locationscouts"><span class="xref myst">LocationScouts</span></a>, since that data already exists on the server. Adding
 item/location pairs is unnecessary since the AP server already retains and freely gives that information to clients
 that request it. The most common usage of slot data is sending option results that the client needs to be aware of.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fill_slot_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -1034,7 +1034,7 @@ TestBase, and can then define options to test in the class body, and run tests i
         <li class="right" >
           <a href="apworld%20specification.html" title="apworld Specification"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Archipelago API</a></li> 
       </ul>
     </div>
