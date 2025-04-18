@@ -36,7 +36,6 @@ autodoc_default_options = {
 }
 
 myst_enable_extensions = ["html_image"]
-myst_heading_anchors = 2
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
