@@ -53,7 +53,7 @@
   <section id="archipelago-settings-api">
 <h1>Archipelago Settings API<a class="headerlink" href="#archipelago-settings-api" title="Link to this heading">¶</a></h1>
 <p>The settings API describes how to use installation-wide config and let the user configure them, like paths, etc. using
-host.yaml. For the player options / player yamls see <a class="reference internal" href="#options%20apimd"><span class="xref myst">options api.md</span></a>.</p>
+host.yaml. For the player options / player yamls see <a class="reference internal" href="options%20api.html"><span class="doc std std-doc">options api.md</span></a>.</p>
 <p>The settings API replaces <code class="docutils literal notranslate"><span class="pre">Utils.get_options()</span></code> and <code class="docutils literal notranslate"><span class="pre">Utils.get_default_options()</span></code>
 as well as the predefined <code class="docutils literal notranslate"><span class="pre">host.yaml</span></code> in the repository.</p>
 <p>For backwards compatibility with APWorlds, some interfaces are kept for now and will produce a warning when being used.</p>
@@ -92,7 +92,7 @@ Each value needs to have a default. If the default should be <code class="docuti
 It defaults to <code class="docutils literal notranslate"><span class="pre">{folder_name}_options</span></code> if undefined, i.e. <code class="docutils literal notranslate"><span class="pre">worlds/factorio/...</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">factorio_options</span></code>.</p>
 <p>Worlds define the layout of their config section using type annotation of the variable <code class="docutils literal notranslate"><span class="pre">settings</span></code> in the class.
 The type has to inherit from <code class="docutils literal notranslate"><span class="pre">settings.Group</span></code>. Each value in the config can have a comment by subclassing a built-in
-type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#Types"><span class="xref myst">Types</span></a> for a list.```</p>
+type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types"><span class="xref myst">Types</span></a> for a list.```</p>
 <p>Inside the class code, you can then simply use <code class="docutils literal notranslate"><span class="pre">self.settings.rom_file</span></code> to get the value.
 In case of paths they will automatically be read as absolute file paths. No need to use user_path or local_path.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">settings</span>
@@ -181,16 +181,16 @@ Checks the file against <a class="reference internal" href="#md5s"><span class="
 </section>
 <section id="userfolderpath">
 <h3>UserFolderPath<a class="headerlink" href="#userfolderpath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="settings.html#settings.UserFilePath" title="settings.UserFilePath"><span class="xref myst py py-class">UserFilePath</span></a>, but for a folder instead of a file.</p>
+<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but for a folder instead of a file.</p>
 </section>
 <section id="localfilepath">
 <h3>LocalFilePath<a class="headerlink" href="#localfilepath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="settings.html#settings.UserFilePath" title="settings.UserFilePath"><span class="xref myst py py-class">UserFilePath</span></a>, but resolves as local_path:
+<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but resolves as local_path:
 path inside the AP dir or Appimage even if read-only.</p>
 </section>
 <section id="localfolderpath">
 <h3>LocalFolderPath<a class="headerlink" href="#localfolderpath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="settings.html#settings.LocalFilePath" title="settings.LocalFilePath"><span class="xref myst py py-class">LocalFilePath</span></a>, but for a folder instead of a file.</p>
+<p>Same as <a class="reference internal" href="#localfilepath"><span class="xref myst">LocalFilePath</span></a>, but for a folder instead of a file.</p>
 </section>
 <section id="optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath">
 <h3>OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath<a class="headerlink" href="#optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath" title="Link to this heading">¶</a></h3>
@@ -198,7 +198,7 @@ path inside the AP dir or Appimage even if read-only.</p>
 </section>
 <section id="snesrompath">
 <h3>SNESRomPath<a class="headerlink" href="#snesrompath" title="Link to this heading">¶</a></h3>
-<p>Specialized <a class="reference internal" href="settings.html#settings.UserFilePath" title="settings.UserFilePath"><span class="xref myst py py-class">UserFilePath</span></a> that ignores an optional 512 byte header when validating.</p>
+<p>Specialized <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a> that ignores an optional 512 byte header when validating.</p>
 </section>
 </section>
 <section id="caveats">

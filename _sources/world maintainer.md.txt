@@ -3,9 +3,9 @@
 A world maintainer is a person responsible for a world or part of a world in Archipelago.
 
 If a world author does not want to take on the responsibilities of a world maintainer, they can release their world as
-an unofficial [APWorld](apworld%20specificationmd) or maintain their own fork instead.
+an unofficial [APWorld](apworld%20specification) or maintain their own fork instead.
 
-All current world maintainers are listed in the [CODEOWNERS](CODEOWNERS) document.
+All current world maintainers are listed in the [CODEOWNERS](codeowners) document.
 
 ## Responsibilities
 
@@ -32,7 +32,7 @@ nominate someone else (i.e. there are multiple devs).
 
 At any point, a world maintainer can approve the addition of another maintainer to their world.  
 In order to do this, either an existing maintainer or the new maintainer must open a PR updating the
-[CODEOWNERS](CODEOWNERS) file.  
+[CODEOWNERS](codeowners) file.  
 This change must be approved by all existing maintainers of the affected world, the new maintainer candidate, and
 one core maintainer.  
 To help the core team review the change, information about the new maintainer and their contributions should be
@@ -50,7 +50,7 @@ Voting shall be conducted on Discord in #ap-core-dev.
 
 ### Resigning
 
-A world maintainer can resign and have their username removed from the [CODEOWNERS](CODEOWNERS) document. If no
+A world maintainer can resign and have their username removed from the [CODEOWNERS](codeowners) document. If no
 new maintainer takes over management of the world, the world becomes unmaintained.
 
 ### Getting Voted out

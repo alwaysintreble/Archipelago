@@ -59,15 +59,15 @@
 <p>These steps should be followed in order to establish a gameplay connection with an Archipelago session.</p>
 <ol class="arabic simple">
 <li><p>Client establishes WebSocket connection to Archipelago server.</p></li>
-<li><p>Server accepts connection and responds with a <a class="reference internal" href="#RoomInfo"><span class="xref myst">RoomInfo</span></a> packet.</p></li>
-<li><p>Client may send a <a class="reference internal" href="#GetDataPackage"><span class="xref myst">GetDataPackage</span></a> packet.</p></li>
-<li><p>Server sends a <a class="reference internal" href="#DataPackage"><span class="xref myst">DataPackage</span></a> packet in return. (If the client sent GetDataPackage.)</p></li>
-<li><p>Client sends <a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a> packet in order to authenticate with the server.</p></li>
-<li><p>Server validates the client’s packet and responds with <a class="reference internal" href="#Connected"><span class="xref myst">Connected</span></a> or <a class="reference internal" href="#ConnectionRefused"><span class="xref myst">ConnectionRefused</span></a>.</p></li>
-<li><p>Server may send <a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a> to the client, in the case that the client is missing items that are queued up for it.</p></li>
-<li><p>Server sends <a class="reference internal" href="#PrintJSON"><span class="xref myst">PrintJSON</span></a> to all players to notify them of the new client connection.</p></li>
+<li><p>Server accepts connection and responds with a <a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a> packet.</p></li>
+<li><p>Client may send a <a class="reference internal" href="#getdatapackage"><span class="xref myst">GetDataPackage</span></a> packet.</p></li>
+<li><p>Server sends a <a class="reference internal" href="#datapackage"><span class="xref myst">DataPackage</span></a> packet in return. (If the client sent GetDataPackage.)</p></li>
+<li><p>Client sends <a class="reference internal" href="entrance.html#BaseClasses.Entrance.connect" title="BaseClasses.Entrance.connect"><span class="xref myst py py-meth">Connect</span></a> packet in order to authenticate with the server.</p></li>
+<li><p>Server validates the client’s packet and responds with <a class="reference internal" href="#connected"><span class="xref myst">Connected</span></a> or <a class="reference internal" href="#ConnectionRefused"><span class="xref myst">ConnectionRefused</span></a>.</p></li>
+<li><p>Server may send <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> to the client, in the case that the client is missing items that are queued up for it.</p></li>
+<li><p>Server sends <a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a> to all players to notify them of the new client connection.</p></li>
 </ol>
-<p>In the case that the client does not authenticate properly and receives a <a class="reference internal" href="#ConnectionRefused"><span class="xref myst">ConnectionRefused</span></a> then the server will maintain the connection and allow for follow-up <a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a> packet.</p>
+<p>In the case that the client does not authenticate properly and receives a <a class="reference internal" href="#connectionrefused"><span class="xref myst">ConnectionRefused</span></a> then the server will maintain the connection and allow for follow-up <a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a> packet.</p>
 <p>There are also a number of community-supported libraries available that implement this network protocol to make integrating with Archipelago easier.</p>
 <table class="docutils align-default">
 <thead>
@@ -130,11 +130,11 @@
 </section>
 <section id="synchronizing-items">
 <h3>Synchronizing Items<a class="headerlink" href="#synchronizing-items" title="Link to this heading">¶</a></h3>
-<p>After a client connects, it will receive all previously collected items for its associated slot in a <a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a> packet. This will include items the client may have already processed in a previous play session.<br />
+<p>After a client connects, it will receive all previously collected items for its associated slot in a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet. This will include items the client may have already processed in a previous play session.<br />
 To ensure the client is able to reject those items if it needs to, each item in the packet has an associated <code class="docutils literal notranslate"><span class="pre">index</span></code> argument. You will need to find a way to save the “last processed item index” to the player’s local savegame, a local file, or something to that effect. Before connecting, you should load that “last processed item index” value and compare against it in your received items handling.</p>
-<p>When the client receives a <a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a> packet, if the <code class="docutils literal notranslate"><span class="pre">index</span></code> argument does not match the next index that the client expects then it is expected that the client will re-sync items with the server. This can be accomplished by sending the server a <a class="reference internal" href="#Sync"><span class="xref myst">Sync</span></a> packet and then a <a class="reference internal" href="#LocationChecks"><span class="xref myst">LocationChecks</span></a> packet.</p>
+<p>When the client receives a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet, if the <code class="docutils literal notranslate"><span class="pre">index</span></code> argument does not match the next index that the client expects then it is expected that the client will re-sync items with the server. This can be accomplished by sending the server a <a class="reference internal" href="#Sync"><span class="xref myst">Sync</span></a> packet and then a <a class="reference internal" href="#LocationChecks"><span class="xref myst">LocationChecks</span></a> packet.</p>
 <p>Even if the client detects a desync, it can still accept the items provided in this packet to prevent gameplay interruption.</p>
-<p>When the client receives a <a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a> packet and the <code class="docutils literal notranslate"><span class="pre">index</span></code> arg is <code class="docutils literal notranslate"><span class="pre">0</span></code> (zero) then the client should accept the provided <code class="docutils literal notranslate"><span class="pre">items</span></code> list as its full inventory. (Abandon previous inventory.)</p>
+<p>When the client receives a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet and the <code class="docutils literal notranslate"><span class="pre">index</span></code> arg is <code class="docutils literal notranslate"><span class="pre">0</span></code> (zero) then the client should accept the provided <code class="docutils literal notranslate"><span class="pre">items</span></code> list as its full inventory. (Abandon previous inventory.)</p>
 </section>
 </section>
 <section id="archipelago-protocol-packets">
@@ -152,18 +152,18 @@ working in the future.</p>
 <h3>(Server -&gt; Client)<a class="headerlink" href="#server-client" title="Link to this heading">¶</a></h3>
 <p>These packets are sent from the multiworld server to the client. They are not messages which the server accepts.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#RoomInfo"><span class="xref myst">RoomInfo</span></a></p></li>
-<li><p><a class="reference internal" href="#ConnectionRefused"><span class="xref myst">ConnectionRefused</span></a></p></li>
-<li><p><a class="reference internal" href="#Connected"><span class="xref myst">Connected</span></a></p></li>
-<li><p><a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a></p></li>
-<li><p><a class="reference internal" href="#LocationInfo"><span class="xref myst">LocationInfo</span></a></p></li>
-<li><p><a class="reference internal" href="#RoomUpdate"><span class="xref myst">RoomUpdate</span></a></p></li>
-<li><p><a class="reference internal" href="#PrintJSON"><span class="xref myst">PrintJSON</span></a></p></li>
-<li><p><a class="reference internal" href="#DataPackage"><span class="xref myst">DataPackage</span></a></p></li>
-<li><p><a class="reference internal" href="#Bounced"><span class="xref myst">Bounced</span></a></p></li>
-<li><p><a class="reference internal" href="#InvalidPacket"><span class="xref myst">InvalidPacket</span></a></p></li>
-<li><p><a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a></p></li>
-<li><p><a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a></p></li>
+<li><p><a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a></p></li>
+<li><p><a class="reference internal" href="#connectionrefused"><span class="xref myst">ConnectionRefused</span></a></p></li>
+<li><p><a class="reference internal" href="#connected"><span class="xref myst">Connected</span></a></p></li>
+<li><p><a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a></p></li>
+<li><p><a class="reference internal" href="#locationinfo"><span class="xref myst">LocationInfo</span></a></p></li>
+<li><p><a class="reference internal" href="#roomupdate"><span class="xref myst">RoomUpdate</span></a></p></li>
+<li><p><a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a></p></li>
+<li><p><a class="reference internal" href="#datapackage"><span class="xref myst">DataPackage</span></a></p></li>
+<li><p><a class="reference internal" href="#bounced"><span class="xref myst">Bounced</span></a></p></li>
+<li><p><a class="reference internal" href="#invalidpacket"><span class="xref myst">InvalidPacket</span></a></p></li>
+<li><p><a class="reference internal" href="#retrieved"><span class="xref myst">Retrieved</span></a></p></li>
+<li><p><a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a></p></li>
 </ul>
 <section id="roominfo">
 <h4>RoomInfo<a class="headerlink" href="#roominfo" title="Link to this heading">¶</a></h4>
@@ -179,11 +179,11 @@ working in the future.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>version</p></td>
-<td><p><a class="reference internal" href="#NetworkVersion"><span class="xref myst">NetworkVersion</span></a></p></td>
+<td><p><a class="reference internal" href="#networkversion"><span class="xref myst">NetworkVersion</span></a></p></td>
 <td><p>Object denoting the version of Archipelago which the server is running.</p></td>
 </tr>
 <tr class="row-odd"><td><p>generator_version</p></td>
-<td><p><a class="reference internal" href="#NetworkVersion"><span class="xref myst">NetworkVersion</span></a></p></td>
+<td><p><a class="reference internal" href="#networkversion"><span class="xref myst">NetworkVersion</span></a></p></td>
 <td><p>Object denoting the version of Archipelago which generated the multiworld.</p></td>
 </tr>
 <tr class="row-even"><td><p>tags</p></td>
@@ -195,7 +195,7 @@ working in the future.</p>
 <td><p>Denoted whether a password is required to join this room.</p></td>
 </tr>
 <tr class="row-even"><td><p>permissions</p></td>
-<td><p>dict[str, <a class="reference internal" href="netutils.html#NetUtils.Permission" title="NetUtils.Permission"><span class="xref myst py py-class">Permission</span></a>[int]]</p></td>
+<td><p>dict[str, <a class="reference internal" href="#permission"><span class="xref myst">Permission</span></a>[int]]</p></td>
 <td><p>Mapping of permission name to <a class="reference internal" href="netutils.html#NetUtils.Permission" title="NetUtils.Permission"><span class="xref myst py py-class">Permission</span></a>, keys are: “release”, “collect” and “remaining”.</p></td>
 </tr>
 <tr class="row-odd"><td><p>hint_cost</p></td>
@@ -212,7 +212,7 @@ working in the future.</p>
 </tr>
 <tr class="row-even"><td><p>datapackage_checksums</p></td>
 <td><p>dict[str, str]</p></td>
-<td><p>Checksum hash of the individual games’ data packages the server will send. Used by newer clients to decide which games’ caches are outdated. See <a class="reference internal" href="#Data-Package-Contents"><span class="xref myst">Data Package Contents</span></a> for more information.</p></td>
+<td><p>Checksum hash of the individual games’ data packages the server will send. Used by newer clients to decide which games’ caches are outdated. See <a class="reference internal" href="#data-package-contents"><span class="xref myst">Data Package Contents</span></a> for more information.</p></td>
 </tr>
 <tr class="row-odd"><td><p>seed_name</p></td>
 <td><p>str</p></td>
@@ -298,14 +298,14 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <tbody>
 <tr class="row-even"><td><p>team</p></td>
 <td><p>int</p></td>
-<td><p>Your team number. See <a class="reference internal" href="netutils.html#NetUtils.NetworkPlayer" title="NetUtils.NetworkPlayer"><span class="xref myst py py-class">NetworkPlayer</span></a> for more info on team number.</p></td>
+<td><p>Your team number. See <a class="reference internal" href="#networkplayer"><span class="xref myst">NetworkPlayer</span></a> for more info on team number.</p></td>
 </tr>
 <tr class="row-odd"><td><p>slot</p></td>
 <td><p>int</p></td>
-<td><p>Your slot number on your team. See <a class="reference internal" href="netutils.html#NetUtils.NetworkPlayer" title="NetUtils.NetworkPlayer"><span class="xref myst py py-class">NetworkPlayer</span></a> for more info on the slot number.</p></td>
+<td><p>Your slot number on your team. See <a class="reference internal" href="#networkplayer"><span class="xref myst">NetworkPlayer</span></a> for more info on the slot number.</p></td>
 </tr>
 <tr class="row-even"><td><p>players</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.NetworkPlayer" title="NetUtils.NetworkPlayer"><span class="xref myst py py-class">NetworkPlayer</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#networkplayer"><span class="xref myst">NetworkPlayer</span></a>]</p></td>
 <td><p>List denoting other players in the multiworld, whether connected or not.</p></td>
 </tr>
 <tr class="row-odd"><td><p>missing_locations</p></td>
@@ -318,10 +318,10 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-odd"><td><p>slot_data</p></td>
 <td><p>dict[str, any]</p></td>
-<td><p>Contains a json object for slot related data, differs per game. Empty if not required. Not present if slot_data in <a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a> is false.</p></td>
+<td><p>Contains a json object for slot related data, differs per game. Empty if not required. Not present if slot_data in <a class="reference internal" href="entrance.html#BaseClasses.Entrance.connect" title="BaseClasses.Entrance.connect"><span class="xref myst py py-meth">Connect</span></a> is false.</p></td>
 </tr>
 <tr class="row-even"><td><p>slot_info</p></td>
-<td><p>dict[int, <a class="reference internal" href="netutils.html#NetUtils.NetworkSlot" title="NetUtils.NetworkSlot"><span class="xref myst py py-class">NetworkSlot</span></a>]</p></td>
+<td><p>dict[int, <a class="reference internal" href="#networkslot"><span class="xref myst">NetworkSlot</span></a>]</p></td>
 <td><p>maps each slot to a <a class="reference internal" href="netutils.html#NetUtils.NetworkSlot" title="NetUtils.NetworkSlot"><span class="xref myst py py-class">NetworkSlot</span></a> information.</p></td>
 </tr>
 <tr class="row-odd"><td><p>hint_points</p></td>
@@ -350,7 +350,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <td><p>The next empty slot in the list of items for the receiving client.</p></td>
 </tr>
 <tr class="row-odd"><td><p>items</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.NetworkItem" title="NetUtils.NetworkItem"><span class="xref myst py py-class">NetworkItem</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#networkitem"><span class="xref myst">NetworkItem</span></a>]</p></td>
 <td><p>The items which the client is receiving.</p></td>
 </tr>
 </tbody>
@@ -359,7 +359,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="locationinfo">
 <h4>LocationInfo<a class="headerlink" href="#locationinfo" title="Link to this heading">¶</a></h4>
-<p>Sent to clients to acknowledge a received <a class="reference internal" href="#LocationScouts"><span class="xref myst">LocationScouts</span></a> packet and responds with the item in the location(s) being scouted.</p>
+<p>Sent to clients to acknowledge a received <a class="reference internal" href="#locationscouts"><span class="xref myst">LocationScouts</span></a> packet and responds with the item in the location(s) being scouted.</p>
 <section id="id4">
 <h5>Arguments<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -371,7 +371,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </thead>
 <tbody>
 <tr class="row-even"><td><p>locations</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.NetworkItem" title="NetUtils.NetworkItem"><span class="xref myst py py-class">NetworkItem</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#networkitem"><span class="xref myst">NetworkItem</span></a>]</p></td>
 <td><p>Contains list of item(s) in the location(s) scouted.</p></td>
 </tr>
 </tbody>
@@ -383,8 +383,8 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <p>Sent when there is a need to update information about the present game session.</p>
 <section id="id5">
 <h5>Arguments<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h5>
-<p>RoomUpdate may contain the same arguments from <a class="reference internal" href="#RoomInfo"><span class="xref myst">RoomInfo</span></a> and, once authenticated, arguments from
-<a class="reference internal" href="#Connected"><span class="xref myst">Connected</span></a> with the following exceptions:</p>
+<p>RoomUpdate may contain the same arguments from <a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a> and, once authenticated, arguments from
+<a class="reference internal" href="#connected"><span class="xref myst">Connected</span></a> with the following exceptions:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -394,7 +394,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </thead>
 <tbody>
 <tr class="row-even"><td><p>players</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.NetworkPlayer" title="NetUtils.NetworkPlayer"><span class="xref myst py py-class">NetworkPlayer</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#networkplayer"><span class="xref myst">NetworkPlayer</span></a>]</p></td>
 <td><p>Sent in the event of an alias rename. Always sends all players, whether connected or not.</p></td>
 </tr>
 <tr class="row-odd"><td><p>checked_locations</p></td>
@@ -425,14 +425,14 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </thead>
 <tbody>
 <tr class="row-even"><td><p>data</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart" title="NetUtils.JSONMessagePart"><span class="xref myst py py-class">JSONMessagePart</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#jsonmessagepart"><span class="xref myst">JSONMessagePart</span></a>]</p></td>
 <td><p>(all)</p></td>
 <td><p>Textual content of this message</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
 <td><p>str</p></td>
 <td><p>(any)</p></td>
-<td><p><a class="reference internal" href="#PrintJsonType"><span class="xref myst">PrintJsonType</span></a> of this message (optional)</p></td>
+<td><p><a class="reference internal" href="#printjsontype"><span class="xref myst">PrintJsonType</span></a> of this message (optional)</p></td>
 </tr>
 <tr class="row-even"><td><p>receiving</p></td>
 <td><p>int</p></td>
@@ -440,7 +440,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <td><p>Destination player’s ID</p></td>
 </tr>
 <tr class="row-odd"><td><p>item</p></td>
-<td><p><a class="reference internal" href="netutils.html#NetUtils.NetworkItem" title="NetUtils.NetworkItem"><span class="xref myst py py-class">NetworkItem</span></a></p></td>
+<td><p><a class="reference internal" href="#networkitem"><span class="xref myst">NetworkItem</span></a></p></td>
 <td><p>ItemSend, ItemCheat, Hint</p></td>
 <td><p>Source player’s ID, location ID, item ID and item flags</p></td>
 </tr>
@@ -479,7 +479,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="printjsontype">
 <h5>PrintJsonType<a class="headerlink" href="#printjsontype" title="Link to this heading">¶</a></h5>
-<p>PrintJsonType indicates the type of a <a class="reference internal" href="#PrintJSON"><span class="xref myst">PrintJSON</span></a> packet. Different types can be handled differently by the client and can also contain additional arguments. When receiving an unknown or missing type, the <code class="docutils literal notranslate"><span class="pre">data</span></code>’s list[<a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart" title="NetUtils.JSONMessagePart"><span class="xref myst py py-class">JSONMessagePart</span></a>] should still be displayed to the player as normal text.</p>
+<p>PrintJsonType indicates the type of a <a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a> packet. Different types can be handled differently by the client and can also contain additional arguments. When receiving an unknown or missing type, the <code class="docutils literal notranslate"><span class="pre">data</span></code>’s list[<a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart" title="NetUtils.JSONMessagePart"><span class="xref myst py py-class">JSONMessagePart</span></a>] should still be displayed to the player as normal text.</p>
 <p>Currently defined types are:</p>
 <table class="docutils align-default">
 <thead>
@@ -539,7 +539,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="datapackage">
 <h4>DataPackage<a class="headerlink" href="#datapackage" title="Link to this heading">¶</a></h4>
-<p>Sent to clients to provide what is known as a ‘data package’ which contains information to enable a client to most easily communicate with the Archipelago server. Contents include things like location id to name mappings, among others; see <a class="reference internal" href="#Data-Package-Contents"><span class="xref myst">Data Package Contents</span></a> for more info.</p>
+<p>Sent to clients to provide what is known as a ‘data package’ which contains information to enable a client to most easily communicate with the Archipelago server. Contents include things like location id to name mappings, among others; see <a class="reference internal" href="#data-package-contents"><span class="xref myst">Data Package Contents</span></a> for more info.</p>
 <section id="id7">
 <h5>Arguments<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -551,7 +551,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </thead>
 <tbody>
 <tr class="row-even"><td><p>data</p></td>
-<td><p><a class="reference internal" href="#Data-Package-Contents"><span class="xref myst">DataPackageObject</span></a></p></td>
+<td><p><a class="reference internal" href="#data-package-contents"><span class="xref myst">DataPackageObject</span></a></p></td>
 <td><p>The data package as a JSON object.</p></td>
 </tr>
 </tbody>
@@ -560,7 +560,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="bounced">
 <h4>Bounced<a class="headerlink" href="#bounced" title="Link to this heading">¶</a></h4>
-<p>Sent to clients after a client requested this message be sent to them, more info in the <a class="reference internal" href="#Bounce"><span class="xref myst">Bounce</span></a> package.</p>
+<p>Sent to clients after a client requested this message be sent to them, more info in the <a class="reference internal" href="#bounce"><span class="xref myst">Bounce</span></a> package.</p>
 <section id="id8">
 <h5>Arguments<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -581,11 +581,11 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-even"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Optional. Client <a class="reference internal" href="#Tags"><span class="xref myst">Tags</span></a> this message is targeting</p></td>
+<td><p>Optional. Client <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a> this message is targeting</p></td>
 </tr>
 <tr class="row-odd"><td><p>data</p></td>
 <td><p>dict</p></td>
-<td><p>The data in the <a class="reference internal" href="#Bounce"><span class="xref myst">Bounce</span></a> package copied</p></td>
+<td><p>The data in the <a class="reference internal" href="#bounce"><span class="xref myst">Bounce</span></a> package copied</p></td>
 </tr>
 </tbody>
 </table>
@@ -606,7 +606,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <tbody>
 <tr class="row-even"><td><p>type</p></td>
 <td><p>str</p></td>
-<td><p>The <a class="reference internal" href="#PacketProblemType"><span class="xref myst">PacketProblemType</span></a> that was detected in the packet.</p></td>
+<td><p>The <a class="reference internal" href="#packetproblemtype"><span class="xref myst">PacketProblemType</span></a> that was detected in the packet.</p></td>
 </tr>
 <tr class="row-odd"><td><p>original_cmd</p></td>
 <td><p>Optional[str]</p></td>
@@ -641,7 +641,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="retrieved">
 <h4>Retrieved<a class="headerlink" href="#retrieved" title="Link to this heading">¶</a></h4>
-<p>Sent to clients as a response the a <a class="reference internal" href="#Get"><span class="xref myst">Get</span></a> package.</p>
+<p>Sent to clients as a response the a <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package.</p>
 <section id="id10">
 <h5>Arguments<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -654,17 +654,17 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <tbody>
 <tr class="row-even"><td><p>keys</p></td>
 <td><p>dict[str, any]</p></td>
-<td><p>A key-value collection containing all the values for the keys requested in the <a class="reference internal" href="#Get"><span class="xref myst">Get</span></a> package.</p></td>
+<td><p>A key-value collection containing all the values for the keys requested in the <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package.</p></td>
 </tr>
 </tbody>
 </table>
 <p>If a requested key was not present in the server’s data, the associated value will be <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
-<p>Additional arguments added to the <a class="reference internal" href="#Get"><span class="xref myst">Get</span></a> package that triggered this <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> will also be passed along.</p>
+<p>Additional arguments added to the <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package that triggered this <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> will also be passed along.</p>
 </section>
 </section>
 <section id="setreply">
 <h4>SetReply<a class="headerlink" href="#setreply" title="Link to this heading">¶</a></h4>
-<p>Sent to clients in response to a <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package if want_reply was set to true, or if the client has registered to receive updates for a certain key using the <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package. SetReply packages are sent even if a <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package did not alter the value for the key.</p>
+<p>Sent to clients in response to a <a class="reference internal" href="#set"><span class="xref myst">Set</span></a> package if want_reply was set to true, or if the client has registered to receive updates for a certain key using the <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package. SetReply packages are sent even if a <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package did not alter the value for the key.</p>
 <section id="id11">
 <h5>Arguments<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -693,7 +693,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 </tbody>
 </table>
-<p>Additional arguments added to the <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package that triggered this <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> will also be passed along.</p>
+<p>Additional arguments added to the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a> package that triggered this <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> will also be passed along.</p>
 </section>
 </section>
 </section>
@@ -701,19 +701,19 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <h3>(Client -&gt; Server)<a class="headerlink" href="#client-server" title="Link to this heading">¶</a></h3>
 <p>These packets are sent purely from client to server. They are not accepted by clients.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a></p></li>
-<li><p><a class="reference internal" href="#ConnectUpdate"><span class="xref myst">ConnectUpdate</span></a></p></li>
-<li><p><a class="reference internal" href="#Sync"><span class="xref myst">Sync</span></a></p></li>
-<li><p><a class="reference internal" href="#LocationChecks"><span class="xref myst">LocationChecks</span></a></p></li>
-<li><p><a class="reference internal" href="#LocationScouts"><span class="xref myst">LocationScouts</span></a></p></li>
-<li><p><a class="reference internal" href="#UpdateHint"><span class="xref myst">UpdateHint</span></a></p></li>
-<li><p><a class="reference internal" href="#StatusUpdate"><span class="xref myst">StatusUpdate</span></a></p></li>
-<li><p><a class="reference internal" href="#Say"><span class="xref myst">Say</span></a></p></li>
-<li><p><a class="reference internal" href="#GetDataPackage"><span class="xref myst">GetDataPackage</span></a></p></li>
-<li><p><a class="reference internal" href="#Bounce"><span class="xref myst">Bounce</span></a></p></li>
-<li><p><a class="reference internal" href="#Get"><span class="xref myst">Get</span></a></p></li>
-<li><p><a class="reference internal" href="#Set"><span class="xref myst">Set</span></a></p></li>
-<li><p><a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a></p></li>
+<li><p><a class="reference internal" href="entrance.html#BaseClasses.Entrance.connect" title="BaseClasses.Entrance.connect"><span class="xref myst py py-meth">Connect</span></a></p></li>
+<li><p><a class="reference internal" href="#connectupdate"><span class="xref myst">ConnectUpdate</span></a></p></li>
+<li><p><a class="reference internal" href="#sync"><span class="xref myst">Sync</span></a></p></li>
+<li><p><a class="reference internal" href="#locationchecks"><span class="xref myst">LocationChecks</span></a></p></li>
+<li><p><a class="reference internal" href="#locationscouts"><span class="xref myst">LocationScouts</span></a></p></li>
+<li><p><a class="reference internal" href="#updatehint"><span class="xref myst">UpdateHint</span></a></p></li>
+<li><p><a class="reference internal" href="#statusupdate"><span class="xref myst">StatusUpdate</span></a></p></li>
+<li><p><a class="reference internal" href="#say"><span class="xref myst">Say</span></a></p></li>
+<li><p><a class="reference internal" href="#getdatapackage"><span class="xref myst">GetDataPackage</span></a></p></li>
+<li><p><a class="reference internal" href="#bounce"><span class="xref myst">Bounce</span></a></p></li>
+<li><p><a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a></p></li>
+<li><p><a class="reference internal" href="#set"><span class="xref myst">Set</span></a></p></li>
+<li><p><a class="reference internal" href="#setnotify"><span class="xref myst">SetNotify</span></a></p></li>
 </ul>
 <section id="connect">
 <h4>Connect<a class="headerlink" href="#connect" title="Link to this heading">¶</a></h4>
@@ -745,7 +745,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 <td><p>Unique identifier for player client.</p></td>
 </tr>
 <tr class="row-even"><td><p>version</p></td>
-<td><p><a class="reference internal" href="#NetworkVersion"><span class="xref myst">NetworkVersion</span></a></p></td>
+<td><p><a class="reference internal" href="#networkversion"><span class="xref myst">NetworkVersion</span></a></p></td>
 <td><p>An object representing the Archipelago version this client supports.</p></td>
 </tr>
 <tr class="row-odd"><td><p>items_handling</p></td>
@@ -754,7 +754,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-even"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="#Tags"><span class="xref myst">Tags</span></a></p></td>
+<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>slot_data</p></td>
 <td><p>bool</p></td>
@@ -792,7 +792,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="authentication">
 <h5>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h5>
-<p>Many, if not all, other packets require a successfully authenticated client. This is described in more detail in <a class="reference internal" href="#Archipelago-Connection-Handshake"><span class="xref myst">Archipelago Connection Handshake</span></a>.</p>
+<p>Many, if not all, other packets require a successfully authenticated client. This is described in more detail in <a class="reference internal" href="#archipelago-connection-handshake"><span class="xref myst">Archipelago Connection Handshake</span></a>.</p>
 </section>
 </section>
 <section id="connectupdate">
@@ -814,7 +814,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </tr>
 <tr class="row-odd"><td><p>tags</p></td>
 <td><p>list[str]</p></td>
-<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="#Tags"><span class="xref myst">Tags</span></a></p></td>
+<td><p>Denotes special features or capabilities that the sender is capable of. <a class="reference internal" href="commonclient.html#CommonClient.CommonContext.tags" title="CommonClient.CommonContext.tags"><span class="xref myst py py-attr">Tags</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -822,7 +822,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="sync">
 <h4>Sync<a class="headerlink" href="#sync" title="Link to this heading">¶</a></h4>
-<p>Sent to server to request a <a class="reference internal" href="#ReceivedItems"><span class="xref myst">ReceivedItems</span></a> packet to synchronize items.</p>
+<p>Sent to server to request a <a class="reference internal" href="#receiveditems"><span class="xref myst">ReceivedItems</span></a> packet to synchronize items.</p>
 <section id="id14">
 <h5>Arguments<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h5>
 <p>No arguments necessary.</p>
@@ -851,7 +851,7 @@ InvalidItemsHandling indicates a wrong value type or flag combination was sent.<
 </section>
 <section id="locationscouts">
 <h4>LocationScouts<a class="headerlink" href="#locationscouts" title="Link to this heading">¶</a></h4>
-<p>Sent to the server to retrieve the items that are on a specified list of locations. The server will respond with a <a class="reference internal" href="#LocationInfo"><span class="xref myst">LocationInfo</span></a> packet containing the items located in the scouted locations.
+<p>Sent to the server to retrieve the items that are on a specified list of locations. The server will respond with a <a class="reference internal" href="#locationinfo"><span class="xref myst">LocationInfo</span></a> packet containing the items located in the scouted locations.
 Fully remote clients without a patch file may use this to “place” items onto their in-game locations, most commonly to display their names or item classifications before/upon pickup.</p>
 <p>LocationScouts can also be used to inform the server of locations the client has seen, but not checked. This creates a hint as if the player had run <code class="docutils literal notranslate"><span class="pre">!hint_location</span></code> on a location, but without deducting hint points.
 This is useful in cases where an item appears in the game world, such as ‘ledge items’ in <em>A Link to the Past</em>. To do this, set the <code class="docutils literal notranslate"><span class="pre">create_as_hint</span></code> parameter to a non-zero value.</p>
@@ -900,7 +900,7 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 <td><p>The ID of the location to update the hint for. If no hint exists for this location, the packet is ignored.</p></td>
 </tr>
 <tr class="row-even"><td><p>status</p></td>
-<td><p><a class="reference internal" href="netutils.html#NetUtils.HintStatus" title="NetUtils.HintStatus"><span class="xref myst py py-class">HintStatus</span></a></p></td>
+<td><p><a class="reference internal" href="#hintstatus"><span class="xref myst">HintStatus</span></a></p></td>
 <td><p>Optional. If included, sets the status of the hint to this status. Cannot set <code class="docutils literal notranslate"><span class="pre">HINT_FOUND</span></code>, or change the status from <code class="docutils literal notranslate"><span class="pre">HINT_FOUND</span></code>.</p></td>
 </tr>
 </tbody>
@@ -940,7 +940,7 @@ This is useful in cases where an item appears in the game world, such as ‘ledg
 <tbody>
 <tr class="row-even"><td><p>status</p></td>
 <td><p>ClientStatus[int]</p></td>
-<td><p>One of <a class="reference internal" href="netutils.html#NetUtils.ClientStatus" title="NetUtils.ClientStatus"><span class="xref myst py py-class">Client States</span></a>. Send as int. Follow the link for more information.</p></td>
+<td><p>One of <a class="reference internal" href="#clientstatus"><span class="xref myst">Client States</span></a>. Send as int. Follow the link for more information.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1024,7 +1024,7 @@ the server will forward the message to all those targets to which any one requir
 </section>
 <section id="get">
 <h4>Get<a class="headerlink" href="#get" title="Link to this heading">¶</a></h4>
-<p>Used to request a single or multiple values from the server’s data storage, see the <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a> package for how to write values to the data storage. A Get package will be answered with a <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> package.</p>
+<p>Used to request a single or multiple values from the server’s data storage, see the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a> package for how to write values to the data storage. A Get package will be answered with a <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> package.</p>
 <section id="id22">
 <h5>Arguments<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -1041,7 +1041,7 @@ the server will forward the message to all those targets to which any one requir
 </tr>
 </tbody>
 </table>
-<p>Additional arguments sent in this package will also be added to the <a class="reference internal" href="#Retrieved"><span class="xref myst">Retrieved</span></a> package it triggers.</p>
+<p>Additional arguments sent in this package will also be added to the <a class="reference internal" href="#retrieved"><span class="xref myst">Retrieved</span></a> package it triggers.</p>
 <p>Some special keys exist with specific return data, all of them have the prefix <code class="docutils literal notranslate"><span class="pre">_read_</span></code>, so <code class="docutils literal notranslate"><span class="pre">hints_{team}_{slot}</span></code> is <code class="docutils literal notranslate"><span class="pre">_read_hints_{team}_{slot}</span></code>.</p>
 <table class="docutils align-default">
 <thead>
@@ -1052,7 +1052,7 @@ the server will forward the message to all those targets to which any one requir
 </thead>
 <tbody>
 <tr class="row-even"><td><p>hints_{team}_{slot}</p></td>
-<td><p>list[<a class="reference internal" href="netutils.html#NetUtils.Hint" title="NetUtils.Hint"><span class="xref myst py py-class">Hint</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#hint"><span class="xref myst">Hint</span></a>]</p></td>
 <td><p>All Hints belonging to the requested Player.</p></td>
 </tr>
 <tr class="row-odd"><td><p>slot_data_{slot}</p></td>
@@ -1068,7 +1068,7 @@ the server will forward the message to all those targets to which any one requir
 <td><p>location_name_groups belonging to the requested game.</p></td>
 </tr>
 <tr class="row-even"><td><p>client_status_{team}_{slot}</p></td>
-<td><p><a class="reference internal" href="netutils.html#NetUtils.ClientStatus" title="NetUtils.ClientStatus"><span class="xref myst py py-class">ClientStatus</span></a></p></td>
+<td><p><a class="reference internal" href="#clientstatus"><span class="xref myst">ClientStatus</span></a></p></td>
 <td><p>The current game status of the requested player.</p></td>
 </tr>
 <tr class="row-odd"><td><p>race_mode</p></td>
@@ -1081,7 +1081,7 @@ the server will forward the message to all those targets to which any one requir
 </section>
 <section id="set">
 <h4>Set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h4>
-<p>Used to write data to the server’s data storage, that data can then be shared across worlds or just saved for later. Values for keys in the data storage can be retrieved with a <a class="reference internal" href="#Get"><span class="xref myst">Get</span></a> package, or monitored with a <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package.
+<p>Used to write data to the server’s data storage, that data can then be shared across worlds or just saved for later. Values for keys in the data storage can be retrieved with a <a class="reference internal" href="settings.html#settings.Group.get" title="settings.Group.get"><span class="xref myst py py-meth">Get</span></a> package, or monitored with a <a class="reference internal" href="#SetNotify"><span class="xref myst">SetNotify</span></a> package.
 Keys that start with <code class="docutils literal notranslate"><span class="pre">_read_</span></code> cannot be set.</p>
 <section id="id23">
 <h5>Arguments<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h5>
@@ -1103,19 +1103,19 @@ Keys that start with <code class="docutils literal notranslate"><span class="pre
 </tr>
 <tr class="row-even"><td><p>want_reply</p></td>
 <td><p>bool</p></td>
-<td><p>If true, the server will send a <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> response back to the client.</p></td>
+<td><p>If true, the server will send a <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> response back to the client.</p></td>
 </tr>
 <tr class="row-odd"><td><p>operations</p></td>
-<td><p>list[<a class="reference internal" href="#DataStorageOperation"><span class="xref myst">DataStorageOperation</span></a>]</p></td>
+<td><p>list[<a class="reference internal" href="#datastorageoperation"><span class="xref myst">DataStorageOperation</span></a>]</p></td>
 <td><p>Operations to apply to the value, multiple operations can be present and they will be executed in order of appearance.</p></td>
 </tr>
 </tbody>
 </table>
-<p>Additional arguments sent in this package will also be added to the <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> package it triggers.</p>
+<p>Additional arguments sent in this package will also be added to the <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> package it triggers.</p>
 </section>
 <section id="datastorageoperation">
 <h5>DataStorageOperation<a class="headerlink" href="#datastorageoperation" title="Link to this heading">¶</a></h5>
-<p>A DataStorageOperation manipulates or alters the value of a key in the data storage. If the operation transforms the value from one state to another then the current value of the key is used as the starting point otherwise the <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a>’s package <code class="docutils literal notranslate"><span class="pre">default</span></code> is used if the key does not exist on the server already.
+<p>A DataStorageOperation manipulates or alters the value of a key in the data storage. If the operation transforms the value from one state to another then the current value of the key is used as the starting point otherwise the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a>’s package <code class="docutils literal notranslate"><span class="pre">default</span></code> is used if the key does not exist on the server already.
 DataStorageOperations consist of an object containing both the operation to be applied, provided in the form of a string, as well as the value to be used for that operation, Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;add&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">}</span>
 </pre></div>
@@ -1132,7 +1132,7 @@ DataStorageOperations consist of an object containing both the operation to be a
 <td><p>Sets the current value of the key to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>default</p></td>
-<td><p>If the key has no value yet, sets the current value of the key to <code class="docutils literal notranslate"><span class="pre">default</span></code> of the <a class="reference internal" href="#Set"><span class="xref myst">Set</span></a>’s package (<code class="docutils literal notranslate"><span class="pre">value</span></code> is ignored).</p></td>
+<td><p>If the key has no value yet, sets the current value of the key to <code class="docutils literal notranslate"><span class="pre">default</span></code> of the <a class="reference internal" href="#set"><span class="xref myst">Set</span></a>’s package (<code class="docutils literal notranslate"><span class="pre">value</span></code> is ignored).</p></td>
 </tr>
 <tr class="row-even"><td><p>add</p></td>
 <td><p>Adds <code class="docutils literal notranslate"><span class="pre">value</span></code> to the current value of the key, if both the current value and <code class="docutils literal notranslate"><span class="pre">value</span></code> are arrays then <code class="docutils literal notranslate"><span class="pre">value</span></code> will be appended to the current value.</p></td>
@@ -1188,7 +1188,7 @@ DataStorageOperations consist of an object containing both the operation to be a
 </section>
 <section id="setnotify">
 <h4>SetNotify<a class="headerlink" href="#setnotify" title="Link to this heading">¶</a></h4>
-<p>Used to register your current session for receiving all <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> packages of certain keys to allow your client to keep track of changes.</p>
+<p>Used to register your current session for receiving all <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> packages of certain keys to allow your client to keep track of changes.</p>
 <section id="id24">
 <h5>Arguments<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h5>
 <table class="docutils align-default">
@@ -1201,7 +1201,7 @@ DataStorageOperations consist of an object containing both the operation to be a
 <tbody>
 <tr class="row-even"><td><p>keys</p></td>
 <td><p>list[str]</p></td>
-<td><p>Keys to receive all <a class="reference internal" href="#SetReply"><span class="xref myst">SetReply</span></a> packages for.</p></td>
+<td><p>Keys to receive all <a class="reference internal" href="#setreply"><span class="xref myst">SetReply</span></a> packages for.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1215,7 +1215,7 @@ DataStorageOperations consist of an object containing both the operation to be a
 <p>Coop in Archipelago is automatically facilitated by the server, however some of the default behaviour may not be what you desire.</p>
 <p>If the game in question is a remote-items game (attribute on AutoWorld), then all items will always be sent and received.
 If the game in question is not a remote-items game, then any items that are placed within the same world will not be send by the server.</p>
-<p>To manually react to others in the same player slot doing checks, listen to <a class="reference internal" href="#RoomUpdate"><span class="xref myst">RoomUpdate</span></a> -&gt; checked_locations.</p>
+<p>To manually react to others in the same player slot doing checks, listen to <a class="reference internal" href="#roomupdate"><span class="xref myst">RoomUpdate</span></a> -&gt; checked_locations.</p>
 </section>
 <section id="networkplayer">
 <h4>NetworkPlayer<a class="headerlink" href="#networkplayer" title="Link to this heading">¶</a></h4>
@@ -1261,7 +1261,7 @@ If the game in question is not a remote-items game, then any items that are plac
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">item</span></code> is the item id of the item. Item ids are only supported in the range of [-2<sup>53</sup> + 1, 2<sup>53</sup> - 1], with anything ≤ 0 reserved for Archipelago use.</p>
 <p><code class="docutils literal notranslate"><span class="pre">location</span></code> is the location id of the item inside the world. Location ids are only supported in the range of [-2<sup>53</sup> + 1, 2<sup>53</sup> - 1], with anything ≤ 0 reserved for Archipelago use.</p>
-<p><code class="docutils literal notranslate"><span class="pre">player</span></code> is the player slot of the world the item is located in, except when inside an <a class="reference internal" href="#LocationInfo"><span class="xref myst">LocationInfo</span></a> Packet then it will be the slot of the player to receive the item</p>
+<p><code class="docutils literal notranslate"><span class="pre">player</span></code> is the player slot of the world the item is located in, except when inside an <a class="reference internal" href="#locationinfo"><span class="xref myst">LocationInfo</span></a> Packet then it will be the slot of the player to receive the item</p>
 <p><code class="docutils literal notranslate"><span class="pre">flags</span></code> are bit flags:</p>
 <table class="docutils align-default">
 <thead>
@@ -1287,7 +1287,7 @@ If the game in question is not a remote-items game, then any items that are plac
 </section>
 <section id="jsonmessagepart">
 <h4>JSONMessagePart<a class="headerlink" href="#jsonmessagepart" title="Link to this heading">¶</a></h4>
-<p>Message nodes sent along with <a class="reference internal" href="#PrintJSON"><span class="xref myst">PrintJSON</span></a> packet to be reconstructed into a legible message. The nodes are intended to be read in the order they are listed in the packet.</p>
+<p>Message nodes sent along with <a class="reference internal" href="#printjson"><span class="xref myst">PrintJSON</span></a> packet to be reconstructed into a legible message. The nodes are intended to be read in the order they are listed in the packet.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">JSONMessagePart</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
     <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
@@ -1332,14 +1332,14 @@ Possible values for <code class="docutils literal notranslate"><span class="pre"
 <td><p>Entrance Name. No ID mapping exists.</p></td>
 </tr>
 <tr class="row-even"><td><p>hint_status</p></td>
-<td><p>The <a class="reference internal" href="netutils.html#NetUtils.HintStatus" title="NetUtils.HintStatus"><span class="xref myst py py-class">HintStatus</span></a> of the hint. Both <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">hint_status</span></code> are given.</p></td>
+<td><p>The <a class="reference internal" href="#hintstatus"><span class="xref myst">HintStatus</span></a> of the hint. Both <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">hint_status</span></code> are given.</p></td>
 </tr>
 <tr class="row-odd"><td><p>color</p></td>
 <td><p>Regular text that should be colored. Only <code class="docutils literal notranslate"><span class="pre">type</span></code> that will contain <code class="docutils literal notranslate"><span class="pre">color</span></code> data.</p></td>
 </tr>
 </tbody>
 </table>
-<p><code class="docutils literal notranslate"><span class="pre">color</span></code> is used to denote a console color to display the message part with and is only send if the <code class="docutils literal notranslate"><span class="pre">type</span></code> is <code class="docutils literal notranslate"><span class="pre">color</span></code>. This is limited to console colors due to backwards compatibility needs with games such as ALttP. Although background colors as well as foreground colors are listed, only one may be applied to a <a class="reference internal" href="netutils.html#NetUtils.JSONMessagePart" title="NetUtils.JSONMessagePart"><span class="xref myst py py-class">JSONMessagePart</span></a> at a time.</p>
+<p><code class="docutils literal notranslate"><span class="pre">color</span></code> is used to denote a console color to display the message part with and is only send if the <code class="docutils literal notranslate"><span class="pre">type</span></code> is <code class="docutils literal notranslate"><span class="pre">color</span></code>. This is limited to console colors due to backwards compatibility needs with games such as ALttP. Although background colors as well as foreground colors are listed, only one may be applied to a <a class="reference internal" href="#jsonmessagepart"><span class="xref myst">JSONMessagePart</span></a> at a time.</p>
 <p>Color options:</p>
 <ul class="simple">
 <li><p>bold</p></li>
@@ -1363,12 +1363,12 @@ Possible values for <code class="docutils literal notranslate"><span class="pre"
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">text</span></code> is the content of the message part to be displayed.
 <code class="docutils literal notranslate"><span class="pre">player</span></code> marks owning player id for location/item,
-<code class="docutils literal notranslate"><span class="pre">flags</span></code> contains the <a class="reference internal" href="netutils.html#NetUtils.NetworkItem" title="NetUtils.NetworkItem"><span class="xref myst py py-class">NetworkItem</span></a> flags that belong to the item</p>
+<code class="docutils literal notranslate"><span class="pre">flags</span></code> contains the <a class="reference internal" href="#networkitem"><span class="xref myst">NetworkItem</span></a> flags that belong to the item</p>
 </section>
 <section id="clientstatus">
 <h4>ClientStatus<a class="headerlink" href="#clientstatus" title="Link to this heading">¶</a></h4>
 <p>An enumeration containing the possible client states that may be used to inform
-the server in <a class="reference internal" href="#StatusUpdate"><span class="xref myst">StatusUpdate</span></a>. The MultiServer automatically sets
+the server in <a class="reference internal" href="#statusupdate"><span class="xref myst">StatusUpdate</span></a>. The MultiServer automatically sets
 the client state to <code class="docutils literal notranslate"><span class="pre">ClientStatus.CLIENT_CONNECTED</span></code> on the first active connection
 to a slot.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
@@ -1383,7 +1383,7 @@ to a slot.</p>
 </section>
 <section id="networkversion">
 <h4>NetworkVersion<a class="headerlink" href="#networkversion" title="Link to this heading">¶</a></h4>
-<p>An object representing software versioning. Used in the <a class="reference internal" href="#Connect"><span class="xref myst">Connect</span></a> packet to allow the client to inform the server of the Archipelago version it supports.</p>
+<p>An object representing software versioning. Used in the <a class="reference internal" href="entrance.html#BaseClasses.Entrance.connect" title="BaseClasses.Entrance.connect"><span class="xref myst py py-meth">Connect</span></a> packet to allow the client to inform the server of the Archipelago version it supports.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Version</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
     <span class="n">major</span><span class="p">:</span> <span class="nb">int</span>
@@ -1454,7 +1454,7 @@ server most easily and not maintain their own mappings. Some contents include:</
 <li><p>A checksum of each game’s data package for clients to tell if a cached package is invalid.</p></li>
 </ul>
 <p>We encourage clients to cache the data package they receive on disk, or otherwise not tied to a session. You will know
-when your cache is outdated if the <a class="reference internal" href="#RoomInfo"><span class="xref myst">RoomInfo</span></a> packet or the datapackage itself denote a different checksum
+when your cache is outdated if the <a class="reference internal" href="#roominfo"><span class="xref myst">RoomInfo</span></a> packet or the datapackage itself denote a different checksum
 than any locally cached ones.</p>
 <p><strong>Important Notes about IDs and Names</strong>:</p>
 <ul>

@@ -203,7 +203,7 @@ via `self.options.as_dict(<option_names>)`,
 passing the desired option names as strings.
 
 Common option types are `Toggle`, `DefaultOnToggle`, `Choice`, and `Range`.
-For more information, see the [options api doc](options%20apimd).
+For more information, see the [options api doc](options%20api).
 
 ### World Settings
 
@@ -370,7 +370,7 @@ When imported names pile up, it may be easier to use `from . import options` and
 `options.MyGameOptions`.
 
 Imports from directories outside your world should use absolute imports. Correct use of relative / absolute imports is
-required for zipped worlds to function, see [apworld specification.md](apworld%20specificationmd).
+required for zipped worlds to function, see [apworld specification.md](apworld%20specification).
 
 ### Your Item Type
 
@@ -840,10 +840,10 @@ If a client or tracker needs to know information about the generated seed, a pre
 is through the slot data. This is filled with the `fill_slot_data` method of your world by returning a `dict` with 
 `str` keys that can be serialized with json. However, to not waste resources, it should be limited to data that is 
 absolutely necessary. Slot data is sent to your client once it has successfully 
-[connected](network%20protocol#connected).
+[connected](network%20protocol).
 
 If you need to know information about locations in your world, instead of propagating the slot data, it is preferable
-to use [LocationScouts](network%20protocol#locationscouts), since that data already exists on the server. Adding 
+to use [LocationScouts](network%20protocol), since that data already exists on the server. Adding 
 item/location pairs is unnecessary since the AP server already retains and freely gives that information to clients 
 that request it. The most common usage of slot data is sending option results that the client needs to be aware of.
 
@@ -919,4 +919,4 @@ class TestChestAccess(MyGameTestBase):
         self.assertAccessDependency(locations, items)
 ```
 
-For more information on tests, check the [tests doc](testsmd).
+For more information on tests, check the [tests doc](tests).
