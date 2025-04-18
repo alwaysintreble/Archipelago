@@ -1,7 +1,7 @@
 # Archipelago Settings API
 
 The settings API describes how to use installation-wide config and let the user configure them, like paths, etc. using
-host.yaml. For the player options / player yamls see [options api.md](options%20api).
+host.yaml. For the player options / player yamls see [options api.md](options%20apimd).
 
 The settings API replaces `Utils.get_options()` and `Utils.get_default_options()`
 as well as the predefined `host.yaml` in the repository.
@@ -48,7 +48,7 @@ It defaults to `{folder_name}_options` if undefined, i.e. `worlds/factorio/...` 
 
 Worlds define the layout of their config section using type annotation of the variable `settings` in the class.
 The type has to inherit from `settings.Group`. Each value in the config can have a comment by subclassing a built-in
-type. Some helper types are defined in `settings.py`, see [Types](#types) for a list.```
+type. Some helper types are defined in `settings.py`, see [Types](#Types) for a list.```
 
 Inside the class code, you can then simply use `self.settings.rom_file` to get the value.
 In case of paths they will automatically be read as absolute file paths. No need to use user_path or local_path.
@@ -149,18 +149,18 @@ Provide md5 hashes as hex digests or raw bytes for automatic validation.
 
 ### UserFolderPath
 
-Same as [UserFilePath](#userfilepath), but for a folder instead of a file.
+Same as [UserFilePath](#UserFilePath), but for a folder instead of a file.
 
 
 ### LocalFilePath
 
-Same as [UserFilePath](#userfilepath), but resolves as local_path:
+Same as [UserFilePath](#UserFilePath), but resolves as local_path:
 path inside the AP dir or Appimage even if read-only.
 
 
 ### LocalFolderPath
 
-Same as [LocalFilePath](#localfilepath), but for a folder instead of a file.
+Same as [LocalFilePath](#LocalFilePath), but for a folder instead of a file.
 
 
 ### OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath
@@ -170,7 +170,7 @@ Same as UserFilePath, UserFolderPath, LocalFilePath, LocalFolderPath but does no
 
 ### SNESRomPath
 
-Specialized [UserFilePath](#userfilepath) that ignores an optional 512 byte header when validating.
+Specialized [UserFilePath](#UserFilePath) that ignores an optional 512 byte header when validating.
 
 
 ## Caveats

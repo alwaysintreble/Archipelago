@@ -203,7 +203,7 @@ via `self.options.as_dict(<option_names>)`,
 passing the desired option names as strings.
 
 Common option types are `Toggle`, `DefaultOnToggle`, `Choice`, and `Range`.
-For more information, see the [options api doc](options%20api).
+For more information, see the [options api doc](options%20apimd).
 
 ### World Settings
 
@@ -370,7 +370,7 @@ When imported names pile up, it may be easier to use `from . import options` and
 `options.MyGameOptions`.
 
 Imports from directories outside your world should use absolute imports. Correct use of relative / absolute imports is
-required for zipped worlds to function, see [apworld specification.md](apworld%20specification).
+required for zipped worlds to function, see [apworld specification.md](apworld%20specificationmd).
 
 ### Your Item Type
 
@@ -919,4 +919,4 @@ class TestChestAccess(MyGameTestBase):
         self.assertAccessDependency(locations, items)
 ```
 
-For more information on tests, check the [tests doc](tests).
+For more information on tests, check the [tests doc](testsmd).
