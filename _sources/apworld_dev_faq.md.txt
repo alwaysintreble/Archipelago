@@ -6,8 +6,8 @@ It is not intended to answer every question about Archipelago and it assumes you
 including [Contributing](contributing), [Adding Games](<adding games.md>), and [World API](<world api.md>).
 
 ---
-(##-my-game-has-a-restrictive-start-that-leads-to-fill-errors)=
 
+(my-game-has-a-restrictive-start-that-leads-to-fill-errors)=
 ### My game has a restrictive start that leads to fill errors
 
 Hint to the Generator that an item needs to be in sphere one with local_early_items. Here, `1` represents the number of "Sword" items to attempt to place in sphere one.
@@ -22,9 +22,9 @@ Some alternative ways to try to fix this problem are:
 * Put items into the player's starting inventory using `push_precollected`
 * Raise an exception, such as an `OptionError` during `generate_early`, to disallow options that would lead to a restrictive start
 
-(##-i-have-multiple-settings-that-change-the-item/location-pool-counts-and-need-to-balance-them-out)=
 ---
 
+(i-have-multiple-settings-that-change-the-item/location-pool-counts-and-need-to-balance-them-out)=
 ### I have multiple settings that change the item/location pool counts and need to balance them out
 
 In an ideal situation your system for producing locations and items wouldn't leave any opportunity for them to be unbalanced. But in real, complex situations, that might be unfeasible.
@@ -46,10 +46,10 @@ A faster alternative to the `for` loop would be to use a [list comprehension](ht
 ```py
 item_pool += [self.create_filler() for _ in range(total_locations - len(item_pool))]
 ```
-(##-i-learned-about-indirect-conditions-in-the-world-api-document,-but-i-want-to-know-more.-what-are-they-and-why-are-they-necessary?)=
 
 ---
 
+(i-learned-about-indirect-conditions-in-the-world-api-document,-but-i-want-to-know-more.-what-are-they-and-why-are-they-necessary?)=
 ### I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?
 
 The world API document mentions how to use `multiworld.register_indirect_condition` to register indirect conditions and **when** you should use them, but not *how* they work and *why* they are necessary. This is because the explanation is quite complicated.
@@ -69,11 +69,11 @@ The reason entrance access rules using `location.can_reach` and `entrance.can_re
 
 We recognize it can feel like a trap since it will not alert you when you are missing an indirect condition, and that some games have very complex access rules.
 As of [PR #3682 (Core: Region handling customization)](https://github.com/ArchipelagoMW/Archipelago/pull/3682) being merged, it is possible for a world to opt out of indirect conditions entirely, instead using the system of checking each entrance whenever a region has been reached, although this does come with a performance cost.
-(##-i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata)=
 Opting out of using indirect conditions should only be used by games that *really* need it. For most games, it should be reasonable to know all entrance &rarr; region dependencies, making indirect conditions preferred because they are much faster.
 
 ---
 
+(i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata)=
 ### I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata
 
 The error `Could not load multidata. File may be corrupted or incompatible.` occurs when uploading a locally generated

@@ -68,47 +68,45 @@ an unofficial <a class="reference internal" href="apworld%20specification.html">
 pull requests. Core maintainers may also ping you if a pull request concerns your world.</p></li>
 <li><p>Test (or have tested) the world on the main branch from time to time, especially during RC (release candidate) phases
 of development.</p></li>
-</ul>
-<ul class="simple" id="becoming-a-world-maintainer">
 <li><p>Let us know of long periods of unavailability.</p></li>
 </ul>
 </section>
+<section id="becoming-a-world-maintainer">
+<span id="id3"></span><h2>Becoming a World Maintainer<a class="headerlink" href="#becoming-a-world-maintainer" title="Link to this heading">¶</a></h2>
 <section id="adding-a-world">
-<span id="id3"></span><h2>Becoming a World Maintainer<a class="headerlink" href="#adding-a-world" title="Link to this heading">¶</a></h2>
-<section id="id4">
-<h3>Adding a World<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
-<p id="being-added-as-a-maintainer-to-an-existing-implementation">When we merge your world into the core Archipelago repository, you automatically become world maintainer unless you
+<span id="id4"></span><h3>Adding a World<a class="headerlink" href="#adding-a-world" title="Link to this heading">¶</a></h3>
+<p>When we merge your world into the core Archipelago repository, you automatically become world maintainer unless you
 nominate someone else (i.e. there are multiple devs).</p>
 </section>
-<section id="id5">
-<h3>Being added as a maintainer to an existing implementation<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<section id="being-added-as-a-maintainer-to-an-existing-implementation">
+<span id="id5"></span><h3>Being added as a maintainer to an existing implementation<a class="headerlink" href="#being-added-as-a-maintainer-to-an-existing-implementation" title="Link to this heading">¶</a></h3>
 <p>At any point, a world maintainer can approve the addition of another maintainer to their world.<br />
 In order to do this, either an existing maintainer or the new maintainer must open a PR updating the
-<a class="reference internal" href="codeowners.html"><span class="doc std std-doc">CODEOWNERS</span></a> file.</p>
-<p id="getting-voted">This change must be approved by all existing maintainers of the affected world, the new maintainer candidate, and
+<a class="reference internal" href="codeowners.html"><span class="doc std std-doc">CODEOWNERS</span></a> file.<br />
+This change must be approved by all existing maintainers of the affected world, the new maintainer candidate, and
 one core maintainer.<br />
 To help the core team review the change, information about the new maintainer and their contributions should be
 included in the PR description.</p>
 </section>
-<section id="id6">
-<h3>Getting Voted<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
-<p id="dropping-out">When a world is unmaintained, the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a></p>
-<p id="resigning">can vote for a new maintainer if there is a candidate.
+<section id="getting-voted">
+<span id="id6"></span><h3>Getting Voted<a class="headerlink" href="#getting-voted" title="Link to this heading">¶</a></h3>
+<p>When a world is unmaintained, the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a>
+can vote for a new maintainer if there is a candidate.
 For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
 The time limit is 1 week, but can end early if the majority is reached earlier.
 Voting shall be conducted on Discord in #ap-core-dev.</p>
 </section>
 </section>
-<section id="getting-voted-out">
-<span id="id7"></span><h2>Dropping out<a class="headerlink" href="#getting-voted-out" title="Link to this heading">¶</a></h2>
-<section id="id8">
-<h3>Resigning<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<section id="dropping-out">
+<span id="id7"></span><h2>Dropping out<a class="headerlink" href="#dropping-out" title="Link to this heading">¶</a></h2>
+<section id="resigning">
+<span id="id8"></span><h3>Resigning<a class="headerlink" href="#resigning" title="Link to this heading">¶</a></h3>
 <p>A world maintainer can resign and have their username removed from the <a class="reference internal" href="codeowners.html"><span class="doc std std-doc">CODEOWNERS</span></a> document. If no
 new maintainer takes over management of the world, the world becomes unmaintained.</p>
 </section>
-<section id="id9">
-<h3>Getting Voted out<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
-<p id="handling-of-unmaintained-worlds">A world maintainer can be voted out by the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a>,
+<section id="getting-voted-out">
+<span id="id9"></span><h3>Getting Voted out<a class="headerlink" href="#getting-voted-out" title="Link to this heading">¶</a></h3>
+<p>A world maintainer can be voted out by the <a class="reference external" href="https://github.com/orgs/ArchipelagoMW/people">core maintainers</a>,
 for example when they become unreachable.
 For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
 The time limit is 2 weeks, but can end early if the majority is reached earlier AND the world maintainer was pinged and
@@ -117,8 +115,8 @@ Voting shall be conducted on Discord in #ap-core-dev. Commits that are a direct 
 date, voting members and final result in the commit message.</p>
 </section>
 </section>
-<section id="id10">
-<h2>Handling of Unmaintained Worlds<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<section id="handling-of-unmaintained-worlds">
+<span id="id10"></span><h2>Handling of Unmaintained Worlds<a class="headerlink" href="#handling-of-unmaintained-worlds" title="Link to this heading">¶</a></h2>
 <p>As long as worlds are known to work for the most part, they can stay included. Once a world becomes broken it shall be
 moved from <code class="docutils literal notranslate"><span class="pre">worlds/</span></code> to <code class="docutils literal notranslate"><span class="pre">worlds_disabled/</span></code>.</p>
 </section>
@@ -140,9 +138,9 @@ moved from <code class="docutils literal notranslate"><span class="pre">worlds/<
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">World Maintainer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#responsibilities">Responsibilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#adding-a-world">Becoming a World Maintainer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-voted-out">Dropping out</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">Handling of Unmaintained Worlds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#becoming-a-world-maintainer">Becoming a World Maintainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dropping-out">Dropping out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
@@ -150,7 +148,6 @@ moved from <code class="docutils literal notranslate"><span class="pre">worlds/<
 <li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>

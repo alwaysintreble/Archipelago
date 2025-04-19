@@ -7,16 +7,16 @@ For more information on where these options go in your world please refer to:
  - [world api.md](world%20api)
 
 Archipelago will be abbreviated as "AP" from now on.
-(#-option-definitions)=
 
+(option-definitions)=
 ## Option Definitions
 Option parsing in AP is done using different Option classes. For each option you would like to have in your game, you
 need to create:
 - A new option class, with a docstring detailing what the option does, to be exposed to the user.
 - A new entry in the `options_dataclass` definition for your World.
-(##-option-creation)=
 By style and convention, the dataclass attributes should be `snake_case`.
 
+(option-creation)=
 ### Option Creation
 - If the option supports having multiple sub_options, such as Choice options, these can be defined with
 `option_value1`. Any attributes of the class with a preceding `option_` is added to the class's `options` lookup. The
@@ -34,10 +34,10 @@ implement it for additional option types.
 
 As an example, suppose we want an option that lets the user start their game with a sword in their inventory, an option
 to let the player choose the difficulty, and an option to choose how much health the final boss has. Let's create our
-(options.py)=
 option classes (with a docstring), give them a `display_name`, and add them to our game's options dataclass:
 
 ```python
+(options.py)=
 # options.py
 from dataclasses import dataclass
 
@@ -85,11 +85,11 @@ from .Options import ExampleGameOptions
 class ExampleWorld(World):
     # this gives the generator all the definitions for our options
     options_dataclass = ExampleGameOptions
-(##-option-documentation)=
     # this gives us typing hints for all the options we defined
     options: ExampleGameOptions
 ```
 
+(option-documentation)=
 ### Option Documentation
 
 Options' [docstrings] are used as their user-facing documentation. They're displayed on the WebHost setup page when a
@@ -129,12 +129,12 @@ class Difficulty(Choice):
     display_name = "Difficulty"
     rich_text_doc = True
     option_easy = 0
-(##-option-visibility)=
     option_normal = 1
     option_hard = 2
     default = 1
 ```
 
+(option-visibility)=
 ### Option Visibility
 Every option has a Visibility IntFlag, defaulting to `all` (`0b1111`). This lets you choose where the option will be
 displayed. This only impacts where options are displayed, not how they can be used. Hidden options are still valid
@@ -146,13 +146,13 @@ options in a yaml. The flags are as follows:
 * `spoiler` (`0b1000`): This option shows up in spoiler logs
 
 ```python
-(##-option-groups)=
 from Options import Choice, Visibility
 
 class HiddenChoiceOption(Choice):
     visibility = Visibility.none
 ```
 
+(option-groups)=
 ### Option Groups
 Options may be categorized into groups for display on the WebHost. Option groups are displayed in the order specified
 by your world on the player-options and weighted-options pages. In the generated template files, there will be a comment
@@ -177,7 +177,6 @@ from . import Options
 class MyWorldWeb(WebWorld):
     option_groups = [
         OptionGroup("Color Options", [
-(##-option-checking)=
             Options.ColorblindMode,
             Options.FlashReduction,
             Options.UIColors,
@@ -185,6 +184,7 @@ class MyWorldWeb(WebWorld):
     ]
 ```
 
+(option-checking)=
 ### Option Checking
 Options are parsed by `Generate.py` before the worlds are created, and then the option classes are created shortly after
 world instantiation. These are created as attributes on the MultiWorld and can be accessed with
@@ -196,7 +196,6 @@ if self.options.starting_sword:
     do_some_things()
 ```
 
-(options.py)=
 or if I need a boolean object, such as in my slot_data I can access it as:
 ```python
 start_with_sword = bool(self.options.starting_sword.value)
@@ -205,6 +204,7 @@ All numeric options (i.e. Toggle, Choice, Range) can be compared to integers, st
 strings that match the option attributes after "option_" is stripped, and the attributes themselves. The option can
 also be checked to see if it exists within a collection, but this will fail for a set of strings due to hashing.
 ```python
+(options.py)=
 # options.py
 class Logic(Choice):
     option_normal = 0
@@ -212,7 +212,6 @@ class Logic(Choice):
     option_challenging = 2
     option_extreme = 3
     option_insane = 4
-(__init__.py)=
     alias_extra_hard = 2
     crazy = 4  # won't be listed as an option and only exists as an attribute on the class
 
@@ -222,97 +221,96 @@ class Weapon(Choice):
     option_bow = 2
     option_hammer = 3
 
+(__init__.py)=
 # __init__.py
 from .options import Logic
 
 if self.options.logic:
-(check-if-the-current-option-is-in-a-collection-of-integers-using-the-class-attributes)=
     do_things_for_all_non_normal_logic()
 if self.options.logic == 1:
-(in-order-to-make-a-set-of-strings-work,-we-have-to-compare-against-current_key)=
     do_hard_things()
 elif self.options.logic == "challenging":
-(though-it's-usually-better-to-just-use-a-tuple-instead)=
     do_challenging_things()
 elif self.options.logic == Logic.option_extreme:
     do_extreme_things()
-(#-generic-option-classes)=
 elif self.options.logic == "crazy":
     do_insane_things()
 
-(##-accessibility)=
+(check-if-the-current-option-is-in-a-collection-of-integers-using-the-class-attributes)=
 # check if the current option is in a collection of integers using the class attributes
 if self.options.weapon in {Weapon.option_bow, Weapon.option_sword}:
     do_stuff()
-(##-progressionbalancing)=
+(in-order-to-make-a-set-of-strings-work,-we-have-to-compare-against-current_key)=
 # in order to make a set of strings work, we have to compare against current_key
 elif self.options.weapon.current_key in {"none", "hammer"}:
     do_something_else()
-(##-localitems)=
+(though-it's-usually-better-to-just-use-a-tuple-instead)=
 # though it's usually better to just use a tuple instead
 elif self.options.weapon in ("none", "hammer"):
-(##-nonlocalitems)=
     do_something_else()
 ```
-(##-startinventory)=
+(generic-option-classes)=
 ## Generic Option Classes
 These options are generically available to every game automatically, but can be overridden for slightly different
-(##-starthints)=
 behavior, if desired. See `worlds/soe/Options.py` for an example.
 
-(##-startlocationhints)=
+(accessibility)=
 ### Accessibility
 Sets rules for availability of locations for the player. `Items` is for all items available but not necessarily all
-(##-excludelocations)=
 locations, such as self-locking keys, but needs to be set by the world for this to be different from locations access.
 
+(progressionbalancing)=
 ### ProgressionBalancing
-(##-prioritylocations)=
 Algorithm for moving progression items into earlier spheres to make the gameplay experience a bit smoother. Can be
 overridden if you want a different default value.
 
-(##-itemlinks)=
+(localitems)=
 ### LocalItems
 Forces the players' items local to their world.
 
-(#-basic-option-classes)=
-(##-toggle)=
+(nonlocalitems)=
 ### NonLocalItems
 Forces the players' items outside their world.
 
-(##-defaultontoggle)=
+(startinventory)=
 ### StartInventory
 Allows the player to define a dictionary of starting items with item name and quantity.
-(##-choice)=
 
+(starthints)=
 ### StartHints
 Gives the player starting hints for where the items defined here are.
 
+(startlocationhints)=
 ### StartLocationHints
 Gives the player starting hints for the items on locations defined here.
 
+(excludelocations)=
 ### ExcludeLocations
 Marks locations given here as `LocationProgressType.Excluded` so that neither progression nor useful items can be
 placed on them.
 
+(prioritylocations)=
 ### PriorityLocations
 Marks locations given here as `LocationProgressType.Priority` forcing progression items on them if any are available in
 the pool.
 
-(##-range)=
+(itemlinks)=
 ### ItemLinks
 Allows users to share their item pool with other players. Currently item links are per game. A link of one game between
 two players will combine their items in the link into a single item, which then gets replaced with `World.create_filler()`.
 
-(##-namedrange)=
+(basic-option-classes)=
 ## Basic Option Classes
+(toggle)=
 ### Toggle
 The example above. This simply has 0 and 1 as its available results with 0 (false) being the default value. Cannot be
 compared to strings but can be directly compared to True and False.
 
+(defaultontoggle)=
 ### DefaultOnToggle
 Like Toggle, but 1 (true) is the default value.
 
+(choice)=
 ### Choice
 A numeric option allowing you to define different sub options. Values are stored as integers, but you can also do
 comparison methods with the class and strings, so if you have an `option_early_sword`, this can be compared with:
@@ -324,20 +322,18 @@ if self.options.sword_availability == "early_sword":
 or:
 ```python
 from .Options import SwordAvailability
-(#-more-advanced-options)=
-(##-freetext)=
 
 if self.options.sword_availability == SwordAvailability.option_early_sword:
     do_early_sword_things()
 ```
-(##-textchoice)=
 
+(range)=
 ### Range
 A numeric option allowing a variety of integers including the endpoints. Has a default `range_start` of 0 and default
 `range_end` of 1. Allows for negative values as well. This will always be an integer and has no methods for string
 comparisons.
-(##-plandobosses)=
 
+(namedrange)=
 ### NamedRange
 Like range but also allows you to define a dictionary of special names the user can use to equate to a specific value.
 `special_range_names` can be used to
@@ -346,35 +342,34 @@ Like range but also allows you to define a dictionary of special names the user 
 
 For example:
 ```python
-(##-optiondict)=
 range_start = 1
 range_end = 99
 special_range_names = {
     "normal": 20,
     "extreme": 99,
-(##-itemdict)=
     "unlimited": -1,
 }
-(##-optionlist)=
 ```
 
 will let users use the names "normal" or "extreme" in their options selections, but will still return those as integers
 to you. Useful if you want special handling regarding those specified values.
 
-(##-optionset)=
+(more-advanced-options)=
 ## More Advanced Options
+(freetext)=
 ### FreeText
-(##-itemset)=
 This is an option that allows the user to enter any possible string value. Can only be compared with strings, and has
 no validation step, so if this needs to be validated, you can either add a validation step to the option class or
 within the world.
 
+(textchoice)=
 ### TextChoice
 Like choice allows you to predetermine options and has all of the same comparison methods and handling. Also accepts any
 user defined string as a valid option, so will either need to be validated by adding a validation step to the option
 class or within world, if necessary. Value for this class is `Union[str, int]` so if you need the value at a specified
 point, `self.options.my_option.current_key` will always return a string.
 
+(plandobosses)=
 ### PlandoBosses
 An option specifically built for handling boss rando, if your game can use it. Is a subclass of TextChoice so supports
 everything it does, as well as having multiple validation steps to automatically support boss plando from users. If
@@ -385,23 +380,28 @@ also a `duplicate_bosses` attribute allowing you to define if a boss can be plac
 by default, and will reject duplicate boss names from the user. For an example of using this class, refer to
 `worlds.alttp.options.py`
 
+(optiondict)=
 ### OptionDict
 This option returns a dictionary. Setting a default here is recommended as it will output the dictionary to the
 template. If you set a [Schema](https://pypi.org/project/schema/) on the class with `schema = Schema()`, then the
 options system will automatically validate the user supplied data against the schema to ensure it's in the correct
 format.
 
+(itemdict)=
 ### ItemDict
 Like OptionDict, except this will verify that every key in the dictionary is a valid name for an item for your world.
 
+(optionlist)=
 ### OptionList
 This option defines a List, where the user can add any number of strings to said list, allowing duplicate values. You
 can define a set of keys in `valid_keys`, and a default list if you want certain options to be available without editing
 for this. If `valid_keys_casefold` is true, the verification will be case-insensitive; `verify_item_name` will check
 that each value is a valid item name; and`verify_location_name` will check that each value is a valid location name.
 
+(optionset)=
 ### OptionSet
 Like OptionList, but returns a set, preventing duplicates.
 
+(itemset)=
 ### ItemSet
 Like OptionSet, but will verify that all the items in the set are a valid name for an item for your world.

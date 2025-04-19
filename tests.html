@@ -56,16 +56,16 @@
 steps on how to write your own.</p>
 <section id="generic-tests">
 <span id="id2"></span><h2>Generic Tests<a class="headerlink" href="#generic-tests" title="Link to this heading">¶</a></h2>
-<p>Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be</p>
-<p id="defining-world-tests">found in the <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/tree/main/test/general">general test directory</a>.</p>
+<p>Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be
+found in the <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/tree/main/test/general">general test directory</a>.</p>
 </section>
-<section id="id3">
-<h2>Defining World Tests<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>In order to run tests from your world, you will need to create a <code class="docutils literal notranslate"><span class="pre">test</span></code> package within your world package. This can be</p>
-<p id="worldtestbase">done by creating a <code class="docutils literal notranslate"><span class="pre">test</span></code> directory with a file named <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> inside it inside your world. By convention, a base
+<section id="defining-world-tests">
+<span id="id3"></span><h2>Defining World Tests<a class="headerlink" href="#defining-world-tests" title="Link to this heading">¶</a></h2>
+<p>In order to run tests from your world, you will need to create a <code class="docutils literal notranslate"><span class="pre">test</span></code> package within your world package. This can be
+done by creating a <code class="docutils literal notranslate"><span class="pre">test</span></code> directory with a file named <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> inside it inside your world. By convention, a base
 for your world tests can be created in this file that you can then import into other modules.</p>
-<section id="id4">
-<h3>WorldTestBase<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<section id="worldtestbase">
+<span id="id4"></span><h3>WorldTestBase<a class="headerlink" href="#worldtestbase" title="Link to this heading">¶</a></h3>
 <p>In order to test basic functionality of varying options, as well as to test specific edge cases or that certain
 interactions in the world interact as expected, you will want to use the <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase</span></a>. This class
 comes with the basics for test setup as well as a few preloaded tests that most worlds might want to check on varying
@@ -78,15 +78,15 @@ options combinations.</p>
     <span class="n">game</span> <span class="o">=</span> <span class="s2">&quot;My Game&quot;</span>
 </pre></div>
 </div>
-<p>The basic tests that WorldTestBase comes with include <code class="docutils literal notranslate"><span class="pre">test_all_state_can_reach_everything</span></code>,</p>
-<p id="writing-tests"><code class="docutils literal notranslate"><span class="pre">test_empty_state_can_reach_something</span></code>, and <code class="docutils literal notranslate"><span class="pre">test_fill</span></code>. These test that with all collected items everything is</p>
-<p id="using-worldtestbase">reachable, with no collected items at least something is reachable, and that a valid multiworld can be completed with
+<p>The basic tests that WorldTestBase comes with include <code class="docutils literal notranslate"><span class="pre">test_all_state_can_reach_everything</span></code>,
+<code class="docutils literal notranslate"><span class="pre">test_empty_state_can_reach_something</span></code>, and <code class="docutils literal notranslate"><span class="pre">test_fill</span></code>. These test that with all collected items everything is
+reachable, with no collected items at least something is reachable, and that a valid multiworld can be completed with
 all steps being called, respectively.</p>
 </section>
-<section id="id5">
-<h3>Writing Tests<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
-<section id="id6">
-<h4>Using WorldTestBase<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<section id="writing-tests">
+<span id="id5"></span><h3>Writing Tests<a class="headerlink" href="#writing-tests" title="Link to this heading">¶</a></h3>
+<section id="using-worldtestbase">
+<span id="id6"></span><h4>Using WorldTestBase<a class="headerlink" href="#using-worldtestbase" title="Link to this heading">¶</a></h4>
 <p>Adding runs for the basic tests for a different option combination is as easy as making a new module in the test
 package, creating a class that inherits from your game’s TestBase, and defining the options in a dict as a field on the
 class. The new module should be named <code class="docutils literal notranslate"><span class="pre">test_&lt;something&gt;.py</span></code> and have at least one class inheriting from the base, or
@@ -113,21 +113,21 @@ with <code class="docutils literal notranslate"><span class="pre">test_</span></
         <span class="bp">self</span><span class="o">.</span><span class="n">assertAccessDependency</span><span class="p">(</span><span class="n">locations</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
 </pre></div>
 </div>
-<p id="alternatives-to-worldtestbase">When tests are run, this class will create a multiworld with a single player having the provided options, and run the
+<p>When tests are run, this class will create a multiworld with a single player having the provided options, and run the
 generic tests, as well as the new custom test. Each test method definition will create its own separate solo multiworld
 that will be cleaned up after. If you don’t want to run the generic tests on a base, <code class="docutils literal notranslate"><span class="pre">run_default_tests</span></code> can be
 overridden. For more information on what methods are available to your class, check the
 <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">WorldTestBase definition</span></a>.</p>
 </section>
-<section id="parametrization">
-<span id="id7"></span><h4>Alternatives to WorldTestBase<a class="headerlink" href="#parametrization" title="Link to this heading">¶</a></h4>
+<section id="alternatives-to-worldtestbase">
+<span id="id7"></span><h4>Alternatives to WorldTestBase<a class="headerlink" href="#alternatives-to-worldtestbase" title="Link to this heading">¶</a></h4>
 <p>Unit tests can also be created using <a class="reference internal" href="test.html#module-test.bases" title="test.bases"><span class="xref myst py py-mod">TestBase</span></a> or
 <a class="reference external" href="https://docs.python.org/3/library/unittest.html#unittest.TestCase">unittest.TestCase</a> depending on your use case. These
 may be useful for generating a multiworld under very specific constraints without using the generic world setup, or for
 testing portions of your code that can be tested without relying on a multiworld to be created first.</p>
 </section>
-<section id="id8">
-<h4>Parametrization<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<section id="parametrization">
+<span id="id8"></span><h4>Parametrization<a class="headerlink" href="#parametrization" title="Link to this heading">¶</a></h4>
 <p>When defining a test that needs to cover a range of inputs it is useful to parameterize (to run the same test
 for multiple inputs) the base test. Some important things to consider when attempting to parametrize your test are:</p>
 <ul class="simple">
@@ -135,8 +135,6 @@ for multiple inputs) the base test. Some important things to consider when attem
 can be used to have parametrized assertions that show up similar to individual tests but without the overhead
 of needing to instantiate multiple tests; however, subtests can not be multithreaded and do not have individual
 timing data, so they are not suitable for slow tests.</p></li>
-</ul>
-<ul class="simple" id="performance-considerations">
 <li><p>Archipelago’s tests are test-runner-agnostic. That means tests are not allowed to use e.g. <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code>.
 Instead, we define our own parametrization helpers in <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/test/param.py">test.param</a>.</p></li>
 <li><p>Classes inheriting from <code class="docutils literal notranslate"><span class="pre">WorldTestBase</span></code>, including those created by the helpers in <code class="docutils literal notranslate"><span class="pre">test.param</span></code>, will run all
@@ -145,11 +143,11 @@ extra CPU time. Consider using <code class="docutils literal notranslate"><span 
 or setting <code class="docutils literal notranslate"><span class="pre">WorldTestBase.run_default_tests</span></code> to False.</p></li>
 </ul>
 </section>
-<section id="id9">
-<h4>Performance Considerations<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<section id="performance-considerations">
+<span id="id9"></span><h4>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">¶</a></h4>
 <p>Archipelago is big enough that the runtime of unittests can have an impact on productivity.</p>
 <p>Individual tests should take less than a second, so they can be properly multithreaded.</p>
-<p id="using-pycharm"><span id="running-tests"></span>Ideally, thorough tests are directed at actual code/functionality. Do not just create and/or fill a ton of individual
+<p>Ideally, thorough tests are directed at actual code/functionality. Do not just create and/or fill a ton of individual
 Multiworlds that spend most of the test time outside what you actually want to test.</p>
 <p>Consider generating/validating “random” games as part of your APWorld release workflow rather than having that be part
 of continuous integration, and add minimal reproducers to the “normal” tests for problems that were found.
@@ -158,25 +156,25 @@ variable to keep all the benefits of the test framework while not running the ma
 </section>
 </section>
 </section>
-<section id="id10">
-<h2>Running Tests<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
-<section id="id11">
-<h3>Using Pycharm<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
-<p id="running-tests-without-pycharm">In PyCharm, running all tests can be done by right-clicking the root test directory and selecting Run ‘Archipelago Unittests’.
+<section id="running-tests">
+<span id="id10"></span><h2>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h2>
+<section id="using-pycharm">
+<span id="id11"></span><h3>Using Pycharm<a class="headerlink" href="#using-pycharm" title="Link to this heading">¶</a></h3>
+<p>In PyCharm, running all tests can be done by right-clicking the root test directory and selecting Run ‘Archipelago Unittests’.
 Unless you configured PyCharm to use pytest as a test runner, you may get import failures. To solve this, edit the run configuration,
 and set the working directory to the Archipelago directory which contains all the project files.</p>
-<p id="running-tests-multithreaded">If you only want to run your world’s defined tests, repeat the steps for the test directory within your world.
+<p>If you only want to run your world’s defined tests, repeat the steps for the test directory within your world.
 Your working directory should be the directory of your world in the worlds directory and the script should be the
 tests folder within your world.</p>
 <p>You can also find the ‘Archipelago Unittests’ as an option in the dropdown at the top of the window
 next to the run and debug buttons.</p>
 </section>
-<section id="id12">
-<h3>Running Tests without Pycharm<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<section id="running-tests-without-pycharm">
+<span id="id12"></span><h3>Running Tests without Pycharm<a class="headerlink" href="#running-tests-without-pycharm" title="Link to this heading">¶</a></h3>
 <p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">pytest-subtests</span></code>, then use your IDE to run tests or run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> from the source folder.</p>
 </section>
-<section id="id13">
-<h3>Running Tests Multithreaded<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="running-tests-multithreaded">
+<span id="id13"></span><h3>Running Tests Multithreaded<a class="headerlink" href="#running-tests-multithreaded" title="Link to this heading">¶</a></h3>
 <p>pytest can run multiple test runners in parallel with the pytest-xdist extension.</p>
 <p>Install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest-xdist</span></code>.</p>
 <p>Run with <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-n12</span></code> to spawn 12 process that each run 1/12th of the tests.</p>
@@ -204,15 +202,14 @@ next to the run and debug buttons.</p>
 <li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago Unit Testing API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#generic-tests">Generic Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Defining World Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-world-tests">Defining World Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>

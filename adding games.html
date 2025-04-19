@@ -66,10 +66,10 @@ it will not be detailed here.</p>
 <span id="id2"></span><h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
 <p>The client is an intermediary program between the game and the Archipelago server. This can either be a direct
 modification to the game, an external program, or both. This can be implemented in nearly any modern language, but it
-must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for</p>
-<p id="hard-requirements">various packets can be found in the <a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">network protocol</span></a> API reference document.</p>
-<section id="id3">
-<h3>Hard Requirements<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for
+various packets can be found in the <a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">network protocol</span></a> API reference document.</p>
+<section id="hard-requirements">
+<span id="id3"></span><h3>Hard Requirements<a class="headerlink" href="#hard-requirements" title="Link to this heading">¶</a></h3>
 <p>In order for the game client to behave as expected, it must be able to perform these functions:</p>
 <ul class="simple">
 <li><p>Handle both secure and unsecure websocket connections</p></li>
@@ -82,37 +82,35 @@ privilege can be lost, requiring the room to be moved to a new port</p></li>
 </li>
 <li><p>Send a status update packet alerting the server that the player has completed their goal</p></li>
 </ul>
-<p id="location-handling">Regarding items and locations, the game client must be able to handle these tasks:</p>
-<section id="id4">
-<h4>Location Handling<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<p>Regarding items and locations, the game client must be able to handle these tasks:</p>
+<section id="location-handling">
+<span id="id4"></span><h4>Location Handling<a class="headerlink" href="#location-handling" title="Link to this heading">¶</a></h4>
 <p>Send a network packet to the server when it detects a location has been “checked” by the player in-game.</p>
-<ul class="simple" id="item-handling">
+<ul class="simple">
 <li><p>If actions were taken in game that would usually trigger a location check, and those actions can only ever be taken
 once, but the client was not connected when they happened: The client must send those location checks on connection
 so that they are not permanently lost, e.g. by reading flags in the game state or save file.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h4>Item Handling<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<section id="item-handling">
+<span id="id5"></span><h4>Item Handling<a class="headerlink" href="#item-handling" title="Link to this heading">¶</a></h4>
 <p>Receive and parse network packets from the server when the player receives an item.</p>
 <ul class="simple">
 <li><p>It must reward items to the player on demand, as items can come from other players at any time.</p></li>
 <li><p>It must be able to reward copies of an item, up to and beyond the number the game normally expects. This may happen
 due to features such as starting inventory, item link replacement, admin commands, or item cheating. <strong>Any</strong> of
 your items can be received <strong>any</strong> number of times.</p></li>
-<li><p>Admins and players may use server commands to create items without a player or location attributed to them. The</p></li>
-</ul>
-<p id="encouraged-features">client must be able to handle these items.</p>
-<ul class="simple">
+<li><p>Admins and players may use server commands to create items without a player or location attributed to them. The
+client must be able to handle these items.</p></li>
 <li><p>It must keep an index for items received in order to resync. The ItemsReceived Packets are a single list with a
 guaranteed order.</p></li>
 <li><p>It must be able to receive items that were sent to the player while they were not connected to the server.</p></li>
 </ul>
 </section>
 </section>
-<section id="id6">
-<h3>Encouraged Features<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
-<p id="world">These are “nice to have” features for a client, but they are not strictly required. It is encouraged to add them
+<section id="encouraged-features">
+<span id="id6"></span><h3>Encouraged Features<a class="headerlink" href="#encouraged-features" title="Link to this heading">¶</a></h3>
+<p>These are “nice to have” features for a client, but they are not strictly required. It is encouraged to add them
 if possible.</p>
 <ul class="simple">
 <li><p>If your client appears in the Archipelago Launcher, you may define an icon for it that differentiates it from
@@ -120,19 +118,19 @@ other clients. The icon size is 48x48 pixels, but smaller or larger images will 
 </ul>
 </section>
 </section>
-<section id="id7">
-<h2>World<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<section id="world">
+<span id="id7"></span><h2>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h2>
 <p>The world is your game integration for the Archipelago generator, webhost, and multiworld server. It contains all the
 information necessary for creating the items and locations to be randomized, the logic for item placement, the
 datapackage information so other game clients can recognize your game data, and documentation. Your world must be
-written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago</p>
-<p id="id8">repository and creating a new world package in <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code>.</p>
+written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago
+repository and creating a new world package in <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code>.</p>
 <p>The base World class can be found in <a class="reference internal" href="autoworld.html"><span class="doc std std-doc">AutoWorld</span></a>. Methods available for your world to call
 during generation can be found in <a class="reference internal" href="baseclasses.html"><span class="doc std std-doc">BaseClasses</span></a> and <a class="reference internal" href="#/Fill.py"><span class="xref myst">Fill</span></a>. Some examples and documentation
 regarding the API can be found in the <a class="reference internal" href="world%20api.html"><span class="doc std std-doc">world api doc</span></a>. Before publishing, make sure to also
 check out <a class="reference internal" href="world%20maintainer.html"><span class="doc std std-doc">world maintainer.md</span></a>.</p>
-<section id="id9">
-<h3>Hard Requirements<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<span id="id9"></span><h3>Hard Requirements<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <p>A bare minimum world implementation must satisfy the following requirements:</p>
 <ul class="simple">
 <li><p>It has a folder with the name of your game (or an abbreviation) under <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code></p></li>
@@ -168,8 +166,6 @@ within Archipelago</p></li>
 <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L299">origin_region_name</a></p></li>
 </ul>
 </li>
-</ul>
-<ul class="simple" id="id10">
 <li><p>A non-zero number of locations, added to your regions</p></li>
 <li><p>A non-zero number of items <strong>equal</strong> to the number of locations, added to the multiworld itempool</p>
 <ul>
@@ -185,8 +181,8 @@ the player.</p>
 </li>
 </ul>
 </section>
-<section id="id11">
-<h3>Encouraged Features<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<span id="id11"></span><h3>Encouraged Features<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <p>These are “nice to have” features for a world, but they are not strictly required. It is encouraged to add them
 if possible.</p>
 <ul class="simple">
@@ -205,8 +201,6 @@ filler items.</p></li>
 <li><p>A <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L220">bug report page</a></p></li>
 <li><p>A list of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L226">option groups</a>
 for better organization on the webhost</p></li>
-</ul>
-<ul class="simple" id="discouraged-or-prohibited-behavior">
 <li><p>A dictionary of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L223">options presets</a>
 for player convenience</p></li>
 <li><p>A dictionary of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L273">item name groups</a>
@@ -220,11 +214,11 @@ for player convenience</p>
 </li>
 </ul>
 </section>
-<section id="id12">
-<h3>Discouraged or Prohibited Behavior<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<section id="discouraged-or-prohibited-behavior">
+<span id="id12"></span><h3>Discouraged or Prohibited Behavior<a class="headerlink" href="#discouraged-or-prohibited-behavior" title="Link to this heading">¶</a></h3>
 <p>These are behaviors or implementations that are known to cause various issues. Some of these points have notable
 workarounds or preferred methods which should be used instead:</p>
-<ul class="simple" id="notable-caveats">
+<ul class="simple">
 <li><p>All items submitted to the multiworld itempool must not be manually placed by the World.</p>
 <ul>
 <li><p>If you need to place specific items, there are multiple ways to do so, but they should not be added to the
@@ -245,8 +239,8 @@ do <strong>not</strong> use <code class="docutils literal notranslate"><span cla
 </li>
 </ul>
 </section>
-<section id="id13">
-<h3>Notable Caveats<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="notable-caveats">
+<span id="id13"></span><h3>Notable Caveats<a class="headerlink" href="#notable-caveats" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The Origin Region will always be considered the “start” for the player</p></li>
 <li><p>The Origin Region is <em>always</em> considered accessible; i.e. the player is expected to always be able to return to the
@@ -277,12 +271,11 @@ concrete, physical areas within your game and can be more abstract like tech tre
 <li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Adding Games</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#client">Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#world">World</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>

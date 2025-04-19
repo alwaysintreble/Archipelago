@@ -7,11 +7,11 @@ as "ER."
 
 This doc assumes familiarity with Archipelago's graph logic model. If you don't have a solid understanding of how
 regions work, you should start there.
-(#-entrance-randomization-concepts)=
 
-(##-terminology)=
+(entrance-randomization-concepts)=
 ## Entrance randomization concepts
 
+(terminology)=
 ### Terminology
 
 Some important terminology to understand when reading this doc and working with ER is listed below.
@@ -27,10 +27,10 @@ Some important terminology to understand when reading this doc and working with 
   * Has no plando'd or otherwise preplaced progression items, including events.
   * Has no randomized exits.
 * One way transition - a transition that, in the game, is not safe to reverse through (for example, in Hollow Knight,
-(##-basic-randomization-strategy)=
   some transitions are inaccessible backwards in vanilla and would put you out of bounds). One way transitions are 
   paired together during randomization to prevent such unsafe game states. Most transitions are not one way.
 
+(basic-randomization-strategy)=
 ### Basic randomization strategy
 
 The Generic ER algorithm works by using the logic structures you are already familiar with. To give a basic example,
@@ -206,11 +206,11 @@ graph LR
     CR1 <--> EL1
     CR2 <--> AL1
     DR1 <--> AL2
-(###-er-and-minimal-accessibility)=
     
     classDef hidden display:none;
 ```
 
+(er-and-minimal-accessibility)=
 #### ER and minimal accessibility
 
 In general, even on minimal accessibility, ER will prefer to provide access to as many regions as possible. This is for
@@ -218,15 +218,15 @@ In general, even on minimal accessibility, ER will prefer to provide access to a
 1. Generally, having items spread across the world is going to be a more fun/engaging experience for players than
    severely restricting their map. Imagine an ER arrangement with just the start region, the goal region, and exactly
    enough locations in between them to get the goal - this may be the intuitive behavior of minimal, or even the desired
-(#-usage)=
    behavior in some cases, but it is not a particularly interesting randomizer.
-(##-defining-entrances-to-be-randomized)=
 2. Giving access to more of the world will give item fill a higher chance to succeed.
 
 However, ER will cull unreachable regions and exits if necessary to save the generation of a beaten minimal.
 
+(usage)=
 ## Usage
 
+(defining-entrances-to-be-randomized)=
 ### Defining entrances to be randomized
 
 The first step to using generic ER is defining entrances to be randomized. In order to do this, you will need to
@@ -251,20 +251,20 @@ attribute.
 `Entrance`s can also set the `randomization_group` attribute to allow for grouping during randomization. This can be
 any integer you define and may be based on player options. Some possible use cases for grouping include:
 * Directional matching - only match leftward-facing transitions to rightward-facing ones
-(##-calling-generic-er)=
 * Terrain matching - only match water transitions to water transitions and land transitions to land transitions
 * Dungeon shuffle - only shuffle entrances within a dungeon/area with each other
 * Combinations of the above
 
-(###-coupled-and-uncoupled-modes)=
 By default, all `Entrance`s are placed in the group 0. An entrance can only be a member of one group, but a given group
 may connect to many other groups.
 
+(calling-generic-er)=
 ### Calling generic ER
 
 Once you have defined all your entrances and exits and connected the Menu region to your region graph, you can call 
 `randomize_entrances` to perform randomization.
 
+(coupled-and-uncoupled-modes)=
 #### Coupled and uncoupled modes
 
 In coupled randomization, an entrance placed from A to B guarantees that the reverse placement B to A also exists
@@ -313,7 +313,6 @@ graph LR
         direction TB
         Region
     end
-(###-implementing-grouping)=
     Region["Room1"] -->|Room1 Right Door| target1:::hidden
     Region --- target2:::hidden -->|Room1 Right Door| Region
 
@@ -323,6 +322,7 @@ graph LR
     style b display:none;
 ```
 
+(implementing-grouping)=
 #### Implementing grouping
 
 When you created your entrances, you defined the group each entrance belongs to. Now you will have to define how groups
@@ -368,7 +368,6 @@ identity_group_lookup = bake_target_group_lookup(world, randomize_within_same_gr
 ```
 
 Directional + area shuffle:
-(###-when-to-call-`randomize_entrances`)=
 ```python
 def get_target_groups(group: int) -> List[int]:
     # example group: LEFT | CAVE
@@ -378,12 +377,11 @@ def get_target_groups(group: int) -> List[int]:
     return [pair_direction | area for pair_direction in direction_matching_group_lookup[direction]]
 target_group_lookup = bake_target_group_lookup(world, get_target_groups)
 ```
-(###-informing-your-client-about-randomized-entrances)=
 
+(when-to-call-`randomize_entrances`)=
 #### When to call `randomize_entrances`
 
 The correct step for this is `World.connect_entrances`.
-(##-imposing-custom-constraints-on-randomization)=
 
 Currently, you could theoretically do it as early as `World.create_regions` or as late as `pre_fill`.
 However, there are upcoming changes to Item Plando and Generic Entrance Randomizer to make the two features work better
@@ -391,12 +389,13 @@ together.
 These changes necessitate that entrance randomization is done exactly in `World.connect_entrances`.
 It is fine for your Entrances to be connected differently or not at all before this step.
 
+(informing-your-client-about-randomized-entrances)=
 #### Informing your client about randomized entrances
 
 `randomize_entrances` returns the completed `ERPlacementState`. The `pairings` attribute contains a list of the
-(#-implementation-details)=
 created placements by name which can be used to populate slot data.
 
+(imposing-custom-constraints-on-randomization)=
 ### Imposing custom constraints on randomization
 
 Generic ER is, as the name implies, generic! That means that your world may have some use case which is not covered by
@@ -408,6 +407,7 @@ randomization, for instance helping to prevent restrictive sphere 1s or ensuring
 > When implementing these functions, make sure to use `super().is_valid_source_transition` and `super().can_connect_to`
 > as part of your implementation. Otherwise ER may behave unexpectedly.
 
+(implementation-details)=
 ## Implementation details
 
 This section is a medium-level explainer of the implementation of ER for those who don't want to decipher the code.

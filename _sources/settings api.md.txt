@@ -9,8 +9,8 @@ as well as the predefined `host.yaml` in the repository.
 
 For backwards compatibility with APWorlds, some interfaces are kept for now and will produce a warning when being used.
 
-(#-config-file)=
 
+(config-file)=
 ## Config File
 
 Settings use options.yaml (manual override), if that exists, or host.yaml (the default) otherwise.
@@ -25,9 +25,9 @@ which either points to the installation directory, if writable, or to %home%/Arc
 
 Using the settings API, AP can update the config file or create a new one with default values and comments, 
 if it does not exist.
-(#-global-settings)=
 
 
+(global-settings)=
 ## Global Settings
 
 All non-world-specific settings are defined directly in settings.py.
@@ -41,10 +41,10 @@ from typing import cast
 x = get_settings().general_options.output_path
 y = cast(GeneralOptions, get_settings()["general_options"]).output_path
 z = cast(FolderPath, get_settings()["general_options"]["output_path"])
-(#-world-settings)=
 ```
 
 
+(world-settings)=
 ## World Settings
 
 Worlds can define the top level key to use by defining `settings_key: ClassVar[str]` in their World class.
@@ -78,11 +78,11 @@ class MyGameWorld(World):
     ...
 
     def something(self):
-(#-types)=
         pass  # use self.settings.rom_file here
 ```
 
 
+(types)=
 ## Types
 
 When writing the host.yaml, the code will down cast the values to builtins.
@@ -91,22 +91,22 @@ E.g. an IntEnum becomes int when saving and will construct the IntEnum when load
 
 Types that can not be down cast to / up cast from a builtin can not be used except for Group, which will be converted
 to/from a dict.
-(##-group)=
 `bool` is a special case, see settings.py: ServerOptions.disable_item_cheat for an example.
 
 Below are some predefined types that can be used if they match your requirements:
 
 
+(group)=
 ### Group
 
 A section / dict in the config file. Behaves similar to a dataclass.
-(##-bool)=
 Type annotation and default assignment define how loading, saving and default values behave.
 It can be accessed using attributes or as a dict: `group["a"]` is equivalent to `group.a`.
 
 In worlds, this should only be used for the top level to avoid issues when upgrading/migrating.
 
 
+(bool)=
 ### Bool
 
 Since `bool` can not be subclassed, use the `settings.Bool` helper in a `typing.Union` to get a comment in host.yaml.
@@ -115,7 +115,6 @@ Since `bool` can not be subclassed, use the `settings.Bool` helper in a `typing.
 import settings
 import typing
 
-(##-userfilepath)=
 class MySettings(settings.Group):
     class MyBool(settings.Bool):
         """Doc string"""
@@ -123,79 +122,79 @@ class MySettings(settings.Group):
     my_value: typing.Union[MyBool, bool] = True
 ```
 
+(userfilepath)=
 ### UserFilePath
 
-(###-class-method-validate(cls,-path:-str))=
 Path to a single file. Automatically resolves as user_path:
 Source folder or AP install path on Windows. ~/Archipelago for the AppImage.
 Will open a file browser if the file is missing when in GUI mode.
 
-(###-is_exe:-bool)=
 If the file is used in the world's `generate_output`, make sure to add a `stage_assert_generate` that checks if the
 file is available, otherwise generation may fail at the very end.
 See also [world api.md](https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/world%20api.md#generation).
-(###-description:-optional\[str\])=
 
+(class-method-validate(cls,-path:-str))=
 #### class method validate(cls, path: str)
 
-(###-copy_to:-optional\[str\])=
 Override this and raise ValueError if validation fails.
 Checks the file against [md5s](#md5s) by default.
 
-(###-md5s:-list[union[str,-bytes]])=
+(is_exe:-bool)=
 #### is_exe: bool
 
 Resolves to an executable (varying file extension based on platform)
 
-(##-userfolderpath)=
+(description:-optional\[str\])=
 #### description: Optional\[str\]
 
 Human-readable name to use in file browser
 
-(##-localfilepath)=
+(copy_to:-optional\[str\])=
 #### copy_to: Optional\[str\]
 
 Instead of storing the path, copy the file.
 
+(md5s:-list[union[str,-bytes]])=
 #### md5s: List[Union[str, bytes]]
-(##-localfolderpath)=
 
 Provide md5 hashes as hex digests or raw bytes for automatic validation.
 
 
-(##-optionaluserfilepath,-optionaluserfolderpath,-optionallocalfilepath,-optionallocalfolderpath)=
+(userfolderpath)=
 ### UserFolderPath
 
 Same as [UserFilePath](#userfilepath), but for a folder instead of a file.
 
-(##-snesrompath)=
 
+(localfilepath)=
 ### LocalFilePath
 
 Same as [UserFilePath](#userfilepath), but resolves as local_path:
-(#-caveats)=
 path inside the AP dir or Appimage even if read-only.
-(##-circular-imports)=
 
 
+(localfolderpath)=
 ### LocalFolderPath
 
 Same as [LocalFilePath](#localfilepath), but for a folder instead of a file.
 
 
+(optionaluserfilepath,-optionaluserfolderpath,-optionallocalfilepath,-optionallocalfolderpath)=
 ### OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath
-(##-apworld-backwards-compatibility)=
 
 Same as UserFilePath, UserFolderPath, LocalFilePath, LocalFolderPath but does not open a file browser if missing.
 
 
+(snesrompath)=
 ### SNESRomPath
 
 Specialized [UserFilePath](#userfilepath) that ignores an optional 512 byte header when validating.
 
 
+(caveats)=
 ## Caveats
 
+(circular-imports)=
 ### Circular Imports
 
 Because the settings are defined on import, code that runs on import can not use settings since that would result in
@@ -205,6 +204,7 @@ circular / partial imports. Instead, the code should fetch from settings on dema
 "global" settings could be used in global scope of worlds.
 
 
+(apworld-backwards-compatibility)=
 ### APWorld Backwards Compatibility
 
 APWorlds that want to be compatible with both stable and dev versions, have two options:

@@ -83,17 +83,16 @@ Each value needs to have a default. If the default should be <code class="docuti
 <span class="n">x</span> <span class="o">=</span> <span class="n">get_settings</span><span class="p">()</span><span class="o">.</span><span class="n">general_options</span><span class="o">.</span><span class="n">output_path</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">GeneralOptions</span><span class="p">,</span> <span class="n">get_settings</span><span class="p">()[</span><span class="s2">&quot;general_options&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">output_path</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FolderPath</span><span class="p">,</span> <span class="n">get_settings</span><span class="p">()[</span><span class="s2">&quot;general_options&quot;</span><span class="p">][</span><span class="s2">&quot;output_path&quot;</span><span class="p">])</span>
-<span class="p">(</span><span class="c1">#-world-settings)=</span>
 </pre></div>
 </div>
 </section>
 <section id="world-settings">
-<h2>World Settings<a class="headerlink" href="#world-settings" title="Link to this heading">¶</a></h2>
+<span id="id4"></span><h2>World Settings<a class="headerlink" href="#world-settings" title="Link to this heading">¶</a></h2>
 <p>Worlds can define the top level key to use by defining <code class="docutils literal notranslate"><span class="pre">settings_key:</span> <span class="pre">ClassVar[str]</span></code> in their World class.
 It defaults to <code class="docutils literal notranslate"><span class="pre">{folder_name}_options</span></code> if undefined, i.e. <code class="docutils literal notranslate"><span class="pre">worlds/factorio/...</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">factorio_options</span></code>.</p>
 <p>Worlds define the layout of their config section using type annotation of the variable <code class="docutils literal notranslate"><span class="pre">settings</span></code> in the class.
 The type has to inherit from <code class="docutils literal notranslate"><span class="pre">settings.Group</span></code>. Each value in the config can have a comment by subclassing a built-in
-type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types"><span class="xref myst">Types</span></a> for a list.```</p>
+type. Some helper types are defined in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, see <a class="reference internal" href="#types">Types</a> for a list.```</p>
 <p>Inside the class code, you can then simply use <code class="docutils literal notranslate"><span class="pre">self.settings.rom_file</span></code> to get the value.
 In case of paths they will automatically be read as absolute file paths. No need to use user_path or local_path.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">settings</span>
@@ -116,34 +115,32 @@ In case of paths they will automatically be read as absolute file paths. No need
     <span class="o">...</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">something</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="p">(</span><span class="c1">#-types)=</span>
         <span class="k">pass</span>  <span class="c1"># use self.settings.rom_file here</span>
 </pre></div>
 </div>
 </section>
 <section id="types">
-<h2>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h2>
+<span id="id5"></span><h2>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h2>
 <p>When writing the host.yaml, the code will down cast the values to builtins.
 When reading the host.yaml, the code will upcast the values to what is defined in the type annotations.
 E.g. an IntEnum becomes int when saving and will construct the IntEnum when loading.</p>
 <p>Types that can not be down cast to / up cast from a builtin can not be used except for Group, which will be converted
-to/from a dict.</p>
-<p id="group"><code class="docutils literal notranslate"><span class="pre">bool</span></code> is a special case, see settings.py: ServerOptions.disable_item_cheat for an example.</p>
+to/from a dict.
+<code class="docutils literal notranslate"><span class="pre">bool</span></code> is a special case, see settings.py: ServerOptions.disable_item_cheat for an example.</p>
 <p>Below are some predefined types that can be used if they match your requirements:</p>
-<section id="id4">
-<h3>Group<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
-<p>A section / dict in the config file. Behaves similar to a dataclass.</p>
-<p id="bool">Type annotation and default assignment define how loading, saving and default values behave.
+<section id="group">
+<span id="id6"></span><h3>Group<a class="headerlink" href="#group" title="Link to this heading">¶</a></h3>
+<p>A section / dict in the config file. Behaves similar to a dataclass.
+Type annotation and default assignment define how loading, saving and default values behave.
 It can be accessed using attributes or as a dict: <code class="docutils literal notranslate"><span class="pre">group[&quot;a&quot;]</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">group.a</span></code>.</p>
 <p>In worlds, this should only be used for the top level to avoid issues when upgrading/migrating.</p>
 </section>
-<section id="id5">
-<h3>Bool<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<section id="bool">
+<span id="id7"></span><h3>Bool<a class="headerlink" href="#bool" title="Link to this heading">¶</a></h3>
 <p>Since <code class="docutils literal notranslate"><span class="pre">bool</span></code> can not be subclassed, use the <code class="docutils literal notranslate"><span class="pre">settings.Bool</span></code> helper in a <code class="docutils literal notranslate"><span class="pre">typing.Union</span></code> to get a comment in host.yaml.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">settings</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 
-<span class="p">(</span><span class="c1">##-userfilepath)=</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">MySettings</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
     <span class="k">class</span><span class="w"> </span><span class="nc">MyBool</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">Bool</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Doc string&quot;&quot;&quot;</span>
@@ -153,68 +150,68 @@ It can be accessed using attributes or as a dict: <code class="docutils literal 
 </div>
 </section>
 <section id="userfilepath">
-<h3>UserFilePath<a class="headerlink" href="#userfilepath" title="Link to this heading">¶</a></h3>
-<p id="class-method-validate-cls-path-str">Path to a single file. Automatically resolves as user_path:
+<span id="id8"></span><h3>UserFilePath<a class="headerlink" href="#userfilepath" title="Link to this heading">¶</a></h3>
+<p>Path to a single file. Automatically resolves as user_path:
 Source folder or AP install path on Windows. ~/Archipelago for the AppImage.
 Will open a file browser if the file is missing when in GUI mode.</p>
-<p id="is-exe-bool">If the file is used in the world’s <code class="docutils literal notranslate"><span class="pre">generate_output</span></code>, make sure to add a <code class="docutils literal notranslate"><span class="pre">stage_assert_generate</span></code> that checks if the
+<p>If the file is used in the world’s <code class="docutils literal notranslate"><span class="pre">generate_output</span></code>, make sure to add a <code class="docutils literal notranslate"><span class="pre">stage_assert_generate</span></code> that checks if the
 file is available, otherwise generation may fail at the very end.
 See also <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/world%20api.md#generation">world api.md</a>.</p>
-<section id="description-optional-str">
-<span id="id6"></span><h4>class method validate(cls, path: str)<a class="headerlink" href="#description-optional-str" title="Link to this heading">¶</a></h4>
-<p id="copy-to-optional-str">Override this and raise ValueError if validation fails.
+<section id="class-method-validate-cls-path-str">
+<span id="id9"></span><h4>class method validate(cls, path: str)<a class="headerlink" href="#class-method-validate-cls-path-str" title="Link to this heading">¶</a></h4>
+<p>Override this and raise ValueError if validation fails.
 Checks the file against <a class="reference internal" href="#md5s"><span class="xref myst">md5s</span></a> by default.</p>
 </section>
-<section id="md5s-list-union-str-bytes">
-<span id="id7"></span><h4>is_exe: bool<a class="headerlink" href="#md5s-list-union-str-bytes" title="Link to this heading">¶</a></h4>
+<section id="is-exe-bool">
+<span id="id10"></span><h4>is_exe: bool<a class="headerlink" href="#is-exe-bool" title="Link to this heading">¶</a></h4>
 <p>Resolves to an executable (varying file extension based on platform)</p>
 </section>
-<section id="userfolderpath">
-<span id="id8"></span><h4>description: Optional[str]<a class="headerlink" href="#userfolderpath" title="Link to this heading">¶</a></h4>
+<section id="description-optional-str">
+<span id="id11"></span><h4>description: Optional[str]<a class="headerlink" href="#description-optional-str" title="Link to this heading">¶</a></h4>
 <p>Human-readable name to use in file browser</p>
 </section>
-<section id="localfilepath">
-<span id="id9"></span><h4>copy_to: Optional[str]<a class="headerlink" href="#localfilepath" title="Link to this heading">¶</a></h4>
+<section id="copy-to-optional-str">
+<span id="id12"></span><h4>copy_to: Optional[str]<a class="headerlink" href="#copy-to-optional-str" title="Link to this heading">¶</a></h4>
 <p>Instead of storing the path, copy the file.</p>
 </section>
-<section id="id10">
-<h4>md5s: List[Union[str, bytes]]<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
-<p id="localfolderpath">Provide md5 hashes as hex digests or raw bytes for automatic validation.</p>
+<section id="md5s-list-union-str-bytes">
+<span id="id13"></span><h4>md5s: List[Union[str, bytes]]<a class="headerlink" href="#md5s-list-union-str-bytes" title="Link to this heading">¶</a></h4>
+<p>Provide md5 hashes as hex digests or raw bytes for automatic validation.</p>
 </section>
+</section>
+<section id="userfolderpath">
+<span id="id14"></span><h3>UserFolderPath<a class="headerlink" href="#userfolderpath" title="Link to this heading">¶</a></h3>
+<p>Same as <a class="reference internal" href="#userfilepath">UserFilePath</a>, but for a folder instead of a file.</p>
+</section>
+<section id="localfilepath">
+<span id="id15"></span><h3>LocalFilePath<a class="headerlink" href="#localfilepath" title="Link to this heading">¶</a></h3>
+<p>Same as <a class="reference internal" href="#userfilepath">UserFilePath</a>, but resolves as local_path:
+path inside the AP dir or Appimage even if read-only.</p>
+</section>
+<section id="localfolderpath">
+<span id="id16"></span><h3>LocalFolderPath<a class="headerlink" href="#localfolderpath" title="Link to this heading">¶</a></h3>
+<p>Same as <a class="reference internal" href="#localfilepath">LocalFilePath</a>, but for a folder instead of a file.</p>
 </section>
 <section id="optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath">
-<span id="id11"></span><h3>UserFolderPath<a class="headerlink" href="#optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but for a folder instead of a file.</p>
+<span id="id17"></span><h3>OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath<a class="headerlink" href="#optionaluserfilepath-optionaluserfolderpath-optionallocalfilepath-optionallocalfolderpath" title="Link to this heading">¶</a></h3>
+<p>Same as UserFilePath, UserFolderPath, LocalFilePath, LocalFolderPath but does not open a file browser if missing.</p>
 </section>
 <section id="snesrompath">
-<span id="id12"></span><h3>LocalFilePath<a class="headerlink" href="#snesrompath" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a>, but resolves as local_path:</p>
-<p id="caveats">path inside the AP dir or Appimage even if read-only.</p>
+<span id="id18"></span><h3>SNESRomPath<a class="headerlink" href="#snesrompath" title="Link to this heading">¶</a></h3>
+<p>Specialized <a class="reference internal" href="#userfilepath">UserFilePath</a> that ignores an optional 512 byte header when validating.</p>
 </section>
+</section>
+<section id="caveats">
+<span id="id19"></span><h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h2>
 <section id="circular-imports">
-<span id="id13"></span><h3>LocalFolderPath<a class="headerlink" href="#circular-imports" title="Link to this heading">¶</a></h3>
-<p>Same as <a class="reference internal" href="#localfilepath"><span class="xref myst">LocalFilePath</span></a>, but for a folder instead of a file.</p>
-</section>
-<section id="id14">
-<h3>OptionalUserFilePath, OptionalUserFolderPath, OptionalLocalFilePath, OptionalLocalFolderPath<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
-<p id="apworld-backwards-compatibility">Same as UserFilePath, UserFolderPath, LocalFilePath, LocalFolderPath but does not open a file browser if missing.</p>
-</section>
-<section id="id15">
-<h3>SNESRomPath<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
-<p>Specialized <a class="reference internal" href="#userfilepath"><span class="xref myst">UserFilePath</span></a> that ignores an optional 512 byte header when validating.</p>
-</section>
-</section>
-<section id="id16">
-<h2>Caveats<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
-<section id="id17">
-<h3>Circular Imports<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<span id="id20"></span><h3>Circular Imports<a class="headerlink" href="#circular-imports" title="Link to this heading">¶</a></h3>
 <p>Because the settings are defined on import, code that runs on import can not use settings since that would result in
 circular / partial imports. Instead, the code should fetch from settings on demand during generation.</p>
 <p>“Global” settings are populated immediately, while worlds settings are lazy loaded, so if really necessary,
 “global” settings could be used in global scope of worlds.</p>
 </section>
-<section id="id18">
-<h3>APWorld Backwards Compatibility<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<section id="apworld-backwards-compatibility">
+<span id="id21"></span><h3>APWorld Backwards Compatibility<a class="headerlink" href="#apworld-backwards-compatibility" title="Link to this heading">¶</a></h3>
 <p>APWorlds that want to be compatible with both stable and dev versions, have two options:</p>
 <ol class="arabic simple">
 <li><p>use the old Utils.get_options() API until Archipelago 0.4.2 is out</p></li>
@@ -244,14 +241,13 @@ circular / partial imports. Instead, the code should fetch from settings on dema
 <li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Archipelago Settings API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#config-file">Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#global-settings">Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#world-settings">World Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#types">Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caveats">Caveats</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
