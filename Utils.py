@@ -1093,37 +1093,39 @@ def build_sphinx_docs() -> None:
             shutil.copy(file, sphinx_input)
             # parse through the file and fix links for sphinx's api
             with open(os.path.join(sphinx_input, file.name), "r") as f:
-                headers: list[tuple[int, str]] = []
                 lines = f.readlines()
-            for line_index in range(len(lines)):
+            line_index = 0
+            while line_index < len(lines):
                 line = lines[line_index]
                 # header
                 if line.startswith("#"):
-                    target_text = line.removeprefix("#").strip().lower().replace(" ", "-")
-                    headers.append((line_index, f"({target_text})=\n"))
+                    target_text = line.strip("# \n").lower().replace(" ", "-")
+                    lines.insert(line_index, f"({target_text})=\n")
+                    line_index += 2
                     continue
                 # hyperlink
                 if "](" not in line:
+                    line_index += 1
                     continue
                 start = line.find("](") + 2
                 end = line.find(")", start)
                 link = line[start:end]
                 # probably an external link
                 if "https://" in link:
+                    line_index += 1
                     continue
                 # direct link to a module
                 if ".py" in link:
                     link = link.split("/")[-1].split(".py")[0].lower()
                 # don't handle images since those should still work if done correctly
                 elif "img" in link:
+                    line_index += 1
                     continue
                 # should just be other direct doc links
                 else:
                     link = link.split("/")[-1].split(".")[0].lower().replace(" ", "%20")
                 lines[line_index] = line[:start] + link + line[end:]
-            if headers:
-                for index, heading_text in headers:
-                    lines.insert(index, heading_text)
+                line_index += 1
             with open(os.path.join(sphinx_input, file.name), "w") as f:
                 f.writelines(lines)
         elif "img" in file.name:
@@ -1158,3 +1160,6 @@ def build_sphinx_docs() -> None:
         shutil.copy(file, os.path.join(sphinx_input, "_static"))
 
     sphinx_main(["-M", "html", sphinx_input, sphinx_output])
+
+if __name__ == "__main__":
+    build_sphinx_docs()
