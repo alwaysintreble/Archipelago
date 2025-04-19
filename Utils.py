@@ -1160,6 +1160,3 @@ def build_sphinx_docs() -> None:
         shutil.copy(file, os.path.join(sphinx_input, "_static"))
 
     sphinx_main(["-M", "html", sphinx_input, sphinx_output])
-
-if __name__ == "__main__":
-    build_sphinx_docs()
