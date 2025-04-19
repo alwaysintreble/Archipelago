@@ -1,10 +1,12 @@
-(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=(apworld-dev-faq)=# APWorld Dev FAQ
+(apworld-dev-faq)=
+# APWorld Dev FAQ
 
 This document is meant as a reference tool to show solutions to common problems when developing an apworld.
 It is not intended to answer every question about Archipelago and it assumes you have read the other docs, 
-including [Contributing](contributing.md), [Adding Games](<adding games.md>), and [World API](<world api.md>).
+including [Contributing](contributing), [Adding Games](<adding games.md>), and [World API](<world api.md>).
 
 ---
+(##-my-game-has-a-restrictive-start-that-leads-to-fill-errors)=
 
 ### My game has a restrictive start that leads to fill errors
 
@@ -20,6 +22,7 @@ Some alternative ways to try to fix this problem are:
 * Put items into the player's starting inventory using `push_precollected`
 * Raise an exception, such as an `OptionError` during `generate_early`, to disallow options that would lead to a restrictive start
 
+(##-i-have-multiple-settings-that-change-the-item/location-pool-counts-and-need-to-balance-them-out)=
 ---
 
 ### I have multiple settings that change the item/location pool counts and need to balance them out
@@ -43,6 +46,7 @@ A faster alternative to the `for` loop would be to use a [list comprehension](ht
 ```py
 item_pool += [self.create_filler() for _ in range(total_locations - len(item_pool))]
 ```
+(##-i-learned-about-indirect-conditions-in-the-world-api-document,-but-i-want-to-know-more.-what-are-they-and-why-are-they-necessary?)=
 
 ---
 
@@ -65,6 +69,7 @@ The reason entrance access rules using `location.can_reach` and `entrance.can_re
 
 We recognize it can feel like a trap since it will not alert you when you are missing an indirect condition, and that some games have very complex access rules.
 As of [PR #3682 (Core: Region handling customization)](https://github.com/ArchipelagoMW/Archipelago/pull/3682) being merged, it is possible for a world to opt out of indirect conditions entirely, instead using the system of checking each entrance whenever a region has been reached, although this does come with a performance cost.
+(##-i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata)=
 Opting out of using indirect conditions should only be used by games that *really* need it. For most games, it should be reasonable to know all entrance &rarr; region dependencies, making indirect conditions preferred because they are much faster.
 
 ---

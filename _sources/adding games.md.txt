@@ -1,6 +1,7 @@
-(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=# Adding Games
+(adding-games)=
+# Adding Games
 
-Like all contributions to Archipelago, New Game implementations should follow the [Contributing](/docs/contributing.md)
+Like all contributions to Archipelago, New Game implementations should follow the [Contributing](contributing)
 guide.
 
 Adding a new game to Archipelago has two major parts:
@@ -11,13 +12,15 @@ Adding a new game to Archipelago has two major parts:
 This document will attempt to illustrate the bare minimum requirements and expectations of both parts of a new world
 integration. As game modification wildly varies by system and engine, and has no bearing on the Archipelago protocol,
 it will not be detailed here.
+(#-client)=
 
 ## Client
 
 The client is an intermediary program between the game and the Archipelago server. This can either be a direct
 modification to the game, an external program, or both. This can be implemented in nearly any modern language, but it
 must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for 
-various packets can be found in the [network protocol](/docs/network%20protocol.md) API reference document.
+(##-hard-requirements)=
+various packets can be found in the [network protocol](network%20protocol) API reference document.
 
 ### Hard Requirements
 
@@ -29,6 +32,7 @@ In order for the game client to behave as expected, it must be able to perform t
   * Rooms hosted on the website attempt to reserve their port, but since there are a limited number of ports, this
     privilege can be lost, requiring the room to be moved to a new port
 * Send a status update packet alerting the server that the player has completed their goal
+(###-location-handling)=
 
 Regarding items and locations, the game client must be able to handle these tasks:
 
@@ -36,6 +40,7 @@ Regarding items and locations, the game client must be able to handle these task
 
 Send a network packet to the server when it detects a location has been "checked" by the player in-game.
 
+(###-item-handling)=
 * If actions were taken in game that would usually trigger a location check, and those actions can only ever be taken 
   once, but the client was not connected when they happened: The client must send those location checks on connection 
   so that they are not permanently lost, e.g. by reading flags in the game state or save file.
@@ -49,6 +54,7 @@ Receive and parse network packets from the server when the player receives an it
   due to features such as starting inventory, item link replacement, admin commands, or item cheating. **Any** of 
   your items can be received **any** number of times.
 * Admins and players may use server commands to create items without a player or location attributed to them. The
+(##-encouraged-features)=
   client must be able to handle these items.
 * It must keep an index for items received in order to resync. The ItemsReceived Packets are a single list with a
   guaranteed order.
@@ -56,6 +62,7 @@ Receive and parse network packets from the server when the player receives an it
 
 ### Encouraged Features
 
+(#-world)=
 These are "nice to have" features for a client, but they are not strictly required. It is encouraged to add them 
 if possible.
 
@@ -68,12 +75,13 @@ The world is your game integration for the Archipelago generator, webhost, and m
 information necessary for creating the items and locations to be randomized, the logic for item placement, the 
 datapackage information so other game clients can recognize your game data, and documentation. Your world must be
 written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago
+(##-hard-requirements)=
 repository and creating a new world package in `/worlds/`. 
 
-The base World class can be found in [AutoWorld](/worlds/AutoWorld.py). Methods available for your world to call 
-during generation can be found in [BaseClasses](/BaseClasses.py) and [Fill](/Fill.py). Some examples and documentation 
-regarding the API can be found in the [world api doc](/docs/world%20api.md). Before publishing, make sure to also 
-check out [world maintainer.md](/docs/world%20maintainer.md).
+The base World class can be found in [AutoWorld](autoworld). Methods available for your world to call 
+during generation can be found in [BaseClasses](baseclasses) and [Fill](/Fill.py). Some examples and documentation 
+regarding the API can be found in the [world api doc](world%20api). Before publishing, make sure to also 
+check out [world maintainer.md](world%20maintainer).
 
 ### Hard Requirements
 
@@ -106,6 +114,7 @@ subclass for webhost documentation and behaviors
 * At least one `Region` for your player to start from (i.e. the Origin Region)
   * The default name of this region is "Menu" but you may configure a different name with 
     [origin_region_name](https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L299)
+(##-encouraged-features)=
 * A non-zero number of locations, added to your regions
 * A non-zero number of items **equal** to the number of locations, added to the multiworld itempool
   * In rare cases, there may be 0-location-0-item games, but this is extremely atypical.
@@ -128,6 +137,7 @@ if possible.
 * A [bug report page](https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L220)
 * A list of [option groups](https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L226) 
   for better organization on the webhost
+(##-discouraged-or-prohibited-behavior)=
 * A dictionary of [options presets](https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L223)
   for player convenience
 * A dictionary of [item name groups](https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L273)
@@ -142,6 +152,7 @@ if possible.
 These are behaviors or implementations that are known to cause various issues. Some of these points have notable
 workarounds or preferred methods which should be used instead:
 
+(##-notable-caveats)=
 * All items submitted to the multiworld itempool must not be manually placed by the World. 
   * If you need to place specific items, there are multiple ways to do so, but they should not be added to the 
     multiworld itempool.

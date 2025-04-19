@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Client &#8212; Archipelago 0.6.2 documentation</title>
+    <title>Adding Games &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="File Format" href="apworld%20specification.html" />
-    <link rel="prev" title="General" href="running%20from%20source.html" />
+    <link rel="next" title="apworld Specification" href="apworld%20specification.html" />
+    <link rel="prev" title="Running From Source" href="running%20from%20source.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -35,13 +35,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="apworld%20specification.html" title="File Format"
+          <a href="apworld%20specification.html" title="apworld Specification"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="running%20from%20source.html" title="General"
+          <a href="running%20from%20source.html" title="Running From Source"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Client</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Adding Games</a></li> 
       </ul>
     </div>  
 
@@ -50,8 +50,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=(adding-games)=# Adding Games</p>
-<p>Like all contributions to Archipelago, New Game implementations should follow the <a class="reference internal" href="#/docs/contributing.md"><span class="xref myst">Contributing</span></a>
+  <section id="adding-games">
+<span id="id1"></span><h1>Adding Games<a class="headerlink" href="#adding-games" title="Link to this heading">¶</a></h1>
+<p>Like all contributions to Archipelago, New Game implementations should follow the <a class="reference internal" href="contributing.html"><span class="doc std std-doc">Contributing</span></a>
 guide.</p>
 <p>Adding a new game to Archipelago has two major parts:</p>
 <ul class="simple">
@@ -62,13 +63,13 @@ guide.</p>
 integration. As game modification wildly varies by system and engine, and has no bearing on the Archipelago protocol,
 it will not be detailed here.</p>
 <section id="client">
-<h1>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h1>
+<span id="id2"></span><h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
 <p>The client is an intermediary program between the game and the Archipelago server. This can either be a direct
 modification to the game, an external program, or both. This can be implemented in nearly any modern language, but it
-must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for
-various packets can be found in the <a class="reference internal" href="#/docs/network%20protocol.md"><span class="xref myst">network protocol</span></a> API reference document.</p>
-<section id="hard-requirements">
-<h2>Hard Requirements<a class="headerlink" href="#hard-requirements" title="Link to this heading">¶</a></h2>
+must fulfill a few requirements in order to function as expected. Libraries for most modern languages and the spec for</p>
+<p id="hard-requirements">various packets can be found in the <a class="reference internal" href="network%20protocol.html"><span class="doc std std-doc">network protocol</span></a> API reference document.</p>
+<section id="id3">
+<h3>Hard Requirements<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>In order for the game client to behave as expected, it must be able to perform these functions:</p>
 <ul class="simple">
 <li><p>Handle both secure and unsecure websocket connections</p></li>
@@ -81,35 +82,37 @@ privilege can be lost, requiring the room to be moved to a new port</p></li>
 </li>
 <li><p>Send a status update packet alerting the server that the player has completed their goal</p></li>
 </ul>
-<p>Regarding items and locations, the game client must be able to handle these tasks:</p>
-<section id="location-handling">
-<h3>Location Handling<a class="headerlink" href="#location-handling" title="Link to this heading">¶</a></h3>
+<p id="location-handling">Regarding items and locations, the game client must be able to handle these tasks:</p>
+<section id="id4">
+<h4>Location Handling<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <p>Send a network packet to the server when it detects a location has been “checked” by the player in-game.</p>
-<ul class="simple">
+<ul class="simple" id="item-handling">
 <li><p>If actions were taken in game that would usually trigger a location check, and those actions can only ever be taken
 once, but the client was not connected when they happened: The client must send those location checks on connection
 so that they are not permanently lost, e.g. by reading flags in the game state or save file.</p></li>
 </ul>
 </section>
-<section id="item-handling">
-<h3>Item Handling<a class="headerlink" href="#item-handling" title="Link to this heading">¶</a></h3>
+<section id="id5">
+<h4>Item Handling<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <p>Receive and parse network packets from the server when the player receives an item.</p>
 <ul class="simple">
 <li><p>It must reward items to the player on demand, as items can come from other players at any time.</p></li>
 <li><p>It must be able to reward copies of an item, up to and beyond the number the game normally expects. This may happen
 due to features such as starting inventory, item link replacement, admin commands, or item cheating. <strong>Any</strong> of
 your items can be received <strong>any</strong> number of times.</p></li>
-<li><p>Admins and players may use server commands to create items without a player or location attributed to them. The
-client must be able to handle these items.</p></li>
+<li><p>Admins and players may use server commands to create items without a player or location attributed to them. The</p></li>
+</ul>
+<p id="encouraged-features">client must be able to handle these items.</p>
+<ul class="simple">
 <li><p>It must keep an index for items received in order to resync. The ItemsReceived Packets are a single list with a
 guaranteed order.</p></li>
 <li><p>It must be able to receive items that were sent to the player while they were not connected to the server.</p></li>
 </ul>
 </section>
 </section>
-<section id="encouraged-features">
-<h2>Encouraged Features<a class="headerlink" href="#encouraged-features" title="Link to this heading">¶</a></h2>
-<p>These are “nice to have” features for a client, but they are not strictly required. It is encouraged to add them
+<section id="id6">
+<h3>Encouraged Features<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p id="world">These are “nice to have” features for a client, but they are not strictly required. It is encouraged to add them
 if possible.</p>
 <ul class="simple">
 <li><p>If your client appears in the Archipelago Launcher, you may define an icon for it that differentiates it from
@@ -117,19 +120,19 @@ other clients. The icon size is 48x48 pixels, but smaller or larger images will 
 </ul>
 </section>
 </section>
-<section id="world">
-<h1>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h1>
+<section id="id7">
+<h2>World<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>The world is your game integration for the Archipelago generator, webhost, and multiworld server. It contains all the
 information necessary for creating the items and locations to be randomized, the logic for item placement, the
 datapackage information so other game clients can recognize your game data, and documentation. Your world must be
-written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago
-repository and creating a new world package in <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code>.</p>
-<p>The base World class can be found in <a class="reference internal" href="#/worlds/AutoWorld.py"><span class="xref myst">AutoWorld</span></a>. Methods available for your world to call
-during generation can be found in <a class="reference internal" href="#/BaseClasses.py"><span class="xref myst">BaseClasses</span></a> and <a class="reference internal" href="#/Fill.py"><span class="xref myst">Fill</span></a>. Some examples and documentation
-regarding the API can be found in the <a class="reference internal" href="#/docs/world%20api.md"><span class="xref myst">world api doc</span></a>. Before publishing, make sure to also
-check out <a class="reference internal" href="#/docs/world%20maintainer.md"><span class="xref myst">world maintainer.md</span></a>.</p>
-<section id="id1">
-<h2>Hard Requirements<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+written as a Python package to be loaded by Archipelago. This is currently done by creating a fork of the Archipelago</p>
+<p id="id8">repository and creating a new world package in <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code>.</p>
+<p>The base World class can be found in <a class="reference internal" href="autoworld.html"><span class="doc std std-doc">AutoWorld</span></a>. Methods available for your world to call
+during generation can be found in <a class="reference internal" href="baseclasses.html"><span class="doc std std-doc">BaseClasses</span></a> and <a class="reference internal" href="#/Fill.py"><span class="xref myst">Fill</span></a>. Some examples and documentation
+regarding the API can be found in the <a class="reference internal" href="world%20api.html"><span class="doc std std-doc">world api doc</span></a>. Before publishing, make sure to also
+check out <a class="reference internal" href="world%20maintainer.html"><span class="doc std std-doc">world maintainer.md</span></a>.</p>
+<section id="id9">
+<h3>Hard Requirements<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <p>A bare minimum world implementation must satisfy the following requirements:</p>
 <ul class="simple">
 <li><p>It has a folder with the name of your game (or an abbreviation) under <code class="docutils literal notranslate"><span class="pre">/worlds/</span></code></p></li>
@@ -165,6 +168,8 @@ within Archipelago</p></li>
 <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L298-L299">origin_region_name</a></p></li>
 </ul>
 </li>
+</ul>
+<ul class="simple" id="id10">
 <li><p>A non-zero number of locations, added to your regions</p></li>
 <li><p>A non-zero number of items <strong>equal</strong> to the number of locations, added to the multiworld itempool</p>
 <ul>
@@ -180,8 +185,8 @@ the player.</p>
 </li>
 </ul>
 </section>
-<section id="id2">
-<h2>Encouraged Features<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id11">
+<h3>Encouraged Features<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <p>These are “nice to have” features for a world, but they are not strictly required. It is encouraged to add them
 if possible.</p>
 <ul class="simple">
@@ -200,6 +205,8 @@ filler items.</p></li>
 <li><p>A <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L220">bug report page</a></p></li>
 <li><p>A list of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L226">option groups</a>
 for better organization on the webhost</p></li>
+</ul>
+<ul class="simple" id="discouraged-or-prohibited-behavior">
 <li><p>A dictionary of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L223">options presets</a>
 for player convenience</p></li>
 <li><p>A dictionary of <a class="reference external" href="https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/AutoWorld.py#L273">item name groups</a>
@@ -213,11 +220,11 @@ for player convenience</p>
 </li>
 </ul>
 </section>
-<section id="discouraged-or-prohibited-behavior">
-<h2>Discouraged or Prohibited Behavior<a class="headerlink" href="#discouraged-or-prohibited-behavior" title="Link to this heading">¶</a></h2>
+<section id="id12">
+<h3>Discouraged or Prohibited Behavior<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <p>These are behaviors or implementations that are known to cause various issues. Some of these points have notable
 workarounds or preferred methods which should be used instead:</p>
-<ul class="simple">
+<ul class="simple" id="notable-caveats">
 <li><p>All items submitted to the multiworld itempool must not be manually placed by the World.</p>
 <ul>
 <li><p>If you need to place specific items, there are multiple ways to do so, but they should not be added to the
@@ -238,8 +245,8 @@ do <strong>not</strong> use <code class="docutils literal notranslate"><span cla
 </li>
 </ul>
 </section>
-<section id="notable-caveats">
-<h2>Notable Caveats<a class="headerlink" href="#notable-caveats" title="Link to this heading">¶</a></h2>
+<section id="id13">
+<h3>Notable Caveats<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The Origin Region will always be considered the “start” for the player</p></li>
 <li><p>The Origin Region is <em>always</em> considered accessible; i.e. the player is expected to always be able to return to the
@@ -247,6 +254,7 @@ start of the game from anywhere</p></li>
 <li><p>Regions are simply containers for locations that share similar access rules. They do not have to map to
 concrete, physical areas within your game and can be more abstract like tech trees or a questline.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -263,65 +271,24 @@ concrete, physical areas within your game and can be more abstract like tech tre
 <h3><a href="index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">Responsibilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#becoming-a-world-maintainer">Becoming a World Maintainer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#dropping-out">Dropping out</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Generic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#python-code">Python Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#markdown">Markdown</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#html">HTML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#css">CSS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#js">JS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#windows">Windows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#macos">macOS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-sni">Optional: SNI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-git">Optional: Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#running-tests">Running tests</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Client</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hard-requirements">Hard Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#encouraged-features">Encouraged Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding Games</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#client">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">World</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#world">World</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Hard Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Encouraged Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#discouraged-or-prohibited-behavior">Discouraged or Prohibited Behavior</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notable-caveats">Notable Caveats</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#metadata">Metadata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#extra-data">Extra Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html#caveats">Caveats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Language</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#definitions">Definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#implementation">Implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Option Definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#generic-option-classes">Generic Option Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#basic-option-classes">Basic Option Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#more-advanced-options">More Advanced Options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Config File</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#global-settings">Global Settings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#world-settings">World Settings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#types">Types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#caveats">Caveats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance randomization concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#usage">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#implementation-details">Implementation details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Generic Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#defining-world-tests">Defining World Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#running-tests">Running Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">My game has a restrictive start that leads to fill errors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out">I have multiple settings that change the item/location pool counts and need to balance them out</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary">I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata">I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld%20specification.html">apworld Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
@@ -343,12 +310,12 @@ concrete, physical areas within your game and can be more abstract like tech tre
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="running%20from%20source.html"
-                          title="previous chapter">General</a></p>
+                          title="previous chapter">Running From Source</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="apworld%20specification.html"
-                          title="next chapter">File Format</a></p>
+                          title="next chapter">apworld Specification</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -381,13 +348,13 @@ concrete, physical areas within your game and can be more abstract like tech tre
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="apworld%20specification.html" title="File Format"
+          <a href="apworld%20specification.html" title="apworld Specification"
              >next</a> |</li>
         <li class="right" >
-          <a href="running%20from%20source.html" title="General"
+          <a href="running%20from%20source.html" title="Running From Source"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Client</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Adding Games</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

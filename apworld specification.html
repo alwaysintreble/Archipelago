@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>File Format &#8212; Archipelago 0.6.2 documentation</title>
+    <title>apworld Specification &#8212; Archipelago 0.6.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=cbb4336f" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Language" href="world%20api.html" />
-    <link rel="prev" title="Client" href="adding%20games.html" />
+    <link rel="next" title="Archipelago API" href="world%20api.html" />
+    <link rel="prev" title="Adding Games" href="adding%20games.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -35,13 +35,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="world%20api.html" title="Language"
+          <a href="world%20api.html" title="Archipelago API"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="adding%20games.html" title="Client"
+          <a href="adding%20games.html" title="Adding Games"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">File Format</a></li> 
+        <li class="nav-item nav-item-this"><a href="">apworld Specification</a></li> 
       </ul>
     </div>  
 
@@ -50,32 +50,34 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=(apworld-specification)=# apworld Specification</p>
+  <section id="apworld-specification">
+<span id="id1"></span><h1>apworld Specification<a class="headerlink" href="#apworld-specification" title="Link to this heading">¶</a></h1>
 <p>Archipelago depends on worlds to provide game-specific details like items, locations and output generation.
 Those are located in the <code class="docutils literal notranslate"><span class="pre">worlds/</span></code> folder (source) or <code class="docutils literal notranslate"><span class="pre">&lt;install</span> <span class="pre">dir&gt;/lib/worlds/</span></code> (when installed).
-See <a class="reference internal" href="world%20api.html"><span class="std std-doc">world api.md</span></a> for details.</p>
+See <a class="reference internal" href="world%20api.html"><span class="doc std std-doc">world api.md</span></a> for details.</p>
 <p>apworld provides a way to package and ship a world that is not part of the main distribution by placing a <code class="docutils literal notranslate"><span class="pre">*.apworld</span></code>
 file into the worlds folder.</p>
 <p><strong>Warning:</strong> apworlds have to be all lower case, otherwise they raise a bogus Exception when trying to import in frozen python 3.10+!</p>
 <section id="file-format">
-<h1>File Format<a class="headerlink" href="#file-format" title="Link to this heading">¶</a></h1>
+<span id="id2"></span><h2>File Format<a class="headerlink" href="#file-format" title="Link to this heading">¶</a></h2>
 <p>apworld files are zip archives, all lower case, with the file ending <code class="docutils literal notranslate"><span class="pre">.apworld</span></code>.
 The zip has to contain a folder with the same name as the zip, case-sensitive, that contains what would normally be in
 the world’s folder in <code class="docutils literal notranslate"><span class="pre">worlds/</span></code>. I.e. <code class="docutils literal notranslate"><span class="pre">worlds/ror2.apworld</span></code> containing <code class="docutils literal notranslate"><span class="pre">ror2/__init__.py</span></code>.</p>
 </section>
 <section id="metadata">
-<h1>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">¶</a></h1>
-<p>No metadata is specified yet.</p>
+<span id="id3"></span><h2>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">¶</a></h2>
+<p id="extra-data">No metadata is specified yet.</p>
 </section>
-<section id="extra-data">
-<h1>Extra Data<a class="headerlink" href="#extra-data" title="Link to this heading">¶</a></h1>
-<p>The zip can contain arbitrary files in addition what was specified above.</p>
+<section id="id4">
+<h2>Extra Data<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p id="caveats">The zip can contain arbitrary files in addition what was specified above.</p>
 </section>
-<section id="caveats">
-<h1>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h1>
+<section id="id5">
+<h2>Caveats<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>Imports from other files inside the apworld have to use relative imports. e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.options</span> <span class="pre">import</span> <span class="pre">MyGameOptions</span></code></p>
 <p>Imports from AP base have to use absolute imports, e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">Options</span> <span class="pre">import</span> <span class="pre">Toggle</span></code> or
 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">worlds.AutoWorld</span> <span class="pre">import</span> <span class="pre">World</span></code></p>
+</section>
 </section>
 
 
@@ -91,55 +93,26 @@ the world’s folder in <code class="docutils literal notranslate"><span class="
 <h3><a href="index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Get Started:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">Responsibilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#becoming-a-world-maintainer">Becoming a World Maintainer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#dropping-out">Dropping out</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html#handling-of-unmaintained-worlds">Handling of Unmaintained Worlds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html">Generic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#python-code">Python Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#markdown">Markdown</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#html">HTML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#css">CSS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="style.html#js">JS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#windows">Windows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#macos">macOS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-a-link-to-the-past-enemizer">Optional: A Link to the Past Enemizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-sni">Optional: SNI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#optional-git">Optional: Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html#running-tests">Running tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adding%20games.html#world">World</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#metadata">Metadata</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#extra-data">Extra Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#caveats">Caveats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Language</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#coding-style">Coding style</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#docstrings">Docstrings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#definitions">Definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="world%20api.html#implementation">Implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Option Definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#generic-option-classes">Generic Option Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#basic-option-classes">Basic Option Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="options%20api.html#more-advanced-options">More Advanced Options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Config File</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#global-settings">Global Settings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#world-settings">World Settings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#types">Types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="settings%20api.html#caveats">Caveats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance randomization concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#usage">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html#implementation-details">Implementation details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Archipelago General Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html#archipelago-protocol-packets">Archipelago Protocol Packets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Generic Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#defining-world-tests">Defining World Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html#running-tests">Running Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">My game has a restrictive start that leads to fill errors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-have-multiple-settings-that-change-the-item-location-pool-counts-and-need-to-balance-them-out">I have multiple settings that change the item/location pool counts and need to balance them out</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-learned-about-indirect-conditions-in-the-world-api-document-but-i-want-to-know-more-what-are-they-and-why-are-they-necessary">I learned about indirect conditions in the world API document, but I want to know more. What are they and why are they necessary?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html#i-uploaded-the-generated-output-of-my-world-to-the-webhost-and-webhost-is-erroring-on-corrupted-multidata">I uploaded the generated output of my world to the webhost and webhost is erroring on corrupted multidata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20maintainer.html">World Maintainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running%20from%20source.html">Running From Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adding%20games.html">Adding Games</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">apworld Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#file-format">File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metadata">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Extra Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html">Archipelago API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="world%20api.html#init-py"><strong>init</strong>.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options%20api.html">Archipelago Options API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings%20api.html">Archipelago Settings API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entrance%20randomization.html">Entrance Randomization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network%20protocol.html">Network Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Archipelago Unit Testing API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apworld_dev_faq.html">APWorld Dev FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeowners.html">Archipelago World Code Owners / Maintainers Document</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Reference:</span></p>
@@ -161,12 +134,12 @@ the world’s folder in <code class="docutils literal notranslate"><span class="
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="adding%20games.html"
-                          title="previous chapter">Client</a></p>
+                          title="previous chapter">Adding Games</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="world%20api.html"
-                          title="next chapter">Language</a></p>
+                          title="next chapter">Archipelago API</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -199,13 +172,13 @@ the world’s folder in <code class="docutils literal notranslate"><span class="
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="world%20api.html" title="Language"
+          <a href="world%20api.html" title="Archipelago API"
              >next</a> |</li>
         <li class="right" >
-          <a href="adding%20games.html" title="Client"
+          <a href="adding%20games.html" title="Adding Games"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Archipelago 0.6.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">File Format</a></li> 
+        <li class="nav-item nav-item-this"><a href="">apworld Specification</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

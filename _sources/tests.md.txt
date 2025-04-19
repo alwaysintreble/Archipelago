@@ -1,23 +1,27 @@
-(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=(archipelago-unit-testing-api)=# Archipelago Unit Testing API
+(archipelago-unit-testing-api)=
+# Archipelago Unit Testing API
 
 This document covers some of the generic tests available using Archipelago's unit testing system, as well as some basic
 steps on how to write your own.
+(#-generic-tests)=
 
 ## Generic Tests
 
 Some generic tests are run on every World to ensure basic functionality with default options. These basic tests can be
+(#-defining-world-tests)=
 found in the [general test directory](https://github.com/ArchipelagoMW/Archipelago/tree/main/test/general).
 
 ## Defining World Tests
 
 In order to run tests from your world, you will need to create a `test` package within your world package. This can be
+(##-worldtestbase)=
 done by creating a `test` directory with a file named `__init__.py` inside it inside your world. By convention, a base
 for your world tests can be created in this file that you can then import into other modules.
 
 ### WorldTestBase
 
 In order to test basic functionality of varying options, as well as to test specific edge cases or that certain
-interactions in the world interact as expected, you will want to use the [WorldTestBase](/test/bases.py). This class
+interactions in the world interact as expected, you will want to use the [WorldTestBase](bases). This class
 comes with the basics for test setup as well as a few preloaded tests that most worlds might want to check on varying
 options combinations.
 
@@ -32,7 +36,9 @@ class MyGameTestBase(WorldTestBase):
 ```
 
 The basic tests that WorldTestBase comes with include `test_all_state_can_reach_everything`,
+(##-writing-tests)=
 `test_empty_state_can_reach_something`, and `test_fill`. These test that with all collected items everything is
+(###-using-worldtestbase)=
 reachable, with no collected items at least something is reachable, and that a valid multiworld can be completed with
 all steps being called, respectively.
 
@@ -69,15 +75,17 @@ class TestChestAccess(MyGameTestBase):
         self.assertAccessDependency(locations, items)
 ```
 
+(###-alternatives-to-worldtestbase)=
 When tests are run, this class will create a multiworld with a single player having the provided options, and run the
 generic tests, as well as the new custom test. Each test method definition will create its own separate solo multiworld
 that will be cleaned up after. If you don't want to run the generic tests on a base, `run_default_tests` can be
 overridden. For more information on what methods are available to your class, check the
-[WorldTestBase definition](/test/bases.py#L106).
+[WorldTestBase definition](bases).
 
+(###-parametrization)=
 #### Alternatives to WorldTestBase
 
-Unit tests can also be created using [TestBase](/test/bases.py#L16) or
+Unit tests can also be created using [TestBase](bases) or
 [unittest.TestCase](https://docs.python.org/3/library/unittest.html#unittest.TestCase) depending on your use case. These
 may be useful for generating a multiworld under very specific constraints without using the generic world setup, or for
 testing portions of your code that can be tested without relying on a multiworld to be created first.
@@ -92,6 +100,7 @@ for multiple inputs) the base test. Some important things to consider when attem
   of needing to instantiate multiple tests; however, subtests can not be multithreaded and do not have individual
   timing data, so they are not suitable for slow tests.
 
+(###-performance-considerations)=
 * Archipelago's tests are test-runner-agnostic. That means tests are not allowed to use e.g. `@pytest.mark.parametrize`.
   Instead, we define our own parametrization helpers in [test.param](https://github.com/ArchipelagoMW/Archipelago/blob/main/test/param.py).
 
@@ -105,7 +114,9 @@ for multiple inputs) the base test. Some important things to consider when attem
 Archipelago is big enough that the runtime of unittests can have an impact on productivity.
 
 Individual tests should take less than a second, so they can be properly multithreaded.
+(#-running-tests)=
 
+(###-using-pycharm)=
 Ideally, thorough tests are directed at actual code/functionality. Do not just create and/or fill a ton of individual
 Multiworlds that spend most of the test time outside what you actually want to test.
 
@@ -118,9 +129,11 @@ variable to keep all the benefits of the test framework while not running the ma
 
 #### Using Pycharm
 
+(###-running-tests-without-pycharm)=
 In PyCharm, running all tests can be done by right-clicking the root test directory and selecting Run 'Archipelago Unittests'. 
 Unless you configured PyCharm to use pytest as a test runner, you may get import failures. To solve this, edit the run configuration, 
 and set the working directory to the Archipelago directory which contains all the project files. 
+(###-running-tests-multithreaded)=
 
 If you only want to run your world's defined tests, repeat the steps for the test directory within your world.
 Your working directory should be the directory of your world in the worlds directory and the script should be the 

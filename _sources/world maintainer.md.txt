@@ -1,11 +1,13 @@
-(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=(world-maintainer)=# World Maintainer
+(world-maintainer)=
+# World Maintainer
 
 A world maintainer is a person responsible for a world or part of a world in Archipelago.
 
 If a world author does not want to take on the responsibilities of a world maintainer, they can release their world as
-an unofficial [APWorld](/docs/apworld%20specification.md) or maintain their own fork instead.
+an unofficial [APWorld](apworld%20specification) or maintain their own fork instead.
 
-All current world maintainers are listed in the [CODEOWNERS](/docs/CODEOWNERS) document.
+All current world maintainers are listed in the [CODEOWNERS](codeowners) document.
+(#-responsibilities)=
 
 ## Responsibilities
 
@@ -19,11 +21,14 @@ Unless these are shared between multiple people, we expect the following from ea
   pull requests. Core maintainers may also ping you if a pull request concerns your world.
 * Test (or have tested) the world on the main branch from time to time, especially during RC (release candidate) phases
   of development.
+(#-becoming-a-world-maintainer)=
 * Let us know of long periods of unavailability.
+(##-adding-a-world)=
 
 ## Becoming a World Maintainer
 
 ### Adding a World
+(##-being-added-as-a-maintainer-to-an-existing-implementation)=
 
 When we merge your world into the core Archipelago repository, you automatically become world maintainer unless you
 nominate someone else (i.e. there are multiple devs).
@@ -32,7 +37,8 @@ nominate someone else (i.e. there are multiple devs).
 
 At any point, a world maintainer can approve the addition of another maintainer to their world.  
 In order to do this, either an existing maintainer or the new maintainer must open a PR updating the
-[CODEOWNERS](/docs/CODEOWNERS) file.  
+[CODEOWNERS](codeowners) file.  
+(##-getting-voted)=
 This change must be approved by all existing maintainers of the affected world, the new maintainer candidate, and
 one core maintainer.  
 To help the core team review the change, information about the new maintainer and their contributions should be
@@ -40,20 +46,24 @@ included in the PR description.
 
 ### Getting Voted
 
+(#-dropping-out)=
 When a world is unmaintained, the [core maintainers](https://github.com/orgs/ArchipelagoMW/people)
+(##-resigning)=
 can vote for a new maintainer if there is a candidate.
 For a vote to pass, the majority of participating core maintainers must vote in the affirmative.
 The time limit is 1 week, but can end early if the majority is reached earlier.
 Voting shall be conducted on Discord in #ap-core-dev.
+(##-getting-voted-out)=
 
 ## Dropping out
 
 ### Resigning
 
-A world maintainer can resign and have their username removed from the [CODEOWNERS](/docs/CODEOWNERS) document. If no
+A world maintainer can resign and have their username removed from the [CODEOWNERS](codeowners) document. If no
 new maintainer takes over management of the world, the world becomes unmaintained.
 
 ### Getting Voted out
+(#-handling-of-unmaintained-worlds)=
 
 A world maintainer can be voted out by the [core maintainers](https://github.com/orgs/ArchipelagoMW/people),
 for example when they become unreachable.

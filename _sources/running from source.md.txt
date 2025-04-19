@@ -1,8 +1,10 @@
-(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=(running-from-source)=# Running From Source
+(running-from-source)=
+# Running From Source
 
 If you just want to play and there is a compiled version available on the
 [Archipelago releases page](https://github.com/ArchipelagoMW/Archipelago/releases),
 use that version. These steps are for developers or platforms without compiled releases available.
+(#-general)=
 
 ## General
 
@@ -27,13 +29,14 @@ After this, you should be able to run the programs.
  * `WebHost.py` will host the website on your computer.
     * You can copy `docs/webhost configuration sample.yaml` to `config.yaml`
     to change WebHost options (like the web hosting port number).
+(#-windows)=
 
 
 ## Windows
 
 Recommended steps
  * Download and install a "Windows installer (64-bit)" from the [Python download page](https://www.python.org/downloads)
-   * [read above](#General) which versions are supported
+   * [read above](#general) which versions are supported
 
  * **Optional**: Download and install Visual Studio Build Tools from
    [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
@@ -45,10 +48,12 @@ Recommended steps
  * It is recommended to use [PyCharm IDE](https://www.jetbrains.com/pycharm/)
  * Run ModuleUpdate.py which will prompt installation of missing modules, press enter to confirm
    * In PyCharm: right-click ModuleUpdate.py and select `Run 'ModuleUpdate'`
+(#-macos)=
    * Without PyCharm: open a command prompt in the source folder and type `py ModuleUpdate.py`
 
 
 ## macOS
+(#-optional:-a-link-to-the-past-enemizer)=
 
 Refer to [Guide to Run Archipelago from Source Code on macOS](https://archipelago.gg/tutorial/Archipelago/mac/en).
 
@@ -58,6 +63,7 @@ Refer to [Guide to Run Archipelago from Source Code on macOS](https://archipelag
 Only required to generate seeds that include A Link to the Past with certain options enabled. You will receive an
 error if it is required.
 
+(#-optional:-sni)=
 You can get the latest Enemizer release at [Enemizer Github releases](https://github.com/Ijwu/Enemizer/releases).
 It should be dropped as "EnemizerCLI" into the root folder of the project. Alternatively, you can point the Enemizer
 setting in host.yaml at your Enemizer executable.
@@ -66,6 +72,7 @@ setting in host.yaml at your Enemizer executable.
 ## Optional: SNI
 
 [SNI](https://github.com/alttpo/sni/blob/main/README.md) is required to use SNIClient. If not integrated into the project, it has to be started manually.
+(#-optional:-git)=
 
 You can get the latest SNI release at [SNI Github releases](https://github.com/alttpo/sni/releases).
 It should be dropped as "SNI" into the root folder of the project. Alternatively, you can point the sni setting in
@@ -78,6 +85,7 @@ host.yaml at your SNI folder.
 It may be possible to run Archipelago from source without it, at your own risk.
 
 It is also generally recommended to have Git installed and understand how to use it, especially if you're thinking about contributing.
+(#-running-tests)=
 
 You can download the latest release of Git at [The downloads page on the Git website](https://git-scm.com/downloads).
 
@@ -87,4 +95,4 @@ PyCharm has a built-in version control integration that supports Git.
 
 ## Running tests
 
-Information about running tests can be found in [tests.md](/docs/tests.md#running-tests)
+Information about running tests can be found in [tests.md](tests)

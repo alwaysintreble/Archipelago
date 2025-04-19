@@ -1,17 +1,20 @@
-(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=(archipelago-options-api)=# Archipelago Options API
+(archipelago-options-api)=
+# Archipelago Options API
 
 This document covers some of the generic options available using Archipelago's options handling system.
 
 For more information on where these options go in your world please refer to:
- - [world api.md](/docs/world%20api.md)
+ - [world api.md](world%20api)
 
 Archipelago will be abbreviated as "AP" from now on.
+(#-option-definitions)=
 
 ## Option Definitions
 Option parsing in AP is done using different Option classes. For each option you would like to have in your game, you
 need to create:
 - A new option class, with a docstring detailing what the option does, to be exposed to the user.
 - A new entry in the `options_dataclass` definition for your World.
+(##-option-creation)=
 By style and convention, the dataclass attributes should be `snake_case`.
 
 ### Option Creation
@@ -31,6 +34,7 @@ implement it for additional option types.
 
 As an example, suppose we want an option that lets the user start their game with a sword in their inventory, an option
 to let the player choose the difficulty, and an option to choose how much health the final boss has. Let's create our
+(options.py)=
 option classes (with a docstring), give them a `display_name`, and add them to our game's options dataclass:
 
 ```python
@@ -81,6 +85,7 @@ from .Options import ExampleGameOptions
 class ExampleWorld(World):
     # this gives the generator all the definitions for our options
     options_dataclass = ExampleGameOptions
+(##-option-documentation)=
     # this gives us typing hints for all the options we defined
     options: ExampleGameOptions
 ```
@@ -124,6 +129,7 @@ class Difficulty(Choice):
     display_name = "Difficulty"
     rich_text_doc = True
     option_easy = 0
+(##-option-visibility)=
     option_normal = 1
     option_hard = 2
     default = 1
@@ -140,6 +146,7 @@ options in a yaml. The flags are as follows:
 * `spoiler` (`0b1000`): This option shows up in spoiler logs
 
 ```python
+(##-option-groups)=
 from Options import Choice, Visibility
 
 class HiddenChoiceOption(Choice):
@@ -170,6 +177,7 @@ from . import Options
 class MyWorldWeb(WebWorld):
     option_groups = [
         OptionGroup("Color Options", [
+(##-option-checking)=
             Options.ColorblindMode,
             Options.FlashReduction,
             Options.UIColors,
@@ -188,6 +196,7 @@ if self.options.starting_sword:
     do_some_things()
 ```
 
+(options.py)=
 or if I need a boolean object, such as in my slot_data I can access it as:
 ```python
 start_with_sword = bool(self.options.starting_sword.value)
@@ -203,6 +212,7 @@ class Logic(Choice):
     option_challenging = 2
     option_extreme = 3
     option_insane = 4
+(__init__.py)=
     alias_extra_hard = 2
     crazy = 4  # won't be listed as an option and only exists as an attribute on the class
 
@@ -216,46 +226,64 @@ class Weapon(Choice):
 from .options import Logic
 
 if self.options.logic:
+(check-if-the-current-option-is-in-a-collection-of-integers-using-the-class-attributes)=
     do_things_for_all_non_normal_logic()
 if self.options.logic == 1:
+(in-order-to-make-a-set-of-strings-work,-we-have-to-compare-against-current_key)=
     do_hard_things()
 elif self.options.logic == "challenging":
+(though-it's-usually-better-to-just-use-a-tuple-instead)=
     do_challenging_things()
 elif self.options.logic == Logic.option_extreme:
     do_extreme_things()
+(#-generic-option-classes)=
 elif self.options.logic == "crazy":
     do_insane_things()
 
+(##-accessibility)=
 # check if the current option is in a collection of integers using the class attributes
 if self.options.weapon in {Weapon.option_bow, Weapon.option_sword}:
     do_stuff()
+(##-progressionbalancing)=
 # in order to make a set of strings work, we have to compare against current_key
 elif self.options.weapon.current_key in {"none", "hammer"}:
     do_something_else()
+(##-localitems)=
 # though it's usually better to just use a tuple instead
 elif self.options.weapon in ("none", "hammer"):
+(##-nonlocalitems)=
     do_something_else()
 ```
+(##-startinventory)=
 ## Generic Option Classes
 These options are generically available to every game automatically, but can be overridden for slightly different
+(##-starthints)=
 behavior, if desired. See `worlds/soe/Options.py` for an example.
 
+(##-startlocationhints)=
 ### Accessibility
 Sets rules for availability of locations for the player. `Items` is for all items available but not necessarily all
+(##-excludelocations)=
 locations, such as self-locking keys, but needs to be set by the world for this to be different from locations access.
 
 ### ProgressionBalancing
+(##-prioritylocations)=
 Algorithm for moving progression items into earlier spheres to make the gameplay experience a bit smoother. Can be
 overridden if you want a different default value.
 
+(##-itemlinks)=
 ### LocalItems
 Forces the players' items local to their world.
 
+(#-basic-option-classes)=
+(##-toggle)=
 ### NonLocalItems
 Forces the players' items outside their world.
 
+(##-defaultontoggle)=
 ### StartInventory
 Allows the player to define a dictionary of starting items with item name and quantity.
+(##-choice)=
 
 ### StartHints
 Gives the player starting hints for where the items defined here are.
@@ -271,10 +299,12 @@ placed on them.
 Marks locations given here as `LocationProgressType.Priority` forcing progression items on them if any are available in
 the pool.
 
+(##-range)=
 ### ItemLinks
 Allows users to share their item pool with other players. Currently item links are per game. A link of one game between
 two players will combine their items in the link into a single item, which then gets replaced with `World.create_filler()`.
 
+(##-namedrange)=
 ## Basic Option Classes
 ### Toggle
 The example above. This simply has 0 and 1 as its available results with 0 (false) being the default value. Cannot be
@@ -294,15 +324,19 @@ if self.options.sword_availability == "early_sword":
 or:
 ```python
 from .Options import SwordAvailability
+(#-more-advanced-options)=
+(##-freetext)=
 
 if self.options.sword_availability == SwordAvailability.option_early_sword:
     do_early_sword_things()
 ```
+(##-textchoice)=
 
 ### Range
 A numeric option allowing a variety of integers including the endpoints. Has a default `range_start` of 0 and default
 `range_end` of 1. Allows for negative values as well. This will always be an integer and has no methods for string
 comparisons.
+(##-plandobosses)=
 
 ### NamedRange
 Like range but also allows you to define a dictionary of special names the user can use to equate to a specific value.
@@ -312,20 +346,25 @@ Like range but also allows you to define a dictionary of special names the user 
 
 For example:
 ```python
+(##-optiondict)=
 range_start = 1
 range_end = 99
 special_range_names = {
     "normal": 20,
     "extreme": 99,
+(##-itemdict)=
     "unlimited": -1,
 }
+(##-optionlist)=
 ```
 
 will let users use the names "normal" or "extreme" in their options selections, but will still return those as integers
 to you. Useful if you want special handling regarding those specified values.
 
+(##-optionset)=
 ## More Advanced Options
 ### FreeText
+(##-itemset)=
 This is an option that allows the user to enter any possible string value. Can only be compared with strings, and has
 no validation step, so if this needs to be validated, you can either add a validation step to the option class or
 within the world.
