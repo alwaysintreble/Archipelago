@@ -1093,14 +1093,14 @@ def build_sphinx_docs() -> None:
             shutil.copy(file, sphinx_input)
             # parse through the file and fix links for sphinx's api
             with open(os.path.join(sphinx_input, file.name), "r") as f:
+                headers: list[tuple[int, str]] = []
                 lines = f.readlines()
             for line_index in range(len(lines)):
                 line = lines[line_index]
                 # header
                 if line.startswith("#"):
                     target_text = line.removeprefix("#").strip().lower().replace(" ", "-")
-                    lines.insert(line_index, f"({target_text})=")
-                    line_index += 1
+                    headers.append((line_index, f"({target_text})=\n"))
                     continue
                 # hyperlink
                 if "](" not in line:
@@ -1121,6 +1121,9 @@ def build_sphinx_docs() -> None:
                 else:
                     link = link.split("/")[-1].split(".")[0].lower().replace(" ", "%20")
                 lines[line_index] = line[:start] + link + line[end:]
+            if headers:
+                for index, heading_text in headers:
+                    lines.insert(index, heading_text)
             with open(os.path.join(sphinx_input, file.name), "w") as f:
                 f.writelines(lines)
         elif "img" in file.name:
